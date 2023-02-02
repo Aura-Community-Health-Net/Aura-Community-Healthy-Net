@@ -1,0 +1,20 @@
+.items-table {
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.items-table th {
+    font-size: 15px;
+    text-align: center;
+    padding-block: 8px;
+    background-color: #D9D9F9;
+}
+
+.items-table td {
+    text-align: center;
+    background-color: #F8F8F8;
+}
+
+.items-table tr {
+    position: relative;
+}

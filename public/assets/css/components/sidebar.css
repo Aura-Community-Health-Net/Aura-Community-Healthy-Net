@@ -1,0 +1,110 @@
+.dashboard-container__side-nav li {
+    list-style: none;
+    font-size: large;
+    margin: 0cm 0.7cm 1cm;
+}
+
+.toggle_bar {
+    margin-top: -1cm;
+    border-radius: 0.5rem;
+    margin-left: 1cm;
+    cursor: pointer;
+    width: 0.8cm;
+    display: block;
+    background-color: white;
+    padding: 0.2cm;
+}
+
+.db_btn.active {
+    background-color: gray;
+    cursor: pointer;
+}
+
+.toggle_bar.active {
+    color: lightcyan;
+    background-color: lightcyan;
+    opacity: 1.5;
+}
+
+.toggle_bar.active Navigation_pane {
+    overflow-x: hidden;
+}
+
+.toggle_bar.active ul {
+    display: none;
+}
+
+.Navigation-pane.active {
+    width: 7cm;
+}
+
+.dashboard-container__side-nav {
+    padding-top: 4rem;
+    width: 0;
+    height: 100%;
+    background-color: #030246;
+    transition: width 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+.dashboard-container__side-nav.active {
+    width: 260px;
+}
+
+.navbtn {
+    min-width: 210px;
+    background-color: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: ease-in 0.5s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+a:-webkit-any-link {
+    text-decoration: none !important;
+}
+
+.navbtn > * {
+    text-decoration: none;
+}
+
+.navbtn:active {
+    transform: scale(1.3);
+}
+
+.nav-icon {
+    margin-right: 10px;
+    margin-left: 25px;
+}
+
+.navbtn.active {
+    background-color: #d9d9d9;
+}
+
+.toggle {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle.active {
+    background-color: #d9d9d9;
+}
+
+.toggle svg {
+    cursor: pointer;
+}

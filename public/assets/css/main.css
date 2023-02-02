@@ -1,0 +1,46 @@
+/*Importing Variables*/
+@import "variables.css";
+
+/*  Importing utilities  */
+@import "utilities.css";
+
+/* Importing Components */
+@import "components/modal.css";
+@import "components/buttons.css";
+@import "components/sidebar.css";
+@import "components/form-items.css";
+@import "components/tables.css";
+
+/* Importing Pages */
+@import "pages/product-seller-choose-category.css";
+@import "pages/product-seller-products.css";
+@import "pages/home.css";
+@import "pages/administrator-new-registrations.css";
+@import "pages/provider-login.css";
+@import "pages/provider-signup.css";
+@import "pages/pharmacy-neworders.css";
+
+/* Importing Layouts */
+@import "layout/internal-dashboard.css";
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+}
+
+hr{
+  height:2px;
+  width: 30%;
+  margin-inline: auto;
+  border-width:0;
+  color:gray;
+  background-color:gray;
+}

@@ -1,0 +1,36 @@
+.dashboard-container{
+    width: 100vw;
+    height: calc(100vh - 112.6px);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.dashboard-content{
+    overflow-y: auto;
+    height: 100%;
+}
+
+.dashboard-header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    padding-inline: 2rem;
+    align-items: center;
+}
+
+.dashboard-header__logo img {
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.dashboard-dashboard-header__title {
+    color: #1400FF;
+    font-family: 'Elsie', cursive;
+    font-weight: lighter;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

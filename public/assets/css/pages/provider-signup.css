@@ -1,0 +1,126 @@
+.provider-signup-form {
+    width: 50%;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 1.5rem rgb(0 0 0 / 10%);
+}
+
+.provider-signup-form__top {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.provider-signup-form__bottom {
+    padding-top: 2rem;
+}
+
+.provider-signup-form__left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.provider-signup-form__right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.upload-btn {
+    height: 30px;
+    display: grid;
+    place-items: center;
+    background-color: #fff;
+    width: 50%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn svg {
+    font-size: 1.5rem;
+}
+
+.provider-signup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-inline: 2rem;
+    padding-block: 0.25rem;
+}
+
+.provider-signup-header__brand {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.provider-signup-header__logo img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+
+.provider-signup-header__title h3 {
+    color: #666;
+}
+
+.provider-signup-header ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    height: 100%;
+}
+
+.provider-signup-header li {
+    height: 100%;
+}
+
+.provider-signup-header a {
+    color: #000;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+
+.title {
+    background-color: #A198FF;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.8rem;
+}
+
+
+.title--signup {
+    margin-bottom: 1rem;
+}
+
+.title-text {
+    color: #062D77;
+    font-size: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+.policy {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-bottom: 25px;
+    gap: 0.5rem;
+}
+
+
+.errors.policy-error {
+    text-align: center;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
