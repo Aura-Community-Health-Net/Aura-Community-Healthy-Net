@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // Importing core classes
 use app\core\Application;
+use app\controllers\OrdersController;
 
 // Importing controller classes
 use app\controllers\MedicinesController;
@@ -70,7 +71,7 @@ $app->router->get('/product-seller-dashboard', [DashboardController::class, 'get
 $app->router->get('/product-seller-dashboard/categories', [ProductsController::class, 'getProductSellerChooseCategoryPage']);
 $app->router->get('/product-seller-dashboard/products', [ProductsController::class, 'getProductSellerMedFruitsVegPage']);
 $app->router->post('/product-seller-dashboard/products', [ProductsController::class, 'addProducts']);
-
+$app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 'getProductSellerOrdersPage']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);

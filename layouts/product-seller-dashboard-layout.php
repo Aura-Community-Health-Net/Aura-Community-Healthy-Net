@@ -74,10 +74,10 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                    <a href="/product-seller-dashboard/orders">
+                        <button class="navbtn" <?php echo $active_link === 'orders' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
-                            <span class="nav-title">New Orders</span>
+                            <span class="nav-title">Orders</span>
                         </button>
                     </a>
 

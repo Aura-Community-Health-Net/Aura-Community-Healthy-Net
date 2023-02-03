@@ -11,8 +11,9 @@ class ProductsController extends Controller
     public static function getProductSellerChooseCategoryPage(): array |bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
-            header("location: /product-seller-login");
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
             return "";
         } else {
             $db = new Database();
