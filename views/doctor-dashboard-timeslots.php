@@ -16,7 +16,7 @@
     <tbody>
     <?php foreach ($timeslots as $key => $value) { ?>
         <tr>
-            <td><?php echo $value['slot_number']; ?></td>
+            <td><?php/* echo $value['slot_number']; */?></td>
             <td><?php echo $value['date']; ?></td>
             <td><?php echo date('l', strtotime($value['date'])); ?></td>
             <td><?php echo $value['from_time']; ?></td>
