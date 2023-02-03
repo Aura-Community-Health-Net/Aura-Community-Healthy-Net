@@ -1,0 +1,38 @@
+.doctor-appointments{
+    display: flex;
+}
+.doctor-appointments__left{
+    background-color: #D9D9D9;
+    position: relative;
+    width: 680px;
+    height: 500px;
+    left: 30px;
+    top: 30px;
+}
+
+.doctor-appointments__left table,tr,th{
+    border: 1px solid;
+}
+.doctor-appointments__left table{
+    width: 98%;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.doctor-appointments__left th{
+    height: 30px;
+}
+.doctor-appointments__right__top{
+    background-color: #D9D9D9;
+    position: relative;
+    width: 480px;
+    height: 240px;
+    left: 50px;
+    top: 30px;
+}
+.doctor-appointments__right__bottom{
+    background-color: #D9D9D9;
+    position: relative;width: 480px;
+    height: 240px;
+    left: 50px;
+    top: 50px;
+}
