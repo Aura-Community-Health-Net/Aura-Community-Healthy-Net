@@ -94,8 +94,8 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                    <a href="/product-seller-dashboard/feedback">
+                        <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                             <span class="nav-title">Feedback</span>
                         </button>
