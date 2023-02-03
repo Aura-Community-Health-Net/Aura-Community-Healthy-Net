@@ -154,7 +154,7 @@ class AuthController extends Controller
 
                 $random_picfile_id = bin2hex(random_bytes(24));
                 $new_picfile_name = $nic . $random_picfile_id . "user" . $file1_name;
-                move_uploaded_file($file1_tmp_name, Application::$ROOT_DIR . " /public/uploads/pharmacy/$new_picfile_name");
+                move_uploaded_file($file1_tmp_name, Application::$ROOT_DIR . " /public/uploads/$new_picfile_name");
 
 
                 $file2_name = $nmra["name"];
@@ -166,7 +166,7 @@ class AuthController extends Controller
 
                 $random_nmra_id = bin2hex(random_bytes(24));
                 $new_nmra_name = $nic . $random_nmra_id . "user" . $file2_name;
-                move_uploaded_file($file2_tmp_name, Application::$ROOT_DIR . " /public/uploads/pharmacy/$new_nmra_name");
+                move_uploaded_file($file2_tmp_name, Application::$ROOT_DIR . " /public/uploads/$new_nmra_name");
 
                 $db = new Database();
                 $errors = [];
@@ -220,7 +220,7 @@ class AuthController extends Controller
                              bank_account_number,
                              provider_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-                    $picFile = "/uploads/pharmacy/$new_picfile_name";
+                    $picFile = "/uploads/$new_picfile_name";
                     $provider_type = "pharmacy";
 
                     $result->bind_param("sssssssssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
@@ -234,7 +234,7 @@ class AuthController extends Controller
                      pharmacy_name,
                      nmra_certificate) VALUES (?,?,?,?)");
 
-                    $nmra = "/uploads/pharmacy/$new_nmra_name";
+                    $nmra = "/uploads/$new_nmra_name";
 
                     $result->bind_param("ssss", $nic, $pharmacyRegNo, $pharmacyName, $nmra);
                     $result->execute();

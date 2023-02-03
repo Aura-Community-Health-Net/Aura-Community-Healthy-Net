@@ -77,7 +77,7 @@ $app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
 $app->router->get('/pharmacy-dashboard/medicines', [MedicinesController::class, 'viewMedPage']);
 $app->router->post('/pharmacy-dashboard/medicines', [MedicinesController::class, 'addMed']);
-$app->router->get('/pharmacy-dashboard/new-orders', [MedicinesController::class, 'viewNewOrderPage']);
+$app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
 $app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
 
 
