@@ -1,0 +1,21 @@
+.doctor-patients{
+    background-color: #D9D9D9;
+    width: 1190px;
+    height: 530px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+
+.doctor-patients table,tr,th{
+    border: 1px solid black;
+}
+.doctor-patients table{
+    width: 98%;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.doctor-patients th{
+    height: 30px;
+    margin-top: 30px;
+}

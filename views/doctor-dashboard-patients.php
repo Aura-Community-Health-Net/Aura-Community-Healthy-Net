@@ -9,13 +9,13 @@
     <title>Past-Patients</title>
 </head>
 
-<div class="past-patients">
-    <table class="past-patients__table">
+<div class="doctor-patients">
+    <table>
         <tr>
-            <th class="past-patients__table__head">Name</th>
-            <th class="past-patients__table__head">Mobile No</th>
-            <th class="past-patients__table__head">Last Checked</th>
-            <th class="past-patients__table__head">Observation</th>
+            <th class="doctor-patients__head">Name</th>
+            <th class="doctor-patients__head">Mobile No</th>
+            <th class="doctor-patients__head">Last Checked</th>
+            <th class="doctor-patients__head">Observation</th>
         </tr>
 
     </table>

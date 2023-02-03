@@ -20,6 +20,7 @@
 @import "pages/provider-signup.css";
 @import "pages/pharmacy-neworders.css";
 @import "pages/doctor-dashboard-appointments.css";
+@import "pages/doctor-dashboard-patients.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
