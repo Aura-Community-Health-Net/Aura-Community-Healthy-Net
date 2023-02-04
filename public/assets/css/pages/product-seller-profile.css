@@ -3,25 +3,36 @@
     padding: 2rem;
     margin: 2rem;
     border-radius: 20px;
+}
+
+.product-seller-profile-pic__header{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10rem;
-
 }
 
-.product-seller-profile-pic__container img{
+.product-seller-profile-pic__header img{
     height: 300px;
     aspect-ratio: 1;
     border-radius: 50%;
-
+    margin-bottom: 2rem;
 }
 
-.product-seller-profile-pic__container h1{
+.product-seller-profile-pic__header h1{
     font-size: 2rem;
 }
 
-.product-seller-profile-pic__container h2{
+.product-seller-profile-pic__header h2{
     color: #666666;
     padding-top: 1rem;
+}
+
+.product-seller-profile-pic__details{
+    text-align: center;
+    padding-block: 2rem;
+}
+
+.product-seller-profile-pic__details h3{
+    padding-top: 0.5rem;
 }
