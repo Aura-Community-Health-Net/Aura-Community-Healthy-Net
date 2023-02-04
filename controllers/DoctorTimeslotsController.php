@@ -39,32 +39,19 @@ class DoctorTimeslotsController extends Controller
 
     public static function addDoctorTimeslots(): array|bool|string
     {
-        $date = $_POST["date"];//$date = date("Y/m/d");
-        $day = date('l', strtotime($date));
-        $from = $_POST["from-time"];
-        $to = $_POST["to-time"];
-
-        echo $date;
-        echo $day;
-        echo $from;
-        echo $to;
-
 
         $db = new database();
 
         $errors = [];
-        $appointment_id = "";
-        $provider_nic = "";
         if (empty($errors)) {
 
             $stmt = $db->connection->prepare("INSERT INTO doctor_time_slot (
                               date,
-                              day,
                               from_time,
                               to_time
-                              ) VALUES ( ?, ?, ?, ? )");
+                              ) VALUES ( ?, ?, ? )");
 
-            $stmt->bind_param("ssss", $date, $day, $from, $to);
+            $stmt->bind_param("sss", $_POST["date"], $_POST["from-time"], $_POST["to-time"]);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /doctor-dashboard/timeslots");
