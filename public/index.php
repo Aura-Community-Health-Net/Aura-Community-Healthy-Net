@@ -73,6 +73,7 @@ $app->router->get('/product-seller-dashboard/products', [ProductsController::cla
 $app->router->post('/product-seller-dashboard/products', [ProductsController::class, 'addProducts']);
 $app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 'getProductSellerOrdersPage']);
 $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::class, 'getProductSellerFeedbackPage']);
+$app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);

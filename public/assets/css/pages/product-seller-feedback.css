@@ -1,0 +1,35 @@
+.product-seller-feedback__container{
+    background-color: #F8F8F8;
+    padding: 3rem;
+    margin: 2rem;
+    border-radius: 20px;
+
+}
+
+.product-seller-feedback{
+    background-color: white;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 10px;
+
+}
+
+.product-seller-feedback__details{
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-seller-feedback__details div{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product-seller-feedback__details h4{
+    color: #666666;
+    font-weight: normal;
+    text-align: right;
+}

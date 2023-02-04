@@ -1,0 +1,27 @@
+.product-seller-profile-pic__container{
+    background-color: #F8F8F8;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+
+}
+
+.product-seller-profile-pic__container img{
+    height: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+}
+
+.product-seller-profile-pic__container h1{
+    font-size: 2rem;
+}
+
+.product-seller-profile-pic__container h2{
+    color: #666666;
+    padding-top: 1rem;
+}
