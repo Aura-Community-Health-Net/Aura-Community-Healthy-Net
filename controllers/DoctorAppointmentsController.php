@@ -24,7 +24,6 @@ class DoctorAppointmentsController extends Controller
             "title" => "Appointments",
             "active_link" => "appointments",
         ]);
-
     }
 
 }

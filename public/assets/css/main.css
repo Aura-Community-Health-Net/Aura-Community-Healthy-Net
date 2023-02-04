@@ -22,6 +22,7 @@
 @import "pages/doctor-dashboard-appointments.css";
 @import "pages/doctor-dashboard-patients.css";
 @import "pages/doctor-dashboard.css";
+@import "pages/doctor-dashboard-timeslots.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
