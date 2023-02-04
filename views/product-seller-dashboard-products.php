@@ -12,7 +12,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
 ?>
 <table class="items-table">
     <tr>
-        <th>Produce Image</th>
+        <th>Product Image</th>
         <th>ID Number</th>
         <th>Product Name</th>
         <th>Quantity</th>

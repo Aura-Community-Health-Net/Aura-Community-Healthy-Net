@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
+use  app\core\Database;
 use app\core\Controller;
-use app\core\Database;
+
 
 class ProfileController extends Controller
 {
@@ -25,9 +26,10 @@ class ProfileController extends Controller
     public static function getPharmacyProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
-
+       $providerType = $_SESSION["user_type"];
         if (!$nic) {
-            header("/pharmacy-login");
+            header("location: /provider-login");
+            return "";
         } else {
 
             $db = new Database();
@@ -43,7 +45,28 @@ class ProfileController extends Controller
                 "active_link" => ""
             ]);
         }
+}
+    public function getProductSellerProfilePage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "product-seller"){
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product_seller = $result->fetch_assoc();
+        }
 
+        return self::render(view: 'product-seller-dashboard-profile', layout: "product-seller-dashboard-layout", layoutParams: [
+            "product_seller" => $product_seller,
+            "active_link" => "profile",
+            "title" => "Profile"
+        ]);
     }
 
 }

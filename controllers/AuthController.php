@@ -343,7 +343,7 @@ class AuthController extends Controller
                     $_SESSION["user_type"] = "product-seller";
 
                 } else {
-                    return self::render(view: 'product-seller-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'provider-signup', params: ['errors' => $errors]);
                 }
                 header("location: /product-seller-dashboard");
                 return "";
@@ -453,7 +453,7 @@ class AuthController extends Controller
             "pharmacy" => self::render(view: 'pharmacy-signup', layout: "provider-signup-layout", layoutParams: [
                 "title" => "Register as a pharmacy"
             ]),
-            "product-seller" => self::render(view: 'product-seller-signup', layout: "provider-signup-layout", layoutParams: [
+            "product-seller" => self::render(view: 'provider-signup', layout: "provider-signup-layout", layoutParams: [
                 "title" => "Register as a product seller"
             ]),
             "care-rider" => self::render(view: 'care-rider-signup', layout: "provider-signup-layout", layoutParams: [

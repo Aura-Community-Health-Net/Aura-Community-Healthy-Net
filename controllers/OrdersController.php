@@ -6,7 +6,8 @@ use app\core\Controller;
 use app\core\Database;
 class OrdersController extends Controller
 {
-    public function getProductSellerOrdersPage(){
+    public function getProductSellerOrdersPage(): bool|array|string
+    {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
         if(!$nic || $providerType !== "product-seller"){
