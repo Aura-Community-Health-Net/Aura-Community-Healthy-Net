@@ -30,7 +30,6 @@ class AnalyticsController extends Controller
             return "";
         } else {
             $db = new Database();
-
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
@@ -42,6 +41,32 @@ class AnalyticsController extends Controller
             "product_seller" => $product_seller,
             "active_link" => "analytics",
             "title" => "Analytics"
+        ]);
+    }
+
+
+
+    public static function getPharmacyAnalyticsPage():array|bool|string
+    {
+        $nic = $_SESSION["nic"];
+
+        if (!$nic) {
+            header("/pharmacy-login");
+        } else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+        }
+
+
+        return self::render(view: 'pharmacy-dashboard-analytics', layout: "pharmacy-dashboard-layout", params: [], layoutParams: [
+            "pharmacy" => $pharmacy,
+            "title" => "Analytics",
+            "active_link" => ""
         ]);
     }
 
