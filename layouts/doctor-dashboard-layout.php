@@ -43,7 +43,7 @@
         <p>
             <?php echo $doctor["name"]; ?>
         </p>
-        <img src="<?php echo $doctor['profile_picture'] ?>" alt="">
+        <img src="<?php echo $doctor['profile-pic'] ?>" alt="">
     </div>
 </header>
 
