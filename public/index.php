@@ -79,8 +79,11 @@ $app->router->get('/product-seller-dashboard/profile', [ProfileController::class
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
 $app->router->get('/pharmacy-dashboard/medicines', [MedicinesController::class, 'viewMedPage']);
 $app->router->post('/pharmacy-dashboard/medicines', [MedicinesController::class, 'addMed']);
-$app->router->get('/pharmacy-dashboard/new-orders', [MedicinesController::class, 'viewNewOrderPage']);
+$app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
 $app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
+$app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
+$app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
+$app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPharmacyProfilePage']);
 
 
 // For Care Rider

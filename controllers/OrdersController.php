@@ -29,4 +29,42 @@ class OrdersController extends Controller
             "title" => "Orders"
         ]);
     }
+
+
+    public static function viewNewOrderPage()
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic) {
+            header("/pharmacy-login");
+        } else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+
+            return self::render(view: 'pharmacy-dashboard-neworders', layout: "pharmacy-dashboard-layout", layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
