@@ -7,15 +7,32 @@
     top: 20px;
 }
 
-.doctor-patients table,tr,th{
-    border: 1px solid black;
-}
 .doctor-patients table{
-    width: 98%;
-    margin-top: 5px;
+    position: relative;
+    top: 5px;
+    left: 90px;
+    width: 80%;
     margin-left: 5px;
 }
 .doctor-patients th{
     height: 30px;
     margin-top: 30px;
+}
+
+.doctor-patients__data{
+    width: 1100px;
+    height: 90px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    margin-bottom: 30px;
+}
+.doctor-patients__data img{
+    width: 45px;
+    height: 45px;
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-left: 5px;
 }

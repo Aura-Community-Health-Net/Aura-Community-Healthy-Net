@@ -23,6 +23,9 @@
 @import "pages/doctor-dashboard-patients.css";
 @import "pages/doctor-dashboard.css";
 @import "pages/doctor-dashboard-timeslots.css";
+@import "pages/doctor-dashboard-analytics.css";
+@import "pages/doctor-dashboard-feedback.css";
+@import "pages/doctor-dashboard-profile.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
