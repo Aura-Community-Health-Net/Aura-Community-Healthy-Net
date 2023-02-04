@@ -14,7 +14,7 @@ class FeedbacksController extends Controller
     public static function getDoctorFeedbackPage(): array|bool|string
     {
 
-        return self::render(view: 'doctor-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
+        return self::render(view: 'doctor-dashboard-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
             "title" => "Feedback",
             "active_link" => ""
         ]);

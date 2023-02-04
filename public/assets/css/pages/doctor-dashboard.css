@@ -1,0 +1,25 @@
+.doctor-dashboard{
+    display: flex;
+}
+.doctor-dashboard__left__top,.doctor-dashboard__center__top,.doctor-dashboard__right__top,.doctor-dashboard__left__bottom,.doctor-dashboard__center__bottom,.doctor-dashboard__right__bottom{
+    background-color: #D9D9D9;
+    width: 395px;
+    height: 275px;
+    position: relative;
+    text-align: center;padding-top: 8px;
+}
+.doctor-dashboard__left__top,.doctor-dashboard__center__top,.doctor-dashboard__right__top{
+    top: 20px;
+}
+.doctor-dashboard__left__top,.doctor-dashboard__left__bottom{
+    left: 10px;
+}
+.doctor-dashboard__center__top,.doctor-dashboard__center__bottom{
+    left: 25px;
+}
+.doctor-dashboard__right__top,.doctor-dashboard__right__bottom{
+    left: 40px;
+}
+.doctor-dashboard__left__bottom,.doctor-dashboard__center__bottom,.doctor-dashboard__right__bottom{
+    top: 35px;
+}
