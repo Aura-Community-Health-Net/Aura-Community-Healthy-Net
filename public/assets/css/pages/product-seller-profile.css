@@ -30,9 +30,13 @@
 
 .product-seller-profile-pic__details{
     text-align: center;
-    padding-block: 2rem;
+    padding-block: 1.5rem;
 }
 
 .product-seller-profile-pic__details h3{
-    padding-top: 0.5rem;
+    padding-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
 }
