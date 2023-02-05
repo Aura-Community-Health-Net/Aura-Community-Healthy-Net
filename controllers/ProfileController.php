@@ -29,7 +29,7 @@ class ProfileController extends Controller
         return self::render(view:'care-rider-dashboard-profile', layout: "care-rider-dashboard-layout", params: [],layoutParams: [
             "active_link" => "Profile",
             "title" => "Profile",
-            "care_rider" => $dcotor
+            "care_rider" => $careRider
         ]);
 
     }
