@@ -49,9 +49,11 @@ class AnalyticsController extends Controller
     public static function getPharmacyAnalyticsPage():array|bool|string
     {
         $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
 
-        if (!$nic) {
+        if (!$nic || $providerType !== "pharmacy") {
             header("/pharmacy-login");
+            return "";
         } else {
 
             $db = new Database();
