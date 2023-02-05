@@ -104,8 +104,8 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                    <a href="/product-seller-dashboard/profile">
+                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                             <span class="nav-title">Profile</span>
                         </button>
