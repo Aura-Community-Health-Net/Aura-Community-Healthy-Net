@@ -102,7 +102,7 @@
 
 
             <li>
-                <a href="/product-seller-dashboard/analytics">
+                <a href="/consumer-dashboard/analytics">
                     <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                     <span class="nav-title">Analytics</span>
@@ -112,7 +112,7 @@
             </li>
 
             <li>
-                <a href="/product-seller-dashboard/feedback">
+                <a href="/consumer-dashboard/feedback">
                     <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                     <span class="nav-title">Feedback</span>
@@ -122,7 +122,7 @@
             </li>
 
             <li>
-                <a href="/product-seller-dashboard/profile">
+                <a href="/consumer-dashboard/profile">
                     <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav-title">Profile</span>
