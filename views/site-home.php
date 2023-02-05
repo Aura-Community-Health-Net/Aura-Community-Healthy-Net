@@ -24,7 +24,14 @@
                 </div>
             </div>
 
-            <a class="login-link" href="/login">Log in</a>
+            <?php
+            $nic = $_SESSION["nic"];
+            if (!$nic){
+                echo "<a class='login-link' href='/login'>Log in</a>";
+            } else {
+                echo "<a class='login-link'> You are logged in as $nic </a>";
+            }
+            ?>
         </header>
 
         <div class="intro">
@@ -32,7 +39,14 @@
             <h3>Welcome to</h3>
             <h3>Aura Community Health Net</h3>
         </div>
-        <button>Register Now</button>
+
+        <?php
+
+        if (!$nic){
+            echo "<button>Register Now</button>";
+        }
+        ?>
+
     </div>
 
     <section class="testimony">
