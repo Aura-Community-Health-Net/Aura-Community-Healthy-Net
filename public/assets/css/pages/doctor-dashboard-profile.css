@@ -24,7 +24,7 @@
     height: 150px;
     border-radius: 60px;
 }
-.doctor-profile__data h3,h4{
+.doctor-profile__data h3,.doctor-profile__data h4{
     margin-bottom: 10px;
     position: relative;
     left: 550px;
