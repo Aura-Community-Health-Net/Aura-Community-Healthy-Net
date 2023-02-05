@@ -84,7 +84,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/product-seller-dashboard/analytics">
                         <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                             <span class="nav-title">Analytics</span>

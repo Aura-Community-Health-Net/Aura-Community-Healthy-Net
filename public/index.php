@@ -49,9 +49,9 @@ $app->router->post('/provider-register', [AuthController::class, 'registerProvid
 $app->router->get('/provider-login', [AuthController::class, 'getProviderLoginPage']);
 $app->router->post('/provider-login', [AuthController::class, 'loginProvider']);
 
-$app->router->get('/signup', [AuthController::class, 'getServiceConsumerSignupPage']);
-$app->router->post('/signup', [AuthController::class, 'registerServiceConsumer']);
-$app->router->get('/login', [AuthController::class, 'getServiceConsumerLoginPage']);
+$app->router->get('/register', [AuthController::class, 'getConsumerSignupPage']);
+$app->router->post('/register', [AuthController::class, 'registerConsumer']);
+$app->router->get('/login', [AuthController::class, 'getConsumerLoginPage']);
 $app->router->post('/login', [AuthController::class, 'loginServiceConsumer']);
 
 
@@ -74,6 +74,7 @@ $app->router->post('/product-seller-dashboard/products', [ProductsController::cl
 $app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 'getProductSellerOrdersPage']);
 $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::class, 'getProductSellerFeedbackPage']);
 $app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
+$app->router->get('/product-seller-dashboard/analytics', [AnalyticsController::class, 'getProductSellerAnalyticsPage']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
@@ -110,6 +111,8 @@ $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'g
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
 
+//For Consumer
+$app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
 
 //  Run the application
 $app->run();
