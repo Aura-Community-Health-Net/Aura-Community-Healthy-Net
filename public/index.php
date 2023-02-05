@@ -73,13 +73,17 @@ $app->router->get('/product-seller-dashboard/products', [ProductsController::cla
 $app->router->post('/product-seller-dashboard/products', [ProductsController::class, 'addProducts']);
 $app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 'getProductSellerOrdersPage']);
 $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::class, 'getProductSellerFeedbackPage']);
+$app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
 $app->router->get('/pharmacy-dashboard/medicines', [MedicinesController::class, 'viewMedPage']);
 $app->router->post('/pharmacy-dashboard/medicines', [MedicinesController::class, 'addMed']);
-$app->router->get('/pharmacy-dashboard/new-orders', [MedicinesController::class, 'viewNewOrderPage']);
+$app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
 $app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
+$app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
+$app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
+$app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPharmacyProfilePage']);
 
 
 // For Care Rider

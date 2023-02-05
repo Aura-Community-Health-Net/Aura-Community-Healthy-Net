@@ -20,6 +20,10 @@
 @import "pages/provider-signup.css";
 @import "pages/pharmacy-neworders.css";
 @import "pages/product-seller-orders.css";
+@import "pages/pharmacy-feedback.css";
+@import "pages/product-seller-feedback.css";
+@import "pages/product-seller-profile.css";
+@import "pages/pharmacy-analytics.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
