@@ -113,6 +113,9 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
+$app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 
 //  Run the application
 $app->run();

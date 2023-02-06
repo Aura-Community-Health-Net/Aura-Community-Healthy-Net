@@ -25,7 +25,8 @@
             </div>
 
             <?php
-            $nic = $_SESSION["nic"];
+            $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
+
             if (!$nic){
                 echo "<a class='login-link' href='/login'>Log in</a>";
             } else {
