@@ -4,11 +4,10 @@ namespace app\controllers;
 
 use app\core\Database;
 use app\core\Controller;
-use app\core\Database;
 
 class AnalyticsController extends Controller
 {
-    public static function getCareRiderAnalyticsPage()
+    public static function getCareRiderAnalyticsPage(): array|bool|string
     {
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];

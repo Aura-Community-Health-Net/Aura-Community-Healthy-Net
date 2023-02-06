@@ -103,9 +103,12 @@ $app->router->post('/care-rider-dashboard/timeslots-update', [CareRiderTimeslots
 //                                  New-Requests
 $app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'getNewRequestsPage']);
 $app->router->post('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'NewRequests']);
+//                                  profile
 $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
 $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, 'Profile']);
-
+//                                 Analytics
+$app->router->get('/care-rider-dashboard/analytics', [AnalyticsController::class, 'getCareRiderAnalyticsPage']);
+$app->router->post('/care-rider-dashboard/analytics', [AnalyticsController::class, 'Analytics']);
 
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);

@@ -41,7 +41,7 @@
     <?php } ?>
     </tbody>
 </table>
-<form class="products-form" action="/care-rider-dashboard/timeslots" id="add-care-rider-timeslot" method="post">
+<form class="products-form" action="/care-rider-dashboard/timeslots" id="add-care-rider-timeslot-form" method="post">
     <table>
         <tr>
             <th><label class="products-label" for="date">Date</label></th>
@@ -49,7 +49,7 @@
             <th><label class="products-label" for="to-time">To Time</label></th>
         </tr>
         <tr>
-            <td><input type="date" id="name" name="name" value="<?php echo $_POST['date'] ?? ''; ?>" required></td>
+            <td><input type="date" id="name" name="date" value="<?php echo $_POST['date'] ?? ''; ?>" required></td>
             <td><input type="time" id="from-time" name="fromTime" value="<?php echo $_POST['from-time'] ?? ''; ?>"
                        required></td>
             <td><input type="time" id="to-time" name="toTime"
@@ -61,3 +61,15 @@
     </button>
 </form>
 
+<div class="overlay" id="add-care-rider-timeslot-overlay">
+    <div class="modal" id="add-care-rider-timeslot-modal">
+        <h3>Do you really want to add this timeslot?</h3>
+        <img class="modal-img" src="/assets/images/confirmation.jpg">
+        <div class="modal-actions">
+            <button class="cancel-btn" id="add-care-rider-timeslot-cancel-btn">Cancel</button>
+            <button class="ok-btn" id="add-care-rider-timeslot-ok-btn">ok</button>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/pages/care-rider-timeslots.js"></script>

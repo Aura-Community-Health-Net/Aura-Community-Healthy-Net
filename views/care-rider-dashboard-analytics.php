@@ -1,19 +1,19 @@
 <?php
 /**
- * @var array $appointments
+ * @var array $new_request
  */
 ?>
 
 <head>
-    <link rel="stylesheet" href="assets/css/pages/care-rider-dashboard-analytics.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Analytics</title>
 </head>
 
-<div class="doctor-analytics">
-    <div class="doctor-analytics__top">
-        <img src="/assets/images/count.jpg">
+<div class="care-rider-analytics">
+    <div class="care-rider-analytics__top">
+        <img src="/assets/images/care-rider-analytics-top.png">
     </div>
-    <div class="doctor-analytics__bottom">
-        <img src="/assets/images/revenue.jpg">
+    <div class="care-rider-analytics__bottom">
+        <img src="/assets/images/care-rider-analytics-bottom.png">
     </div>
 </div>

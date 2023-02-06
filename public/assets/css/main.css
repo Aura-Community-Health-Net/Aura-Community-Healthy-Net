@@ -31,7 +31,11 @@
 
 /*Importibg care-rider pages*/
 @import "pages/care-rider-dashboard-profile.css";
-
+@import "pages/care-rider-dashboard-analytics.css";
+@import "pages/care-rider-dashboard-profile.css";
+@import "pages/care-rider-dashboard-feedback.css";
+@import "pages/care-rider-dashboared.css";
+@import "pages/care-rider-dashboard-new-requests.css";
 
 
 

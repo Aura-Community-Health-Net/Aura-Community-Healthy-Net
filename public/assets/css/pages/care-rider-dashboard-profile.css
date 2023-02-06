@@ -1,48 +1,36 @@
-.care-rider-profile-contener {
-    background-color: #c9c9c9;
-    width: 78%;
-    height: 92vh;
-    margin-left: 20%;
-    border-radius: 5px;
-    padding-top: 20px;
-
+.care-rider-profile{
+    position: relative;
+    left: 200px;
+    top: 10px;
+    width: 1000px;
+    height: 550px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
 }
-
-.care-rider-profile-profile-content {
-    background-color: white;
-    width: 94%;
-    height: 84vh;
-    margin: auto;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-
+.care-rider-profile__data{
+    position: relative;
+    left: 100px;
+    top: 20px;
+    width: 800px;
+    height: 505px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
 }
-.care-rider-profile-content-head {
-    display: flex;
-    flex-direction: row;
-    margin-top:30px;
-    margin-left:60px;
-    margin-bottom:40px;
+.care-rider-profile__data img{
+    position: relative;
+    left: 300px;
+    top: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 60px;
 }
-.care-rider-profile-content-head img{
-    width:200px;
-    height:200px;
+.care-rider-profile__data h3,h4{
+    margin-bottom: 10px;
+    position: relative;
+    left: 550px;
+    top: -50px;
 }
-.tab
-{
-    tab-size: 2;
-}
-.care-rider-profile-content-head  h3{
-    margin-top:100px;
-    margin-left:100px;
-
-}
-.care-rider-profile-content-body{
-    display: flex;
-    flex-direction: row;
-    margin-left: 80px;
-}
-.care-rifer-profile-content-body h3{
-    width: 240px;
+.care-rider-profile__data p{
+    position: relative;
+    left: 200px;
 }
