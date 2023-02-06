@@ -11,8 +11,9 @@ class ProductsController extends Controller
     public static function getProductSellerChooseCategoryPage(): array |bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
-            header("location: /product-seller-login");
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
             return "";
         } else {
             $db = new Database();
@@ -148,5 +149,51 @@ class ProductsController extends Controller
         $result = $stmt->get_result();
         $product_seller = $result->fetch_assoc();
     }
+
+    public static function getConsumerProductsPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard-products', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-products"
+            ]);
+        }
+    }
+
+    public static function getConsumerProductOverview(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard-product-overview', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-product-overview"
+            ]);
+        }
+    }
+
+
 
 }

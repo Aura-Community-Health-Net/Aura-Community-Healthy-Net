@@ -82,7 +82,28 @@ class CareRiderTimeslotsController extends Controller
 
         } else {
 
-            return self::render(view: 'care-rider-dashboard-timeslots');
+            $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $careRider = $result->fetch_assoc();
+
+            $sql = "SELECT * FROM care_rider_time_slot  ";
+            $result = $db->connection->query(query: $sql);
+            $product = [];
+            //        $product2=null;
+            while ($row = $result->fetch_assoc()) {
+                $product[] = $row;
+            }
+
+            return self::render(view: 'care-rider-dashboard-timeslots', layout: "care-rider-dashboard-layout", params: ['data' => $product], layoutParams: [
+                "care_rider" => $careRider,
+                "active_link" => "timeslots",
+                "title" => "Timeslots"
+            ]);
+
         }
     }
 

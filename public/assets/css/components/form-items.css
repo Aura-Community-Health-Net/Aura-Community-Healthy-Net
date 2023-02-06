@@ -50,3 +50,42 @@
     display: flex;
     align-items: center;
 }
+
+.form-item--search{
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar{
+    align-items: center;
+    gap: 0.5rem;
+    display: flex;
+}
+
+.form-item--search input{
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    width: 20rem;
+    border-radius: 5px;
+}
+
+.form-item--search svg {
+    font-size: 1.5rem;
+}
+
+.form-item--search button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.form-items--dropdown{
+    width: 18rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+}
