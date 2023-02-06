@@ -453,7 +453,7 @@ class AuthController extends Controller
             "pharmacy" => self::render(view: 'pharmacy-signup', layout: "provider-signup-layout", layoutParams: [
                 "title" => "Register as a pharmacy"
             ]),
-            "product-seller" => self::render(view: 'provider-signup', layout: "provider-signup-layout", layoutParams: [
+            "product-seller" => self::render(view: 'product-seller-signup', layout: "provider-signup-layout", layoutParams: [
                 "title" => "Register as a product seller"
             ]),
             "care-rider" => self::render(view: 'care-rider-signup', layout: "provider-signup-layout", layoutParams: [
@@ -549,5 +549,118 @@ class AuthController extends Controller
         return self::render(view: 'administrator-login', params: ['errors' => $errors]);
 
     }
+
+    public static function getConsumerSignupPage(): bool|array|string
+    {
+        return self::render(view: 'consumer-signup', layout: 'consumer-signup-layout', layoutParams: ['title' => 'Register with Aura']);
+    }
+
+    public static function registerConsumer(): bool|array|string
+    {
+        $name = $_POST["name"];
+        $nic = $_POST["nic"];
+        $email = $_POST["email"];
+        $mobileNumber = $_POST["mobileNumber"];
+        $address = $_POST["address"];
+        $password = $_POST["password"];
+        $confirmPassword = $_POST["confirmPassword"];
+
+        $file = $_FILES["image"];
+        $file_name = $file["name"];
+        $file_tmp_name = $file["tmp_name"];
+
+        $random_id = bin2hex(random_bytes(24));
+        $new_file_name = $nic . $random_id . "profile_pic" . $file_name;
+        move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
+
+        $db = new Database();
+
+        $errors = [];
+
+        $sql = "SELECT * FROM service_consumer WHERE email_address = '$email'";
+        $result = $db->connection->query(query: $sql);
+        if ($result->num_rows > 0) {
+            $errors["email"] = "This email address already in use.";
+        }
+
+        $sql = "SELECT * FROM service_consumer WHERE consumer_nic = '$nic'";
+        $result = $db->connection->query(query: $sql);
+        if ($result->num_rows > 0) {
+            $errors["nic"] = "This NIC already in use.";
+        }
+
+        $sql = "SELECT * FROM service_consumer WHERE mobile_number = '$mobileNumber'";
+        $result = $db->connection->query(query: $sql);
+        if ($result->num_rows > 0) {
+            $errors["mobileNumber"] = "This Mobile number already in use.";
+        }
+
+        if ($password != $confirmPassword) {
+            $errors["confirmPassword"] = "Password and Confirm Password must match.";
+        }
+
+        if (!isset($_POST["ua"])) {
+            $errors["ua"] = "You need to accept the user agreement";
+        }
+
+        if (empty($errors)) {
+            $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
+            $stmt = $db->connection->prepare("INSERT INTO service_consumer (consumer_nic, 
+                                    name, 
+                                    address, 
+                                    email_address, 
+                                    password, 
+                                    mobile_number, 
+                                    profile_picture) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+            $image = "/uploads/$new_file_name";
+            $stmt->bind_param("sssssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $image);
+            $stmt->execute();
+            $_SESSION["nic"] = $nic;
+            $_SESSION["is_admin"] = false;
+            $_SESSION["user_type"] = "consumer";
+
+        } else {
+            return self::render(view: 'consumer-signup', params: ['errors' => $errors]);
+        }
+        header("location: /");
+        return "";
+    }
+
+    public static function loginServiceConsumer(): bool|array|string
+    {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $errors = [];
+        $db = new Database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE email_address = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            $consumer = $result->fetch_assoc();
+            if (password_verify($password, $consumer["password"])){
+                $_SESSION["nic"] = $consumer["consumer_nic"];
+                $_SESSION["user_type"] = "consumer";
+                $_SESSION["is_admin"] = false;
+                header("location: /consumer-dashboard");
+                return "";
+            } else {
+                $errors["password"] = "Password doesn't match";
+            }
+        } else {
+            $errors["email"] = "Email doesn't exist";
+        }
+        return self::render(view: "consumer-login", params: ["errors" => $errors]);
+    }
+
+
+    public static function getConsumerLoginPage(): bool|array|string
+    {
+        return self::render(view: "consumer-login");
+    }
+
+
 
 }

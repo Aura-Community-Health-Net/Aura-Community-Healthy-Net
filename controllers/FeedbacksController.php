@@ -70,7 +70,8 @@ class FeedbacksController extends Controller
  }
 }
 
-    public static function getProductSellerFeedbackPage(){
+    public static function getProductSellerFeedbackPage(): bool|array|string
+    {
         $nic =$_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
         if(!$nic || $providerType !== "product-seller"){
@@ -91,4 +92,40 @@ class FeedbacksController extends Controller
             "title" => "Feedback"
         ]);
     }
+
+
+
+
+    public  static function getConsumerFeedbackPage()
+    {
+        $nic =$_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if(!$nic || $userType !== "consumer"){
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-feedback', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "feedback",
+            "title" => "Feedback"]);
+
+
+
+
+
+    }
+
+
+
+
+
+
 }

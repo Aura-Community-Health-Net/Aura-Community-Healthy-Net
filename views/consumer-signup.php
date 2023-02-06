@@ -1,21 +1,16 @@
-<form id="reg-form" class="provider-signup-form" action="/provider-register?provider_type=product-seller" method="post"
+<form id="reg-form" class="provider-signup-form" action="/register" method="post"
     enctype="multipart/form-data">
     <div class="title">
-        <h2 class="title-text">Register as Healthy Food Product Seller</h2>
+        <h2 class="title-text">Register with Aura</h2>
     </div>
 
     <div class="provider-signup-form__top">
         <div class="provider-signup-form__left">
-            <div class="form-input">
-                <label class="form-input__label" for="businessName">Business Name <sup>*</sup></label>
-                <input class="form-input__input" id="businessName" type="text" name="businessName"
-                    value="<?php echo $_POST['businessName'] ?? ''; ?>" required>
-            </div>
 
             <div class="form-input">
-                <label class="form-input__label" for="ownerName">Owner Name <sup>*</sup></label>
-                <input class="form-input__input" id="ownerName" type="text" name="ownerName"
-                    value="<?php echo $_POST['ownerName'] ?? ''; ?>" required>
+                <label class="form-input__label" for="name">Name <sup>*</sup></label>
+                <input class="form-input__input" id="name" type="text" name="name"
+                    value="<?php echo $_POST['name'] ?? ''; ?>" required>
             </div>
 
             <div class="form-input">
@@ -50,46 +45,12 @@
                 }
                 ?>
             </div>
-
-            <div class="form-input">
-                <label class="form-input__label" for="address">Address <sup>*</sup></label>
-                <input class="form-input__input" id="address" type="text" name="address"
-                    value="<?php echo $_POST['address'] ?? ''; ?>" required>
-            </div>
-
-            <div class="form-input">
-                <label class="form-input__label" for="regNumber">Business Registration Number <sup>*</sup></label>
-                <input class="form-input__input" id="regNumber" type="text" name="regNumber"
-                    value="<?php echo $_POST['regNumber'] ?? ''; ?>" required>
-                <?php
-                if (isset($errors) && isset($errors["regNumber"])) {
-                    echo "<p class = 'errors'> {$errors["regNumber"]}</p>";
-                }
-                ?>
-            </div>
         </div>
         <div class="provider-signup-form__right">
             <div class="form-input">
-                <label class="form-input__label" for="bankNo">Bank Account Number <sup>*</sup></label>
-                <input class="form-input__input" id="bankNo" type="number" name="bankNo"
-                    value="<?php echo $_POST['bankNo'] ?? ''; ?>" required>
-                <?php
-                if (isset($errors) && isset($errors["bankNo"])) {
-                    echo "<p class = 'errors'> {$errors["bankNo"]}</p>";
-                }
-                ?>
-            </div>
-
-            <div class="form-input">
-                <label class="form-input__label" for="bankName">Bank Name <sup>*</sup></label>
-                <input class="form-input__input" id="bankName" type="text" name="bankName"
-                    value="<?php echo $_POST['bankName'] ?? ''; ?>" required>
-            </div>
-
-            <div class="form-input">
-                <label class="form-input__label" for="branchName">Branch Name <sup>*</sup></label>
-                <input class="form-input__input" id="branchName" type="text" name="branchName"
-                    value="<?php echo $_POST['branchName'] ?? ''; ?>" required>
+                <label class="form-input__label" for="address">Address <sup>*</sup></label>
+                <input class="form-input__input" id="address" type="text" name="address"
+                       value="<?php echo $_POST['address'] ?? ''; ?>" required>
             </div>
 
             <div class="form-input">
@@ -140,12 +101,6 @@
         </div>
     </div>
 </form>
-
-<div id="modal">
-    <h3>Your account will be verified shortly, you are only visible to people after you are verified.</h3>
-    <img class="modal-img" src="/assets/images/verification.jpg" alt="">
-    <button class="reg-ok-btn" id="ok-btn">Ok</button>
-</div>
 
 
 <script src="/assets/js/pages/signup-product-seller.js"></script>
