@@ -114,9 +114,12 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
+$app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
-
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
+
 
 //  Run the application
 $app->run();

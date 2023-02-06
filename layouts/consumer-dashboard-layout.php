@@ -86,7 +86,7 @@
                         <span class="navtitle">Pharmacy</span>
                     </a>
 
-                    <a href="#" class="navbtn sub__navbtn navbtn--link">
+                    <a href="/consumer-dashboard/products" class="navbtn sub__navbtn navbtn--link">
                         <span class="nav-icon"><i class="fa-solid fa-leaf"></i></span>
                         <span class="navtitle">Food Products</span>
                     </a>
