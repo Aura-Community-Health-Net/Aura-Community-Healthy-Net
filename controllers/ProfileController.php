@@ -9,7 +9,8 @@ use app\core\Controller;
 
 class ProfileController extends Controller
 {
-    public static function getCareRiderProfilePage(): array|bool|string{
+
+  public static function getCareRiderProfilePage(): array|bool|string{
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];
 
