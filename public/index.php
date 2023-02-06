@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Importing core classes
+use app\controllers\ConsumerController;
 use app\core\Application;
 use app\controllers\OrdersController;
 
@@ -114,6 +115,8 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
+
+$app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 
 //  Run the application
 $app->run();

@@ -1,0 +1,56 @@
+.services-pharmacy-pharmacyList
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 250px;
+    padding: 0.7rem;
+    background-color: #D9D9D9;
+    border-radius: 0.6rem;
+    width:900px;
+    align-items: center;
+    align-content: center;
+
+}
+#services-pharmacy-pharmacyName
+{
+    font-weight: bold;
+}
+
+.services-pharmacy-attributes
+{
+    padding-left: 3rem;
+
+
+}
+
+.pharmacy-view-btn
+{
+    background-color: #008DFF;
+    width: 3.2cm;
+    height: 0.7cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+}
+
+.pharmacy-pres-upload-btn
+{
+    background-color: #008DFF;
+    width: 3.6cm;
+    height: 0.7cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+
+}
+
+.consumer-services-pharmacy-pharmacylist-Container
+{
+      display: flex;
+    flex-direction: column;
+    row-gap: 0.4cm;
+    margin-top: 90px;
+
+}

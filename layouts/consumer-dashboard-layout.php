@@ -76,12 +76,12 @@
 
             </li>
                 <div class="sidebar__services-list" id="services-list">
-                    <a href="#" class="navbtn sub__navbtn navbtn--link">
+                    <a href="" class="navbtn sub__navbtn navbtn--link">
                         <span class="nav-icon"><i class="fa-solid fa-stethoscope"></i></span>
                         <span class="navtitle">Doctor</span>
                     </a>
 
-                    <a href="#" class="navbtn sub__navbtn navbtn--link">
+                    <a href="/consumer-dashboard/services/pharmacy" class="navbtn sub__navbtn navbtn--link">
                         <span class="nav-icon"><i class="fa-solid fa-capsules"></i></span>
                         <span class="navtitle">Pharmacy</span>
                     </a>
