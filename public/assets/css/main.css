@@ -33,6 +33,15 @@
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
 
+
+/*Importibg care-rider pages*/
+@import "pages/care-rider-dashboard-profile.css";
+
+
+
+
+
+
 *,
 *::after,
 *::before {
