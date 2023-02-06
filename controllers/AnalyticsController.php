@@ -33,7 +33,7 @@ class AnalyticsController extends Controller
 
     public static function getDoctorAnalyticsPage():array|bool|string{
 
-        return self::render(view:'doctor-analytics', layout: "doctor-dashboard-layout", params: [],layoutParams: [
+        return self::render(view:'doctor-dashboard-analytics', layout: "doctor-dashboard-layout", params: [],layoutParams: [
             "title" => "Analytics",
             "active_link" => ""
         ]);

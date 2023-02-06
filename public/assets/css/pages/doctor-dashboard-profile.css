@@ -1,0 +1,36 @@
+.doctor-profile{
+    position: relative;
+    left: 10px;
+    top: 10px;
+    width: 1215px;
+    height: 550px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+.doctor-profile__data{
+    position: relative;
+    left: 100px;
+    top: 20px;
+    width: 1000px;
+    height: 505px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.doctor-profile__data img{
+    position: relative;
+    left: 300px;
+    top: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 60px;
+}
+.doctor-profile__data h3,h4{
+    margin-bottom: 10px;
+    position: relative;
+    left: 550px;
+    top: -50px;
+}
+.doctor-profile__data p{
+    position: relative;
+    left: 200px;
+}

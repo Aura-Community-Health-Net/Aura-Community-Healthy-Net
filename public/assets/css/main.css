@@ -19,6 +19,13 @@
 @import "pages/provider-login.css";
 @import "pages/provider-signup.css";
 @import "pages/pharmacy-neworders.css";
+@import "pages/doctor-dashboard-appointments.css";
+@import "pages/doctor-dashboard-patients.css";
+@import "pages/doctor-dashboard.css";
+@import "pages/doctor-dashboard-timeslots.css";
+@import "pages/doctor-dashboard-analytics.css";
+@import "pages/doctor-dashboard-feedback.css";
+@import "pages/doctor-dashboard-profile.css";
 @import "pages/product-seller-orders.css";
 @import "pages/pharmacy-feedback.css";
 @import "pages/product-seller-feedback.css";

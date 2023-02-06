@@ -6,5 +6,14 @@
 
 <head>
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Doctor-Analytics</title>
+    <title>Analytics</title>
 </head>
+
+<div class="doctor-analytics">
+    <div class="doctor-analytics__top">
+        <img src="/assets/images/count.jpg">
+    </div>
+    <div class="doctor-analytics__bottom">
+        <img src="/assets/images/revenue.jpg">
+    </div>
+</div>
