@@ -117,6 +117,7 @@ $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'ge
 $app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
 $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+$app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 //  Run the application
 $app->run();
 

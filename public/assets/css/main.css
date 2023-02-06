@@ -37,6 +37,8 @@
 @import "pages/consumer-feedbacks.css";
 @import "pages/consumer-dashboard-service-doctor.css";
 @import "pages/consumer-dashboard-service-doctor-profile.css";
+@import "pages/consumer-dashboard-service-doctor-profile-payment.css";
+@import "pages/consumer-dashboard-profile.css";
 
 
 /* Importing Layouts */

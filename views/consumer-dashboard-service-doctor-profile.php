@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00 for an appointment</p>
-                        <button>Continue to Pay</button>
+                        <a href="/consumer-dashboard/services/doctor/profile/payment"><button>Continue to Pay</button></a>
                     </div>
                 </td>
             </tr>
