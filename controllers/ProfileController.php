@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use  app\core\Database;
 use app\core\Controller;
-use app\core\Database;
+
 
 
 class ProfileController extends Controller
@@ -55,7 +55,7 @@ class ProfileController extends Controller
         ]);
 
     }
-}
+
     public static function getPharmacyProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -102,4 +102,4 @@ class ProfileController extends Controller
         ]);
     }
 
-}
+ }
