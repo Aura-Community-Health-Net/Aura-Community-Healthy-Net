@@ -36,6 +36,7 @@
 @import "pages/pharmacy-profile.css";
 @import "pages/consumer-feedbacks.css";
 @import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
+@import "pages/consumer-dashboard-services-pharmacy-payment-receipt.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
