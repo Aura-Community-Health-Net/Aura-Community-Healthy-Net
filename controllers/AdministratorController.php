@@ -47,8 +47,20 @@ class AdministratorController extends Controller
         return "";
     }
 
-    public static function getAdministratorDashboardPage(){
-        return self::render(view: 'admin-view-new-registrations', layout: "admin-dashboard-layout", params: [], layoutParams: [
+    public static function getAdministratorDashboardPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Dashboard",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "dashboard"
+        ]);
+    }
+
+    public static function getAdministratorDuePaymentsPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [], layoutParams: [
             "title" => "Due Payments",
             "admin" => [
                 "name" => "Randima Dias"
@@ -56,5 +68,17 @@ class AdministratorController extends Controller
             "active_link" => "payments"
         ]);
     }
+
+    public static function getAdministratorFeedbackPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard-feedback', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Feedback",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "feedback"
+        ]);
+    }
+    
 }
 
