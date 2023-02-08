@@ -34,7 +34,12 @@
 @import "pages/consumer-products.css";
 @import "pages/pharmacy-analytics.css";
 @import "pages/pharmacy-profile.css";
+@import "pages/consumer-dashboard.css";
 @import "pages/consumer-feedbacks.css";
+@import "pages/consumer-dashboard-service-doctor.css";
+@import "pages/consumer-dashboard-service-doctor-profile.css";
+@import "pages/consumer-dashboard-service-doctor-profile-payment.css";
+@import "pages/consumer-dashboard-profile.css";
 @import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
 @import "pages/consumer-dashboard-services-pharmacy-payment-receipt.css";
 

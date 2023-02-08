@@ -102,7 +102,7 @@ class DashboardController extends Controller
         }
     }
 
-    public static function getConsumerDashboardPage(){
+    public static function getConsumerDashboardPage(): array |bool|string{
         $nic = $_SESSION["nic"];
         if (!$nic){
             header("location: /login");
