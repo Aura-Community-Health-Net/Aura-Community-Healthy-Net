@@ -1,0 +1,12 @@
+.doctor-analytics__top img{
+    position: relative;
+    left: 100px;
+    width: 1000px;
+    height: 300px;
+}
+.doctor-analytics__bottom img{
+    position: relative;
+    left: 200px;
+    width: 800px;
+    height: 300px;
+}

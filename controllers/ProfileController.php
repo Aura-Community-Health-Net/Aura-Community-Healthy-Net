@@ -2,31 +2,64 @@
 
 namespace app\controllers;
 
-use  app\core\Database;
 use app\core\Controller;
+use app\core\Database;
 
 
 class ProfileController extends Controller
 {
-    public static function getCareRiderProfilePage(): bool|array|string
+    public static function getCareRiderProfilePage(): array|bool|string
     {
-        return self::render(view: "care-rider-dashboard-profile");
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+
+        if (!$nic || $providerType != "care-rider") {
+            header("location: /provider-login");
+            return "";
+        }
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $careRider = $result->fetch_assoc();
+
+
+        return self::render(view: 'care-rider-dashboard-profile', layout: "care-rider-dashboard-layout", params: [], layoutParams: [
+            "active_link" => "Profile",
+            "title" => "Profile",
+            "care_rider" => $careRider
+        ]);
     }
 
     public static function getDoctorProfilePage(): array|bool|string
     {
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
 
+        if (!$nic || $providerType != "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor = $result->fetch_assoc();
         return self::render(view: 'doctor-dashboard-profile', layout: "doctor-dashboard-layout", params: [], layoutParams: [
+            "active_link" => "Profile",
             "title" => "Profile",
-            "active_link" => ""
+            "doctor" => $doctor
         ]);
-
     }
 
     public static function getPharmacyProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
-       $providerType = $_SESSION["user_type"];
+        $providerType = $_SESSION["user_type"];
         if (!$nic) {
             header("location: /provider-login");
             return "";
@@ -45,12 +78,12 @@ class ProfileController extends Controller
                 "active_link" => ""
             ]);
         }
-}
+    }
     public function getProductSellerProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType !== "product-seller"){
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
         } else {
@@ -69,4 +102,96 @@ class ProfileController extends Controller
         ]);
     }
 
+
+    public function getConsumerServicesDoctorPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "profile",
+            "title" => "Doctor"
+        ]);
+    }
+
+    public function getConsumerServicesDoctorProfilePage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "profile",
+            "title" => "Doctor"
+        ]);
+    }
+
+    public function getConsumerServicesDoctorProfilePaymentPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor-profile-payment', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "profile",
+            "title" => "Doctor"
+        ]);
+    }
+
+    public function getConsumerProfilePage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-profile', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "profile",
+            "title" => "Profile"
+        ]);
+    }
 }

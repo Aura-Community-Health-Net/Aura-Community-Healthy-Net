@@ -40,6 +40,26 @@
                 </div>
             </form>
 
+
+            <div class = "services-pharmacy-dashboard-MedicinesList">
+                <div class="services-pharmacy-attributes" id="services-pharmacy-MedicineImage">
+                    <img src="/assets/images/exerdrin.jpg" alt="">
+                </div>
+
+                <div class= "services-pharmacy-attributes" id="services-pharmacy-MedicineName">
+                    0775408321
+                </div>
+
+                <div  class="services-pharmacy-attributes" id="services-pharmacy-MedicineWeight">
+
+                </div>
+
+                <div  class="services-pharmacy-attributes" id="services-pharmacy-MedicinePrice">
+
+                </div>
+
+            </div>
+
         </div>
 
 
