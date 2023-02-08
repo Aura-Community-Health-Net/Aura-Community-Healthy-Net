@@ -17,12 +17,17 @@
     border-radius: 8px;
 }
 .doctor-profile__data img{
-    position: relative;
+    /*position: relative;
     left: 300px;
     top: 40px;
     width: 150px;
     height: 150px;
-    border-radius: 60px;
+    border-radius: 60px;*/
+    height: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+
 }
 .doctor-profile__data h3,.doctor-profile__data h4{
     margin-bottom: 10px;

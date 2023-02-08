@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\core\Database;
 use app\core\Controller;
-use app\core\Database;
+
 
 class AnalyticsController extends Controller
 {
