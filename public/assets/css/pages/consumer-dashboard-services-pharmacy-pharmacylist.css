@@ -1,10 +1,11 @@
-.services-pharmacy-pharmacyList
+.services-pharmacy-dashboard-MedicinesList
 {
     display: flex;
     flex-direction: row;
-    margin-left: 250px;
+    margin-left: 500px;
+    margin-top: -250px;
     padding: 0.7rem;
-    background-color: #D9D9D9;
+    background-color: white;
     border-radius: 0.6rem;
     width:850px;
     align-items: center;
@@ -15,6 +16,12 @@
 {
     font-weight: bold;
     width: 12rem;
+}
+
+#services-pharmacy-MedicineImage img
+{
+    width:50px;
+    height: 50px;
 }
 
 .services-pharmacy-attributes
