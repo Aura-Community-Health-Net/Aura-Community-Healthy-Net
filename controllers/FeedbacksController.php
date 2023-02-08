@@ -9,30 +9,65 @@ class FeedbacksController extends Controller
 {
     public static function getCareRiderFeedbackPage(): bool|array|string
     {
-        return self::render(view: "care-rider-feedback");
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+
+        if (!$nic || $providerType != "care-rider") {
+            header("location: /provider-login");
+            return "";
+        }
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $careRider = $result->fetch_assoc();
+
+        return self::render(view: "care-rider-dashboard-feedback", layout: "care-rider-dashboard-layout", params: [], layoutParams: [
+            "care_rider" => $careRider,
+            "title" => "Feedback",
+            "active_link" => "feedbacks"
+        ]);
     }
 
     public static function getDoctorFeedbackPage(): array|bool|string
     {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
 
-        return self::render(view: 'doctor-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
+        if (!$nic || $providerType !== "doctor")
+        {
+            header("location: /provider-login");
+            return "";
+        }
+        else {
 
-            "title" => "Feedback",
-            "active_link" => ""
-        ]);
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor = $result->fetch_assoc();
 
+            return self::render(view: 'doctor-dashboard-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
+                "pharmacy" => $doctor,
+                "title" => "Feedback",
+                "active_link" => ""
+            ]);
+        }
     }
 
     public static function getPharmacyFeedbackPage(): bool|array|string
 
     {
         $nic = $_SESSION["nic"];
-	$providerType = $_SESSION["user_type"];
+        $providerType = $_SESSION["user_type"];
 
         if (!$nic || $providerType !== "pharmacy")
         {
             header("location: /provider-login");
-	    return "";
+            return "";
         }
         else {
 
@@ -48,8 +83,8 @@ class FeedbacksController extends Controller
                 "title" => "Feedback",
                 "active_link" => ""
             ]);
- }
-}
+        }
+    }
 
     public static function getProductSellerFeedbackPage(): bool|array|string
     {
@@ -97,16 +132,7 @@ class FeedbacksController extends Controller
             "consumer" => $consumer,
             "active_link" => "feedback",
             "title" => "Feedback"]);
-
-
-
-
-
     }
-
-
-
-
 
 
 }

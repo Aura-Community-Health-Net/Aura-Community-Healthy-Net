@@ -1,0 +1,6 @@
+.doctor-timeslots tr,th{
+    border-color: white;
+}
+.doctor-timeslots tr{
+    height: 35px;
+}
