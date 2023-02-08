@@ -1,55 +1,56 @@
 <div class="doctor-dashboard">
-    <div class="doctor-dashboard__left">
         <div class="doctor-dashboard__left__top">
             <h3>New Appointment List</h3>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
             </div>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
             </div>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
             </div>
         </div>
 
         <div class="doctor-dashboard__left__bottom">
             <h3>Past Patients List</h3>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
+
             </div>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
+
             </div>
-            <div class="doctor-dashboard__left__top__data">
+            <div class="appointment-list__item">
                 <img src="/assets/images/profilepic1.jpg">
                 <h5><b>Kamal Deshapriya</b><br>
                     076-2978546</h5>
-                <img src="/assets/images/Vector.png" id="doctor-dashboard__left__top__data__vector">
+                <i class="fa-solid fa-location-dot"></i>
             </div>
         </div>
-    </div>
 
 
 
 
 
-    <div class="doctor-dashboard__center">
+
+
         <div class="doctor-dashboard__center__top">
             <h3>Patients Count</h3>
             <div class="doctor-dashboard__center__top__data">
@@ -73,10 +74,10 @@
                     <b>Observation</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem Ipsum is simple text <br>of the printing and typesetting industry.</p>
             </div>
         </div>
-    </div>
 
 
-    <div class="doctor-dashboard__right">
+
+    <!-- <div class="doctor-dashboard__right"> -->
         <div class="doctor-dashboard__right__top">
             <h3>Notes</h3>
             <div class="doctor-dashboard__right__top__data">
@@ -93,5 +94,5 @@
                 <p> Lor Lorem Ipsum is simply dummy text<br> of the printing and text of the printing<br> and type setting industry.</p>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
