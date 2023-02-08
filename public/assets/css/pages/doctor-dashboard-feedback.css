@@ -17,12 +17,16 @@
     height: 160px;
 }
 .doctor-feedbacks__data img{
-    width: 40px;
+    /*width: 40px;
     height: 40px;
     border-radius: 15px;
     position: relative;
     top: 10px;
-    left: 70px;
+    left: 70px;*/
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
 }
 .doctor-feedbacks__data h3{
     position: relative;

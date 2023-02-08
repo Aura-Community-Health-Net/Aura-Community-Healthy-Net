@@ -22,7 +22,7 @@
     </div>
 
     <div class="doctor-feedbacks__data">
-        <img src="/assets/images/profilepic3.jpg">
+        <img src="/assets/images/profilepic2.jpg">
         <h3><b>Sahan Kariyawasam</b></h3>
         <h4>29th of September 2022</h4>
         <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -34,7 +34,7 @@
     </div>
 
     <div class="doctor-feedbacks__data">
-        <img src="/assets/images/profilepic3.jpg">
+        <img src="/assets/images/profilepic1.jpg">
         <h3><b>Ravishi Palihawadana</b></h3>
         <h4>28th of October 2022</h4>
         <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
