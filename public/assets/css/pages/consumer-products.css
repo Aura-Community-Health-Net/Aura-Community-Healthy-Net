@@ -49,5 +49,9 @@
     height: 2rem;
     margin-top: 0.8rem;
     margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
 }
 

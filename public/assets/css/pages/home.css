@@ -72,6 +72,11 @@
   box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.3);
 }
 
+.background-img button a{
+  text-decoration: none;
+  color: white;
+}
+
 .background-img button:hover {
   background-color: #3e0089;
   transform: translateY(-2px);

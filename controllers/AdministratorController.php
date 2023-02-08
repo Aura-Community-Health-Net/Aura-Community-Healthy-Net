@@ -46,4 +46,15 @@ class AdministratorController extends Controller
         header("location: /admin-login");
         return "";
     }
+
+    public static function getAdministratorDashboardPage(){
+        return self::render(view: 'admin-view-new-registrations', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Due Payments",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "payments"
+        ]);
+    }
 }
+

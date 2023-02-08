@@ -172,7 +172,7 @@ class ProductsController extends Controller
         }
     }
 
-    public static function getConsumerProductOverview(): bool|array|string
+    public static function getConsumerProductOverviewPage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
         if (!$nic){
@@ -189,7 +189,29 @@ class ProductsController extends Controller
             return self::render(view: 'consumer-dashboard-product-overview', layout: 'consumer-dashboard-layout', layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Natural Food Products",
-                "active_link" => "dashboard-product-overview"
+                "active_link" => "dashboard-product"
+            ]);
+        }
+    }
+
+    public static function getConsumerProductPayment(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard-product-payment', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-product"
             ]);
         }
     }
