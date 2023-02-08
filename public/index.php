@@ -137,6 +137,7 @@ $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [Profil
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
+$app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
 
 
 //  Run the application
