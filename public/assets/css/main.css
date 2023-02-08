@@ -29,6 +29,9 @@
 @import "pages/consumer-product-overview.css";
 @import "pages/consumer-product-payment.css";
 @import "pages/registration-overview.css";
+@import "pages/pharmacy-profile.css";
+@import "pages/consumer-feedbacks.css";
+@import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
