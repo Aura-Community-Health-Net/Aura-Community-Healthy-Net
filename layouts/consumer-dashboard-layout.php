@@ -68,7 +68,7 @@
             <div>
                 <li id="services-link">
                     <button
-                            class="navbtn <?php echo $active_link === 'services' || $active_link === 'srvices' ? 'active' : '' ?>">
+                            class="navbtn <?php echo $active_link === 'services' || $active_link === 'services' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
                             <span class="nav-title">Services</span>
                             <span class="nav-icon nav-icon--toggle"><i class="fa-solid fa-angle-right sidebar-dropdown"></i></span>
@@ -95,6 +95,7 @@
                         <span class="nav-icon"><i class="fa-solid fa-car"></i></span>
                         <span class="navtitle">Care Rider</span>
                     </a>
+
                 </div>
 
             </div>
@@ -126,6 +127,17 @@
                     <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav-title">Profile</span>
+                    </button>
+                </a>
+
+            </li>
+
+            <li class="logout">
+                <a href="/provider/login">
+                    <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                    <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                    <span class="nav-title">Logout</span>
                     </button>
                 </a>
 

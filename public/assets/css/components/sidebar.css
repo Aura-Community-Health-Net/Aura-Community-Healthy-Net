@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    height: 100%;
 }
 
 .toggle_bar {
@@ -160,4 +161,9 @@ a:-webkit-any-link {
     display: flex;
     align-items: center;
     width: 50px;
+}
+
+.logout{
+    margin-top: auto;
+    margin-bottom: 3rem;
 }

@@ -112,6 +112,17 @@
                     </a>
 
                 </li>
+
+                <li class="logout">
+                    <a href="/provider/login">
+                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="nav-title">Logout</span>
+                        </button>
+                    </a>
+
+                </li>
             </ul>
         </nav>
 

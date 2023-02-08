@@ -33,6 +33,9 @@
 @import "pages/product-seller-analytics.css";
 @import "pages/consumer-products.css";
 @import "pages/pharmacy-analytics.css";
+@import "pages/consumer-product-overview.css";
+@import "pages/consumer-product-payment.css";
+@import "pages/registration-overview.css";
 @import "pages/pharmacy-profile.css";
 @import "pages/consumer-dashboard.css";
 @import "pages/consumer-feedbacks.css";

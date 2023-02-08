@@ -538,7 +538,7 @@ class AuthController extends Controller
             $admin = $result->fetch_assoc();
             if (password_verify($password, $admin["password"])) {
                 $_SESSION["is_admin"] = true;
-                header("location: /admin-dashboard/new-registrations");
+                header("location: /administrator-dashboard");
                 return "";
             }
             $errors["password"] = "Password is incorrect";
@@ -659,6 +659,12 @@ class AuthController extends Controller
     public static function getConsumerLoginPage(): bool|array|string
     {
         return self::render(view: "consumer-login");
+    }
+
+    public static function registrationOverview(): bool|array|string
+    {
+
+        return self::render(view: "registration-overview");
     }
 
 

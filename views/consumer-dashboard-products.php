@@ -1,7 +1,7 @@
 <form action="" class="form-item--search">
     <div class="search-bar">
         <input type="text" placeholder="Search Product..." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
+        <a href="/products/view?id=10" type="submit"><i class="fa fa-search"></i></a>
     </div>
     <select class="form-items--dropdown" name="product-categories" id="product-categories">
         <option value="Medicinal Fruits & Vegetables">Medicinal Fruits & Vegetables</option>
@@ -20,7 +20,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
         
     </div>
@@ -32,7 +32,7 @@
             <h3>100 g</h3>
             <h1>Rs. 250.00</h1>
             <h3>Kamal Products</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
     
@@ -43,7 +43,7 @@
             <h3>1 l</h3>
             <h1>Rs. 200.00</h1>
             <h3>Kitchen House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -54,7 +54,7 @@
             <h3>100 g</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
             <h3>1 l</h3>
             <h1>Rs. 180.00</h1>
             <h3>Senith Products</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -87,7 +87,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 1000.00</h1>
             <h3>Naturi</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -98,7 +98,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
 
     </div>
@@ -110,7 +110,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -121,7 +121,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -132,7 +132,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -143,7 +143,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 150.00</h1>
             <h3>Sumudu House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -154,7 +154,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 650.00</h1>
             <h3>Lakmal Foods</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 
@@ -165,7 +165,7 @@
             <h3>1 kg</h3>
             <h1>Rs. 550.00</h1>
             <h3>Comida House</h3>
-            <button class="product-select-btn">Select</button>
+            <a href="/products/view?id=10" class="product-select-btn">Select</a>
         </div>
     </div>
 

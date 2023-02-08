@@ -54,6 +54,7 @@ $app->router->get('/register', [AuthController::class, 'getConsumerSignupPage'])
 $app->router->post('/register', [AuthController::class, 'registerConsumer']);
 $app->router->get('/login', [AuthController::class, 'getConsumerLoginPage']);
 $app->router->post('/login', [AuthController::class, 'loginServiceConsumer']);
+$app->router->get('/registration-overview', [AuthController::class, 'registrationOverview']);
 
 
 $app->router->get('/administrator-login', [AuthController::class, 'getAdministratorLoginPage']);
@@ -65,6 +66,7 @@ $app->router->post('/administrator-login', [AuthController::class, 'loginAdminis
 $app->router->get('/administrator-dashboard', [DashboardController::class, 'getAdministratorDashboardPage']);
 $app->router->get('/admin-dashboard/new-registrations', [AdministratorController::class, 'getNewRegistrationPage']);
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
+$app->router->get('/service-providers/due-payments', [AdministratorController::class, 'getServiceProviderDuePaymentsPage']);
 
 
 // For product-seller
@@ -123,6 +125,9 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
 $app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
 $app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->get('/products/view', [ProductsController::class, 'getConsumerProductOverviewPage']);
+$app->router->get('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
+$app->router->post('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
 $app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
 $app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
