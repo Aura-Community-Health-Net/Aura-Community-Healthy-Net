@@ -26,12 +26,12 @@
 @import "pages/doctor-dashboard-analytics.css";
 @import "pages/doctor-dashboard-feedback.css";
 @import "pages/doctor-dashboard-profile.css";
-
 @import "pages/product-seller-orders.css";
 @import "pages/pharmacy-feedback.css";
 @import "pages/product-seller-feedback.css";
 @import "pages/product-seller-profile.css";
 @import "pages/product-seller-analytics.css";
+@import "pages/consumer-products.css";
 @import "pages/pharmacy-analytics.css";
 @import "pages/pharmacy-profile.css";
 @import "pages/consumer-dashboard.css";
@@ -40,10 +40,19 @@
 @import "pages/consumer-dashboard-service-doctor-profile.css";
 @import "pages/consumer-dashboard-service-doctor-profile-payment.css";
 @import "pages/consumer-dashboard-profile.css";
-
+@import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
+
+
+/*Importibg care-rider pages*/
+@import "pages/care-rider-dashboard-profile.css";
+
+
+
+
+
 
 *,
 *::after,

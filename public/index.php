@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Importing core classes
+use app\controllers\ConsumerController;
 use app\core\Application;
 use app\controllers\OrdersController;
 
@@ -93,12 +94,19 @@ $app->router->get('/care-rider-dashboard/analytics', [AnalyticsController::class
 $app->router->get('/care-rider-dashboard/feedback', [FeedbacksController::class, 'getCareRiderFeedbackPage']);
 $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
 $app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'getNewRequestsPage']);
-
+//                                    Dashboard
 $app->router->get('/care-rider-dashboard/timeslots', [CareRiderTimeslotsController::class, 'getCareRiderTimeslotsPage']);
 $app->router->post('/care-rider-dashboard/timeslots', [CareRiderTimeslotsController::class, 'addCareRiderTimeslot']);
+//                                     Timeslots-delete
 $app->router->post('/care-rider-dashboard/timeslots-delete', [CareRiderTimeslotsController::class, 'deleteCareRiderTimeslot']);
+//                                    Timeslots-updates
 $app->router->get('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsController::class, 'getUpdatePopup']);
 $app->router->post('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsController::class, 'updateTimeSlot']);
+//                                  New-Requests
+$app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'getNewRequestsPage']);
+$app->router->post('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'NewRequests']);
+$app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
+$app->router->post('/care-rider-dashboard/profile', [ProfileController::class, 'Profile']);
 
 
 //For Doctor
@@ -113,11 +121,17 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
+$app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
 $app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
 $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
+$app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
+
+
 //  Run the application
 $app->run();
 
