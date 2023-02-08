@@ -89,3 +89,11 @@
     font-size: 1rem;
     border-radius: 5px;
 }
+
+.form-items--date-selector{
+    margin-inline: 2rem;
+    width: 15rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+}

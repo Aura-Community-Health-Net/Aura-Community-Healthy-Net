@@ -44,6 +44,8 @@
 @import "pages/consumer-dashboard-service-doctor-profile-payment.css";
 @import "pages/consumer-dashboard-profile.css";
 @import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
+@import "pages/administrator-due-payments.css";
+@import "pages/administrator-feeback.css";
 @import "pages/consumer-dashboard-services-pharmacy-payment-receipt.css";
 
 /* Importing Layouts */

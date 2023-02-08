@@ -63,11 +63,12 @@ $app->router->post('/administrator-login', [AuthController::class, 'loginAdminis
 //DashBoard Routes
 
 // For administrator
-$app->router->get('/administrator-dashboard', [DashboardController::class, 'getAdministratorDashboardPage']);
+$app->router->get('/admin-dashboard', [AdministratorController::class, 'getAdministratorDashboardPage']);
 $app->router->get('/admin-dashboard/new-registrations', [AdministratorController::class, 'getNewRegistrationPage']);
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
-$app->router->get('/service-providers/due-payments', [AdministratorController::class, 'getServiceProviderDuePaymentsPage']);
-
+$app->router->get('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
+$app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
+$app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller
 $app->router->get('/product-seller-dashboard', [DashboardController::class, 'getProductSellerDashboardPage']);
