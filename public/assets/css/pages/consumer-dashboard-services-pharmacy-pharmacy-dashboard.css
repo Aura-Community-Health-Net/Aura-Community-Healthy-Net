@@ -1,0 +1,40 @@
+.consumer-services-pharmacy-dashboard-profile-pic img
+{
+    height: 150px;
+    width:150px;
+    border-radius: 5rem;
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.consumer-services-pharmacy-dashboard-profile-description
+{
+    margin-top: 20px;
+   /* background-color: #d9d9d9;*/
+    padding: 0.5rem;
+    /* margin-right: 1200px;*/
+    /*justify-content: space-around;*/
+ /*   margin-left: -1250px;*/
+   /* background-color: #d9d9d9;*/
+
+
+
+}
+
+.consumer-services-pharmacy-dashboard-profile-description p
+{
+    text-align: center;
+
+}
+
+
+.pharmacy-dashboard-pharmacy-owner-name
+{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.pharmacy-dashboard-pharmacy-address
+{
+    line-height: 1cm;
+}
