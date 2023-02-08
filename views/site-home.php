@@ -44,7 +44,7 @@
         <?php
 
         if (!$nic){
-            echo "<button>Register Now</button>";
+            echo "<button class='registration-home-btn'><a href='/registration-overview'>Register Now</a></button>";
         }
         ?>
 

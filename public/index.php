@@ -54,6 +54,7 @@ $app->router->get('/register', [AuthController::class, 'getConsumerSignupPage'])
 $app->router->post('/register', [AuthController::class, 'registerConsumer']);
 $app->router->get('/login', [AuthController::class, 'getConsumerLoginPage']);
 $app->router->post('/login', [AuthController::class, 'loginServiceConsumer']);
+$app->router->get('/registration-overview', [AuthController::class, 'registrationOverview']);
 
 
 $app->router->get('/administrator-login', [AuthController::class, 'getAdministratorLoginPage']);
@@ -62,10 +63,12 @@ $app->router->post('/administrator-login', [AuthController::class, 'loginAdminis
 //DashBoard Routes
 
 // For administrator
-$app->router->get('/administrator-dashboard', [DashboardController::class, 'getAdministratorDashboardPage']);
+$app->router->get('/admin-dashboard', [AdministratorController::class, 'getAdministratorDashboardPage']);
 $app->router->get('/admin-dashboard/new-registrations', [AdministratorController::class, 'getNewRegistrationPage']);
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
-
+$app->router->get('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
+$app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
+$app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller
 $app->router->get('/product-seller-dashboard', [DashboardController::class, 'getProductSellerDashboardPage']);
@@ -123,10 +126,18 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
 $app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
 $app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
+$app->router->get('/products/view', [ProductsController::class, 'getConsumerProductOverviewPage']);
+$app->router->get('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
+$app->router->post('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
 $app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
+$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
+$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
+$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+$app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
+$app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
 
 
 //  Run the application

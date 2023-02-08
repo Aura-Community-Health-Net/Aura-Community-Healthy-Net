@@ -33,9 +33,19 @@
 @import "pages/product-seller-analytics.css";
 @import "pages/consumer-products.css";
 @import "pages/pharmacy-analytics.css";
+@import "pages/consumer-product-overview.css";
+@import "pages/consumer-product-payment.css";
+@import "pages/registration-overview.css";
 @import "pages/pharmacy-profile.css";
+@import "pages/consumer-dashboard.css";
 @import "pages/consumer-feedbacks.css";
+@import "pages/consumer-dashboard-service-doctor.css";
+@import "pages/consumer-dashboard-service-doctor-profile.css";
+@import "pages/consumer-dashboard-service-doctor-profile-payment.css";
+@import "pages/consumer-dashboard-profile.css";
 @import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
+@import "pages/administrator-due-payments.css";
+@import "pages/administrator-feeback.css";
 @import "pages/consumer-dashboard-services-pharmacy-payment-receipt.css";
 
 /* Importing Layouts */

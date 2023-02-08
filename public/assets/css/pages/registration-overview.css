@@ -1,0 +1,28 @@
+.registration-overview__container{
+    display: flex;
+    width: 100vw;
+    gap: 3.5rem;
+    margin-inline: 4rem;
+    margin-top: 7rem;
+}
+
+.registration-overview__container img{
+    width: 15%;
+}
+
+.registration-overview__buttons{
+    display: flex;
+    width: 100vw;
+    gap: 3.5rem;
+    margin-inline: 4rem;
+    margin-top: 5rem;
+}
+
+.registration-overview__buttons a{
+    text-decoration: none;
+    color: white;
+}
+
+.registration-overview__buttons div{
+    width: 15%;
+}
