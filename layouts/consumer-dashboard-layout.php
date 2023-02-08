@@ -76,7 +76,7 @@
 
             </li>
                 <div class="sidebar__services-list" id="services-list">
-                    <a href="" class="navbtn sub__navbtn navbtn--link">
+                    <a href="/consumer-dashboard/services/doctor" class="navbtn sub__navbtn navbtn--link">
                         <span class="nav-icon"><i class="fa-solid fa-stethoscope"></i></span>
                         <span class="navtitle">Doctor</span>
                     </a>
