@@ -4,10 +4,12 @@
             <p>Search a Doctor...</p>
             <img src="/assets/images/search_bar.png">
         </div>
-        <div class="consumer-dashboard-doctor__top__right">
-            <p>Western Doctor</p>
-            <img src="/assets/images/drop_down.png">
-        </div>
+        <select class="form-items--dropdown" name="product-categories" id="product-categories">
+            <option value="Doctor">Doctor</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Product Seller">Product Seller</option>
+            <option value="Care Rider">Care Rider</option>
+        </select>
     </div>
 
     <div class="consumer-dashboard-doctor__bottom">
