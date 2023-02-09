@@ -49,7 +49,9 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", layoutParams: [
+            return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", params: [
+                'pharmacy' => $pharmacy
+            ], layoutParams: [
                 "pharmacy" => $pharmacy,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"

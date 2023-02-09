@@ -1,113 +1,172 @@
-<?php
-
-?>
-
-
-
-
-
-    <div class="consumer-services-pharmacy-dashboard-top">
-
-
-        <div class="consumer-services-pharmacy-dashboard-profile">
-
-
-               <div class="consumer-services-pharmacy-dashboard-profile-pic">
-                     <img src="/assets/images/profilepic11.jpg" alt="">
-
-               </div>
-
-               <div class="consumer-services-pharmacy-dashboard-profile-description">
-
-                 <p class="pharmacy-dashboard-pharmacy-owner-name">Roger Smith</p>
-                 <p class="pharmacy-dashboard-pharmacy-name">Blink Health Pharma</p>
-                 <p class="pharmacy-dashboard-pharmacy-regNo">RegNo : AP653462</p>
-                 <p class="pharmacy-dashboard-pharmacy-address">No.55,Dickson Rd,Galle</p>
-
-              </div>
-
-
-
+<div class="item-top__container">
+    <div class="item-top-left__container">
+        <img src="/assets/images/profilepic1.jpg" alt="">
+        <div class="provider__overview-detail">
+            <h2>Anuj Kumara</h2>
+            <h3>New Loyed Pharmacy</h3>
+            <p>Reg No : AP 2043</p>
+            <p>No.43, Wackwella Road, Galle</p>
         </div>
+    </div>
 
-
-        <div class="consumer-services-pharmacy-dashboard-medList">
-
-            <form action="" class="form-item--search">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search Product..." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </form>
-
-
-            <div class = "services-pharmacy-dashboard-MedList">
-
-                <div class="services-pharmacy-dashboard-MedList__medicines">
-                    <div class="services-pharmacy-attributes" id="services-pharmacy-MedicineImage">
-                        <img src="/assets/images/exerdrin.jpg" alt="">
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id = "services-pharmacy-MedicineName">
-                        <p>Pirito Tablets</p>
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id="services-pharmacy-MedicineWeight">
-                        <p>35mg</p>
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id = "services-pharmacy-MedicinePrice">
-                        <p>Rs.300</p>
-                    </div>
-                </div>
-
-
-                <div class="services-pharmacy-dashboard-MedList__medicines">
-                    <div class="services-pharmacy-attributes" id="services-pharmacy-MedicineImage">
-                        <img src="/assets/images/exerdrin.jpg" alt="">
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id = "services-pharmacy-MedicineName">
-                        <p>Pirito Tablets</p>
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id="services-pharmacy-MedicineWeight">
-                        <p>35mg</p>
-                    </div>
-
-                    <div class="services-pharmacy-attributes" id = "services-pharmacy-MedicinePrice">
-                        <p>Rs.300</p>
-                    </div>
-                </div>
-
-
-
+    <div class="item-top-right__container">
+        <form action="">
+            <div class="search-bar">
+                <input type="text" placeholder="Search Product..." name="search">
+                <i class="fa fa-search"></i>
             </div>
+        </form>
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
 
         </div>
 
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
 
+        </div>
 
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
 
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/med.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+
+        </div>
     </div>
 
+</div>
 
+<div class="item-bottom-container">
+    <div class="item-bottom-left-container">
+        <div class="consumer-feedback">
+            <div class="consumer-feedback__header">
 
+                <div class="consumer-feedback__header-profile">
+                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                    <h3>Sanath Gunapala</h3>
+                </div>
+                <h4>12th of January 2023</h4>
+            </div>
+            <p class="consumer-dashboard__body">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                containing
+                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                versions
+                of Lorem Ipsum
+            </p>
+        </div>
+        <div class="consumer-feedback">
+            <div class="consumer-feedback__header">
 
+                <div class="consumer-feedback__header-profile">
+                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                    <h3>Sanath Gunapala</h3>
+                </div>
+                <h4>12th of January 2023</h4>
+            </div>
+            <p class="consumer-dashboard__body">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                containing
+                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                versions
+                of Lorem Ipsum
+            </p>
+        </div>
+        <div class="consumer-feedback">
+            <div class="consumer-feedback__header">
 
-
-
-    <div class="consumer-services-pharmacy-dashboard-feedback">
-
-      <!-- <p>feedback</p>-->
-
+                <div class="consumer-feedback__header-profile">
+                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                    <h3>Sanath Gunapala</h3>
+                </div>
+                <h4>12th of January 2023</h4>
+            </div>
+            <p class="consumer-dashboard__body">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to
+                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                containing
+                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                versions
+                of Lorem Ipsum
+            </p>
+        </div>
     </div>
-
-
-
-
-
-
-
-
-
+    
+    <div class="item-bottom-right-container">
+        <h3>Give your feedback</h3>
+        <form action="">
+            <textarea name="" id="" cols="28" rows="17"></textarea>
+        </form>
+    </div>
+</div>

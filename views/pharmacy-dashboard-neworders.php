@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="pharmacy-neworders-blocks__adinfo-btn">
-            <button class="adinfo-btn" id="add-info">Send Advance Info</button>
+            <button class="adinfo-btn" id="add-info"><a href="/pharmacy-dashboard/new-orders/view">Send Advance Info</a> </button>
         </div>
     </div>
     <div class="pharmacy-neworders-blocks">
