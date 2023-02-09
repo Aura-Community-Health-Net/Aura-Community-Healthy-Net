@@ -28,7 +28,7 @@ else {
 
 return self::render(view: 'consumer-dashboard-services-care-rider', layout: "consumer-dashboard-layout", layoutParams: [
     "consumer" => $consumer,
-//    "active_link" => "care-rider",
+    "active_link" => "care-rider",
     "title" => "Care Rider"]);
 }
     public static function getCareRiderRequestsPage(): bool|array|string
@@ -52,7 +52,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
 
         return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", layoutParams: [
             "consumer" => $consumer,
-//    "active_link" => "care-rider",
+            "active_link" => "requests",
             "title" => "Care Rider"]);
     }
 

@@ -1,3 +1,195 @@
+/*.consumer-dashboard-doctor-profile__top__left img{*/
+/*    position: relative;*/
+/*    left: 100px;*/
+/*    !*top: 20px;*!*/
+/*    width: 189px;*/
+/*    height: 188px;*/
+/*    border-radius: 82px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__left__data{*/
+/*    background-color: #D9D9D9;*/
+/*    position: relative;*/
+/*    !*left: 50px;*/
+/*    !*top: 29px;*!*/
+/*    width: 400px;*/
+/*    height: 271px;*/
+/*    border-radius: 5px;*/
+/*    padding: 22px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__left__data h3{*/
+/*    text-align: center;*/
+/*    position: relative;*/
+/*    top: 11px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__left__data h4{*/
+/*    text-align: center;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__left__data p{*/
+/*    text-align: justify;*/
+/*    position: relative;*/
+/*    top: 21px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right{*/
+/*    background-color: #D9D9D9;*/
+/*    width: 658px;*/
+/*    height: 452px;*/
+/*    position: relative;*/
+/*    border-radius: 5px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right h4{*/
+/*    position: relative;*/
+/*    left: 67px;*/
+/*    top: 20px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__dropdown{*/
+/*    background-color: #ffffff;*/
+/*    width: 217px;*/
+/*    height: 34px;*/
+/*    position: relative;*/
+/*    top: 26px;*/
+/*    left: 94px;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__dropdown p{*/
+/*    position: relative;*/
+/*    left: 12px;*/
+/*    top: 7px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__dropdown img{*/
+/*    position: relative;*/
+/*    left: 181px;*/
+/*    bottom: 10px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__timeslot p{*/
+/*    position: relative;*/
+/*    top: 45px;*/
+/*    text-align: center;*/
+/*    margin-bottom: 9px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__location p{*/
+/*    !*position: relative;*!*/
+/*    display: flex;*/
+
+/*    margin-left: 200px;*/
+/*    margin-top: -80px;*/
+/*}*/
+/*.search-bar input{  display: flex;*/
+
+/*    margin-left: 300px;*/
+/*    margin-top: -20px;*/
+
+/*}*/
+/*.search-bar button{*/
+/*    margin-left: 15px;*/
+/*    margin-top: -1000px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__location__search{*/
+/*    position: relative;*/
+/*    background-color: #ffffff;*/
+/*    width: 245px;*/
+/*    height: 21px;*/
+/*    left: 269px;*/
+/*    top: 31px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right__location__search img{*/
+/*    width: 15px;*/
+/*    height: 16px;*/
+/*    position: relative;*/
+/*    left: 210px;*/
+/*    top: 3px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right_p{*/
+/*    position: relative;*/
+/*    top: 55px;*/
+/*    text-align: center;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right button{*/
+/*    position: relative;*/
+/*    color: #ffffff;*/
+/*    background-color: #008DFF;*/
+/*    padding: 15px 32px;*/
+/*    border: none;*/
+/*    border-radius: 10px;*/
+/*    left: 285px;*/
+/*    top: 15px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top table{*/
+/*    border-spacing: 55px;*/
+/*    margin-right: auto;*/
+/*    margin-left: 5px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom{*/
+/*    position: relative;*/
+/*    width: 1117px;*/
+/*    height: 526px;*/
+/*    background-color: #D9D9D9;*/
+/*    left: 51px;*/
+/*    bottom: 25px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__left__data{*/
+/*    background-color: #ffffff;*/
+/*    width: 466px;*/
+/*    height: 135px;*/
+/*    position: relative;*/
+/*    left: 10px;*/
+/*    top: 10px;*/
+/*    border-radius: 5px;*/
+/*    padding: 10px;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__left__data img{*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    position: relative;*/
+/*    left: 21px;*/
+/*    top: 10px;*/
+/*    border-radius: 24px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__left__data h3{*/
+/*    position: relative;*/
+/*    left: 66px;*/
+/*    bottom: 20px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__left__data h4{*/
+/*    position: relative;*/
+/*    left: 239px;*/
+/*    bottom: 40px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__left__data p{*/
+/*    position: relative;*/
+/*    left: 2px;*/
+/*    top: -24px;*/
+/*    text-align: justify;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__right__feedback{*/
+/*    background-color: #ffffff;*/
+/*    position: relative;*/
+/*    width: 482px;*/
+/*    height: 398px;*/
+/*    top: 9px;*/
+/*    border-radius: 5px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom__right__feedback button{*/
+/*    background-color: #008DFF;*/
+/*    color: #ffff;*/
+/*    position: relative;*/
+/*    top: 349px;*/
+/*    left: 167px;*/
+/*    alignment: center;*/
+/*    border: none;*/
+/*    padding: 10px 56px;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__bottom table{*/
+/*    border-spacing: 50px;*/
+/*}*/
+/*.consumer-dashboard-doctor-profile__top__right img{*/
+/*   width: 80%;*/
+/*    height: 60%;*/
+/*    margin-left: 60px;*/
+/*    margin-bottom: 100px;*/
+/*    margin-top: 50px;*/
+/*}*/
 .consumer-dashboard-doctor-profile__top__left img{
     position: relative;
     left: 100px;
@@ -67,21 +259,9 @@
     margin-bottom: 9px;
 }
 .consumer-dashboard-doctor-profile__top__right__location p{
-    /*position: relative;*/
-    display: flex;
-
-    margin-left: 200px;
-    margin-top: -80px;
-}
-.search-bar input{  display: flex;
-
-    margin-left: 300px;
-    margin-top: -20px;
-
-}
-.search-bar button{
-    margin-left: 15px;
-    margin-top: -1000px;
+    position: relative;
+    left: 61px;
+    top: 51px;
 }
 .consumer-dashboard-doctor-profile__top__right__location__search{
     position: relative;
@@ -109,14 +289,11 @@
     background-color: #008DFF;
     padding: 15px 32px;
     border: none;
-    border-radius: 10px;
-    left: 285px;
-    top: 15px;
+    left: 254px;
+    top: 81px;
 }
 .consumer-dashboard-doctor-profile__top table{
     border-spacing: 55px;
-    margin-right: auto;
-    margin-left: 5px;
 }
 .consumer-dashboard-doctor-profile__bottom{
     position: relative;
@@ -182,11 +359,4 @@
 }
 .consumer-dashboard-doctor-profile__bottom table{
     border-spacing: 50px;
-}
-.consumer-dashboard-doctor-profile__top__right img{
-   width: 80%;
-    height: 60%;
-    margin-left: 60px;
-    margin-bottom: 100px;
-    margin-top: 50px;
 }
