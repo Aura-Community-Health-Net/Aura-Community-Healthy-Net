@@ -14,7 +14,7 @@
 .item-top__container{
     margin: 2rem;
     display: flex;
-    gap: 4rem;
+    gap: 3rem;
     justify-content: center;
 }
 
@@ -23,6 +23,30 @@
     padding: 1rem 2rem;
     border-radius: 8px;
     text-align: center;
+}
+
+.item-top-middle__container{
+    background-color: #D9D9F9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.item-top-middle__container img{
+    width: 20rem;
+    height: 10rem;
+}
+
+.overview-items__detail{
+    /*background-color: white;*/
+    border: 8px;
+    height: 3px;
+    text-align: center;
+    padding-block: 1rem;
+}
+
+.overview-items__detail h1{
+    color: red;
+    margin-bottom: 0.5rem;
 }
 
 .item-top-right__container {
