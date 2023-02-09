@@ -65,7 +65,7 @@
 
     <div class="care-rider-new-requests__right">
         <div class="care-rider-new-requests__right__top">
-            <img src="/assets/images/care-rider-calander.png">
+            <img src="/assets/images/calander.jfif">
         </div>
         <div class="care-rider-new-requests__right__bottom">
             <a href="https://www.google.com/maps"><img src="/assets/images/care-rider-map.jfif"></a>

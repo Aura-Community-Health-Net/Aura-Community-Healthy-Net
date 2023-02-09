@@ -4,41 +4,25 @@
 </head>
 <div class="consumer-dashboard-care-rider">
     <div class="consumer-dashboard-care-rider__top">
-        <div class="consumer-dashboard-care-rider__top__left">
             <form action="" class="form-item--search">
+
                 <div class="search-bar">
-                    <input type="text" placeholder="Search Care rider..." name="search">
+                    <input type="text" placeholder="Search..." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
+
+                <div class="search-bar">
+                    <input type="Date" placeholder="Search Product..." name="date">
+                </div>
+
+
+                <div class="search-bar">
+                    <input type="Time" placeholder="Search Product..." name="time">
+
+                </div>
             </form>
-        </div>
-        <div class="consumer-dashboard-care-rider__top">
-            <div class="consumer-dashboard-care-rider__top__center">
-                <form action="" class="form-item--search">
-                    <div class="search-bar">
-                        <input type="text" placeholder="location" name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                </form>
-            </div>
-            <div class="consumer-dashboard-care-rider__top">
-                <div class="consumer-dashboard-care-rider__top__middle">
-                    <form action="" class="form-item--search">
-                        <div class="search-bar">
-                            <input type="Date" placeholder="Search Product..." name="date">
-                        </div>
-                    </form>
-                </div>
-                <div class="consumer-dashboard-care-rider__top__right">
-                    <form action="" class="form-item--search">
-                        <div class="search-bar">
-                            <input type="Time" placeholder="Search Product..." name="time">
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+    </div>
+        <div class="care-rider__card-details">
             <div class="care-rider-container">
 
                 <div class="care-rider-card">
@@ -113,9 +97,9 @@
                             <p><span>color </span> :White</p>
                             <p><span>Mobile No </span> :0712345678</p>
                         </div>
-                       <a href="/consumer-dashboard/services/care-rider/request">
-                           <button > Request</button>
-                       </a>
+                        <a href="/consumer-dashboard/services/care-rider/request">
+                            <button > Request</button>
+                        </a>
                     </div>
                 </div>
 
@@ -136,3 +120,4 @@
                 </div>
 
             </div>
+

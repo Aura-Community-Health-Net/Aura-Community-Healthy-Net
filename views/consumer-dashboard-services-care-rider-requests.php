@@ -1,10 +1,10 @@
-<head>
+
     <link rel="stylesheet" href="/assets/css/pages/consumer-dashboard-services-care-rider-requests.css">
 
-</head>
+
 <div class="consumer-dashboard-doctor-profile">
     <div class="consumer-dashboard-doctor-profile__top">
-        <table >
+        <table>
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__top__left">
@@ -24,20 +24,27 @@
                 </td>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__top__right">
-
-                            <img src="/assets/images/reqest-map.jpg  ">
-
+                        <h4>Available Time-Slots</h4>
+                        <div class="consumer-dashboard-doctor-profile__top__right__dropdown">
+                            <p>31st October 2022</p>
+                            <img src="/assets/images/drop_down.png">
+                        </div>
+                        <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.00 pm - 4.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.45 pm - 5.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.45 pm - 6.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.30 pm - 7.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.45 pm - 8.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.00 pm - 9.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                        </div>
                         <div class="consumer-dashboard-doctor-profile__top__right__location">
-                            <p>Pickup Time</p>
-                            <form action="" class="form-item--search">
-                                <div class="search-bar">
-                                    <input type="Time" placeholder="Search Product..." name="time">
-
-                                </div>
-                                <button>Submit</button>
+                            <p>Add Location</p>
+                            <div class="consumer-dashboard-doctor-profile__top__right__location__search">
+                                <img src="/assets/images/search.png">
                             </div>
                         </div>
-
+                        <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00 for an appointment</p>
+                        <a href="/consumer-dashboard/services/doctor/profile/payment"><button>Continue to Pay</button></a>
                     </div>
                 </td>
             </tr>
@@ -87,4 +94,3 @@
 
     </div>
 </div>
-
