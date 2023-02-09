@@ -126,7 +126,7 @@
     padding: 0.5rem .5rem;
 }
 
-.appointment-list__item:first-of-type {
+.appointment-list__item:first-of-type  {
     margin-top: 1rem;
 }
 
