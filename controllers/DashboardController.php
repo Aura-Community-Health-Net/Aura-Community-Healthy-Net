@@ -49,7 +49,9 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", layoutParams: [
+            return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", params: [
+                'pharmacy' => $pharmacy
+            ], layoutParams: [
                 "pharmacy" => $pharmacy,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
@@ -59,9 +61,9 @@ class DashboardController extends Controller
 
     public static function getCareRiderDashboard(): bool|array|string
     {
-        $nic = $_SESSION["nic"];
-
-        if (!$nic) {
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+        if (!$nic || $providerType != "care-rider") {
             header("location: /provider-login");
             return "";
         } else {
@@ -83,7 +85,8 @@ class DashboardController extends Controller
     public static function getDoctorDashboardPage(): array |bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $provideType = $_SESSION["user_type"];
+        if (!$nic || $provideType !== "doctor") {
             header("location: /provider-login");
             return "";
         } else {
@@ -94,8 +97,30 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", layoutParams: [
-                "doctor" => $doctor,
+            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
+                "doctor" => $doctor],layoutParams:[
+                "title" => "Dashboard",
+                "active_link" => "dashboard"
+
+            ]);
+        }
+    }
+
+    public static function getConsumerDashboardPage(): array |bool|string{
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
             ]);

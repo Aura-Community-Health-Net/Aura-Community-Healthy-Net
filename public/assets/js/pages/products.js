@@ -112,7 +112,7 @@ deleteProductButtons.forEach((element) => {
         `;
     const deleteCancelBtn =
       deleteProductModal.querySelector("#delete-cancel-btn");
-    deleteCancelBtn.addEventListener("click", (e) => {
+      deleteCancelBtn.addEventListener("click", (e) => {
       console.log("click on cancel button");
       if (e.target === deleteCancelBtn) {
         closeDeleteProductModal();

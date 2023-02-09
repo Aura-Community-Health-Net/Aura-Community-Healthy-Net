@@ -14,34 +14,34 @@
     </div>
     <div class="pharmacy-neworders-advanceinfo__order-med-details">
         <div class="pharmacy-neworders-advanceinfo__order-med-details__names">
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__name">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__availableMedList">
                 <p>Available Medicines List</p>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__name">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__TotalAmount">
                 <p>Total Amount</p>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__name">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__AdvanceAmount">
                 <p>Advance Amount</p>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__name">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__names__Note">
                 <p>Note</p>
             </div>
         </div>
         <div class="pharmacy-neworders-advanceinfo__order-med-details__description">
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__description">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__medicinesList">
                 <ul class="medicines_list">
                     <li>Amoxicillin/clavulanic acid Tablet/Capsule</li>
                     <li>Piriton tablets</li>
                     <li>Omeprazole Capsules</li>
                 </ul>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__description">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount">
                 <p>Rs.2790</p>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__description">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__AdvanceAmount">
                 <p>Rs.1000</p>
             </div>
-            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__description">
+            <div class="pharmacy-neworders-advanceinfo__order-med-details__description__Note">
                 <p>vfevhcbhdbubidubbdbdhcbwhduhewff</p>
             </div>
         </div>

@@ -1,0 +1,7 @@
+.care-rider-order-details{
+    display: flex;
+    /*flex-direction: row;*/
+    gap: 2rem;
+    justify-content: space-between;
+    margin-inline: 3rem;
+}

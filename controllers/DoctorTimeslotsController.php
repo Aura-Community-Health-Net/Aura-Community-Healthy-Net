@@ -24,10 +24,14 @@ class DoctorTimeslotsController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
         $doctor = $result->fetch_assoc();
-        $sql = "(SELECT * FROM doctor_time_slot ORDER BY slot_number DESC LIMIT 5) ORDER BY slot_number ASC";
-        $timeslots = $db->connection->query(query: $sql);
+        $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $timeslots = $result->fetch_all(MYSQLI_ASSOC);
 
-
+        /*var_dump($timeslots);
+        exit();*/
         return self::render(view: 'doctor-dashboard-timeslots', layout: "doctor-dashboard-layout", params: [
             "timeslots" => $timeslots
         ], layoutParams: [
@@ -39,32 +43,26 @@ class DoctorTimeslotsController extends Controller
 
     public static function addDoctorTimeslots(): array|bool|string
     {
-        $date = $_POST["date"];//$date = date("Y/m/d");
-        $day = date('l', strtotime($date));
-        $from = $_POST["from-time"];
-        $to = $_POST["to-time"];
-
-        echo $date;
-        echo $day;
-        echo $from;
-        echo $to;
-
-
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+        if(!$nic || $providerType !== "doctor"){
+            header("location: /provider-login");
+            return "";
+        }
         $db = new database();
 
         $errors = [];
-        $appointment_id = "";
-        $provider_nic = "";
         if (empty($errors)) {
 
             $stmt = $db->connection->prepare("INSERT INTO doctor_time_slot (
                               date,
-                              day,
                               from_time,
-                              to_time
-                              ) VALUES ( ?, ?, ?, ? )");
+                              to_time,
+                              provider_nic
+                              
+                              ) VALUES ( ?, ?, ?,? )");
 
-            $stmt->bind_param("ssss", $date, $day, $from, $to);
+            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"],$nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /doctor-dashboard/timeslots");

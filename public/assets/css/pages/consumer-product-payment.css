@@ -1,0 +1,134 @@
+.consumer-product__payment-container{
+    margin: 2rem 10rem;
+    background-color: #D9D9F9;
+    padding: 2rem 5rem;
+    border-radius: 10px;
+    height: 85%;
+}
+
+.consumer-product__payment-container h2{
+    padding-block: 2rem;
+}
+
+.consumer-product__card-type{
+    display: flex;
+    padding-block: 2rem;
+}
+
+/*.consumer-product__card-type > div{*/
+/*    background-color: white;*/
+/*    width: 12rem;*/
+/*    height: 2rem;*/
+/*    border-radius: 8px;*/
+/*    gap: 5rem;*/
+/*}*/
+
+.consumer-product__card-options {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.consumer-product__card-options img {
+    width: 5rem;
+    height: 2rem;
+    /*object-fit: cover;*/
+}
+
+
+.consumer-product__card-options div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.5rem;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/*.consumer-product__card-type div img{*/
+/*    width: 5rem;*/
+/*    height: 2rem;*/
+/*    border-radius: 8px;*/
+/*}*/
+
+.consumer-product__card-num{
+    padding-block: 2rem;
+    display: flex;
+}
+
+.consumer-payment__input{
+    width: 12rem;
+    height: 2rem;
+    border-radius: 8px;
+    border: none;
+    padding-block: 1rem;
+}
+
+.consumer-payment__label{
+    width: 15rem;
+}
+
+.consumer-payment__label div{
+    display: flex;
+}
+
+.consumer-product__cvn{
+    display: flex;
+    padding-block: 2rem;
+    align-items: center;
+}
+
+.consumer-product__cvn div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.consumer-product__cvn svg {
+    cursor: pointer;
+    color: #555;
+    font-size: 1.2rem;
+}
+
+.consumer-product__expire-date{
+    display: flex;
+}
+
+
+.product__pay-btn{
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    height: 2.5rem;
+    text-align: center;
+    margin: auto;
+}
+
+.consumer-payment-img{
+    display: flex;
+    gap: 5rem;
+}
+
+
+.consumer-product__cvn p{
+    width: 25rem;
+}
+
+.pay-btn{
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 3rem;
+    padding-block: 0.3rem;
+    height: 2.5rem;
+}

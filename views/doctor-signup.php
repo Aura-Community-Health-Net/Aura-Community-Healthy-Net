@@ -160,13 +160,6 @@
 </form>
 
 
-<div id="modal">
-    <h3>Your account will be verified shortly, you are only visible to people after you are verified.</h3>
-    <img class="modal-img" src="/assets/images/verification.jpg" alt="">
-    <button class="reg-ok-btn" id="ok-btn">Ok</button>
-</div>
-
-
 <script src="/assets/js/pages/signup-doctor.js"></script>
 </body>
 

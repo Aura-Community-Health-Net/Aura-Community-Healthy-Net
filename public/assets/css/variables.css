@@ -1,4 +1,4 @@
 :root {
-    --primary: 120 22 178;
+    --primary: 0, 0, 92;
     --color-primary: rgb(var(--primary));
 }
