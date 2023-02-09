@@ -97,10 +97,11 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", layoutParams: [
-                "doctor" => $doctor,
+            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
+                "doctor" => $doctor],layoutParams:[
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
+
             ]);
         }
     }
