@@ -1,3 +1,27 @@
+.consumer-services-pharmacy-dashboard
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.consumer-services-pharmacy-dashboard-profile
+{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.consumer-services-pharmacy-dashboard-profile-and-medList
+{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+
+
+
 .consumer-services-pharmacy-dashboard-profile-pic img
 {
     height: 150px;
@@ -9,13 +33,13 @@
 
 .consumer-services-pharmacy-dashboard-profile-description
 {
-    margin-top: 20px;
-   /* background-color: #d9d9d9;*/
+
+    margin-top: 50px;
+    margin-left: -1200px;
     padding: 0.5rem;
-    /* margin-right: 1200px;*/
-    /*justify-content: space-around;*/
- /*   margin-left: -1250px;*/
-   /* background-color: #d9d9d9;*/
+
+
+
 
 
 
@@ -38,3 +62,27 @@
 {
     line-height: 1cm;
 }
+
+
+.search-bar
+{
+    margin-left: 750px;
+    margin-top: -600px;
+}
+
+.services-pharmacy-attributes img
+{
+    width: 50px;
+    height: 50px;
+}
+
+.consumer-services-pharmacy-dashboard-medList
+{
+
+    background-color: #d9d9d9;
+
+
+
+
+}
+
