@@ -1,5 +1,6 @@
 .consumer-dashboard-doctor-profile{
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }
 .consumer-dashboard-doctor-profile{
     text-align: center;
