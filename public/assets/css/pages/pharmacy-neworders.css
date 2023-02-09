@@ -146,6 +146,10 @@
 .consumer-details__details__name
 {
    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 12px;
+
+    /*padding: 0.5rem;*/
 
 }
 
@@ -266,3 +270,10 @@
 {
     font-weight: bold;
 }
+
+
+.adinfo-btn a
+{
+    color: white;
+}
+
