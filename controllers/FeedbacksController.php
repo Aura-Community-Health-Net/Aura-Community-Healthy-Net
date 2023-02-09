@@ -51,9 +51,9 @@ class FeedbacksController extends Controller
             $doctor = $result->fetch_assoc();
 
             return self::render(view: 'doctor-dashboard-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
-                "pharmacy" => $doctor,
+                "doctor" => $doctor,
                 "title" => "Feedback",
-                "active_link" => ""
+                "active_link" => "feedback"
             ]);
         }
     }

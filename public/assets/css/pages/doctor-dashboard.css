@@ -30,10 +30,6 @@
     border-radius: 21px;
 }
 
-#doctor-dashboard__left__top__data__vector{
-    width: 19px;
-    height: 30px;
-}
 .doctor-dashboard__center__bottom{
     display: flex;
     background-color: #ffffff;

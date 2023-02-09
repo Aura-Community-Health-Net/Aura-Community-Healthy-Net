@@ -1,6 +1,6 @@
 <?php
 /**
- * @var array $appointments
+ * @var array $analytics
  */
 ?>
 
