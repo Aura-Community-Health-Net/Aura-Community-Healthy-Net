@@ -15,7 +15,7 @@
 
              </div>
              <div class="pharmacy-profile__owner-profile__pharmacy-details">
-                 <p class="pharmacy-owner-name">Roger Smith</p>
+                 <p class="pharmacy-owner-name">Ravishi Palihawadana</p>
                  <p class="pharmacy-name">New Oxford Pharmacy</p>
                  <p class="pharmacy-regNo">AP5742</p>
 
