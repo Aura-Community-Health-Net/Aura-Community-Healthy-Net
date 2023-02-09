@@ -28,7 +28,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic2.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Mr. Kamal Sahabandu</h2>
+                        <h2>  Kamal Sahabandu</h2>
                         <div>
                             <p><span>Type of Vehicle </span> :Car</p>
                             <p><span>color </span> :Yellow</p>
@@ -43,7 +43,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic3.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Mr. Lahiru Sampath</h2>
+                        <h2>  Lahiru Sampath</h2>
                         <div>
                             <p><span>Type of Vehicle </span>: Wagan r</p>
                             <p><span>color </span> :Red</p>
@@ -59,7 +59,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic4.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Miss. Ravishi Palihawadana</h2>
+                        <h2>  Ravishi Palihawadana</h2>
                         <div>
                             <p><span>Type of Vehicle </span> :Aqua</p>
                             <p><span>color </span> :White</p>
@@ -75,7 +75,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic5.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Mr. Anjana Dilshan</h2>
+                        <h2>  Anjana Dilshan</h2>
                         <div>
                             <p><span>Type of Vehicle </span> :KDH Van</p>
                             <p><span>color </span> :Black</p>
@@ -91,7 +91,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic6.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Mr. Dhanuka Iroshana</h2>
+                        <h2>  Dhanuka Iroshana</h2>
                         <div>
                             <p><span>Type of Vehicle </span> :Wagan r</p>
                             <p><span>color </span> :White</p>
@@ -107,7 +107,7 @@
                 <div class="care-rider-card">
                     <img src="/assets/images/profilepic7.jpg">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2> Mr. Dumindu Lakshan</h2>
+                        <h2>  Dumindu Lakshan</h2>
                         <div>
                             <p><span>Type of Vehicle </span>: Caraven</p>
                             <p><span>color </span> :Brown</p>
