@@ -1,24 +1,39 @@
 
 .consumer-dashboard-profile{
+    display: grid;
+}
+.consumer-dashboard-profile_background > div{
+    margin: 4rem;
+    text-align: center;
+    padding-block: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 85%;
+}
+.consumer-dashboard-profile > div{
+    margin: 0.5rem;
+    text-align: center;
+    padding-block: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     background-color: #D9D9D9;
-    position: relative;
-    width: 998px;
-    height: 527px;
-    margin: 36px;
-    left: 72px;
 }
 .consumer-dashboard-profile__top table{
     border-spacing: 66px;
-    position: relative;
-    left: 222px;
 }
 .consumer-dashboard-profile__bottom table{
     border-spacing: 28px;
-    position: relative;
-    left: 274px;
 }
-.consumer-dashboard-profile__top img{
-    width: 167px;
-    height: 148px;
-    border-radius: 87px;
+.consumer-dashboard-profile__bottom img{
+    height: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
 }

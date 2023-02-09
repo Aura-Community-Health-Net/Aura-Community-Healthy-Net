@@ -1,7 +1,7 @@
 
 <div class="consumer-dashboard-profile">
     <div class="consumer-dashboard-profile_background">
-        <div class="consumer-dashboard-profile__top">
+        <div class="consumer-dashboard-profile__bottom">
             <table>
                 <tr>
                     <td>
@@ -11,10 +11,6 @@
                         <h2>Pasindu Fernando</h2>
                     </td>
                 </tr>
-            </table>
-        </div>
-        <div class="consumer-dashboard-profile__bottom">
-            <table>
                 <tr>
                     <td><b>Email Address</b></td>
                     <td>samanperera@gmail.com</td>
