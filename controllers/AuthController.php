@@ -365,13 +365,13 @@ class AuthController extends Controller
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirm_password"];
 
-                $file = $_FILES["profile_pic"];
-                $file_name = $file["name"];
-                $file_tmp_name = $file["tmp_name"];
+                $file1 = $_FILES["image"];
+                $file_name1 = $file1["name"];
+                $file_tmp_name1 = $file1["tmp_name"];
 
                 $random_id = bin2hex(random_bytes(24));
-                $new_file_name = $nic . $random_id . "profile_pic" . $file_name;
-                move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
+                $new_file_name = $nic . $random_id . "profile_pic" . $file_name1;
+                move_uploaded_file($file_tmp_name1, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
 
                 $db = new Database();
                 $errors = [];

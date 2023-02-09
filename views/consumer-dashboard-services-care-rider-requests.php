@@ -1,96 +1,103 @@
 
-    <link rel="stylesheet" href="/assets/css/pages/consumer-dashboard-services-care-rider-requests.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
+    <div class="item-top__container">
+        <div class="item-top-left__container">
+            <img src="/assets/images/profilepic1.jpg" alt="">
+            <div class="provider__overview-detail">
+                <h2>Lahiru Sampath</h2>
+                <h3>Type of Vehicle:Wagan r</h3>
+                <h3>color:White</h3>
+                <h3>No-Plate:BHA-1234</h3>
+                <h3>MobileNo:0715275437</h3>
+            </div>
+        </div>
 
-<div class="consumer-dashboard-doctor-profile">
-    <div class="consumer-dashboard-doctor-profile__top">
-        <table>
-            <tr>
-                <td>
-                    <div class="consumer-dashboard-doctor-profile__top__left">
-                        <img src="/assets/images/profilepic1.jpg">
-                        <div class="consumer-dashboard-doctor-profile__top__left__data">
-                            <h3><b>Prof. Anoja Abeyjeewa</b></h3><br>
-                            <h4>Anaesthetists</h4>
-                            <h4>SLMC Reg.No: 34526</h4>
-                            <p>Lorem Ipsum is simply dummy text of the hgiiir
-                                printing and typesetting industry. Lorem dfdsss
-                                Ipsum has been the industry's standard ddssda
-                                dummy text ever since the 1500s, when an qwee
-                                unknown printer took a galley of type and easss
-                                scrambled it to make a type specimen book.</p>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="consumer-dashboard-doctor-profile__top__right">
-                        <h4>Available Time-Slots</h4>
-                        <div class="consumer-dashboard-doctor-profile__top__right__dropdown">
-                            <p>31st October 2022</p>
-                            <img src="/assets/images/drop_down.png">
-                        </div>
-                        <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.00 pm - 4.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.45 pm - 5.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.45 pm - 6.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.30 pm - 7.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.45 pm - 8.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.00 pm - 9.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                        </div>
-                        <div class="consumer-dashboard-doctor-profile__top__right__location">
-                            <p>Add Location</p>
-                            <div class="consumer-dashboard-doctor-profile__top__right__location__search">
-                                <img src="/assets/images/search.png">
-                            </div>
-                        </div>
-                        <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00 for an appointment</p>
-                        <a href="/consumer-dashboard/services/doctor/profile/payment"><button>Continue to Pay</button></a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="consumer-dashboard-doctor-profile__bottom">
-        <table>
-            <tr>
-                <td>
-                    <div class="consumer-dashboard-doctor-profile__bottom__left">
-                        <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic3.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
-                        </div>
-                        <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic3.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
-                        </div>
-                        <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic3.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="consumer-dashboard-doctor-profile__bottom__right">
-                        <p>Give your Feedback</p>
-                        <div class="consumer-dashboard-doctor-profile__bottom__right__feedback">
-                            <button>Submit</button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div class="item-top-right__container">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d270201.1012553059!2d80.57066973934896!3d7.435740318327426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slk!4v1668671876514!5m2!1sen!2slk"
+                        width="400" height="250" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>   </div>
+        </div>
 
     </div>
-</div>
+
+    <div class="item-bottom-container">
+        <div class="item-bottom-left-container">
+            <div class="consumer-feedback">
+                <div class="consumer-feedback__header">
+
+                    <div class="consumer-feedback__header-profile">
+                        <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                        <h3>Sanath Gunapala</h3>
+                    </div>
+                    <h4>12th of January 2023</h4>
+                </div>
+                <p class="consumer-dashboard__body">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                    to
+                    make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                    versions
+                    of Lorem Ipsum
+                </p>
+            </div>
+            <div class="consumer-feedback">
+                <div class="consumer-feedback__header">
+
+                    <div class="consumer-feedback__header-profile">
+                        <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                        <h3>Sanath Gunapala</h3>
+                    </div>
+                    <h4>12th of January 2023</h4>
+                </div>
+                <p class="consumer-dashboard__body">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                    to
+                    make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                    versions
+                    of Lorem Ipsum
+                </p>
+            </div>
+            <div class="consumer-feedback">
+                <div class="consumer-feedback__header">
+
+                    <div class="consumer-feedback__header-profile">
+                        <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
+                        <h3>Sanath Gunapala</h3>
+                    </div>
+                    <h4>12th of January 2023</h4>
+                </div>
+                <p class="consumer-dashboard__body">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                    to
+                    make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+                    versions
+                    of Lorem Ipsum
+                </p>
+            </div>
+        </div>
+
+        <div class="item-bottom-right-container">
+            <h3>Give your feedback</h3>
+            <form action="">
+                <textarea name="" id="" cols="28" rows="17"></textarea>
+            </form>
+        </div>
+    </div>
