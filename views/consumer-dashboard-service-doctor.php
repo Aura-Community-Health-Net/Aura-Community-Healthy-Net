@@ -1,9 +1,11 @@
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
-        <div class="consumer-dashboard-doctor__top__left">
-            <p>Search a Doctor...</p>
-            <img src="/assets/images/search_bar.png">
-        </div>
+        <form action="" class="form-item--search">
+            <div class="search-bar">
+                <input type="text" placeholder="Search Doctor..." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
         <select class="form-items--dropdown" name="product-categories" id="product-categories">
             <option value="Doctor">Doctor</option>
             <option value="Pharmacy">Pharmacy</option>

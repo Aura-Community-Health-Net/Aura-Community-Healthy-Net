@@ -1,3 +1,7 @@
+.consumer-dashboard-doctor__top{
+    display: flex;
+    justify-content: space-between;
+}
 .consumer-dashboard-doctor__top__left{
     background-color: #D9D9D9;
     position: relative;
@@ -70,8 +74,10 @@
     left: 80px;
 }
 .consumer-dashboard-doctor__bottom__left__data button,.consumer-dashboard-doctor__bottom__center__data button,.consumer-dashboard-doctor__bottom__right button{
+    cursor: pointer;
     border: none;
     color: white;
+    font-size: 1rem;
     background-color: #008DFF;
     padding: 15px 32px;
     text-align: center;
