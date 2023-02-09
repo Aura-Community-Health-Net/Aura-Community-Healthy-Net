@@ -1,48 +1,42 @@
-.care-rider-profile-contener {
-    background-color: #c9c9c9;
-    width: 78%;
-    height: 92vh;
-    margin-left: 20%;
-    border-radius: 5px;
-    padding-top: 20px;
-
+.care-rider-profile-pic__container{
+    background-color: #A198FF;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 20px;
 }
 
-.care-rider-profile-profile-content {
-    background-color: white;
-    width: 94%;
-    height: 84vh;
-    margin: auto;
-    border-radius: 5px;
+.care-rider-profile-pic__header{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
 
+.care-rider-profile-pic__header img{
+    height: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
 }
-.care-rider-profile-content-head {
-    display: flex;
-    flex-direction: row;
-    margin-top:30px;
-    margin-left:60px;
-    margin-bottom:40px;
-}
-.care-rider-profile-content-head img{
-    width:200px;
-    height:200px;
-}
-.tab
-{
-    tab-size: 2;
-}
-.care-rider-profile-content-head  h3{
-    margin-top:100px;
-    margin-left:100px;
 
+.care-rider-profile-pic__header h1{
+    font-size: 2rem;
 }
-.care-rider-profile-content-body{
+
+.care-rider-profile-pic__header h2{
+    color: #666666;
+    padding-top: 1rem;
+}
+
+.care-rider-profile-pic__details{
+    text-align: center;
+    padding-block: 1.5rem;
+}
+
+.care-rider-profile-pic__details h3{
+    padding-top: 0.4rem;
     display: flex;
-    flex-direction: row;
-    margin-left: 80px;
-}
-.care-rifer-profile-content-body h3{
-    width: 240px;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
 }

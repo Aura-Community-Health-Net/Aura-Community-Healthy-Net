@@ -91,7 +91,7 @@
                         <span class="navtitle">Food Products</span>
                     </a>
 
-                    <a href="#" class="navbtn sub__navbtn navbtn--link">
+                    <a href="/consumer-dashboard/services/care-rider" class="navbtn sub__navbtn navbtn--link">
                         <span class="nav-icon"><i class="fa-solid fa-car"></i></span>
                         <span class="navtitle">Care Rider</span>
                     </a>
@@ -104,7 +104,7 @@
 
             <li>
                 <a href="/consumer-dashboard/analytics">
-                    <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                    <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                     <span class="nav-title">Analytics</span>
                     </button>
@@ -133,15 +133,16 @@
             </li>
 
             <li class="logout">
-                <a href="/provider/login">
+                <form action="/logout" method="post">
                     <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                     <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
                     <span class="nav-title">Logout</span>
                     </button>
-                </a>
+                </form>
 
             </li>
+
         </ul>
     </nav>
 

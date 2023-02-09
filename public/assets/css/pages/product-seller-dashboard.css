@@ -32,6 +32,7 @@
     margin-block: 1rem;
 }
 
+
 .product-order-details{
     display: flex;
     gap: 2rem;
@@ -77,7 +78,7 @@
     border-radius: 10px;
 }
 
-.dashboard__bottom-cards img{
+.dashboard__bottom-product-img{
     width: 4.5rem;
     height: 2.5rem;
 }
@@ -92,6 +93,20 @@
 }
 
 .dashboard__bottom-cards__detail h4{
-    width: 10rem;
+    width: 9rem;
 }
 
+.dashboard-analytics-img{
+    width: 15rem;
+    height: 9rem;
+    margin: 1rem;
+}
+
+.dashboard-analytics-description{
+    background-color: white;
+    padding: 1rem;
+    width: 15rem;
+    margin: 0.5rem 1rem;
+    border-radius: 8px;
+    text-align: justify;
+}

@@ -59,9 +59,9 @@ class DashboardController extends Controller
 
     public static function getCareRiderDashboard(): bool|array|string
     {
-        $nic = $_SESSION["nic"];
-
-        if (!$nic) {
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+        if (!$nic || $providerType != "care-rider") {
             header("location: /provider-login");
             return "";
         } else {

@@ -81,39 +81,47 @@ if (!$product_seller['is_verified']) {
     </div>
 </div>
 
-<div class="dashboard__bottom-cards">
-    <h3>New Orders</h3>
-    <div class="dashboard__bottom-cards__detail">
-        <img src="/assets/images/nil-veralu.jfif" alt="">
+<div class="dashboard__bottom-container">
+    <div class="dashboard__bottom-cards">
+        <h3>New Orders</h3>
+        <div class="dashboard__bottom-cards__detail">
+            <img class="dashboard__bottom-product-img" src="/assets/images/nil-veralu.jfif" alt="">
             <h4>Nil Veralu</h4>
             <h4>Medicinal Fruits & Vegetables</h4>
             <h4>100 g</h4>
             <h4>Rs. 150</h4>
-    </div>
+        </div>
 
-    <div class="dashboard__bottom-cards__detail">
-        <img src="/assets/images/vali%20anoda.jfif" alt="">
-        <h4>Vali Anoda</h4>
-        <h4>Medicinal Fruits & Vegetables</h4>
-        <h4>1 kg</h4>
-        <h4>Rs. 550</h4>
-    </div>
+        <div class="dashboard__bottom-cards__detail">
+            <img class="dashboard__bottom-product-img" src="/assets/images/vali%20anoda.jfif" alt="">
+            <h4>Vali Anoda</h4>
+            <h4>Medicinal Fruits & Vegetables</h4>
+            <h4>1 kg</h4>
+            <h4>Rs. 550</h4>
+        </div>
 
-    <div class="dashboard__bottom-cards__detail">
-        <img src="/assets/images/belimal.webp" alt="">
-        <h4>Beli Mal</h4>
-        <h4>Seeds</h4>
-        <h4>100 g</h4>
-        <h4>Rs. 350</h4>
-    </div>
+        <div class="dashboard__bottom-cards__detail">
+            <img class="dashboard__bottom-product-img" src="/assets/images/belimal.webp" alt="">
+            <h4>Beli Mal</h4>
+            <h4>Seeds</h4>
+            <h4>100 g</h4>
+            <h4>Rs. 350</h4>
+        </div>
 
-    <div class="dashboard__bottom-cards__detail">
-        <img src="/assets/images/porridge.jfif" alt="">
-        <h4>Vegetable Porridge</h4>
-        <h4>Cooked Foods</h4>
-        <h4>1 l</h4>
-        <h4>Rs. 550</h4>
+        <div class="dashboard__bottom-cards__detail">
+            <img class="dashboard__bottom-product-img" src="/assets/images/porridge.jfif" alt="">
+            <h4>Vegetable Porridge</h4>
+            <h4>Cooked Foods</h4>
+            <h4>1 l</h4>
+            <h4>Rs. 550</h4>
+        </div>
     </div>
-
-    <h3>Analytics</h3>
+    <div class="dashboard__bottom-cards">
+        <h3>Analytics</h3>
+        <img class="dashboard-analytics-img" src="/assets/images/dashboard-analytics.jpg" alt="">
+        <div class="dashboard-analytics-description">
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the </p>
+        </div>
+    </div>
 </div>

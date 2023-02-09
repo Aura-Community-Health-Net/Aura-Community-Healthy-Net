@@ -6,6 +6,7 @@ use app\core\Controller;
 use app\core\Database;
 
 
+
 class ProfileController extends Controller
 {
     public static function getCareRiderProfilePage(): array|bool|string
@@ -32,7 +33,7 @@ class ProfileController extends Controller
             "care_rider" => $careRider
         ]);
     }
-
+    
     public static function getDoctorProfilePage(): array|bool|string
     {
         $nic = $_SESSION['nic'];

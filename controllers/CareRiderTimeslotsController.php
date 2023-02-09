@@ -46,13 +46,18 @@ class CareRiderTimeslotsController extends Controller
 
     public static function addCareRiderTimeslot(): array|bool|string
     {
+
+        $nic = $_SESSION['nic'];
+        $providerType = $_SESSION['user_type'];
+        if (!$nic || $providerType != "care-rider") {
+            header("location: /provider-login");
+            return "";
+        }
+
         $date = $_POST["date"];
-        //        $day=$_POST["day"];
         $day = date('l', strtotime($_POST["date"]));
         $fromTime = $_POST["fromTime"];
         $toTime = $_POST["toTime"];
-        $request_id = 12;
-        $provider_nic = "97888888v";
 
         echo($date);
         echo($day);
@@ -69,12 +74,10 @@ class CareRiderTimeslotsController extends Controller
                                   from_time, 
                                   to_time, 
                                   date,
-                                  request_id,
                                   provider_nic
-                             
-                              ) VALUES ( ?, ?, ?,?,? )");
+                              ) VALUES ( ?, ?, ?,?)");
 
-            $stmt->bind_param("sssss", $fromTime, $toTime, $date, $request_id, $provider_nic);
+            $stmt->bind_param("ssss", $fromTime, $toTime, $date, $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /care-rider-dashboard/timeslots");
@@ -106,69 +109,69 @@ class CareRiderTimeslotsController extends Controller
 
         }
     }
+//
+//    public static function deleteCareRiderTimeslot(): array|bool|string
+//    {
+//
+//        $id = $_POST['slot_id'];
+//        $db = new Database();
+//        $sql = "DELETE FROM care_rider_time_slot WHERE slot_number=$id ";
+//        $result = $db->connection->query(query: $sql);
+//        $message = "Delete Succesefull!!";
+//        header("location: /care-rider-dashboard/timeslots");
+//        return $message;
+//
+//
+//    }
 
-    public static function deleteCareRiderTimeslot(): array|bool|string
-    {
+//    public static function getUpdatePopup(): array|bool|string
+//    {
+//        $solt_id = $_GET['slot_id'];
+//        $db = new Database();
+//        $sql1 = "SELECT * FROM care_rider_time_slot  ";
+//        $result1 = $db->connection->query(query: $sql1);
+//        $product1 = [];
+//        while ($row = $result1->fetch_assoc()) {
+//            $product1[] = $row;
+//        }
+//
+//        $sql2 = "SELECT * FROM care_rider_time_slot WHERE slot_number=$solt_id";
+//        $result2 = $db->connection->query(query: $sql2);
+//        $product2 = [];
+//
+//        while ($row = $result2->fetch_assoc()) {
+//            $product2[] = $row;
+//        }
+//            echo "<pre>";
+////        var_dump($product2);
+////        echo "<pre>";
+//        return self::render(view: '/care-rider-dashboard-timeslots', params: ['updateInfo' => $product2, 'data' => $product1]);
+//
+//    }
 
-        $id = $_POST['slot_id'];
-        $db = new Database();
-        $sql = "DELETE FROM care_rider_time_slot WHERE slot_number=$id ";
-        $result = $db->connection->query(query: $sql);
-        $message = "Delete Succesefull!!";
-        header("location: /care-rider-dashboard/timeslots");
-        return $message;
-
-
-    }
-
-    public static function getUpdatePopup(): array|bool|string
-    {
-        $solt_id = $_GET['slot_id'];
-        $db = new Database();
-        $sql1 = "SELECT * FROM care_rider_time_slot  ";
-        $result1 = $db->connection->query(query: $sql1);
-        $product1 = [];
-        while ($row = $result1->fetch_assoc()) {
-            $product1[] = $row;
-        }
-
-        $sql2 = "SELECT * FROM care_rider_time_slot WHERE slot_number=$solt_id";
-        $result2 = $db->connection->query(query: $sql2);
-        $product2 = [];
-
-        while ($row = $result2->fetch_assoc()) {
-            $product2[] = $row;
-        }
-        //        echo "<pre>";
-//        var_dump($product2);
-//        echo "<pre>";
-        return self::render(view: '/care-rider-dashboard-timeslots', params: ['updateInfo' => $product2, 'data' => $product1]);
-
-    }
-
-    public static function updateTimeSlot(): array|bool|string
-    {
-
-        $solt_No = $_POST['soltNumberName'];
-        $upDate = $_POST['upDate'];
-        $upDay = $_POST['upDay'];
-        $upFromTime = $_POST['upFromTime'];
-        $upToTime = $_POST['upToTime'];
-        $requestId = $_POST['request_id'];
-        $provideNic = $_POST['provider_nic'];
-
-        $db = new Database();
-        $sql = "UPDATE care_rider_time_slot 
-                SET from_time='$upFromTime',
-                to_time='$upToTime',
-                date='$upDate' 
-                WHERE slot_number=$solt_No";
-        $result = $db->connection->query(query: $sql);
-        $message = "Update Successe!";
-        //        return self::render('carerider-timeslots-update');
-        header("location: /care-rider-dashboard/timeslots");
-        return $message;
-
-    }
+//    public static function updateTimeSlot(): array|bool|string
+//    {
+//
+//        $solt_No = $_POST['soltNumberName'];
+//        $upDate = $_POST['upDate'];
+//        $upDay = $_POST['upDay'];
+//        $upFromTime = $_POST['upFromTime'];
+//        $upToTime = $_POST['upToTime'];
+//        $requestId = $_POST['request_id'];
+//        $provideNic = $_POST['provider_nic'];
+//
+//        $db = new Database();
+//        $sql = "UPDATE care_rider_time_slot
+//                SET from_time='$upFromTime',
+//                to_time='$upToTime',
+//                date='$upDate'
+//                WHERE slot_number=$solt_No";
+//        $result = $db->connection->query(query: $sql);
+//        $message = "Update Successe!";
+//        //        return self::render('carerider-timeslots-update');
+//        header("location: /care-rider-dashboard/timeslots");
+//        return $message;
+//
+//    }
 
 }
