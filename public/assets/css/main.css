@@ -39,6 +39,7 @@
 @import "pages/pharmacy-profile.css";
 @import "pages/consumer-dashboard.css";
 @import "pages/consumer-feedbacks.css";
+@import "pages/consumer-dashboard-services-care-rider.css";
 @import "pages/consumer-dashboard-service-doctor.css";
 @import "pages/consumer-dashboard-service-doctor-profile.css";
 @import "pages/consumer-dashboard-service-doctor-profile-payment.css";
@@ -56,8 +57,11 @@
 
 /*Importibg care-rider pages*/
 @import "pages/care-rider-dashboard-profile.css";
-
-
+@import "pages/care-rider-dashboard-analytics.css";
+@import "pages/care-rider-dashboard-profile.css";
+@import "pages/care-rider-dashboard-feedback.css";
+@import "pages/care-rider-dashboared.css";
+@import "pages/care-rider-dashboard-new-requests.css";
 
 
 
