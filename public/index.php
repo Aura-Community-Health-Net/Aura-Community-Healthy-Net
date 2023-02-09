@@ -55,7 +55,8 @@ $app->router->post('/register', [AuthController::class, 'registerConsumer']);
 $app->router->get('/login', [AuthController::class, 'getConsumerLoginPage']);
 $app->router->post('/login', [AuthController::class, 'loginServiceConsumer']);
 $app->router->get('/registration-overview', [AuthController::class, 'registrationOverview']);
-
+$app->router->post('/provider-logout', [AuthController::class, 'providerLogout']);
+$app->router->post('/logout', [AuthController::class, 'consumerLogout']);
 
 $app->router->get('/administrator-login', [AuthController::class, 'getAdministratorLoginPage']);
 $app->router->post('/administrator-login', [AuthController::class, 'loginAdministrator']);
