@@ -10,10 +10,9 @@
 </head>
 
 <div class="doctor-analytics">
-    <div class="doctor-analytics__top">
+    <div class="doctor-analytics__images">
         <img src="/assets/images/count.jpg">
-    </div>
-    <div class="doctor-analytics__bottom">
-        <img src="/assets/images/revenue.jpg">
+
+        <img  src="/assets/images/revenue.jpg">
     </div>
 </div>

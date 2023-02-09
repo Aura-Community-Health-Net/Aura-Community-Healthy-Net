@@ -14,6 +14,7 @@ use app\controllers\AuthController;
 
 use app\controllers\AnalyticsController;
 
+use app\controllers\CareRiderController;
 
 use app\controllers\AdministratorController;
 use app\controllers\ServiceProvidersController;
@@ -108,11 +109,11 @@ $app->router->get('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsC
 $app->router->post('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsController::class, 'updateTimeSlot']);
 //                                  New-Requests
 $app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'getNewRequestsPage']);
+$app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
+$app->router->get('/care-rider-dashboard/analytics', [AnalyticsController::class, 'getCareRiderAnalyticsPage']);
 $app->router->post('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'NewRequests']);
 $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
 $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, 'Profile']);
-
-
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
@@ -125,6 +126,10 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
+$app->router->get('/consumer-dashboard/feedback',[AnalyticsController::class,'getConsumerFeedbackPage']);
+$app->router->get('/consumer-dashboard/analytics',[AnalyticsController::class,'getConsumerAnalyticsPage']);
+$app->router->get('/consumer-dashboard/services/care-rider',[CareRiderController::class,'getCareRiderChoosePage']);
+$app->router->get('/consumer-dashboard/services/care-rider/request',[CareRiderController::class,'getCareRiderRequestsPage']);
 $app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
 $app->router->post('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
 $app->router->get('/products/view', [ProductsController::class, 'getConsumerProductOverviewPage']);
@@ -138,7 +143,7 @@ $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [Profil
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
-
+$app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
 
 //  Run the application
 $app->run();

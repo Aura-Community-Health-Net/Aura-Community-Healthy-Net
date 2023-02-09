@@ -10,15 +10,37 @@
 </head>
 
 <div class="doctor-profile">
-    <div class="doctor-profile__data">
-        <img src="/assets/images/profilepic2.jpg">
-        <h3>Anoja Abeyweera</h3>
-        <h4>Anaesthetists</h4><br>
-        <p><b>Email Address</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;anojaabyweera@gmail.com<br><br>
-        <b>NIC</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;567634456V<br><br>
-        <b>Mobile Number</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;070-3454334<br><br>
-        <b>Qualifications</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem Ipsum is simply dummy text of the <br>
-            printing and typesetting industry. Lorem Ipsum has been the <br>
-            industry's standard dummy text ever since the</p>
+    <div class="doctor-profile__background">
+        <div class="doctor-profile__data">
+            <table>
+                <tr>
+                    <th>
+                        <img src="/assets/images/profilepic2.jpg">
+                    </th>
+                    <th>
+                        <h2>Anoja Abeyweera</h2>
+                        <h3>Anaesthetists</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <td><b>Email Address</b></td>
+                    <td>anojaabyweera@gmail.com</td>
+                </tr>
+                <tr>
+                    <td><b>NIC</b></td>
+                    <td>567634456V</td>
+                </tr>
+                <tr>
+                    <td><b>Mobile Number</b></td>
+                    <td>070-3454334</td>
+                </tr>
+                <tr>
+                    <td><b>Qualifications/b></td>
+                    <td>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
+                        industry. Lorem Ipsum has been  industry's standard dummy text<br>
+                        ever since the</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

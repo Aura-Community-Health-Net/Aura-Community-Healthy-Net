@@ -15,7 +15,7 @@
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
-            <button class="pharmacy-view-btn">view</button>
+            <button class="pharmacy-view-btn"><a href="/consumer-dashboard/service/pharmacy/pharmacy-dashboard">view</a></button>
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-presUpload-btn">
@@ -33,7 +33,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0712538872
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -56,7 +56,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0718561167
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -80,7 +80,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0775408321
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -102,7 +102,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0764325998
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -125,7 +125,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0759021339
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -148,7 +148,7 @@
         </div>
 
         <div class= "services-pharmacy-attributes" id="services-pharmacy-pharmacyContactNo">
-            0716536672
+            0729905651
         </div>
 
         <div  class="services-pharmacy-attributes" id="services-pharmacy-pharmacyViewButton">
@@ -174,7 +174,10 @@
 
 
 
+    <button class="consumer-services-pharmacy-pharmacyRequest-button"><a href="/consumer-dashboard/services/pharmacy/payment-receipt">Pharmacy Request</a> </button>
 
 
 </div>
+
+
 
