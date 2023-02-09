@@ -61,7 +61,7 @@ if (!$pharmacy['is_verified']) {
                 <h5>Amoxilin Tablets</h5><br>
                 <h5>375 mg</h5>
             </div>
-            <img class="order-product-img" src="/assets/images/nil-veralu.jfif" alt="">
+            <img class="order-product-img" src="/assets/images/drugs(1).jpg" alt="">
         </div>
 
 
@@ -85,35 +85,35 @@ if (!$pharmacy['is_verified']) {
     <div class="dashboard__bottom-cards">
         <h3>New Orders</h3>
         <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/nil-veralu.jfif" alt="">
-            <h4>fyefefyef</h4>
+            <img class="dashboard__bottom-product-img" src="/assets/images/baclof-10mg-tablet-10.jpg" alt="">
+            <h4></h4>
             <h4>Omeprazole Tablets</h4>
             <h4>20mg</h4>
-            <h4>Rs. 150</h4>
+            <h4>Rs. 650</h4>
         </div>
 
         <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/vali%20anoda.jfif" alt="">
-            <h4>bfvwevfuef</h4>
+            <img class="dashboard__bottom-product-img" src="/assets/images/alerid-10-mg-10-comprimate-terapia-1956.png" alt="">
+            <h4></h4>
             <h4>Alerid</h4>
             <h4>100mg</h4>
             <h4>Rs. 350</h4>
         </div>
 
         <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/belimal.webp" alt="">
-            <h4>vfhefief</h4>
+            <img class="dashboard__bottom-product-img" src="/assets/images/GASTREZZ-BOTTLE-1-1.png" alt="">
+            <h4></h4>
             <h4>Paracetamol</h4>
             <h4>10 mg</h4>
             <h4>Rs.50</h4>
         </div>
 
         <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/porridge.jfif" alt="">
-            <h4>Vegetable Porridge</h4>
-            <h4>Cooked Foods</h4>
-            <h4>1 l</h4>
-            <h4>Rs. 550</h4>
+            <img class="dashboard__bottom-product-img" src="/assets/images/losartan.png" alt="">
+            <h4></h4>
+            <h4>Benaclof</h4>
+            <h4>50 mg</h4>
+            <h4>Rs.400</h4>
         </div>
     </div>
     <div class="dashboard__bottom-cards">
