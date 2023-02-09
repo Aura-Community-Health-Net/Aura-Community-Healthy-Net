@@ -699,6 +699,13 @@ class AuthController extends Controller
         return "";
     }
 
+    public static function adminLogout(): string
+    {
+        session_destroy();
+        header("location: /administrator-login");
+        return "";
+    }
+
 
 
 }
