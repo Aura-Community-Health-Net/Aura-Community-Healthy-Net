@@ -24,15 +24,21 @@
                 </div>
             </div>
 
-            <?php
-            $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
+            <div class="header-link__container">
+                <a class="header-link" href="#our-services">Our Services</a>
+                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+                <?php
+                $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
 
-            if (!$nic){
-                echo "<a class='login-link' href='/login'>Log in</a>";
-            } else {
-                echo "<a class='login-link'> You are logged in as $nic </a>";
-            }
-            ?>
+                if (!$nic){
+                    echo "<a class='login-link' href='/login'>Log in</a>";
+                } else {
+                    echo "<a class='login-link'> You are logged in as $nic </a>";
+                }
+                ?>
+            </div>
+
         </header>
 
         <div class="intro">
@@ -65,7 +71,7 @@
 
         <hr>
 
-        <h2>Our Services</h2>
+        <h2 id="our-services">Our Services</h2>
 
         <div class="services">
             <div class="services-cat">
@@ -119,9 +125,15 @@
         </div>
 
         <footer>
-            <a href="">Privacy Policy</a>
-            <a href="">About Us</a>
-            <a href="">Contact Us</a>
+            <div class="footer-link">
+                <a href="">Privacy Policy</a>
+                <a href="">About Us</a>
+                <a href="">Contact Us</a>
+            </div>
+            <div>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+            </div>
         </footer>
     </section>
 
