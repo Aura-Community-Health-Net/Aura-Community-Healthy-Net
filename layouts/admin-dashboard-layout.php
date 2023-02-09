@@ -92,7 +92,7 @@
                 </li>
 
                 <li class="logout">
-                    <a href="/administrator/login">
+                    <a href="/administrator-login">
                         <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
