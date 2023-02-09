@@ -34,7 +34,7 @@ class ProfileController extends Controller
         ]);
     }
 
-  public static function getCareRiderProfilePage(): array|bool|string{
+ /* public static function getCareRiderProfilePage(): array|bool|string{
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];
 
@@ -57,7 +57,7 @@ class ProfileController extends Controller
             "care_rider" => $careRider
         ]);
 
-    }
+    }*/
     public static function getDoctorProfilePage(): array|bool|string
     {
         $nic = $_SESSION['nic'];

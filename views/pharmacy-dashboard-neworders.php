@@ -1,4 +1,5 @@
 <div class="pharmacy-neworders">
+   <div class="pharmacy-neworders-main-block">
     <div class="pharmacy-neworders-blocks">
         <div class="pharmacy-neworders-blocks__consumer-details">
             <div class="consumer-details__profile_picture">
@@ -76,5 +77,6 @@
         <div class="pharmacy-neworders-blocks__adinfo-btn">
             <button class="adinfo-btn" id="add-info">Send Advance Info</button>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
