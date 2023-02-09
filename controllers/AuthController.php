@@ -666,6 +666,20 @@ class AuthController extends Controller
         return self::render(view: "registration-overview");
     }
 
+    public static function providerLogout(): string
+    {
+        session_destroy();
+        header("location: /provider-login");
+        return "";
+    }
+
+    public static function consumerLogout(): string
+    {
+        session_destroy();
+        header("location: /login");
+        return "";
+    }
+
 
 
 }
