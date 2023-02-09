@@ -15,7 +15,7 @@
             <table>
                 <tr>
                     <th>
-                        <img src="/assets/images/profilepic2.jpg">
+                        <img src="/assets/images/profilepic8.jpg">
                     </th>
                     <th>
                         <h2>Anoja Abeyweera</h2>
