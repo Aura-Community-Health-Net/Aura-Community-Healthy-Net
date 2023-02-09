@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Database;
 use app\core\Controller;
 
+
 class AnalyticsController extends Controller
 {
     public static function getCareRiderAnalyticsPage(): array|bool|string
@@ -32,7 +33,7 @@ class AnalyticsController extends Controller
 
     public static function getDoctorAnalyticsPage():array|bool|string{
 
-        return self::render(view:'doctor-analytics', layout: "doctor-dashboard-layout", params: [],layoutParams: [
+        return self::render(view:'doctor-dashboard-analytics', layout: "doctor-dashboard-layout", params: [],layoutParams: [
             "title" => "Analytics",
             "active_link" => ""
         ]);
@@ -115,5 +116,6 @@ class AnalyticsController extends Controller
 
 
     }
+
 
 }

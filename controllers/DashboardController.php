@@ -83,7 +83,8 @@ class DashboardController extends Controller
     public static function getDoctorDashboardPage(): array |bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $provideType = $_SESSION["user_type"];
+        if (!$nic || $provideType !== "doctor") {
             header("location: /provider-login");
             return "";
         } else {
@@ -102,7 +103,7 @@ class DashboardController extends Controller
         }
     }
 
-    public static function getConsumerDashboardPage(){
+    public static function getConsumerDashboardPage(): array |bool|string{
         $nic = $_SESSION["nic"];
         if (!$nic){
             header("location: /login");

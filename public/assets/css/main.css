@@ -19,16 +19,37 @@
 @import "pages/provider-login.css";
 @import "pages/provider-signup.css";
 @import "pages/pharmacy-neworders.css";
+@import "pages/doctor-dashboard-appointments.css";
+@import "pages/doctor-dashboard-patients.css";
+@import "pages/doctor-dashboard.css";
+@import "pages/doctor-dashboard-timeslots.css";
+@import "pages/doctor-dashboard-analytics.css";
+@import "pages/doctor-dashboard-feedback.css";
+@import "pages/doctor-dashboard-profile.css";
 @import "pages/product-seller-orders.css";
 @import "pages/pharmacy-feedback.css";
 @import "pages/product-seller-feedback.css";
 @import "pages/product-seller-profile.css";
 @import "pages/product-seller-analytics.css";
+@import "pages/consumer-products.css";
 @import "pages/pharmacy-analytics.css";
+@import "pages/consumer-product-overview.css";
+@import "pages/consumer-product-payment.css";
+@import "pages/registration-overview.css";
 @import "pages/pharmacy-profile.css";
+@import "pages/consumer-dashboard.css";
 @import "pages/consumer-feedbacks.css";
 @import "pages/consumer-dashboard-services-care-rider.css";
-
+@import "pages/consumer-dashboard-service-doctor.css";
+@import "pages/consumer-dashboard-service-doctor-profile.css";
+@import "pages/consumer-dashboard-service-doctor-profile-payment.css";
+@import "pages/consumer-dashboard-profile.css";
+@import "pages/consumer-dashboard-services-pharmacy-pharmacylist.css";
+@import "pages/administrator-due-payments.css";
+@import "pages/administrator-feeback.css";
+@import "pages/product-seller-dashboard.css";
+@import "pages/consumer-dashboard-services-pharmacy-payment-receipt.css";
+@import "pages/consumer-dashboard-services-pharmacy-pharmacy-dashboard.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
@@ -41,7 +62,6 @@
 @import "pages/care-rider-dashboard-feedback.css";
 @import "pages/care-rider-dashboared.css";
 @import "pages/care-rider-dashboard-new-requests.css";
-
 
 
 
