@@ -78,7 +78,7 @@
 
         <div class="doctor-appointments__right">
             <div class="doctor-appointments__right__top">
-                <img src="/assets/images/Month.png">
+                <img src="/assets/images/calander.jfif">
             </div>
             <div class="map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d270201.1012553059!2d80.57066973934896!3d7.435740318327426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slk!4v1668671876514!5m2!1sen!2slk"

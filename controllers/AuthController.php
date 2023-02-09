@@ -24,6 +24,7 @@ class AuthController extends Controller
                 $address = $_POST["address"];
                 $reg_no = $_POST["reg-num"];
                 $field_of_study = $_POST["field-study"];
+                $certificate = $_FILES["certificate"];
 
                 $qualifications = $_POST["qualifications"];
                 $qualifications_array = explode(",", $qualifications);
@@ -33,6 +34,22 @@ class AuthController extends Controller
                 $password = $_POST["password"];
                 $con_password = $_POST["con-password"];
                 //$western = $_POST["western"];
+
+                $file_name_doc = $certificate["name"];
+                $file_tmp_name = $certificate["tmp_name"];
+
+                $random_id = bin2hex(random_bytes(24));
+                $new_file_name = $nic . $random_id . "user" . $file_name_doc;
+                move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
+
+
+                $file_pic = $_FILES["profile_pic"];
+                $file_name_cer = $file_pic["name"];
+                $file_tmp_cer = $file_pic["tmp_name"];
+
+                $random_id2 = bin2hex(random_bytes(24));
+                $new_file_name2 = $nic . $random_id2 . "user" . $file_name_cer;
+                move_uploaded_file($file_tmp_cer, Application::$ROOT_DIR . "/public/uploads/$new_file_name2");
 
                 //var_dump($_POST);
                 $db = new database();
@@ -99,14 +116,16 @@ class AuthController extends Controller
                             profile_picture, 
                             bank_account_number, 
                             provider_type) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                    $image = "/uploads/$new_file_name";
                     $type = 'doctor';
-                    $image = 'https://gravatar.com/avatar/9561081df0c8cbb56e16e188e45481ee?s=400&d=robohash&r=x';
                     $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $image, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
 
-                    $cer = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.template.net%2Fbusiness%2Fcertificate-templates%2Ffree-medical-certificate-template%2F&psig=AOvVaw0XN8_Vo0xo9mi77IOmHu4G&ust=1669053380239000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCMim5sGqvfsCFQAAAAAdAAAAABAE';
+
+                    $cer = "/uploads/$new_file_name2";
                     $stmt = $db->connection->prepare("INSERT INTO doctor (provider_nic, slmc_reg_no, field_of_study, certificate_of_mbbs, type) VALUES ( ?, ?, ?, ?, ?)");
                     $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $cer, $type);
                     $stmt->execute();
