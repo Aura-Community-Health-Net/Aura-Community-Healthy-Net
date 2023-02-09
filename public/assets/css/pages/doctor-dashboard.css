@@ -1,6 +1,4 @@
 .doctor-dashboard{
-/*    display: flex;
-    justify-content: center;*/
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 275px);
@@ -19,21 +17,6 @@
     justify-content: center;
     border-radius: 10px;
 }
-/*.doctor-dashboard__left__top,.doctor-dashboard__center__top,.doctor-dashboard__right__top{
-    top: 20px;
-}
-.doctor-dashboard__left__top,.doctor-dashboard__left__bottom{
-    left: 10px;
-}
-.doctor-dashboard__center__top,.doctor-dashboard__center__bottom{
-    left: 25px;
-}
-.doctor-dashboard__right__top,.doctor-dashboard__right__bottom{
-    left: 40px;
-}
-.doctor-dashboard__left__bottom,.doctor-dashboard__center__bottom,.doctor-dashboard__right__bottom{
-    top: 35px;
-}*/
 .doctor-dashboard__left__top__data{
     background-color: #ffffff;
     margin-bottom: 10px;
@@ -51,6 +34,11 @@
     width: 19px;
     height: 30px;
 }
+.doctor-dashboard__center__bottom{
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
 .doctor-dashboard__center__top__data{
     background-color: #ffffff;
     margin-bottom: 17px;
@@ -62,13 +50,6 @@
 .doctor-dashboard__center__top__data h1{
     font-size: 45px;
     color: #5BC849;
-}
-.doctor-dashboard__center__bottom__data{
-    background-color: #ffffff;
-    /*margin-bottom: 17px;*/
-    width: 347px;
-    height: 205px;
-    border-radius: 8px;
 }
 .doctor-dashboard__center__bottom__data img{
     width: 51px;
@@ -83,6 +64,7 @@
     word-spacing: 1px;
 }
 .doctor-dashboard__right__bottom img{
+    margin-top: 0.5rem;
     width: 281px;
     height: 126px;
 }
@@ -123,14 +105,74 @@
     width: 75%;
     padding: 0.5rem .5rem;
 }
+.doctor-dashboard__patients__count{
+    background-color: #ffffff;
+    margin-top: 5px;
+    width: 75%;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
 
 .appointment-list__item:first-of-type  {
     margin-top: 1rem;
 }
 
-.appointment-list__item img {
+.appointment-list__item img, .doctor-dashboard__patients__list img{
     width: 36px;
     height: 36px;
     border-radius: 50%;
     object-fit: cover;
+}
+.doctor-dashboard__notes{
+    background-color: #ffffff;
+    width: 90%;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+.doctor-dashboard__patients__list{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #ffF;
+    border-radius: 0.5rem;
+    width: 75%;
+    padding: 0.5rem .5rem;
+}
+.doctor-dashboard__consulted{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+.doctor-dashboard__consulted__details{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    gap: 1rem;
+}
+.doctor-dashboard__consulted{
+    background-color: #ffffff;
+}
+.doctor-dashboard__consulted img{
+    width: 40px;
+    height: 40px;
+    border-radius: 18px;
+}
+.doctor-dashboard__consulted__profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+.doctor-dashboard__analytics{
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
