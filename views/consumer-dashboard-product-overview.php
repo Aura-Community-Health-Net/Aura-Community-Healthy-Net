@@ -1,40 +1,91 @@
-<div class="product-overview">
-    <div class="product-overview__left">
-        <img src="/assets/images/vali anoda.jfif" alt="vali anoda">
-        <div style="margin-top: 1rem;display: flex;align-items: center;justify-content: space-evenly;width: 100%;">
-            <h1 class="product-overview__name">
-                Vali Anoda
-                <span>
-                1 KG
-            </span>
-            </h1>
-            <div class="product-overview__billing">
-                <p>
-                    Rs. 150.00
-                </p>
-                <a href="/product-checkout">Continue to pay</a>
-            </div>
+<div class="item-top__container">
+    <div class="item-top-left__container">
+        <img src="/assets/images/profilepic1.jpg" alt="">
+        <div class="provider__overview-detail">
+            <h2>Anuj Kumara</h2>
+            <h3>New Loyed Pharmacy</h3>
+            <p>Reg No : AP 2043</p>
+            <p>No.43, Wackwella Road, Galle</p>
         </div>
     </div>
 
-    <div class="product-overview__right">
-
-        <!--        <img src="/assets/images/profilepic1.jpg" alt="">-->
-
+    <div class="item-top-middle__container">
+        <img src="/assets/images/vali%20anoda.jfif" alt="">
+        <div class="overview-items__detail">
+            <h2>Vali Anoda</h2>
+            <p>1 kg</p>
+            <h1>Rs. 150</h1>
+            <button class="btn"><a class="continue-to-pay-btn"  href="/product-checkout">Continue to pay</a></button>
+        </div>
     </div>
-</div>
-<strong>Sold by, </strong>
-<div class="product-overview__seller">
-    <img src="/assets/images/profilepic1.jpg" alt="">
-    <div>
-        <p>Shani Karunanayaka</p>
-        <p>Sumudu House</p>
-        <p>Business Reg No : AGT3456</p>
-        <p>No 54, Kirulapone Avenue, Colombo</p>
+
+    <div class="item-top-right__container">
+        <form action="">
+            <div class="search-bar">
+                <input type="text" placeholder="Search Product..." name="search">
+                <i class="fa fa-search"></i>
+            </div>
+        </form>
+        <div class="overview-items">
+            <img src="/assets/images/vali%20anoda.jfif" alt="">
+            <p>Vali Anoda </p>
+            <p>1 kg</p>
+            <p>Rs. 250.00</p>
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/cashew.jfif" alt="">
+            <p>Cashews</p>
+            <p>1 kg</p>
+            <p>Rs. 650.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/nelli.jfif" alt="">
+            <p>Nelli </p>
+            <p>500 g</p>
+            <p>Rs. 200.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/belimal.webp" alt="">
+            <p>Belimal</p>
+            <p>500 g</p>
+            <p>Rs. 350.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/ranawara.jpg" alt="">
+            <p>Ranawara </p>
+            <p>1 l</p>
+            <p>Rs. 120.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/porridge.jfif" alt="">
+            <p>Vegetable Porridge</p>
+            <p>1 l</p>
+            <p>Rs. 350.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/sesame.jpg" alt="">
+            <p>Sesame </p>
+            <p>100 g</p>
+            <p>Rs. 250.00</p>
+
+        </div>
     </div>
+
 </div>
-<div class="consumer-feedback__container-main">
-    <div class="consumer-feedback__container">
+
+<div class="item-bottom-container">
+    <div class="item-bottom-left-container">
         <div class="consumer-feedback">
             <div class="consumer-feedback__header">
 
@@ -106,9 +157,10 @@
         </div>
     </div>
 
-    <input type="text-area">
-
+    <div class="item-bottom-right-container">
+        <h3>Give your feedback</h3>
+        <form action="">
+            <textarea name="" id="" cols="28" rows="17"></textarea>
+        </form>
+    </div>
 </div>
-
-
-
