@@ -37,6 +37,16 @@
                     echo "<a class='login-link'> You are logged in as $nic </a>";
                 }
                 ?>
+
+                <?php
+                $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
+
+                if (!$nic){
+                    echo "<a class='login-link' href='/provider-login'>Log in as Provider</a>";
+                } else {
+                    echo "<a class='login-link'> You are logged in as $nic </a>";
+                }
+                ?>
             </div>
 
         </header>
@@ -130,7 +140,7 @@
                 <a href="">About Us</a>
                 <a href="">Contact Us</a>
             </div>
-            <div>
+            <div class="footer-icon">
                 <i class="fa-brands fa-facebook"></i>
                 <i class="fa-brands fa-twitter"></i>
             </div>

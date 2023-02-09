@@ -15,7 +15,7 @@ html{
 }
 
 .landing-header-title {
-  color: #1400ff;
+  color: #00005C;
   font-weight: lighter;
   padding-left: 20px;
   padding-top: 5px;
@@ -63,7 +63,7 @@ html{
 
 .background-img button {
   color: white;
-  background-color: #030246;
+  background-color: #00005C;
   padding-inline: 4rem;
   padding-block: 1rem;
   margin-top: 5rem;
@@ -81,7 +81,7 @@ html{
 }
 
 .background-img button:hover {
-  background-color: #3e0089;
+  background-color: #0002A1;
   transform: translateY(-2px);
 }
 
@@ -97,7 +97,7 @@ html{
 .login-link {
   text-decoration: none;
   padding: 0.5rem 1.2rem;
-  background-color: #030246;
+  background-color: #00005C;
   border-radius: 10px;
   color: white;
   cursor: pointer;
@@ -107,7 +107,7 @@ html{
 .header-link{
   text-decoration: none;
   padding: 0.5rem 1.2rem;
-  background-color: #2C74B3;
+  background-color: #0002A1;
   border-radius: 10px;
   color: white;
   cursor: pointer;
@@ -115,8 +115,7 @@ html{
 }
 
 .landing-dashboard-header__title {
-  font-family: "Elsie", cursive;
-  color: #1400ff;
+  color: #00005C;
   font-weight: lighter;
   padding-left: 20px;
   padding-top: 5px;
@@ -155,14 +154,14 @@ html{
 }
 
 .services-cat {
-  background-color: #f3f2ff;
+  background-color: #EFEEFD;
   width: 250px;
-  height: 400px;
+  height: 420px;
   margin-block: 3.5rem;
   margin-inline: 2rem;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 .services-cat img {
@@ -181,7 +180,7 @@ html{
 
 .footer-link {
   padding-block: 5rem;
-  background-color: #524e4e;
+  background-color: #393E46;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,4 +190,10 @@ html{
 footer a {
   color: white;
   text-decoration: none;
+}
+
+.footer-icon{
+  color: white;
+  display: flex;
+
 }
