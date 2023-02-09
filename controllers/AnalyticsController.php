@@ -32,9 +32,25 @@ class AnalyticsController extends Controller
 
     public static function getDoctorAnalyticsPage():array|bool|string{
 
-        return self::render(view:'doctor-dashboard-analytics', layout: "doctor-dashboard-layout", params: [],layoutParams: [
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "doctor"){
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'doctor-dashboard-analytics', layout: "doctor-dashboard-layout", params: [
+        ], layoutParams: [
             "title" => "Analytics",
-            "active_link" => ""
+            "active_link" => "analytics",
+            "doctor" => $doctor
         ]);
 
     }
