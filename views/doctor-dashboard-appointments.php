@@ -26,8 +26,8 @@
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="doctor-appointments__buttons">
-                    <button style="background-color: #7ABCF1">Cancel</button>
-                    <button style="background-color: #008DFF">Confirm</button>
+                    <button style="background-color: #0002A1">Cancel</button>
+                    <button style="background-color: #00005C ">Confirm</button>
                 </div>
             </div>
         <div class="doctor-appointments__left">
@@ -39,8 +39,8 @@
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
         <div class="doctor-appointments__left">
@@ -52,8 +52,8 @@
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
         <div class="doctor-appointments__left">
@@ -65,8 +65,8 @@
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
 

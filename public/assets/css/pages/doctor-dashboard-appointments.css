@@ -9,7 +9,7 @@
 .doctor-appointments__left__container{
     display: flex;
     flex-direction: column;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD;
     padding: 1rem;
     width: 70%;
     border-radius: 8px;
@@ -42,8 +42,9 @@
 }
 .doctor-appointments__right__top{
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD;
     border-radius: 8px;
+    padding: 2rem;
 }
 .doctor-appointments__right__bottom{
     display: flex;
