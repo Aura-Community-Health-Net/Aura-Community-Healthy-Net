@@ -102,8 +102,11 @@ class DashboardController extends Controller
                 layoutParams:[
                     "doctor" => $doctor,
                 "title" => "Dashboard",
-                "active_link" => "dashboard"
-                ]);
+                "active_link" => "dashboard",
+                "doctor" => $doctor
+
+            ]);
+
         }
     }
 
