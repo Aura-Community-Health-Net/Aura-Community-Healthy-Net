@@ -38,8 +38,15 @@
                 <h2>Aura</h2>
                 <h5>Community Health Net</h5>
             </div>
+
         </div>
         <div class="dashboard-header__profile">
+
+            <div class="header-link__container">
+                <a class="header-link" href="/">Home</a>
+                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+            </div>
             <p>
                 <?php echo $admin["name"]; ?>
             </p>
