@@ -46,5 +46,6 @@
     </div>
     <div class="consumer-pharmacy-neworders-advanceinfo__button">
         <button class="advance-info-submit-button" id="advance-info-submit-button">Continue to Pay</button>
+
     </div>
 </div>
