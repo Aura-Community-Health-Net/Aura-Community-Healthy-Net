@@ -32,7 +32,7 @@
             </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic2.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>
@@ -45,7 +45,7 @@
         </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic3.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>
@@ -58,7 +58,7 @@
         </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic4.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>

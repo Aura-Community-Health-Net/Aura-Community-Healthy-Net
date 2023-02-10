@@ -1,89 +1,49 @@
 
 
-.consumer-dashboard-doctor__top__left{
+/*.consumer-dashboard-doctor__top__left{
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD ;
     position: relative;
     left: 87px;
     top: 37px;
     width: 190px;
     height: 25px;
     border-radius: 5px;
-}
-/*!* .consumer-dashboard-doctor{display:flex;*/
+}*/
 
-/*} *!*/
-
-/*.consumer-dashboard-care-rider__top__left p{*/
-/*    color: #8E8E8E;*/
-/*    position: relative;*/
-/*    top: 10px;*/
-/*    left: 22px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__top__left img{*/
-/*    width: 20px;*/
-/*    height: 20px;*/
-/*    position: relative;*/
-/*    left: 170px;*/
-/*    bottom: 10px;}*/
-.consumer-dashboard-doctor__top__center{
+/*.consumer-dashboard-doctor__top__center{
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD ;
     position: relative;
     left: 400px;
     top: 11px;
     width: 190px;
     height: 25px;
     border-radius: 5px;
-}
-/*.consumer-dashboard-care-rider__top__center p{*/
-/*    color: #8E8E8E;*/
-/*    position: relative;*/
-/*    top: 10px;*/
-/*    left: 22px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__top__center img{*/
-/*    width: 20px;*/
-/*    height: 20px;*/
-/*    position: relative;*/
-/*    left: 170px;*/
-/*    bottom: 10px;*/
-/*}*/
+}*/
 
-.consumer-dashboard-doctor__top__middle{
+/*.consumer-dashboard-doctor__top__middle{
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD ;
     position: relative;
     left: 725px;
     top: -13px;
     width: 115px;
     height: 25px;
     border-radius: 5px;
-}
-.consumer-dashboard-doctor__top__middle {}
-/*.consumer-dashboard-care-rider__top__middle p{*/
-/*    color: #8E8E8E;*/
-/*    position: relative;*/
-/*    top: 10px;*/
-/*    left: 22px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__top__middle img{*/
-/*    width: 20px;*/
-/*    height: 20px;*/
-/*    position: relative;*/
-/*    left: 170px;*/
-/*    bottom: 10px;*/
-/*}*/
-.consumer-dashboard-doctor__top__right{
+}*/
+
+
+/*.consumer-dashboard-doctor__top__right{
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #EFEEFD ;
     width: 100px;
     height: 25px;
     border-radius: 5px;
     position: relative;
     left: 950px;
     bottom: 35px;
-}
+}*/
 .consumer-dashboard-doctor__top__right p{
     display: flex;
     position: relative;
@@ -98,53 +58,6 @@
     left: 170px;
     bottom: 10px;
 }
-/*.consumer-dashboard-care-rider__bottom__left__data,.consumer-dashboard-care-rider__bottom__center__data,.consumer-dashboard-care-rider__bottom__right__data{*/
-/*    background-color: #D9D9D9;*/
-/*    position: relative;*/
-/*    width: 287px;*/
-/*    height: 180px;*/
-/*    left: 109px;*/
-/*    top: 27px;*/
-/*    border-radius: 5px;*/
-
-/*}*/
-/*.consumer-dashboard-care-rider__bottom__left img,.consumer-dashboard-care-rider__bottom__center img,.consumer-dashboard-care-rider__bottom__right img{*/
-/*    position: relative;*/
-/*    top: 10px;*/
-/*    left: 175px;*/
-/*    width: 158px;*/
-/*    height: 148px;*/
-/*    border-radius: 107px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__bottom__left__data h3,.consumer-dashboard-care-rider__bottom__center__data h3,.consumer-dashboard-care-rider__bottom__right h3{*/
-/*    position: relative;*/
-/*    left: 46px;*/
-/*    top: 17px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__bottom__left__data h3,.consumer-dashboard-care-rider__bottom__center__data h4,.consumer-dashboard-care-rider__bottom__right h4{*/
-/*    !*position: relative;*!*/
-/*    !*top: 23px;*!*/
-/*    !*left: 80px;*!*/
-/*    display: flex;*/
-/*    text-align: left;*/
-/*    grid-auto-rows: auto;*/
-/*}*/
-/*.consumer-dashboard-care-rider__bottom__left__data button,.consumer-dashboard-care-rider__bottom__center__data button,.consumer-dashboard-care-rider__bottom__right button{*/
-/*    border: none;*/
-/*    color: white;*/
-/*    background-color: #008DFF;*/
-/*    padding: 15px 32px;*/
-/*    text-align: center;*/
-/*    position: relative;*/
-/*    left: 80px;*/
-/*    top: 32px;*/
-/*    border-radius: 5px;*/
-/*}*/
-/*.consumer-dashboard-care-rider__bottom table{*/
-/*    position: relative;*/
-/*    left: -65px;*/
-/*    border-spacing: 62px;*/
-/*}*/
 
 
 .doctor-container {
@@ -205,4 +118,7 @@
     width: 75%;
     margin-top: 0.5rem;
     border-radius: 8px;
+}
+.consumer-dashboard-doctor__bottom__center__data button{
+    font-size: 1rem;
 }

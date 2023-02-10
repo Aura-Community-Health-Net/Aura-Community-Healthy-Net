@@ -68,11 +68,6 @@
     left: 12px;
     top: 7px;
 }
-.consumer-dashboard-doctor-profile__top__right__dropdown img{
-    position: relative;
-    left: 181px;
-    bottom: 10px;
-}
 .consumer-dashboard-doctor-profile__top__right__timeslot p{
     position: relative;
     top: 45px;
@@ -92,7 +87,7 @@
     left: 245px;
     top: 31px;
 }
-.consumer-dashboard-doctor-profile__top__right__location__search img{
+.consumer-dashboard-doctor-profile__top__right__location__search i{
     width: 15px;
     height: 16px;
     position: relative;
@@ -113,6 +108,7 @@
     border: none;
     margin-top: 6rem;
     border-radius: 5px;
+    cursor: pointer;
    /* left: 254px;*/
     /*top: 81px;*/
 }
@@ -174,6 +170,7 @@
 .consumer-dashboard-doctor-profile__bottom__right__feedback button{
     background-color: #00005C;
     color: #ffff;
+    font-size: 1rem;
     position: relative;
     top: 349px;
     left: 10px;
@@ -181,6 +178,7 @@
     border: none;
     padding: 10px 56px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .consumer-dashboard-doctor-profile__bottom table{
     border-spacing: 50px;
