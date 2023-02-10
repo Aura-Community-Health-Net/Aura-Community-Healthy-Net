@@ -17,7 +17,7 @@
             </div>
         </form>
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/alerid-10-mg-10-comprimate-terapia-1956.png" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -25,16 +25,7 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
-
-        </div>
-
-        <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/baclof-10mg-tablet-10.jpg" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -43,7 +34,7 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/drugs(1).jpg" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -52,7 +43,7 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/exerdrin.jpg" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -61,7 +52,7 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/losartan.png" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -70,7 +61,7 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/GASTREZZ-BOTTLE-1-1.png" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -79,7 +70,16 @@
         </div>
 
         <div class="overview-items">
-            <img src="/assets/images/med.jpg" alt="">
+            <img src="/assets/images/zinc.jpg" alt="">
+            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
+            <p>375 mg</p>
+            <p>375 mg</p>
+            <p>Rs. 52.00</p>
+
+        </div>
+
+        <div class="overview-items">
+            <img src="/assets/images/zaart.jpeg" alt="">
             <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
             <p>375 mg</p>
             <p>375 mg</p>
@@ -97,7 +97,7 @@
 
                 <div class="consumer-feedback__header-profile">
                     <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
+                    <h3>Jack Henrick</h3>
                 </div>
                 <h4>12th of January 2023</h4>
             </div>
@@ -120,7 +120,7 @@
 
                 <div class="consumer-feedback__header-profile">
                     <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
+                    <h3>Jane Roseld</h3>
                 </div>
                 <h4>12th of January 2023</h4>
             </div>
@@ -143,7 +143,7 @@
 
                 <div class="consumer-feedback__header-profile">
                     <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
+                    <h3>Mary Shevon</h3>
                 </div>
                 <h4>12th of January 2023</h4>
             </div>
