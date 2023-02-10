@@ -36,14 +36,13 @@
             <h3>Community Health Net</h3>
         </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+
+        <div class="header-link__container">
+            <a class="header-link" href="/">Home</a>
+            <a class="header-link" href="/contact-us">Contact Us</a>
+            <a class="header-link" href="/about-us">About Us</a>
+        </div>
+
     </header>
     {{content}}
 </body>

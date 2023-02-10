@@ -100,7 +100,8 @@ class DashboardController extends Controller
             return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
                 "doctor" => $doctor],layoutParams:[
                 "title" => "Dashboard",
-                "active_link" => "dashboard"
+                "active_link" => "dashboard",
+                "doctor" => $doctor
 
             ]);
         }

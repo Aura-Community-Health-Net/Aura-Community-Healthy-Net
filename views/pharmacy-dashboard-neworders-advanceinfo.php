@@ -42,7 +42,7 @@
                 <p>Rs.1000</p>
             </div>
             <div class="pharmacy-neworders-advanceinfo__order-med-details__description__Note">
-                <p>vfevhcbhdbubidubbdbdhcbwhduhewff</p>
+                <p>The above medicines list is available in our pharmacy for now.</p>
             </div>
         </div>
     </div>

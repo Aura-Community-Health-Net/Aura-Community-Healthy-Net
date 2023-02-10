@@ -90,7 +90,7 @@
 .pharmacy-neworders-advanceinfo
 {
     background-color: #D9D9D9;
-    height: 550px;
+    /*height: 550px;*/
     width:700px;
     /*    width:1150px;*/
     margin-left: 300px;
@@ -170,12 +170,12 @@
 .pharmacy-neworders-advanceinfo__order-med-details__description__medicinesList
 {
 
-    padding-inline: 3rem;
+    padding:1rem 3rem;
     margin-right: 5rem;
     background-color: #ffffff;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
+    border-radius: 8px;
 }
 
 .pharmacy-neworders-advanceinfo__order-med-details__description__Note
@@ -185,7 +185,8 @@
     margin-right: 1rem;
     background-color: #ffffff;*/
 
-    padding-inline: 3rem;
+    padding:1rem 3rem;
+    border-radius: 8px;
     background-color: #ffffff;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -198,11 +199,13 @@
    /* padding-inline: 1rem;
     margin-right: 1rem;
     background-color: #ffffff;*/
-    padding-inline:3rem;
+
     margin-right: 17rem;
     background-color: #ffffff;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    padding:1rem 3rem;
+    border-radius: 8px;
 
 
 }
@@ -213,7 +216,8 @@
     margin-right: 1rem;
     background-color: #ffffff;*/
 
-    padding-inline: 3rem;
+    padding:1rem 3rem;
+    border-radius: 8px;
     margin-right: 17rem;
     background-color: #ffffff;
     /* margin-bottom: 0.5rem;*/
