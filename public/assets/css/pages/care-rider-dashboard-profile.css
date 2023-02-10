@@ -1,8 +1,10 @@
 .care-rider-profile-pic__container{
-    background-color: #A198FF;
-    padding: 2rem;
+    background-color: #EFEEFD  ;
+    padding: 1rem;
     margin: 2rem;
     border-radius: 20px;
+    width: 1000px;
+    margin-left:250px
 }
 
 .care-rider-profile-pic__header{

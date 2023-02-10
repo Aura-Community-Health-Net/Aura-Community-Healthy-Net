@@ -42,6 +42,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #EFEEFD   git ;
 }
 
 .care-rider-card > div {
@@ -60,6 +61,16 @@
     padding: 0.5rem 1rem;
     color: #fff;
     cursor: pointer;
+}
+
+.care-rider-card button {
+    border: none;
+    outline: none;
+    background-color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 9%;
 }
 
 .care-rider-card > div > div {
