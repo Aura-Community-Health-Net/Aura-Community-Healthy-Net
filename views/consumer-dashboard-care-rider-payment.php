@@ -56,5 +56,3 @@
     </div>
     <script src="/assets/js/pages/consumer-payment.js"></script>
 </div>
-
-

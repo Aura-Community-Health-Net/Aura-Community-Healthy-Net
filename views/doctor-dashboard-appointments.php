@@ -26,47 +26,47 @@
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="doctor-appointments__buttons">
-                    <button style="background-color: #7ABCF1">Cancel</button>
-                    <button style="background-color: #008DFF">Confirm</button>
+                    <button style="background-color: #0002A1">Cancel</button>
+                    <button style="background-color: #00005C ">Confirm</button>
                 </div>
             </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic2.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic3.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
         <div class="doctor-appointments__left">
             <div class="doctor-appointments__left__data">
-                <img src="/assets/images/profilepic1.jpg">
+                <img src="/assets/images/profilepic4.jpg">
                 <p>Kamal Deshapriya</p>
                 <p>4.00pm-4.30pm</p>
                 <p>0762639672</p>
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div class="doctor-appointments__buttons">
-                <button style="background-color: #7ABCF1">Cancel</button>
-                <button style="background-color: #008DFF">Confirm</button>
+                <button style="background-color: #0002A1">Cancel</button>
+                <button style="background-color: #00005C ">Confirm</button>
             </div>
         </div>
 

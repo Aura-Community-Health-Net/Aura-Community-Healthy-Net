@@ -27,7 +27,12 @@
 }
 
 .dashboard-dashboard-header__title {
+<<<<<<< HEAD
     color: #0002A1;
+=======
+    color: #00005C;
+    font-family: 'Elsie', cursive;
+>>>>>>> 2cf73db06e4f48a102f1097a5d1dbf42159ec1b3
     font-weight: lighter;
     padding-left: 20px;
     padding-top: 5px;

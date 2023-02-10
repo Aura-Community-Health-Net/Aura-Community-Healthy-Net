@@ -154,7 +154,7 @@
 
 
         <div id="form-input">
-            <button id="reg-btn" class="btn">Register</button>
+            <button id="reg-btn" class="btn" style="background-color: #00005C">Register</button>
         </div>
     </div>
 </form>
