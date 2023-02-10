@@ -2,7 +2,7 @@
     display: grid;
 }
 .doctor-feedbacks {
-    background-color: #d9d9d9;
+    background-color: #EFEEFD;
     gap: 0.5rem;
     text-align: justify;
     padding-block: 0.5rem;
@@ -31,4 +31,9 @@
 }
 .doctor-feedbacks__data h4{
     color: #807878;
+}
+.doctor-feedbacks p{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
 }

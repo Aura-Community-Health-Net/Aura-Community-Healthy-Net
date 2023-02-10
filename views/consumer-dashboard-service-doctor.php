@@ -25,7 +25,7 @@
             <div class="doctor-card">
                 <img src="/assets/images/profilepic2.jpg">
                 <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2> Kamal Sahabandu</h2>
+                    <h2>Anoja Abeyjeewa</h2>
                     <div>
                         <p><span>Type of Vehicle </span> :Car</p>
                         <p><span>color </span> :Yellow</p>
