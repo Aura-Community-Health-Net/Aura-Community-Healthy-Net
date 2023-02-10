@@ -47,6 +47,6 @@
         </div>
     </div>
     <div class="pharmacy-neworders-advanceinfo__button">
-        <button class="advance-info-submit-button" id="advance-info-submit-button">send</button>
+        <button class="advance-info-submit-button" id="advance-info-submit-button">send </button>
     </div>
 </div>
