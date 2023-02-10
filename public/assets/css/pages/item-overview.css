@@ -104,3 +104,12 @@
     margin: 1rem;
     width: 20rem;
 }
+
+.pickup-time-form{
+    display: flex;
+    padding-block: 0.5rem;
+    margin-left: 6rem;
+    gap: 1rem;
+}
+
+

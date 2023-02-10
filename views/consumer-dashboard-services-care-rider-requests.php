@@ -17,7 +17,14 @@
             <div class="map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d270201.1012553059!2d80.57066973934896!3d7.435740318327426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slk!4v1668671876514!5m2!1sen!2slk"
                         width="400" height="250" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>   </div>
+            <form class="pickup-time-form" action="">
+                <label for="">Pick up time</label>
+                <input type="time">
+            </form>
+            <button class="btn"><a href="/consumer-dashboard/services/care-rider/request/payment">Continue to Pay</a> </button>
+
         </div>
+
 
     </div>
 
