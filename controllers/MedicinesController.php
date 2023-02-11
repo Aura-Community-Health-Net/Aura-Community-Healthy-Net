@@ -15,7 +15,7 @@ class MedicinesController extends Controller
 
 
 
-
+        $med_name = $_POST["med_name"];
         $image = $_FILES["image"];
         $price = (int) $_POST["price"];
         $quantity = (int) $_POST["quantity"];

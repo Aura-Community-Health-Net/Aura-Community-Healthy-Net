@@ -47,7 +47,7 @@ deleteMedicineButtons.forEach(function (button){
             }
           });
 
-            /* deleteMedicineOpenModal();*/
+             deleteMedicineOpenModal();
 
 
 
@@ -136,6 +136,19 @@ function deleteMedicineCloseModal(){
 
 
 }
+
+
+function deleteMedicineOpenModal()
+{
+
+   deleteMedicineModal.style.display = "block";
+   deleteMedicineOverlay.style.display="block";
+   deleteMedicineModal.classList.add("modal-open");
+   deleteMedicineOverlay.classList.add("overlay-open");
+}
+
+
+
 
 addMedicineOverlay.addEventListener("click", (e) => {
   if (e.target === addMedicineOverlay) {
