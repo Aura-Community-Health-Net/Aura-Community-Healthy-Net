@@ -72,4 +72,24 @@ class DoctorTimeslotsController extends Controller
             return self::render(view: 'doctor-dashboard-timeslots', layout: "doctor-dashboard-layout", layoutParams: ['errors' => $errors]);
         }
     }
+
+    public static function deletetimeslot(): array|bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+        $slot_number = $_GET["slot_number"];
+        //$category_id = $_GET["categoryId"];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("DELETE FROM doctor_time_slot WHERE slot_number = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $slot_number, $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        header("location: /doctor-dashboard/timeslots?");
+        return "";
+    }
 }

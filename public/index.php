@@ -120,6 +120,7 @@ $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, '
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
 $app->router->post('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
+$app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deletetimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
