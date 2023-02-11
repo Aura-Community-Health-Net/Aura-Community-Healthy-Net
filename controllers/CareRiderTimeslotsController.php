@@ -30,10 +30,10 @@ class CareRiderTimeslotsController extends Controller
 
         $sql = "SELECT * FROM care_rider_time_slot  ";
         $result = $db->connection->query(query: $sql);
-        $product = [];
+        $timeslots = [];
         //        $product2=null;
         while ($row = $result->fetch_assoc()) {
-            $product[] = $row;
+            $timeslots[] = $row;
         }
 
         return self::render(view: 'care-rider-dashboard-timeslots', layout: "care-rider-dashboard-layout", params: ['data' => $product], layoutParams: [

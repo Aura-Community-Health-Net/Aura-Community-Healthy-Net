@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($data as $key => $value) { ?>
+    <?php foreach ($timeslots as $key => $value) { ?>
         <tr>
             <td><?php echo $value['slot_number']; ?></td>
             <td><?php echo $value['date']; ?></td>
@@ -24,19 +24,18 @@
             <td>
                 <form class="getUpdateId" action="/care-rider-timeslots-update" method="get">
                     <input type="hidden" name="slot_id" value="<?php echo $value['slot_number']; ?>">
-                    <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button>
+                    <button>
+                        <i class="fas fa-edit"></i>
+                    </button>
                 </form>
             </td>
-
             <form class="deleteCareRiderTimeslot" action="/care-rider-timeslots-delete" method="post">
                 <td>
                     <input type="hidden" name="slot_id" value="<?php echo $value['slot_number']; ?>">
-                    <button id='delete-product-$id' data-productName='$name' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i>
-
+                    <button onclick="deleteCarerider()">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
-
-
-
+                </td>
             </form>
         </tr>
     <?php } ?>
@@ -59,8 +58,6 @@
     </table>
     <button class="add-btn" id="add-care-rider-timeslot-btn" type="button">
         <i class="fa fa-plus"></i>
-
-
     </button>
 </form>
 
