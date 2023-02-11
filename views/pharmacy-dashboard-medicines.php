@@ -17,18 +17,27 @@
     </tr>
     <?php
     foreach ($medicines as $medicine) {
+
+        $med_id = $medicine['med_id'];
+        $med_name = $medicine['name'];
+
+
         echo "
                       <tr>   
                     <td id='image-block'><img class='products-img' src='{$medicine['image']}' alt=''></td>
-                    <td>{$medicine['med_id']}</td>
-                    <td>{$medicine['name']}</td>
+                    <td>{$med_id}</td>
+                    <td>{$med_name}</td>
                     <td>{$medicine['price']}</td>
                     <td>{$medicine['quantity']}</td>
                     <td>{$medicine['quantity_unit']}</td>
                     <td>{$medicine['stock']}</td>
                     <td>{$medicine['stock_unit']}</td>
                     
-                    <td id='action-block'><button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> <button class='action-btn action-btn--delete'><i class='fa-solid fa-trash'></i></button></td>
+                    <td id='action-block'>
+                    <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button>
+                    <button id = 'delete-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
+                     
+                     </td>
         </tr>";
     } ?>
 </table>
@@ -76,6 +85,15 @@
             <button class="ok-btn" id="add-medicine-ok-btn">ok</button>
         </div>
     </div>
+</div>
+
+
+<div class="overlay" id="delete-medicine-overlay">
+    <div class="modal" id="delete-medicine-modal">
+
+    </div>
+
+
 </div>
 
 <script src="/assets/js/pages/medicines.js"></script>
