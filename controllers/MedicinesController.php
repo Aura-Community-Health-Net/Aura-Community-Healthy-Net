@@ -60,9 +60,11 @@ class MedicinesController extends Controller
     public static function viewMedPage()
     {
         $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
 
-        if (!$nic) {
+        if (!$nic || $providerType !== "pharmacy") {
             header("/pharmacy-login");
+            return "";
         } else {
             $db = new Database();
             $sql = "SELECT * FROM medicine WHERE provider_nic='$nic'";
@@ -114,25 +116,29 @@ class MedicinesController extends Controller
     {
         return self::render(view: '/sidebar');
     }
-    public static function deleteMed()
+    public static function deleteMedicines(): string
     {
-        /* return self::render('/DeleteMed');*/
+
         $nic = $_SESSION["nic"];
-
-        /* $med_id = $_POST["med_id"];*/
-        $db = new Database();
-        $sql = "DELETE  FROM medicine WHERE med_id='deletex_button'";
-        $result = $db->connection->query($sql);
-
-        /*  $medicines = [];
-        while($row = $result->fetch_assoc())
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType )
         {
-        $medicines[] = $row;
-        }*/
+            header("location: /provider-login");
+        }
 
-        /*     return self::render('Medicine',[
-        "medicines" => $medicines
-        ]);*/
+        $medicine_id = $_GET["med_id"];
+        $db = new Database();
+        $stmt = $db->connection->prepare("DELETE FROM medicine WHERE med_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $medicine_id,$nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
 
     }
 
