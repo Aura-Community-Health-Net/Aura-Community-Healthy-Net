@@ -166,3 +166,11 @@
     cursor: pointer;
 }
 
+.advance-info-submit-button a {
+    color: #fff;
+}
+
+
+.advance-info-submit-button a:visited {
+    color: #fff;
+}

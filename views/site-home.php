@@ -33,8 +33,6 @@
 
                 if (!$nic){
                     echo "<a class='login-link' href='/login'>Log in</a>";
-                } else {
-                    echo "<a class='login-link'> You are logged in as $nic </a>";
                 }
                 ?>
 

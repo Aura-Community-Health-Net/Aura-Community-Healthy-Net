@@ -28,7 +28,7 @@ class ConsumerController extends Controller
       return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacylist', layout: "consumer-dashboard-layout", layoutParams: [
           "consumer" => $consumer,
           "active_link" => "pharmacy",
-          "title" => "pharmacy"]);
+          "title" => "Pharmacy"]);
 
 
 
@@ -57,7 +57,7 @@ class ConsumerController extends Controller
        return self::render(view: 'consumer-dashboard-services-pharmacy-payment-receipt', layout: "consumer-dashboard-layout", layoutParams: [
            "consumer" => $consumer,
            "active_link" => "pharmacy",
-           "title" => "pharmacy"]);
+           "title" => "Pharmacy"]);
 
 
 
@@ -92,7 +92,7 @@ class ConsumerController extends Controller
        return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacy-dashboard', layout: "consumer-dashboard-layout", layoutParams: [
            "consumer" => $consumer,
            "active_link" => "pharmacy",
-           "title" => "pharmacy"]);
+           "title" => "Pharmacy"]);
 
 
 
