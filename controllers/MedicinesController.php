@@ -13,7 +13,9 @@ class MedicinesController extends Controller
     public static function addMed(): array |bool|string
     {
 
-        $med_name = $_POST["med_name"];
+
+
+
         $image = $_FILES["image"];
         $price = (int) $_POST["price"];
         $quantity = (int) $_POST["quantity"];
