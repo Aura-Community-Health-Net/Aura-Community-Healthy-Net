@@ -107,6 +107,27 @@ class ConsumerController extends Controller
    }
 
 
+    public static function getConsumerMedicinesPayment(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard-product-payment', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Medicines",
+                "active_link" => "dashboard-medicines"
+            ]);
+        }
+    }
 
 
 
