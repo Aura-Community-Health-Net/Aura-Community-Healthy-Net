@@ -45,7 +45,7 @@
             <h3>Your Payment is successful</h3>
             <img class="modal-img" src="/assets/images/sucessful.png" alt="">
             <div class="modal-actions">
-                <button class="pay-btn" id="consumer-payment-ok-btn"><a href="/consumer-dashboard/products"></a>Ok</button>
+                <button class="pay-btn" id="consumer-payment-ok-btn"><a href="/consumer-dashboard">Ok</a></button>
             </div>
         </div>
     </div>
