@@ -134,4 +134,8 @@ class MedicinesController extends Controller
 
     }
 
+
+
+
+
 }
