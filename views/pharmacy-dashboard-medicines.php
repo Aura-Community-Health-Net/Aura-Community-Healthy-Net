@@ -34,9 +34,9 @@
                     <td>{$medicine['stock_unit']}</td>
                     
                     <td id='action-block'>
-                    <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button>
                     <button id = 'delete-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
-                     
+                    <button id = 'update-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--edit medicine-edit'><i class='fa-solid fa-pen'></i></button>
+ 
                      </td>
         </tr>";
     } ?>
@@ -92,8 +92,19 @@
     <div class="modal" id="delete-medicine-modal">
 
     </div>
+</div>
 
+
+<div class="overlay" id="update-medicine-overlay">
+    <div class="modal" id="update-medicine-modal">
+
+    </div>
 
 </div>
+
+
+
+
+
 
 <script src="/assets/js/pages/medicines.js"></script>

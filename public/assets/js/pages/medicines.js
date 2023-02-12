@@ -19,7 +19,17 @@ const deleteMedicineConfirmButton = document.querySelector("#delete-medicine-ok-
 const deleteMedicineCancelButton = document.querySelector("#delete-medicine-cancel-btn");
 
 
+const updateMedicineModal = document.querySelector("#update-medicine-modal");
+const updateMedicineOverlay = document.querySelector("#update-medicine-overlay");
+
+const updateMedicineConfirmButton = document.querySelector("#update-medicine-ok-btn");
+const updateMedicineCancelButton = document.querySelector("#update-medicine-cancel-btn");
+
+
+
 const deleteMedicineButtons = document.querySelectorAll(".medicine-delete");
+const updateMedicineButtons = document.querySelectorAll(".medicine-update");
+
 
 deleteMedicineButtons.forEach(function (button){
   button.addEventListener("click",() => {
@@ -53,6 +63,57 @@ deleteMedicineButtons.forEach(function (button){
 
   });
 })
+
+
+updateMedicineButtons.forEach(function (button){
+
+  button.addEventListener("click",() => {
+
+    const elementID = button.id;
+    const splittedID = elementID.split("-");
+
+
+
+
+
+    updateMedicineModal.innerHTML = `
+    
+           <h3>Do you really want to update ${button.dataset.medicinename}</h3>
+    
+    
+    
+    
+    
+    
+    `;
+
+
+
+
+
+
+
+
+
+  });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +167,11 @@ addMedicineModalButton.addEventListener("click", () => {
   addMedicineModal.classList.add("modal-open");
 });
 
+
+
+
+
+
 function addMedicineCloseModal() {
   addMedicineOverlay.classList.remove("overlay-open");
   addMedicineModal.classList.remove("modal-open");
@@ -137,6 +203,26 @@ function deleteMedicineCloseModal(){
 
 }
 
+function updateMedicineCloseModal(){
+  updateMedicineOverlay.classList.remove("overlay-open");
+  updateMedicineModal.classList.remove("modal-open");
+  updateMedicineModal.classList.add("modal-close");
+  updateMedicineOverlay.classList.add("overlay-close");
+  setTimeout(() => {
+    updateMedicineModal.style.display = "none";
+    updateMedicineOverlay.style.display = "none";
+    updateMedicineModal.classList.remove("modal-close");
+    updateMedicineOverlay.classList.remove("overlay-close");
+  }, 200);
+}
+
+
+
+
+
+
+
+
 
 function deleteMedicineOpenModal()
 {
@@ -146,6 +232,23 @@ function deleteMedicineOpenModal()
    deleteMedicineModal.classList.add("modal-open");
    deleteMedicineOverlay.classList.add("overlay-open");
 }
+
+function updateMedicineOpenModal()
+{
+  updateMedicineModal.style.display = "block";
+  updateMedicineOverlay.style.display="block";
+  updateMedicineModal.classList.add("modal-open");
+  updateMedicineOverlay.classList.add("overlay-open");
+
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -161,6 +264,14 @@ deleteMedicineOverlay.addEventListener("click",(e)=>{
   if(e.target === deleteMedicineOverlay)
   {
     deleteMedicineCloseModal();
+  }
+});
+
+
+updateMedicineOverlay.addEventListener("click",(e)=>{
+  if(e.target === updateMedicineOverlay)
+  {
+     updateMedicineCloseModal();
   }
 })
 
