@@ -143,6 +143,80 @@ class MedicinesController extends Controller
     }
 
 
+    public static function updateMedicines(): string
+    {
+        $med_name = $_POST["med_name"];
+        $medicine_id = $_POST["med_id"];
+        $image = $_FILES["image"];
+        $price = (int) $_POST["price"];
+        $quantity = (int) $_POST["quantity"];
+        $quantity_unit = $_POST["quantity_unit"];
+        $stock = (int) $_POST["stock"];
+        $stock_unit = $_POST["stock_unit"];
+
+
+        $filename = $image["name"];
+        $file_full_path = $image["full_path"];
+        $filetype = $image["type"];
+        $file_tmp_name = $image["tmp_name"];
+        $file_error = $image["error"];
+        $file_size = $image["size"];
+
+        $nic = $_SESSION["nic"];
+
+
+
+        $random_ID = bin2hex(random_bytes(24));
+        $newfile_name = $nic . $random_ID . "medicine" . $filename;
+        move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . " /public/uploads/$newfile_name");
+
+
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType )
+        {
+            header("location: /provider-login");
+        }
+
+
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("UPDATE medicine SET 
+                    name = $med_name,
+                    image = $image,
+                    price = $price,
+                    stock = $stock,
+                    quantity = $quantity,
+                    quantity_unit = $quantity_unit,
+                    stock_unit = $stock_unit
+                    WHERE med_id = ? AND provider_nic = ?");
+
+        $image = "/uploads/$newfile_name";
+        $stmt->bind_param("ssiiisss", $med_name, $image, $price, $stock, $quantity, $quantity_unit, $stock_unit, $nic);
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 
