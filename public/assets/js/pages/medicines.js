@@ -37,7 +37,7 @@ deleteMedicineButtons.forEach(function (button){
           const splittedID = elementID.split("-");
 
           deleteMedicineModal.innerHTML = `
-              <h3>Do you really want to delete ${button.dataset.medicinename}</h3>
+              <h3>Do you really want to delete ${button.dataset.name}</h3>
             <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
             <div class="modal-actions">
               <button class="cancel-btn" id="delete-medicine-cancel-btn">Cancel</button>
@@ -78,14 +78,40 @@ updateMedicineButtons.forEach(function (button){
 
     updateMedicineModal.innerHTML = `
     
-           <h3>Do you really want to update ${button.dataset.medicinename}</h3>
-    
+           <h3>Do you really want to update ${button.dataset.name}</h3>
+           <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
+            <div class="modal-actions">
+              <button class="cancel-btn" id="update-medicine-cancel-btn">Cancel</button>
+              
+               <form action="/pharmacy-dashboard/medicines/update?med_id=${splittedID[2]}" method="post">
+                                 <button class="ok-btn" id="update-medicine-ok-btn"> ok </button>
+
+               </form>
+              
+            <div>  
+              
+              
     
     
     
     
     
     `;
+
+
+    const updateMedCancelBtn =  updateMedicineModal.querySelector("#update-medicine-cancel-btn");
+    updateMedCancelBtn.addEventListener("click",(e)=>{
+      console.log("click on update button");
+      if(e.target === updateMedCancelBtn)
+      {
+        updateMedicineCloseModal();
+      }
+    });
+
+    updateMedicineOpenModal();
+
+
+
 
 
 
