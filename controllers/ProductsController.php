@@ -140,14 +140,24 @@ class ProductsController extends Controller
         return "";
     }
 
-    public static function deleteProducts()
+    public static function deleteProduct()
     {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
+            return "";
+        }
+        $product_id = $_GET["productId"];
+        $category_id = $_GET["categoryId"];
+
         $db = new Database();
-        $stmt = $db->connection->prepare("DELETE FROM product WHERE product_id = ?");
-        $stmt->bind_param("d", $product_id);
+        $stmt = $db->connection->prepare("DELETE FROM product WHERE product_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $product_id, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        $product_seller = $result->fetch_assoc();
+        header("location: /product-seller-dashboard/products?category=$category_id");
+        return "";
     }
 
     public static function getConsumerProductsPage(): bool|array|string

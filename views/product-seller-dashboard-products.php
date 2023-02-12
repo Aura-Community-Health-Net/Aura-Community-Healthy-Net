@@ -28,6 +28,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         $price = (int) $product["price"] / 100;
         $id = $product['product_id'];
         $name = $product['name'];
+        $categoryId = $product['category_id'];
         echo "<tr>
        
         <td id='image-block'>
@@ -40,7 +41,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         <td>{$product['stock']} {$product['stock_unit']}</td>
         <td id='action-block'>
         <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> 
-        <button id='delete-product-$id' data-productName='$name' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
+        <button id='delete-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
     </tr>";
     }
 
@@ -105,9 +106,11 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         </div>
     </div>
 </div>
+
 <div class="overlay" id="delete-product-overlay">
     <div class="modal" id="delete-product-modal">
 
     </div>
 </div>
+
 <script src="/assets/js/pages/products.js"></script>

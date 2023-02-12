@@ -18,6 +18,7 @@ const productImageInput = document.querySelector("#image");
 const productImageFilename = document.querySelector("#image-filename");
 
 const deleteProductButtons = document.querySelectorAll(".product-delete");
+console.log(deleteProductButtons)
 
 addProductModalButton.addEventListener("click", () => {
   addProductModal.style.display = "block";
@@ -94,25 +95,27 @@ productImageInput.addEventListener("change", function () {
   }
 });
 
-deleteProductButtons.forEach((element) => {
-  element.addEventListener("click", () => {
+function attachDeleteButtonListener(button){
+  button.addEventListener("click", function () {
     // alert(`Product id is ${element.id}, Product name is ${element.dataset.productname}`)
-    const elementId = element.id; // delete-product-56
-    const splittedId = elementId.split("-"); // ['delete', 'product', '56']
+    const productId = button.dataset.productid; // delete-product-56
+    const productName = button.dataset.productname;
+    console.log(productId)
+    const categoryID = button.dataset.categoryid;
 
     deleteProductModal.innerHTML = `
-         <h3>Do you really want to delete ${element.dataset.productname}</h3>
+         <h3>Do you really want to delete ${productName}</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
         <div class="modal-actions">
             <button class="cancel-btn" id="delete-cancel-btn">Cancel</button>
-            <form action="/product-seller-dashoard/products/delete?productId=${splittedId[2]}" method="post">
+            <form action="/product-seller-dashboard/products/delete?productId=${productId}&categoryId=${categoryID}" method="post">
                 <button class="ok-btn" id="delete-ok-btn">Ok</button>
             </form>
         </div>
         `;
     const deleteCancelBtn =
-      deleteProductModal.querySelector("#delete-cancel-btn");
-      deleteCancelBtn.addEventListener("click", (e) => {
+        deleteProductModal.querySelector("#delete-cancel-btn");
+    deleteCancelBtn.addEventListener("click", (e) => {
       console.log("click on cancel button");
       if (e.target === deleteCancelBtn) {
         closeDeleteProductModal();
@@ -121,4 +124,5 @@ deleteProductButtons.forEach((element) => {
 
     openDeleteProductModal();
   });
-});
+}
+deleteProductButtons.forEach(attachDeleteButtonListener);
