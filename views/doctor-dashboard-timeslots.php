@@ -22,8 +22,8 @@
                 <td><?php echo $value['from_time']; ?></td>
                 <td><?php echo $value['to_time']; ?></td>
                 <td id='action-block'>
-                <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button>
-                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button></td>
+                <button id='edit-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--edit timeslot-edit'><i class='fa-solid fa-pen'></i></button>
+                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button></td>
             </tr>
         <?php } ?>
         </tbody>
@@ -59,6 +59,12 @@
 
     <div class="overlay" id="delete-timeslot-overlay">
         <div class="modal" id="delete-timeslot-modal">
+
+        </div>
+    </div>
+
+    <div class="overlay" id="edit-timeslot-overlay">
+        <div class="modal" id="edit-timeslot-modal">
 
         </div>
     </div>

@@ -1,3 +1,4 @@
+
 const addtimeslotModalButton = document.getElementById("add-timeslot-btn");
 const addtimeslotModal = document.querySelector("#add-timeslot-modal");
 const addtimeslotForm = document.querySelector("#add-timeslot-form");
@@ -7,8 +8,11 @@ const addtimeslotCancelBtn = document.querySelector("#add-timeslot-cancel-btn");
 
 const deletetimeslotModal = document.querySelector("#delete-timeslot-modal");
 const deletetimeslotOverlay = document.querySelector("#delete-timeslot-overlay");
-
 const deletetimeslotButtons = document.querySelectorAll(".timeslot-delete");
+
+const edittimeslotModal = document.querySelector("#edit-timeslot-modal");
+const edittimeslotOverlay = document.querySelector("#edit-timeslot-overlay");
+const edittimeslotButtons = document.querySelectorAll(".timeslot-edit");
 
 addtimeslotModalButton.addEventListener("click", () => {
     addtimeslotModal.style.display = "block";
@@ -80,13 +84,13 @@ function closeDeletetimeslotModal() {
 function attachDeleteButtonListener(button){
     button.addEventListener("click", function () {
 
-        console.log(button.dataset)
-        const slotNo = button.dataset.slot_number;
+        //console.log(button.dataset)
+        const slotNo = button.dataset.slot;
         console.log(slotNo)
 
 
         deletetimeslotModal.innerHTML = `
-         <h3>Do you really want to delete</h3>
+         <h3>Do you really want to Delete</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
         <div class="modal-actions">
             <button class="cancel-btn" id="delete-cancel-btn">Cancel</button>
@@ -95,8 +99,7 @@ function attachDeleteButtonListener(button){
             </form>
         </div>
         `;
-        const deleteCancelBtn =
-            deletetimeslotModal.querySelector("#delete-cancel-btn");
+        const deleteCancelBtn = deletetimeslotModal.querySelector("#delete-cancel-btn");
         deleteCancelBtn.addEventListener("click", (e) => {
             console.log("click on cancel button");
             if (e.target === deleteCancelBtn) {
@@ -108,3 +111,76 @@ function attachDeleteButtonListener(button){
     });
 }
 deletetimeslotButtons.forEach(attachDeleteButtonListener);
+
+
+const openEdittimeslotModal = () => {
+    edittimeslotModal.style.display = "block";
+    edittimeslotOverlay.style.display = "block";
+    edittimeslotModal.classList.add("modal-open");
+    edittimeslotOverlay.classList.add("overlay-open");
+};
+
+edittimeslotOverlay.addEventListener("click", (e) => {
+    console.log("click on overlay");
+    if (e.target === edittimeslotOverlay) {
+        closeEdittimeslotModal();
+    }
+});
+
+function closeEdittimeslotModal() {
+    edittimeslotOverlay.classList.remove("overlay-open");
+    edittimeslotModal.classList.remove("modal-open");
+    edittimeslotModal.classList.add("modal-close");
+    edittimeslotOverlay.classList.add("overlay-close");
+    setTimeout(() => {
+        edittimeslotModal.style.display = "none";
+        edittimeslotOverlay.style.display = "none";
+        edittimeslotModal.classList.remove("modal-close");
+        edittimeslotOverlay.classList.remove("overlay-close");
+    }, 200);
+}
+
+function attachEditButtonListener(button){
+    button.addEventListener("click", function () {
+
+        const slotNo = button.dataset.slot;
+        console.log(slotNo)
+
+
+        edittimeslotModal.innerHTML = `<h3>Do you really want to Edit</h3>
+       <table class="items-table">
+            <thead>
+        <tr>
+            <th>Slot No</th>
+            <th >Date</th>
+            <th >Day</th>
+            <th >From Time</th>
+            <th >To Time</th>
+        </tr>
+            </thead>
+            <tbody>
+                   <tr>
+                   <td></td>
+                   </tr>
+            </tbody>
+        </table>
+        <div class="modal-actions">
+            <button class="cancel-btn" id="edit-cancel-btn">Cancel</button>
+            <form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" method="post">
+                <button class="ok-btn" id="edit-ok-btn">Ok</button>
+            </form>
+        </div>
+        `;
+        const editCancelBtn = edittimeslotModal.querySelector("#edit-cancel-btn");
+        editCancelBtn.addEventListener("click", (e) => {
+            console.log("click on cancel button");
+            if (e.target === editCancelBtn) {
+                closeEdittimeslotModal();
+            }
+        });
+
+        openEdittimeslotModal();
+    });
+}
+
+edittimeslotButtons.forEach(attachEditButtonListener);

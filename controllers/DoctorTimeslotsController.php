@@ -45,7 +45,7 @@ class DoctorTimeslotsController extends Controller
     {
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];
-        if(!$nic || $providerType !== "doctor"){
+        if (!$nic || $providerType !== "doctor") {
             header("location: /provider-login");
             return "";
         }
@@ -62,7 +62,7 @@ class DoctorTimeslotsController extends Controller
                               
                               ) VALUES ( ?, ?, ?,? )");
 
-            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"],$nic);
+            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"], $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /doctor-dashboard/timeslots");
@@ -73,7 +73,7 @@ class DoctorTimeslotsController extends Controller
         }
     }
 
-    public static function deletetimeslot(): array|bool|string
+    public static function deleteTimeslot(): array|bool|string
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -81,15 +81,48 @@ class DoctorTimeslotsController extends Controller
             header("location: /provider-login");
             return "";
         }
-        $slot_number = $_GET["slot_number"];
-        //$category_id = $_GET["categoryId"];
+        $slot_number = $_GET["slotNo"];
 
         $db = new Database();
         $stmt = $db->connection->prepare("DELETE FROM doctor_time_slot WHERE slot_number = ? AND provider_nic = ?");
         $stmt->bind_param("ds", $slot_number, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        header("location: /doctor-dashboard/timeslots?");
+        header("location: /doctor-dashboard/timeslots");
+        return "";
+    }
+
+    public static function editTimeslot(): array|bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+        $slot_number = $_GET["slotNo"];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("SELECT  FROM doctor_time_slot WHERE slot_number = ? AND provider_nic =?");
+        $stmt->bind_param("ds",$slot_number,$nic);
+        $stmt->execute();
+        $result = $db->connection->query($stmt);
+
+        echo $result["slot_number"];
+
+
+        /*$stmt = $db->connection->prepare("INSERT INTO doctor_time_slot (
+                              date,
+                              from_time,
+                              to_time,
+                              provider_nic
+
+                              ) VALUES ( ?, ?, ?,? )");
+
+        $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"], $nic);
+        $stmt->execute();*/
+
+        header("location: /doctor-dashboard/timeslots");
         return "";
     }
 }
