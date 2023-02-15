@@ -147,26 +147,28 @@ function attachEditButtonListener(button){
         console.log(slotNo)
 
 
-        edittimeslotModal.innerHTML = `<h3>Do you really want to Edit</h3>
-       <table class="items-table">
+        edittimeslotModal.innerHTML = `<h3>Enter the details to Edit</h3>
+<form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" class="timeslots-form"  id="edit-timeslot-form" method="POST">
+<table class="items-table">
             <thead>
         <tr>
-            <th>Slot No</th>
             <th >Date</th>
-            <th >Day</th>
             <th >From Time</th>
             <th >To Time</th>
         </tr>
             </thead>
             <tbody>
                    <tr>
-                   <td></td>
+                   <td><input type="date" id="edit-date" name="edit-date"></td>
+                   <td><input type="time" id="edit-from-time" name="edit-fromTime"></td>
+                   <td><input type="time" id="edit-to-time" name="edit-toTime"></td>
                    </tr>
             </tbody>
         </table>
+
         <div class="modal-actions">
             <button class="cancel-btn" id="edit-cancel-btn">Cancel</button>
-            <form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" method="post">
+           
                 <button class="ok-btn" id="edit-ok-btn">Ok</button>
             </form>
         </div>

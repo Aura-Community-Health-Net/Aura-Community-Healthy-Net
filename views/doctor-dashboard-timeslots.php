@@ -64,7 +64,7 @@
     </div>
 
     <div class="overlay" id="edit-timeslot-overlay">
-        <div class="modal" id="edit-timeslot-modal">
+        <div class="modal_edit" id="edit-timeslot-modal">
 
         </div>
     </div>

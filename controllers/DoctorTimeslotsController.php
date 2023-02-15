@@ -101,26 +101,19 @@ class DoctorTimeslotsController extends Controller
             return "";
         }
         $slot_number = $_GET["slotNo"];
+        $editDate = $_POST["edit-date"];
+        $editFromTime = $_POST["edit-fromTime"];
+        $editTOTime = $_POST["edit-toTime"];
 
         $db = new Database();
-        $stmt = $db->connection->prepare("SELECT  FROM doctor_time_slot WHERE slot_number = ? AND provider_nic =?");
-        $stmt->bind_param("ds",$slot_number,$nic);
-        $stmt->execute();
-        $result = $db->connection->query($stmt);
+        $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET date = ?,
+                              from_time = ?,
+                              to_time = ?,
+                              provider_nic = ? WHERE slot_number = $slot_number");
+        $stmt->bind_param("ssss", $editDate, $editFromTime, $editTOTime,$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        echo $result["slot_number"];
-
-
-        /*$stmt = $db->connection->prepare("INSERT INTO doctor_time_slot (
-                              date,
-                              from_time,
-                              to_time,
-                              provider_nic
-
-                              ) VALUES ( ?, ?, ?,? )");
-
-        $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"], $nic);
-        $stmt->execute();*/
 
         header("location: /doctor-dashboard/timeslots");
         return "";
