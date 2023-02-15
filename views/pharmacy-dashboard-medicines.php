@@ -34,10 +34,12 @@
                     <td>{$medicine['stock_unit']}</td>
                     
                     <td id='action-block'>
-                    <button id = 'delete-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
-                    <button id = 'update-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--edit medicine-edit'><i class='fa-solid fa-pen'></i></button>
- 
-                     </td>
+                        <button id = 'delete-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
+                        <button id = 'update-medicines-$med_id' data-medicine-name = '$med_name' class='action-btn action-btn--update medicine-update'><i class='fa-solid fa-pen'></i></button>
+
+                    </td>
+                    
+                                        
         </tr>";
     } ?>
 </table>
