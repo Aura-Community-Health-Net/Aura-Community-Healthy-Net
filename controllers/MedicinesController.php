@@ -143,8 +143,38 @@ class MedicinesController extends Controller
     }
 
 
-    public static function updateMedicines(): string
+    public static function getupdateMedicinesForm(): string
     {
+
+
+        $nic = $_SESSION["nic"];
+
+
+        if (!$nic) {
+            header("/pharmacy-login");
+        } else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+
+            return self::render(view: 'pharmacy-dashboard-medicines-update', layout: "pharmacy-dashboard-layout", layoutParams: ["pharmacy" => $pharmacy, "title" => "Medicines", "active_link" => "medicines-list"]);
+
+        }
+
+//
+    }
+
+
+    public  static  function updateMedicines(): string
+    {
+
+
+
+
         $med_name = $_POST["med_name"];
         $medicine_id = $_POST["med_id"];
         $image = $_FILES["image"];
@@ -180,7 +210,7 @@ class MedicinesController extends Controller
 
         $db = new Database();
 
-        $stmt = $db->connection->prepare("UPDATE medicine SET 
+        $stmt = $db->connection->prepare("UPDATE medicine SET
                     name = $med_name,
                     image = $image,
                     price = $price,
@@ -213,11 +243,8 @@ class MedicinesController extends Controller
 
 
 
-
     }
-
-
-
-
-
 }
+
+
+

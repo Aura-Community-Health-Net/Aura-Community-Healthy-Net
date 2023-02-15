@@ -31,8 +31,8 @@ const deleteMedicineButtons = document.querySelectorAll(".medicine-delete");
 const updateMedicineButtons = document.querySelectorAll(".medicine-update");
 
 
-deleteMedicineButtons.forEach(function (button){
-  button.addEventListener("click",() => {
+deleteMedicineButtons.forEach(function (deleteMed_button){
+  deleteMed_button.addEventListener("click",() => {
           const elementID = button.id;
           const splittedID = elementID.split("-");
 
@@ -65,9 +65,9 @@ deleteMedicineButtons.forEach(function (button){
 })
 
 
-updateMedicineButtons.forEach(function (button){
+updateMedicineButtons.forEach(function (updateMed_Button){
 
-  button.addEventListener("click",() => {
+  updateMed_Button.addEventListener("click",() => {
 
     const elementID = button.id;
     const splittedID = elementID.split("-");
@@ -77,25 +77,25 @@ updateMedicineButtons.forEach(function (button){
 
 
     updateMedicineModal.innerHTML = `
-    
+
            <h3>Do you really want to update ${button.dataset.name}</h3>
            <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
             <div class="modal-actions">
               <button class="cancel-btn" id="update-medicine-cancel-btn">Cancel</button>
-              
+
                <form action="/pharmacy-dashboard/medicines/update?med_id=${splittedID[2]}" method="post">
-                                 <button class="ok-btn" id="update-medicine-ok-btn"> ok </button>
+                       <button class="ok-btn" id="update-medicine-ok-btn"><a href="/pharmacy-dashboard/medicines/update-medicines">ok</a> </button>
 
                </form>
-              
-            <div>  
-              
-              
-    
-    
-    
-    
-    
+
+            <div>
+
+
+
+
+
+
+
     `;
 
 
@@ -126,32 +126,10 @@ updateMedicineButtons.forEach(function (button){
 
 
 
+updateMedicineConfirmButton.addEventListener("click",()=>{
+  window.location.href = 'http://localhost:8080/pharmacy-dashboard/medicines/update';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
 
 
