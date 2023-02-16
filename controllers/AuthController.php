@@ -24,7 +24,6 @@ class AuthController extends Controller
                 $address = $_POST["address"];
                 $reg_no = $_POST["reg-num"];
                 $field_of_study = $_POST["field-study"];
-                $certificate = $_FILES["certificate"];
 
                 $qualifications = $_POST["qualifications"];
                 $qualifications_array = explode(",", $qualifications);
@@ -35,21 +34,27 @@ class AuthController extends Controller
                 $con_password = $_POST["con-password"];
                 //$western = $_POST["western"];
 
-                $file_name_doc = $certificate["name"];
-                $file_tmp_name = $certificate["tmp_name"];
 
-                $random_id = bin2hex(random_bytes(24));
-                $new_file_name = $nic . $random_id . "user" . $file_name_doc;
-                move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
+                $certificate = $_FILES["certificate"];
+                $file_name1 = $certificate["name"];
+                $file_tmp_name1 = $certificate["tmp_name"];
+
+                $random_id1 = bin2hex(random_bytes(24));
+                $new_file_name1 = $nic . $random_id1 . "user" . $file_name1;
+                move_uploaded_file($file_tmp_name1, Application::$ROOT_DIR . "/public/uploads/$new_file_name1");
 
 
-                $file_pic = $_FILES["profile_pic"];
-                $file_name_cer = $file_pic["name"];
-                $file_tmp_cer = $file_pic["tmp_name"];
+
+                $profile = $_FILES["profile-pic"];
+                $file_name2 = $profile["name"];
+                $file_tmp_name2 = $profile["tmp_name"];
 
                 $random_id2 = bin2hex(random_bytes(24));
-                $new_file_name2 = $nic . $random_id2 . "user" . $file_name_cer;
-                move_uploaded_file($file_tmp_cer, Application::$ROOT_DIR . "/public/uploads/$new_file_name2");
+                $new_file_name2 = $nic . $random_id2 . "user" . $file_name2;
+                move_uploaded_file($file_tmp_name2, Application::$ROOT_DIR . "/public/uploads/$new_file_name2");
+
+
+
 
                 //var_dump($_POST);
                 $db = new database();
@@ -99,11 +104,6 @@ class AuthController extends Controller
                 if (empty($errors)) {
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
 
-                    /*$name = $_FILES['profile_picture']['name'] ;
-                    $profile_picture = addslashes(file_get_contents($_FILES['profile_picture']['tmp_name'])) ;
-                    print_r($name);die();
-                    $sql = "INSERT INTO service_provider (name, profile_picture) VALUES ('', '{$name}', '{$profile_picture}')";*/
-
                     $stmt = $db->connection->prepare("INSERT INTO service_provider (
                             provider_nic, 
                             name, 
@@ -117,17 +117,17 @@ class AuthController extends Controller
                             bank_account_number, 
                             provider_type) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-                    $image = "/uploads/$new_file_name";
+                    $profilePic = "/uploads/$new_file_name2";
                     $type = 'doctor';
-                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $image, $account_no, $type);
+                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
 
 
-                    $cer = "/uploads/$new_file_name2";
+                    $certificate = "/uploads/$new_file_name1";
                     $stmt = $db->connection->prepare("INSERT INTO doctor (provider_nic, slmc_reg_no, field_of_study, certificate_of_mbbs, type) VALUES ( ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $cer, $type);
+                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $certificate, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 

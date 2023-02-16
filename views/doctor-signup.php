@@ -50,9 +50,8 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="mbbs-certificate">Certificate of MBBS <sup>*</sup></label>
-                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate"
-                    value="<?php echo $_POST['certificate'] ?? ''; ?>" style="display: none; visibility: hidden;"
-                    required>
+                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate" accept="image/*" style="display: none; visibility: hidden;"
+                       required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="mbbs-certificate-btn" type="button">
@@ -94,8 +93,7 @@
             <div id="form-input">
                 <label class="form-input__label" for="profile-pic">Profile Picture <sup>*</sup></label>
                 <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File"
-                    name="profile-pic" value="<?php echo $_POST['profile-pic'] ?? ''; ?>"
-                    style="display: none; visibility: hidden;" required>
+                       name="profile-pic" style="display: none; visibility: hidden;" accept="image/*" required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
