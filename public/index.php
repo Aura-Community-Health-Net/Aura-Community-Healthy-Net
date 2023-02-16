@@ -127,6 +127,8 @@ $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'get
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
+//$app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'DoctorProfile']);
+$app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'DoctorProfile']);
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);

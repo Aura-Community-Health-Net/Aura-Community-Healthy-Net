@@ -59,7 +59,7 @@
             <li>
                 <a href="/doctor-dashboard">
                     <button id="doctor-dashboard-btn"
-                            class="navbtn <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                            class="navbtn ">
                         <span class="nav-icon"><i class="fa-solid fa-gauge"></i></span>
                         <span class="nav-title">Dashboard</span>
                     </button>
@@ -69,7 +69,7 @@
             <li>
                 <a href="/doctor-dashboard/timeslots">
                     <button id="doctor-timeslots-btn"
-                            class="navbtn <?php echo $active_link === 'timeslots' ? 'active' : '' ?>">
+                            class="navbtn ">
                         <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
                         <span class="nav-title">Time Slots</span>
                     </button>
@@ -79,7 +79,7 @@
             <li>
                 <a href="/doctor-dashboard/appointments">
                     <button id="doctor-appointments-btn"
-                            class="navbtn" <?php echo $active_link === 'appointments' ? 'active' : '' ?>">
+                            class="navbtn" ">
                     <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                     <span class="nav-title">Appointments</span>
                     </button>
@@ -90,7 +90,7 @@
             <li>
                 <a href="/doctor-dashboard/patients">
                     <button id="doctor-patients-btn"
-                            class="navbtn" <?php echo $active_link === 'past-patients' ? 'active' : '' ?>">
+                            class="navbtn" ">
                     <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                     <span class="nav-title">Patients</span>
                     </button>
@@ -101,7 +101,7 @@
             <li>
                 <a href="/doctor-dashboard/analytics">
                     <button id="doctor-analytics-btn"
-                            class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
+                            class="navbtn" ">
                     <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                     <span class="nav-title">Analytics</span>
                     </button>
@@ -112,7 +112,7 @@
             <li>
                 <a href="/doctor-dashboard/feedback">
                     <button id="doctor-feedback-btn"
-                            class="navbtn" <?php echo $active_link === 'feedbacks' ? 'active' : '' ?>">
+                            class="navbtn" ">
                     <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                     <span class="nav-title">Feedbacks</span>
                     </button>
@@ -123,7 +123,7 @@
             <li>
                 <a href="/doctor-dashboard/profile">
                     <button id="doctor-profile-btn"
-                            class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                            class="navbtn" ">
                     <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav-title">Profile</span>
                     </button>

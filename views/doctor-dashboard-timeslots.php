@@ -1,7 +1,9 @@
 <?php
 /**
  * @var array $timeslots
+ *
  */
+
 ?>
 <div class="doctor-timeslots">
     <table class="items-table">
