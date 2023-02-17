@@ -149,19 +149,19 @@ function attachEditButtonListener(button){
 
         edittimeslotModal.innerHTML = `<h3>Enter the details to Edit</h3>
 <form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" class="timeslots-form"  id="edit-timeslot-form" method="POST">
-<table class="items-table">
+        <table class="items-table">
             <thead>
-        <tr>
-            <th >Date</th>
-            <th >From Time</th>
-            <th >To Time</th>
-        </tr>
+                <tr>
+                      <th >Date</th>
+                      <th >From Time</th>
+                      <th >To Time</th>
+                </tr>
             </thead>
             <tbody>
                    <tr>
-                   <td><input type="date" id="edit-date" name="edit-date"></td>
-                   <td><input type="time" id="edit-from-time" name="edit-fromTime"></td>
-                   <td><input type="time" id="edit-to-time" name="edit-toTime"></td>
+                       <td><input type="date" id="edit-date" name="edit-date"></td>
+                       <td><input type="time" id="edit-from-time" name="edit-fromTime"></td>
+                       <td><input type="time" id="edit-to-time" name="edit-toTime"></td>
                    </tr>
             </tbody>
         </table>
@@ -170,7 +170,7 @@ function attachEditButtonListener(button){
             <button class="cancel-btn" id="edit-cancel-btn">Cancel</button>
            
                 <button class="ok-btn" id="edit-ok-btn">Ok</button>
-            </form>
+</form>
         </div>
         `;
         const editCancelBtn = edittimeslotModal.querySelector("#edit-cancel-btn");

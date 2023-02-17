@@ -642,7 +642,7 @@ class AuthController extends Controller
         } else {
             return self::render(view: 'consumer-signup', params: ['errors' => $errors]);
         }
-        header("location: /");
+        header("location: /consumer-dashboard");
         return "";
     }
 

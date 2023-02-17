@@ -59,7 +59,7 @@
             <li>
                 <a href="/doctor-dashboard">
                     <button id="doctor-dashboard-btn"
-                            class="navbtn ">
+                            class="navbtn">
                         <span class="nav-icon"><i class="fa-solid fa-gauge"></i></span>
                         <span class="nav-title">Dashboard</span>
                     </button>
@@ -69,7 +69,7 @@
             <li>
                 <a href="/doctor-dashboard/timeslots">
                     <button id="doctor-timeslots-btn"
-                            class="navbtn ">
+                            class="navbtn">
                         <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
                         <span class="nav-title">Time Slots</span>
                     </button>
@@ -79,7 +79,7 @@
             <li>
                 <a href="/doctor-dashboard/appointments">
                     <button id="doctor-appointments-btn"
-                            class="navbtn" ">
+                            class="navbtn">
                     <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                     <span class="nav-title">Appointments</span>
                     </button>
@@ -112,7 +112,7 @@
             <li>
                 <a href="/doctor-dashboard/feedback">
                     <button id="doctor-feedback-btn"
-                            class="navbtn" ">
+                            class="navbtn">
                     <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                     <span class="nav-title">Feedbacks</span>
                     </button>
@@ -123,11 +123,22 @@
             <li>
                 <a href="/doctor-dashboard/profile">
                     <button id="doctor-profile-btn"
-                            class="navbtn" ">
+                            class="navbtn">
                     <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav-title">Profile</span>
                     </button>
                 </a>
+
+            </li>
+
+            <li class="logout">
+                <form action="/provider-logout" method="post">
+                    <button class="navbtn">
+                    <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                    <span class="nav-title">Logout</span>
+                    </button>
+                </form>
 
             </li>
         </ul>

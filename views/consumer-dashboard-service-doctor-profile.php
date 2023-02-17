@@ -1,3 +1,9 @@
+<?php
+/**
+ *
+ *
+ */
+?>
 <div class="consumer-dashboard-doctor-profile">
     <div class="consumer-dashboard-doctor-profile__top">
         <table>
