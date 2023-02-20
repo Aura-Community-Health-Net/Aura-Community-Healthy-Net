@@ -1,7 +1,13 @@
 <?php
 /**
- * @var array $feedbacks
+ * @var array $doctor;
+ * @var array $profile;
+ * @var array $doctorQualification;
+ *
  */
+//echo $profile1;exit();
+//print_r($doctor['provider_nic']);
+//print_r($profile)
 ?>
 
 <head>
@@ -18,28 +24,27 @@
                         <img src="/assets/images/profilepic8.jpg">
                     </th>
                     <th>
-                        <h2>Anoja Abeyweera</h2>
-                        <h3>Anaesthetists</h3>
+                        <h2><?php echo $doctor['name']; ?></h2>
+                        <h3><?php echo $profile['field_of_study']; ?></h3>
                     </th>
                 </tr>
                 <tr>
                     <td><b>Email Address</b></td>
-                    <td>anojaabyweera@gmail.com</td>
+                    <td><?php echo $doctor['email_address']; ?></td>
                 </tr>
                 <tr>
                     <td><b>NIC</b></td>
-                    <td>567634456V</td>
+                    <td><?php echo $doctor['provider_nic']; ?></td>
                 </tr>
                 <tr>
                     <td><b>Mobile Number</b></td>
-                    <td>070-3454334</td>
+                    <td><?php echo $doctor['mobile_number']; ?></td>
                 </tr>
                 <tr>
-                    <td><b>Qualifications/b></td>
-                    <td>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
-                        industry. Lorem Ipsum has been  industry's standard dummy text<br>
-                        ever since the</td>
+                    <td><b>Qualifications</b></td>
+                    <td><?php echo $doctorQualification['qualifications']; ?></td>
                 </tr>
+
             </table>
         </div>
     </div>

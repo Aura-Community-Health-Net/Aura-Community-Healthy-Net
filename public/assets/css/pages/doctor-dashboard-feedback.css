@@ -1,7 +1,7 @@
 .doctor-feedbacks__container{
     display: grid;
 }
-.doctor-feedbacks {
+.doctor-feedbacks__data__container{
     background-color: #EFEEFD;
     gap: 0.5rem;
     text-align: justify;
@@ -12,7 +12,9 @@
     justify-content: center;
     border-radius: 10px;
     margin: 1rem;
+    padding-top: 0.5rem;
 }
+
 .doctor-feedbacks__data{
     display: flex;
     align-items: center;

@@ -1,49 +1,4 @@
 
-
-/*.consumer-dashboard-doctor__top__left{
-    display: flex;
-    background-color: #EFEEFD ;
-    position: relative;
-    left: 87px;
-    top: 37px;
-    width: 190px;
-    height: 25px;
-    border-radius: 5px;
-}*/
-
-/*.consumer-dashboard-doctor__top__center{
-    display: flex;
-    background-color: #EFEEFD ;
-    position: relative;
-    left: 400px;
-    top: 11px;
-    width: 190px;
-    height: 25px;
-    border-radius: 5px;
-}*/
-
-/*.consumer-dashboard-doctor__top__middle{
-    display: flex;
-    background-color: #EFEEFD ;
-    position: relative;
-    left: 725px;
-    top: -13px;
-    width: 115px;
-    height: 25px;
-    border-radius: 5px;
-}*/
-
-
-/*.consumer-dashboard-doctor__top__right{
-    display: flex;
-    background-color: #EFEEFD ;
-    width: 100px;
-    height: 25px;
-    border-radius: 5px;
-    position: relative;
-    left: 950px;
-    bottom: 35px;
-}*/
 .consumer-dashboard-doctor__top__right p{
     display: flex;
     position: relative;
@@ -80,7 +35,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding-top: 2rem;padding-bottom: 1rem;
+    padding-top: 1.5rem;padding-bottom: 1rem;
 }
 
 .doctor-card button {
@@ -97,9 +52,14 @@
 }
 
 .doctor-card > div > div > p {
-    align-items: center;
+    /*align-items: center;*/
+    text-align: center;
     width: 90%;
     margin: 0 auto;
+    font-size: 1.25rem;
+}
+.doctor-card > div > h2{
+    font-size: 1.5rem;
 }
 
 
@@ -115,10 +75,11 @@
 }
 .consumer-dashboard-doctor__bottom__center__data{
     background-color: #EFEEFD;
-    width: 75%;
+    width: 65%;
     margin-top: 0.5rem;
     border-radius: 8px;
 }
+
 .consumer-dashboard-doctor__bottom__center__data button{
     font-size: 1rem;
 }

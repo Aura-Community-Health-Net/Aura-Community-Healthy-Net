@@ -127,11 +127,15 @@ $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, '
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
 $app->router->post('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
+$app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
+$app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
+$app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'DoctorFeedback']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
+$app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'DoctorProfile']);
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
@@ -147,9 +151,12 @@ $app->router->post('/product-checkout', [ProductsController::class, 'getConsumer
 $app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
 $app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
+$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'ConsumerServicesDoctor']);
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
+$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'ConsumerServicesDoctorProfile']);
 $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
+$app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
 $app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);

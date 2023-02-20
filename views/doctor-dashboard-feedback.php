@@ -1,7 +1,11 @@
 <?php
 /**
- * @var array $feedbacks
+ * @var array $feedback
+
  */
+//print_r($feedback); die();
+//print_r($feedback['consumer_nic']);
+
 ?>
 
 <head>
@@ -10,49 +14,17 @@
 </head>
 <div class="doctor-feedbacks__container">
 <div class="doctor-feedbacks">
-        <div class="doctor-feedbacks__data">
-            <img src="/assets/images/profilepic3.jpg">
-            <h3><b>Kamal Deshapriya</b></h3>
-            <h4>22th of August 2022</h4>
-        </div>
-            <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was popularised in
-                the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
+    <?php foreach ($feedback as $value) { ?>
+            <div class="doctor-feedbacks__data__container">
+                <div class="doctor-feedbacks__data">
+                    <img src="/assets/images/profilepic3.jpg">
+                    <h3><b><?php echo $value['name'];?></b></h3>
+                    <h4><?php echo $value['date_time'];?></h4>
+                </div>
+                <p> <?php echo $value['text'];?></p>
+            </div>
 
-
-
-<div class="doctor-feedbacks">
-    <div class="doctor-feedbacks__data">
-        <img src="/assets/images/profilepic2.jpg">
-        <h3><b>Sahan Kariyawasam</b></h3>
-        <h4>29th of September 2022</h4>
-    </div>
-        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-
-
-<div class="doctor-feedbacks">
-    <div class="doctor-feedbacks__data">
-        <img src="/assets/images/profilepic1.jpg">
-        <h3><b>Ravishi Palihawadana</b></h3>
-        <h4>28th of October 2022</h4>
-    </div>
-        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
+    <?php } ?>
 </div>
 
 </div>
