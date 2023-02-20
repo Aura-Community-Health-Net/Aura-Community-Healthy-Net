@@ -127,8 +127,9 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function getConsumerServicesDoctorProfilePage(): bool|array|string
+    public function getConsumerServicesDoctorProfilePage($id): bool|array|string
     {
+        print_r($id);die();
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer") {
@@ -260,6 +261,7 @@ class ProfileController extends Controller
 
     public function ConsumerServicesDoctor(): bool|array|string
     {
+
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer") {
@@ -273,16 +275,61 @@ class ProfileController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider");
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
             $stmt->execute();
             $result = $stmt->get_result();
-            $doctor = $result->fetch_assoc();
+            $doctor = $result->fetch_all(MYSQLI_ASSOC);
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout",params: ['consumer'=>$consumer,'doctor'=>$doctor], layoutParams: [
             "consumer" => $consumer,
             "active_link" => "profile",
             "title" => "Profile"
+        ]);
+    }
+
+    public function ConsumerServicesDoctorProfile(): bool|array|string
+    {
+        $provider_nic = $_GET['provider_nic'];
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE service_provider.provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $time_slot = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback = $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout",params:["consumer"=>$consumer,"doctor"=>$doctor,"time_slot"=>$time_slot,"feedback"=>$feedback] , layoutParams: [
+            "consumer" => $consumer,
+            "doctor" => $doctor,
+            "time_slot" => $time_slot,
+            "feedback" => $feedback,
+            "active_link" => "profile",
+            "title" => "Doctor"
         ]);
     }
 }

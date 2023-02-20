@@ -1,8 +1,12 @@
 <?php
 /**
- *
- *
+ * @var $doctor;
+ * @var $time_slot;
+ * @var $feedback;
  */
+//print_r($feedback);die();
+//print_r($time_slot);die();
+//print_r($doctor);die();
 ?>
 <div class="consumer-dashboard-doctor-profile">
     <div class="consumer-dashboard-doctor-profile__top">
@@ -12,9 +16,9 @@
                     <div class="consumer-dashboard-doctor-profile__top__left">
                         <img src="/assets/images/profilepic2.jpg">
                         <div class="consumer-dashboard-doctor-profile__top__left__data">
-                            <h3><b>Prof. Anoja Abeyjeewa</b></h3><br>
-                            <h4>Anaesthetists</h4>
-                            <h4>SLMC Reg.No: 34526</h4>
+                            <h3><b><?php echo $doctor['name']; ?></b></h3><br>
+                            <h4><?php echo $doctor['field_of_study']; ?></h4>
+                            <h4>SLMC Reg.No: <?php echo $doctor['slmc_reg_no']; ?></h4>
                             <p>Lorem Ipsum is simply dummy text of the hgiiir
                                 printing and typesetting industry. Lorem dfdsss
                                 Ipsum has been the industry's standard ddssda
@@ -31,12 +35,17 @@
                             <p>31st October 2022</p>
                         </div>
                         <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.00 pm - 4.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.45 pm - 5.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.45 pm - 6.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.30 pm - 7.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.45 pm - 8.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
-                            <p>Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.00 pm - 9.30 pm &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"></input></p>
+                            <table>
+                                <?php foreach ($time_slot as  $value) { ?>
+                                    <tr>
+                                        <td><?php echo date('l', strtotime($value['date']));?></td>
+                                        <td><?php echo $value['from_time']?></td>
+                                        <td><?php echo $value['to_time']?></td>
+                                        <td><?php echo " ";?></td>
+                                        <td><input type="radio"></td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
                         </div>
                         <div class="consumer-dashboard-doctor-profile__top__right__location">
                             <p>Add Location</p>
@@ -56,38 +65,21 @@
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__bottom__left">
+                        <?php foreach ($feedback as  $value) { ?>
                         <div class="consumer-dashboard-doctor-profile__bottom__left__data">
                             <img src="/assets/images/profilepic5.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
+                            <h3><b><?php echo $value['name']?></b></h3>
+                            <h4><?php echo $value['date_time']?></h4>
+                            <p><?php echo $value['text']?></p>
                         </div>
-                        <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic6.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
-                        </div>
-                        <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic7.jpg">
-                            <h3><b>Kamal Deshapriya</b></h3>
-                            <h4>26th of October 2022</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text  </p>
-                        </div>
+                        <?php } ?>
                     </div>
                 </td>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__bottom__right">
                         <h3>Give your Feedback</h3>
-                        <div class="consumer-dashboard-doctor-profile__bottom__right__feedback">
+                            <input type="text">
                             <button>Submit</button>
-                        </div>
                     </div>
                 </td>
             </tr>

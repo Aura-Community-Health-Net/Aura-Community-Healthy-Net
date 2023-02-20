@@ -3,7 +3,7 @@
  * @var array $doctor;
  *
  */
-//print_r($doctor);
+//print_r($doctor);die();
 ?>
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
@@ -24,87 +24,22 @@
     </div>
     <div class="doctor__card-details">
         <div class="doctor-container">
+            <?php foreach ($doctor as $value) {
+                    $nic = $value['provider_nic'];?>
                 <div class="doctor-card">
                     <img src="/assets/images/profilepic2.jpg">
                     <div class="consumer-dashboard-doctor__bottom__center__data">
-                        <h2><?php echo $doctor['name']; ?></h2>
+                        <h2><?php echo $value['name']; ?></h2>
                         <div>
-                            <p><span>Mobile No </span> :<?php echo $doctor['mobile_number']; ?></p>
+                            <p><?php echo $value['field_of_study']; ?></p>
                         </div>
-                        <a href="/consumer-dashboard/services/doctor/profile?">
+                        <?php echo $nic?>
+                        <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo$nic ?>">
                             <button>Make Appointment</button>
                         </a>
                     </div>
                 </div>
-
-            <div class="doctor-card">
-                <img src="/assets/images/profilepic3.jpg">
-                <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2> Lahiru Sampath</h2>
-                    <div>
-                        <p><span>Mobile No </span> :0712345678</p>
-                    </div>
-                    <a href="/consumer-dashboard/services/doctor/profile">
-                        <button>Make Appointment</button>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="doctor-card">
-                <img src="/assets/images/profilepic4.jpg">
-                <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2> Ravishi Palihawadana</h2>
-                    <div>
-                        <p><span>Mobile No </span>: 0752345678</p>
-                    </div>
-                    <a href="/consumer-dashboard/services/doctor/profile">
-                        <button>Make Appointment</button>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="doctor-card">
-                <img src="/assets/images/profilepic5.jpg">
-                <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2>Anjana Dilshan</h2>
-                    <div>
-                        <p><span>Mobile No </span> :0712345678</p>
-                    </div>
-                    <a href="/consumer-dashboard/services/doctor/profile">
-                        <button>Make Appointment</button>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="doctor-card">
-                <img src="/assets/images/profilepic6.jpg">
-                <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2>Dhanuka Iroshana</h2>
-                    <div>
-                        <p><span>Mobile No </span> :0712345678</p>
-                    </div>
-                    <a href="/consumer-dashboard/services/doctor/profile">
-                        <button>Make Appointment</button>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="doctor-card">
-                <img src="/assets/images/profilepic7.jpg">
-                <div class="consumer-dashboard-doctor__bottom__center__data">
-                    <h2>Dumindu Lakshan</h2>
-                    <div>
-                        <p><span>Mobile No </span> :0712345678</p>
-                    </div>
-                    <a href="/consumer-dashboard/services/doctor/profile">
-                        <button>Make Appointment</button>
-                    </a>
-                </div>
-            </div>
-
-        </div>
+            <?php } ?>
+    </div>
+</div>
 
