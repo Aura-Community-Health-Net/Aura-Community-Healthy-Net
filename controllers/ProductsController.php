@@ -160,6 +160,26 @@ class ProductsController extends Controller
         return "";
     }
 
+    public static function updateProducts(): string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller"){
+            header("location: provider-login");
+            return "";
+        }
+        $product_id = $_GET["productId"];
+        $category_id = $_GET["categoryId"];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("UPDATE product SET  WHERE product_id = ? AND provider_nic");
+        $stmt->bind_param("ds", $product_id, $nic);
+        $stmt-> execute();
+        $result = $stmt->get_result();
+        header("location: /product-seller-dashboard/products?category=$category_id");
+        return "";
+    }
+
     public static function getConsumerProductsPage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
