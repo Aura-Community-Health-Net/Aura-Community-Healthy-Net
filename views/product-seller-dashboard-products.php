@@ -40,7 +40,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         <td>{$price}</td>
         <td>{$product['stock']} {$product['stock_unit']}</td>
         <td id='action-block'>
-        <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> 
+        <button id='update-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--edit product-update'><i class='fa-solid fa-pen'></i></button> 
         <button id='delete-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
     </tr>";
     }
@@ -109,6 +109,12 @@ $stock_unit = $_POST["stock_unit"] ?? "";
 
 <div class="overlay" id="delete-product-overlay">
     <div class="modal" id="delete-product-modal">
+
+    </div>
+</div>
+
+<div class="overlay" id="update-product-overlay">
+    <div class="modal" id="update-product-modal">
 
     </div>
 </div>
