@@ -12,9 +12,6 @@ class MedicinesController extends Controller
 
     public static function addMed(): array |bool|string
     {
-
-
-
         $med_name = $_POST["med_name"];
         $image = $_FILES["image"];
         $price = (int) $_POST["price"];
@@ -52,7 +49,7 @@ class MedicinesController extends Controller
         $stmt->bind_param("ssiiisss", $med_name, $image, $price, $stock, $quantity, $quantity_unit, $stock_unit, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        header("location:/pharmacy-dashboard/medicines");
+        header("location: /pharmacy-dashboard/medicines");
         return "";
 
     }

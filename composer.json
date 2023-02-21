@@ -14,6 +14,7 @@
     },
     "require": {
         "vlucas/phpdotenv": "^5.5",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+      "ext-http": "*"
     }
 }
