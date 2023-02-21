@@ -337,6 +337,8 @@ class ProfileController extends Controller
                 $result = $stmt->get_result();
             }
 
+            //print_r($_GET);
+
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout",params:["consumer"=>$consumer,"doctor"=>$doctor,"time_slot"=>$time_slot,"feedback"=>$feedback] , layoutParams: [
