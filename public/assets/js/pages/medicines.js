@@ -33,11 +33,11 @@ const updateMedicineButtons = document.querySelectorAll(".medicine-update");
 
 deleteMedicineButtons.forEach(function (deleteMed_button){
   deleteMed_button.addEventListener("click",() => {
-          const elementID = button.id;
+          const elementID = deleteMed_button.id;
           const splittedID = elementID.split("-");
 
           deleteMedicineModal.innerHTML = `
-              <h3>Do you really want to delete ${button.dataset.name}</h3>
+              <h3>Do you really want to delete ${deleteMed_button.dataset.name}</h3>
             <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
             <div class="modal-actions">
               <button class="cancel-btn" id="delete-medicine-cancel-btn">Cancel</button>
@@ -69,7 +69,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
   updateMed_Button.addEventListener("click",() => {
 
-    const elementID = button.id;
+    const elementID = updateMed_Button.id;
     const splittedID = elementID.split("-");
 
 
@@ -78,7 +78,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
     updateMedicineModal.innerHTML = `
 
-           <h3>Do you really want to update ${button.dataset.name}</h3>
+           <h3>Do you really want to update ${updateMed_Button.dataset.name}</h3>
            <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
             <div class="modal-actions">
               <button class="cancel-btn" id="update-medicine-cancel-btn">Cancel</button>
@@ -126,10 +126,10 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
 
 
-updateMedicineConfirmButton.addEventListener("click",()=>{
-  window.location.href = 'http://localhost:8080/pharmacy-dashboard/medicines/update';
-
-})
+// updateMedicineConfirmButton.addEventListener("click",()=>{
+//   window.location.href = 'http://localhost:8080/pharmacy-dashboard/medicines/update';
+//
+// })
 
 
 
@@ -150,6 +150,7 @@ addMedicineImageInput.addEventListener("change", function () {
 
 
 addMedicineConfirmButton.addEventListener("click", () => {
+   console.log("Clicked add ok button")
   addMedicineForm.submit();
 });
 
