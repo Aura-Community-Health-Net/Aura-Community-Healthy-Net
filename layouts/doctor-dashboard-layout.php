@@ -138,7 +138,7 @@
 
             <li class="logout">
                 <form action="/provider-logout" method="post">
-                    <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                    <button class="navbtn"">
                     <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
                     <span class="nav-title">Logout</span>
@@ -146,16 +146,6 @@
                 </form>
             </li>
 
-            <li class="logout">
-                <form action="/provider-logout" method="post">
-                    <button class="navbtn">
-                    <span class="nav-icon">
-                            <i class="fa-solid fa-right-from-bracket"></i></span>
-                    <span class="nav-title">Logout</span>
-                    </button>
-                </form>
-
-            </li>
         </ul>
     </nav>
 

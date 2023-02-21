@@ -290,6 +290,7 @@ class ProfileController extends Controller
 
     public function ConsumerServicesDoctorProfile(): bool|array|string
     {
+
         $provider_nic = $_GET['provider_nic'];
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
@@ -321,6 +322,21 @@ class ProfileController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $feedback = $result->fetch_all(MYSQLI_ASSOC);
+
+            if (isset($_GET['feedback-btn'])){
+                $doctorFeedback = $_GET['doctor-feedback'];
+                $feedbackDatetime = $_GET['feedback-datetime'];
+
+                $stmt = $db->connection->prepare("INSERT INTO feedback (
+                      text,
+                      date_time,
+                      provider_nic,
+                      consumer_nic)VALUES (?,?,?,?)");
+                $stmt->bind_param("ssss", $doctorFeedback,$feedbackDatetime,$provider_nic,$nic);
+                $stmt->execute();
+                $result = $stmt->get_result();
+            }
+
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout",params:["consumer"=>$consumer,"doctor"=>$doctor,"time_slot"=>$time_slot,"feedback"=>$feedback] , layoutParams: [

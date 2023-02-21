@@ -4,6 +4,9 @@
  * @var $time_slot;
  * @var $feedback;
  */
+if (!isset($_GET['feedback-btn'])){
+    $provider_nic = $_GET['provider_nic'];
+}
 //print_r($feedback);die();
 //print_r($time_slot);die();
 //print_r($doctor);die();
@@ -78,8 +81,12 @@
                 <td>
                     <div class="consumer-dashboard-doctor-profile__bottom__right">
                         <h3>Give your Feedback</h3>
-                            <input type="text">
-                            <button>Submit</button>
+                        <form action="/consumer-dashboard/services/doctor/profile" method="GET">
+                            <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">
+                            <input type="text" name="doctor-feedback" class="doctor-feedback">
+                            <input name="provider_nic" value="<?php echo $provider_nic?>" type="text" hidden >
+                            <button name="feedback-btn" >Submit</button>
+                        </form>
                     </div>
                 </td>
             </tr>

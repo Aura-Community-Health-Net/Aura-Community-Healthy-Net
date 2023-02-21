@@ -1,3 +1,13 @@
+<?php
+/**
+ *@var $doctor;
+ */
+if (!$doctor['is_verified']) {
+echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
+}
+
+?>
+
 <div class="doctor-dashboard">
         <div class="doctor-dashboard__left__top">
             <h3>New Appointment List</h3>
