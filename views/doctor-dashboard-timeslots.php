@@ -6,30 +6,32 @@
 
 ?>
 <div class="doctor-timeslots">
-    <table class="items-table">
-        <thead>
-        <tr><th>Slot No</th>
-            <th >Date</th>
-            <th >Day</th>
-            <th >From Time</th>
-            <th >To Time</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($timeslots as  $value) { ?>
-            <tr>
-                <td><?php echo $value['slot_number']; ?></td>
-                <td><?php echo $value['date']; ?></td>
-                <td><?php echo date('l', strtotime($value['date'])); ?></td>
-                <td><?php echo $value['from_time']; ?></td>
-                <td><?php echo $value['to_time']; ?></td>
-                <td id='action-block'>
-                <button id='edit-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--edit timeslot-edit'><i class='fa-solid fa-pen'></i></button>
-                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button></td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+    <div class="items-table__scroll">
+            <table class="items-table">
+                <thead>
+                <tr><th>Slot No</th>
+                    <th >Date</th>
+                    <th >Day</th>
+                    <th >From Time</th>
+                    <th >To Time</th>
+                </tr>
+                </thead>
+
+
+                    <?php foreach ($timeslots as  $value) { ?>
+                        <tr>
+                            <td><?php echo $value['slot_number']; ?></td>
+                            <td><?php echo $value['date']; ?></td>
+                            <td><?php echo date('l', strtotime($value['date'])); ?></td>
+                            <td><?php echo $value['from_time']; ?></td>
+                            <td><?php echo $value['to_time']; ?></td>
+                            <td id='action-block'>
+                                <button id='edit-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" data-date="<?php echo $value['date'];?>" data-fromtime="<?php echo $value['from_time']; ?>" data-totime="<?php echo $value['to_time']; ?>" class='action-btn action-btn--edit timeslot-edit'><i class='fa-solid fa-pen'></i></button>
+                                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button></td>
+                        </tr>
+                    <?php } ?>
+            </table>
+    </div>
     <form class="timeslots-form" action="/doctor-dashboard/timeslots" id="add-timeslot-form" method="POST">
         <table>
             <tr>

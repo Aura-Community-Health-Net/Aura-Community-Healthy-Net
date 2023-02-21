@@ -290,7 +290,7 @@ class ProfileController extends Controller
 
     public function ConsumerServicesDoctorProfile(): bool|array|string
     {
-
+        //print_r($_GET);die();
         $provider_nic = $_GET['provider_nic'];
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];

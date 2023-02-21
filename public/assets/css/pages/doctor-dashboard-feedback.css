@@ -39,3 +39,10 @@
     padding-right: 1rem;
     padding-bottom: 1rem;
 }
+.doctor-feedbacks__data table,.doctor-feedbacks__data tr,.doctor-feedbacks__data td{
+    height: 50px;
+    width: 1000px;
+}
+.doctor-feedbacks__data td{
+    text-align: center;
+}
