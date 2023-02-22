@@ -29,13 +29,19 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         $id = $product['product_id'];
         $name = $product['name'];
         $categoryId = $product['category_id'];
-        echo "<tr>
-       
+        $quantity = $product['quantity'];
+        $quantity_unit = $product['quantity_unit'];
+        $stock = $product['stock'];
+        $stock_unit = $product['stock_unit'];
+
+
+        echo "<tr data-productid='$id' data-productname='$name' data-productquantity='$quantity' data-productquantity_unit='$quantity_unit' data-productprice='$price' data-productstock = '$stock' data-productstock_unit = '$stock_unit'>
+        
         <td id='image-block'>
         <img src='{$product["image"]}' alt='' class='products-img'>
         </td>
-        <td>{$id}</td>
-        <td>{$name}</td>
+        <td >{$id}</td>
+        <td >{$name}</td>
         <td>{$product['quantity']} {$product['quantity_unit']} </td> 
         <td>{$price}</td>
         <td>{$product['stock']} {$product['stock_unit']}</td>

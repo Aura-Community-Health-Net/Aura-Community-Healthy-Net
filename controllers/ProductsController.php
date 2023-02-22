@@ -171,9 +171,16 @@ class ProductsController extends Controller
         $product_id = $_GET["productId"];
         $category_id = $_GET["categoryId"];
 
+        $name = $_POST['name'];
+        $quantity = $_POST['quantity'];
+        $quantity_unit = $_POST['quantity_unit'];
+        $price = $_POST['price'] * 100;
+        $stock = $_POST['stock'];
+        $stock_unit = $_POST['stock_unit'];
+
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE product SET  WHERE product_id = ? AND provider_nic");
-        $stmt->bind_param("ds", $product_id, $nic);
+        $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ?,stock = ?, stock_unit = ? WHERE product_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ssdsdsds", $name, $quantity, $price, $quantity_unit, $stock, $stock_unit, $product_id, $nic);
         $stmt-> execute();
         $result = $stmt->get_result();
         header("location: /product-seller-dashboard/products?category=$category_id");
