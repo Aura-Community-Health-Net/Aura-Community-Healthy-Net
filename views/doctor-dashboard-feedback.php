@@ -14,17 +14,22 @@
 </head>
 <div class="doctor-feedbacks__container">
 <div class="doctor-feedbacks">
-    <?php foreach ($feedback as $value) { ?>
-            <div class="doctor-feedbacks__data__container">
-                <div class="doctor-feedbacks__data">
-                    <img src="/assets/images/profilepic3.jpg">
-                    <h3><b><?php echo $value['name'];?></b></h3>
-                    <h4><?php echo $value['date_time'];?></h4>
-                </div>
-                <p> <?php echo $value['text'];?></p>
-            </div>
 
-    <?php } ?>
+            <?php foreach ($feedback as $value) { ?>
+                <div class="doctor-feedbacks__data__container">
+                    <div class="doctor-feedbacks__data">
+                        <table>
+                            <tr>
+                                <td><img src="/assets/images/profilepic3.jpg"></td>
+                                <td><h3><b><?php echo $value['name'];?></b></h3></td>
+                                <td><h4><?php echo $value['date_time'];?></h4></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p> <?php echo $value['text'];?></p>
+                </div>
+
+            <?php } ?>
 </div>
 
 </div>

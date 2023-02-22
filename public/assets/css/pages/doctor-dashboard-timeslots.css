@@ -4,6 +4,11 @@
 .doctor-timeslots tr{
     height: 35px;
 }
+.items-table__scroll{
+    overflow: auto;
+    height: 350px;
+    width: 1200px;
+}
 
 .timeslots-form{
     background-color: #EFEEFD;

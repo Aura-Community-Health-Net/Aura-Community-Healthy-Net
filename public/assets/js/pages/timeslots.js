@@ -14,6 +14,9 @@ const edittimeslotModal = document.querySelector("#edit-timeslot-modal");
 const edittimeslotOverlay = document.querySelector("#edit-timeslot-overlay");
 const edittimeslotButtons = document.querySelectorAll(".timeslot-edit");
 
+
+
+
 addtimeslotModalButton.addEventListener("click", () => {
     addtimeslotModal.style.display = "block";
     addtimeslotOverlay.style.display = "block";
@@ -146,6 +149,17 @@ function attachEditButtonListener(button){
         const slotNo = button.dataset.slot;
         console.log(slotNo)
 
+        const date =button.dataset.date;
+        console.log(date);
+
+        const fromTime =button.dataset.fromtime;
+        console.log(fromTime);
+
+        const toTime =button.dataset.totime;
+        console.log(toTime);
+
+
+
 
         edittimeslotModal.innerHTML = `<h3>Enter the details to Edit</h3>
 <form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" class="timeslots-form"  id="edit-timeslot-form" method="POST">
@@ -162,7 +176,7 @@ function attachEditButtonListener(button){
                        <td><input type="date" id="edit-date" name="edit-date"></td>
                        <td><input type="time" id="edit-from-time" name="edit-fromTime"></td>
                        <td><input type="time" id="edit-to-time" name="edit-toTime"></td>
-                   </tr>
+                   </tr>           
             </tbody>
         </table>
 
@@ -173,6 +187,10 @@ function attachEditButtonListener(button){
 </form>
         </div>
         `;
+        document.getElementById("edit-date").value = date;
+        document.getElementById("edit-from-time").value = fromTime;
+        document.getElementById("edit-to-time").value = toTime;
+
         const editCancelBtn = edittimeslotModal.querySelector("#edit-cancel-btn");
         editCancelBtn.addEventListener("click", (e) => {
             console.log("click on cancel button");
@@ -185,4 +203,23 @@ function attachEditButtonListener(button){
     });
 }
 
+function timeSlotDate(val){
+    console.log(val);
+        var  filter, table, tr, td, i, txtValue;
+        filter = val;
+        table = document.getElementById("doctor-available-slot");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+}
 edittimeslotButtons.forEach(attachEditButtonListener);
