@@ -163,32 +163,38 @@ function attachUpdateButtonListener(button){
     // alert(`Product id is ${element.id}, Product name is ${element.dataset.productname}`)
     const productId = button.dataset.productid;
     const productName = button.dataset.productname;
+    const tr = button.parentElement.parentElement;
+    console.log(tr.dataset)
     console.log(productId)
     const categoryID = button.dataset.categoryid;
-
+    // <label className="form-input__label" htmlFor="">Product Image</label>
+    // <input type="file" id="image" name="image" style="display: none; visibility: hidden" accept="image/*"
+    //        required>
+    //   <div className="form-upload-component">
+    //     <button className="upload-btn" id="image-btn" type="button">
+    //       <i className="fa-solid fa-plus add-icon"></i>
+    //     </button>
+    //     <div id="image-filename"></div>
+    //   </div>
     updateProductModal.innerHTML = `
          <h3>Update product information for ${productName}</h3>
         <div class="modal-actions">
             <form class="product-update-form" action="/product-seller-dashboard/products/update?productId=${productId}&categoryId=${categoryID}" method="post">
-                <label class="form-input__label" for="">Product Image</label>
-                <input type="file" id="image" name="image" style="display: none; visibility: hidden" accept="image/*"
-                    required>
-                <div class="form-upload-component">
-                    <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
-                    </button>
-                    <div id="image-filename"></div>
-                </div>
+
                 <label class="form-input__label" for="">Product Name</label>
-                <input  class="form-input__input" type="text">
+                <input  class="form-input__input" type="text" name="name" value="${tr.dataset.productname}">
                 <label class="form-input__label" for="">Quantity</label>
-                <input class="form-input__input" type="text">
+                <input class="form-input__input" type="text" name="quantity" value="${tr.dataset.productquantity}">
+                <label class="form-input__label" for="">Quantity Unit</label>
+                <input class="form-input__input" type="text" name="quantity_unit" value="${tr.dataset.productquantity_unit}">                
                 <label class="form-input__label" for="">Price</label>
-                <input class="form-input__input" type="text">
+                <input class="form-input__input" type="text" name="price" value="${tr.dataset.productprice}">
                 <label class="form-input__label" for="">Stock</label>
-                <input class="form-input__input" type="text">
+                <input class="form-input__input" type="text" name="stock" value="${tr.dataset.productstock}">
+                <label class="form-input__label" for="">Stock Unit</label>
+                <input class="form-input__input" type="text" name="stock_unit" value="${tr.dataset.productstock_unit}">                
                 <div class="update-btn-section">
-                    <button class="cancel-btn" id="update-cancel-btn">Cancel</button>
+                    <button class="cancel-btn" id="update-cancel-btn" type="button">Cancel</button>
                     <button class="ok-btn" id="update-ok-btn">Ok</button>
                 </div>
             </form>
