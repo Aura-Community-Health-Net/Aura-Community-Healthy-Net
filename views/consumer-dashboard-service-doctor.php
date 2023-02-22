@@ -33,7 +33,6 @@
                         <div>
                             <p><?php echo $value['field_of_study']; ?></p>
                         </div>
-                        <?php echo $nic?>
                         <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo$nic ?>">
                             <button>Make Appointment</button>
                         </a>

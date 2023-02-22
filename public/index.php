@@ -155,6 +155,7 @@ $app->router->get('/consumer-dashboard/services/doctor', [ProfileController::cla
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'ConsumerServicesDoctorProfile']);
 $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'ConsumerServicesDoctorProfilePayment']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);

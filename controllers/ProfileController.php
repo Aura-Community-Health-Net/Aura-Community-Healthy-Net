@@ -323,7 +323,7 @@ class ProfileController extends Controller
             $result = $stmt->get_result();
             $feedback = $result->fetch_all(MYSQLI_ASSOC);
 
-            if (isset($_GET['feedback-btn'])){
+            if (isset($_GET['doctor-feedback-btn'])){
                 $doctorFeedback = $_GET['doctor-feedback'];
                 $feedbackDatetime = $_GET['feedback-datetime'];
 
@@ -346,6 +346,51 @@ class ProfileController extends Controller
             "doctor" => $doctor,
             "time_slot" => $time_slot,
             "feedback" => $feedback,
+            "active_link" => "profile",
+            "title" => "Doctor"
+        ]);
+    }
+
+    public function ConsumerServicesDoctorProfilePayment(): bool|array|string
+    {
+        //print_r($_GET);
+        $provider_nic = $_GET['provider_nic'];
+        $slot_number = $_GET['available-time-slot'];
+        $done = $confirmation = 0;
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("INSERT INTO appointment (
+                      done,
+                      confirmation,
+                      provider_nic)VALUES (?,?,?)");
+            $stmt->bind_param("iis", $done,$confirmation,$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $result2 = $stmt->insert_id;
+
+            //print_r($appointment);die();
+            $appointment_id = $result2;
+            $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
+                               WHERE slot_number = $slot_number");
+            $stmt->bind_param("s",$appointment_id );
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor-profile-payment', layout: "consumer-dashboard-layout", layoutParams: [
+            "consumer" => $consumer,
             "active_link" => "profile",
             "title" => "Doctor"
         ]);

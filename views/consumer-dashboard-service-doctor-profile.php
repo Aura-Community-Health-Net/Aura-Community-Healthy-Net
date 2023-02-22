@@ -8,9 +8,9 @@ if (!isset($_GET['doctor-feedback-btn'])){
     $provider_nic = $_GET['provider_nic'];
 }
 
-/*if (!isset($_GET['doctor-pay-btn'])){
+if (!isset($_GET['doctor-pay-btn'])){
     $provider_nic = $_GET['provider_nic'];
-}*/
+}
 //print_r($feedback);die();
 //print_r($time_slot);die();
 //print_r($doctor);die();
@@ -36,6 +36,7 @@ if (!isset($_GET['doctor-feedback-btn'])){
                     </div>
                 </td>
                 <td>
+                    <form action="/consumer-dashboard/services/doctor/profile/payment" method="get">
                         <div class="consumer-dashboard-doctor-profile__top__right">
                             <h4>Available Time-Slots</h4>
                             <div class="consumer-dashboard-doctor-profile__top__right__dropdown">
@@ -50,7 +51,7 @@ if (!isset($_GET['doctor-feedback-btn'])){
                                             <td><?php echo $value['from_time']?></td>
                                             <td><?php echo $value['to_time']?></td>
                                             <td><?php echo " ";?></td>
-                                            <td><input type="radio"></td>
+                                            <td><input type="radio" value="<?php echo $value['slot_number'];?>" name="available-time-slot"></td>
                                         </tr>
                                     <?php } ?>
                                 </table>
@@ -62,8 +63,11 @@ if (!isset($_GET['doctor-feedback-btn'])){
                                 </div>
                             </div>
                             <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00 for an appointment</p>
-                            <a href="/consumer-dashboard/services/doctor/profile/payment"><button name="doctor-pay-btn">Continue to Pay</button></a>
+                            <a href="/consumer-dashboard/services/doctor/profile/payment">
+                                <input name="provider_nic" value="<?php echo $provider_nic?>" type="text" hidden >
+                                <button name="doctor-pay-btn">Continue to Pay</button></a>
                         </div>
+                    </form>
                 </td>
             </tr>
         </table>
