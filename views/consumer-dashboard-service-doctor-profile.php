@@ -4,11 +4,13 @@
  * @var $time_slot;
  * @var $feedback;
  */
+//print_r($_SESSION);
 if (!isset($_GET['doctor-feedback-btn'])){
     $provider_nic = $_GET['provider_nic'];
 }
 
 if (!isset($_GET['doctor-pay-btn'])){
+    $consumer_nic = $_SESSION['nic'];
     $provider_nic = $_GET['provider_nic'];
 }
 //print_r($feedback);die();
@@ -51,7 +53,8 @@ if (!isset($_GET['doctor-pay-btn'])){
                                             <td><?php echo $value['from_time']?></td>
                                             <td><?php echo $value['to_time']?></td>
                                             <td><?php echo " ";?></td>
-                                            <td><input type="radio" value="<?php echo $value['slot_number'];?>" name="available-time-slot"></td>
+                                            <td><input type="radio" value="<?php echo $value['slot_number'];?>" name="available-time-slot">
+                                            <input type="text" value="<?php echo $consumer_nic;?>" name="consumer_nic" hidden></td>
                                         </tr>
                                     <?php } ?>
                                 </table>

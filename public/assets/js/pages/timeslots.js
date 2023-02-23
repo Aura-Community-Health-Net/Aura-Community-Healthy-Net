@@ -203,6 +203,8 @@ function attachEditButtonListener(button){
     });
 }
 
+edittimeslotButtons.forEach(attachEditButtonListener);
+
 function timeSlotDate(val){
     console.log(val);
         var  filter, table, tr, td, i, txtValue;
@@ -222,4 +224,7 @@ function timeSlotDate(val){
         }
 
 }
-edittimeslotButtons.forEach(attachEditButtonListener);
+
+function ConfirmAppointment(val){
+    console.log(val);
+}

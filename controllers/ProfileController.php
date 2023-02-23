@@ -353,8 +353,9 @@ class ProfileController extends Controller
 
     public function ConsumerServicesDoctorProfilePayment(): bool|array|string
     {
-        //print_r($_GET);
+        //print_r($_GET);die();
         $provider_nic = $_GET['provider_nic'];
+        $consumer_nic = $_GET['consumer_nic'];
         $slot_number = $_GET['available-time-slot'];
         $done = $confirmation = 0;
         $nic = $_SESSION["nic"];
@@ -373,8 +374,9 @@ class ProfileController extends Controller
             $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
                       confirmation,
-                      provider_nic)VALUES (?,?,?)");
-            $stmt->bind_param("iis", $done,$confirmation,$provider_nic);
+                      provider_nic,
+                      consumer_nic)VALUES (?,?,?,?)");
+            $stmt->bind_param("iiss", $done,$confirmation,$provider_nic,$consumer_nic);
             $stmt->execute();
             $result = $stmt->get_result();
 

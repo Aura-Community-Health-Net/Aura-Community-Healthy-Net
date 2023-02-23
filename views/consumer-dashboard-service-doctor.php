@@ -4,6 +4,13 @@
  *
  */
 //print_r($doctor);die();
+//print_r($_SESSION['nic']);die();
+
+if (!isset($_GET['doctor-appointment-btn'])){
+    $consumer_nic = $_SESSION['nic'];
+}
+
+
 ?>
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
@@ -23,22 +30,24 @@
         </form>
     </div>
     <div class="doctor__card-details">
-        <div class="doctor-container">
-            <?php foreach ($doctor as $value) {
+            <div class="doctor-container">
+                <?php foreach ($doctor as $value) {
                     $nic = $value['provider_nic'];?>
-                <div class="doctor-card">
-                    <img src="/assets/images/profilepic2.jpg">
-                    <div class="consumer-dashboard-doctor__bottom__center__data">
-                        <h2><?php echo $value['name']; ?></h2>
-                        <div>
-                            <p><?php echo $value['field_of_study']; ?></p>
+                    <div class="doctor-card">
+                        <img src="/assets/images/profilepic2.jpg">
+                        <div class="consumer-dashboard-doctor__bottom__center__data">
+                            <h2><?php echo $value['name']; ?></h2>
+                            <div>
+                                <p><?php echo $value['field_of_study']; ?></p>
+                            </div>
+                            <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo$nic ?>">
+                                <button name="doctor-appointment-btn">Make Appointment</button>
+                            </a>
                         </div>
-                        <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo$nic ?>">
-                            <button>Make Appointment</button>
-                        </a>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
+
     </div>
 </div>
 
