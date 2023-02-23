@@ -19,7 +19,7 @@
 }
 
 .provider__overview-detail{
-    background-color: #EFEEFD;
+    background-color: #D9D9F9;
     padding: 1rem 2rem;
     border-radius: 8px;
     text-align: center;
@@ -65,6 +65,14 @@
     display: flex;
     gap: 3rem;
     align-items: center;
+}
+
+.overview-items p{
+    width: 5rem;
+}
+
+.overview-items .overview-items__name{
+    width: 7rem;
 }
 
 .overview-items img{

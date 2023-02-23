@@ -33,6 +33,7 @@ use app\controllers\ProfileController;
 use app\controllers\FeedbacksController;
 use app\controllers\ProductsController;
 
+use app\controllers\CartController;
 
 // Implementing environment variable loading
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -150,8 +151,13 @@ $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::c
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
 $app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
+
+//for cart
+$app->router->get('/cart/add', [CartController::class, 'addToCart']);
+
 //  Run the application
 $app->run();
+
 
 ?>
 
