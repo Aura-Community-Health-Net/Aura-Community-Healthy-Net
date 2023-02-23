@@ -17,6 +17,7 @@ class AuthController extends Controller
         switch ($providerType) {
             #region Doctor Signup
             case 'doctor':
+                print_r($_POST);
                 $name = $_POST["doc-name"];
                 $nic = $_POST["nic"];
                 $email = $_POST["email"];
@@ -32,7 +33,7 @@ class AuthController extends Controller
                 $branch_name = $_POST["branch-name"];
                 $password = $_POST["password"];
                 $con_password = $_POST["con-password"];
-                //$western = $_POST["western"];
+                $doctor_type = $_POST['doctor_type'];
 
 
                 $certificate = $_FILES["certificate"];
@@ -118,7 +119,7 @@ class AuthController extends Controller
                             provider_type) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $profilePic = "/uploads/$new_file_name2";
-                    $type = 'doctor';
+                    $type = "doctor";
                     $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
@@ -127,7 +128,7 @@ class AuthController extends Controller
 
                     $certificate = "/uploads/$new_file_name1";
                     $stmt = $db->connection->prepare("INSERT INTO doctor (provider_nic, slmc_reg_no, field_of_study, certificate_of_mbbs, type) VALUES ( ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $certificate, $type);
+                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $certificate, $doctor_type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 

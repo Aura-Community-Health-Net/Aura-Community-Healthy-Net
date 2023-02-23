@@ -17,6 +17,11 @@
     justify-content: center;
     border-radius: 10px;
 }
+.appointment-list__item__scroll{
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 330px;
+}
 .doctor-dashboard__left__top__data{
     background-color: #ffffff;
     margin-bottom: 10px;
@@ -98,8 +103,8 @@
     margin-bottom: 1rem;
     background-color: #ffF;
     border-radius: 8px;
-    width: 75%;
-    padding: 0.5rem .5rem;
+    width: 95%;
+    padding: 0.5rem 0.5rem;
 }
 .doctor-dashboard__patients__count{
     background-color: #ffffff;

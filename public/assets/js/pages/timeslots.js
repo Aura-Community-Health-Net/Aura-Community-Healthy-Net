@@ -225,6 +225,4 @@ function timeSlotDate(val){
 
 }
 
-function ConfirmAppointment(val){
-    console.log(val);
-}
+

@@ -67,19 +67,25 @@ class DoctorAppointmentsController extends Controller
         $appointment_details = $result->fetch_all(MYSQLI_ASSOC);
 
         $confirm = 1;
-        $appointment_id = $_GET['appointment_id'];
-        $stmt = $db->connection->prepare("UPDATE appointment SET confirmation = ?
-                               WHERE appointment_id = $appointment_id");
-        $stmt->bind_param("i",$confirm );
-        $stmt->execute();
-        $result = $stmt->get_result();
+        //print_r($_GET);
+        if(empty($_GET)){
+            $empty = $_GET;
+        }else{
+            $appointment_id = $_GET['appointment_id'];
+            $stmt = $db->connection->prepare("UPDATE appointment SET confirmation = ?
+                               WHERE appointment_id = ?");
+            $stmt->bind_param("ii",$confirm,$appointment_id );
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }
+
         //print_r($appointment_details);die();
         /*var_dump($timeslots);
         exit();*/
         return self::render(view: 'doctor-dashboard-appointments', layout: "doctor-dashboard-layout", params: ["appointments_details"=>$appointment_details
         ], layoutParams: [
             "title" => "Appointments",
-            //"active_link" => "appointments",
+            "active_link" => "appointments",
             "appointments_details" => $appointment_details,
             "doctor" => $doctor
         ]);

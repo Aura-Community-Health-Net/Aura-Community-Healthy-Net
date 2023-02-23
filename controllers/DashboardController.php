@@ -129,4 +129,40 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    public static function DoctorDashboard(): array |bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $provideType = $_SESSION["user_type"];
+        if (!$nic || $provideType !== "doctor") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor = $result->fetch_assoc();
+
+            $confirmation = 1;
+            $done = 0;
+
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = ? && appointment.done = ?");
+            $stmt->bind_param("sii", $nic,$confirmation,$done);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $appointment = $result->fetch_all(MYSQLI_ASSOC);
+
+            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
+                "doctor" => $doctor,"appointment"=>$appointment],
+                layoutParams:[
+                    "title" => "Dashboard",
+                    "active_link" => "dashboard",
+                    "doctor" => $doctor,
+                    "appointment"=>$appointment
+                ]);
+
+        }
+    }
 }

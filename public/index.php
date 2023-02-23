@@ -125,6 +125,7 @@ $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'g
 $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, 'Profile']);
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
+$app->router->get('/doctor-dashboard', [DashboardController::class, 'DoctorDashboard']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
 $app->router->post('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);

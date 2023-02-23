@@ -123,16 +123,16 @@
         <div class="provider-signup-form__bottom__top">
             <div class="western">
                 <label>Western</label>
-                <input type="radio" name="western" id="western">
+                <input type="radio" value="Western" name="doctor_type" id="western">
             </div>
 
             <div class="indigenous">
                 <label>Indigenous</label>
-                <input type="radio" name="indigenous" id="indigenous">
+                <input type="radio" value="Indigenous" name="doctor_type" id="indigenous">
             </div>
             <div class="counselor">
                 <label>Counselor</label>
-                <input type="radio" name="counselor" id="counselor">
+                <input type="radio" value="Counselor" name="doctor_type" id="counselor">
             </div>
         </div>
 
@@ -152,7 +152,7 @@
 
 
         <div id="form-input">
-            <button id="reg-btn" class="btn" style="background-color: #00005C">Register</button>
+            <button id="reg-btn" type="submit" class="btn" style="background-color: #00005C">Register</button>
         </div>
     </div>
 </form>

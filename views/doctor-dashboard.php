@@ -1,33 +1,28 @@
 <?php
 /**
  *@var $doctor;
+ * @var $appointment;
  */
-if (!$doctor['is_verified']) {
+/*if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
-}
+}*/
 
+//print_r($doctor);
+//print_r($appointment);die();
 ?>
 
 <div class="doctor-dashboard">
         <div class="doctor-dashboard__left__top">
-            <h3>New Appointment List</h3>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
+                <h3>New Appointment List</h3>
+            <div class="appointment-list__item__scroll">
+                <?php foreach ($appointment as  $value) { ?>
+                    <div class="appointment-list__item">
+                        <img src="/assets/images/profilepic1.jpg">
+                        <h5><b><?php echo $value['name']?></b><br>
+                            <?php echo $value['mobile_number']?></h5>
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 

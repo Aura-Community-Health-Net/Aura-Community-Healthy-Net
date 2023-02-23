@@ -39,7 +39,7 @@ if (isset($_GET['appointment_confirm_btn'])){
                             <form action="/doctor-dashboard/appointments" method="GET">
                                 <button style="background-color: #0002A1">Cancel</button>
                                 <input name="appointment_id" value="<?php echo $value['appointment_id']?>" type="text" hidden >
-                                <button name="appointment_confirm_btn" style="background-color: #00005C ">Confirm</button>
+                                <button name="appointment_confirm_btn" style="background-color: #00005C " onclick="window.location.reload()">Confirm</button>
                             </form>
 
                         </div>
