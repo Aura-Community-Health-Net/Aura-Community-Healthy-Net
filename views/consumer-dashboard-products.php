@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var array | null $products
+ * @
+ */
+
+$products = is_null($products) ? [] : $products;
+?>
+
+
 <form action="" class="form-item--search">
     <div class="search-bar">
         <input type="text" placeholder="Search Product..." name="search">
@@ -13,161 +23,32 @@
 </form>
 
 <div class="consumer-product__grid-container">
-    <div class="product__grid-item">
-        <img src="/assets/images/vali anoda.jfif" alt="">
+    <?php
+    foreach ($products as $product){
+        $product_id = $product['product_id'];
+        $product_name = $product['name'];
+        $product_quantity = $product['quantity'];
+        $product_price = $product['price']/100;
+        $product_quantity_unit = $product['quantity_unit'];
+        $product_image = $product['image'];
+        $business_name = $product['business_name'];
+        echo "<div class='product__grid-item'>
+        <img src='$product_image' alt=''>
         <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
+            <h2>$product_name</h2>
+            <h3>$product_quantity $product_quantity_unit</h3>
+            <h1>Rs. $product_price</h1>
+            <h3>$business_name</h3>
+            <a href='/products/view?id=$product_id' class='product-select-btn'>Select</a>
         </div>
         
-    </div>
+    </div>";
+    }
+    ?>
+
     
-    <div class="product__grid-item">
-        <img src="/assets/images/nelli.jfif" alt="">
-        <div>
-            <h2>Nelli</h2>
-            <h3>100 g</h3>
-            <h1>Rs. 250.00</h1>
-            <h3>Kamal Products</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-    
-    <div class="product__grid-item">
-        <img src="/assets/images/kolakanda.jpg" alt="">
-        <div>
-            <h2>Kola Kanda</h2>
-            <h3>1 l</h3>
-            <h1>Rs. 200.00</h1>
-            <h3>Kitchen House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/curry-leaves.jpg" alt="">
-        <div>
-            <h2>Curry Leaves</h2>
-            <h3>100 g</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/porridge.jfif" alt="">
-        <div>
-            <h2>Porridge</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/ranawara.jpg" alt="">
-        <div>
-            <h2>Ranawara</h2>
-            <h3>1 l</h3>
-            <h1>Rs. 180.00</h1>
-            <h3>Senith Products</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/cashew.jfif" alt="">
-        <div>
-            <h2>Cashews</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 1000.00</h1>
-            <h3>Naturi</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/vali anoda.jfif" alt="">
-        <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/nelli.jfif" alt="">
-        <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/kolakanda.jpg" alt="">
-        <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/curry-leaves.jpg" alt="">
-        <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/nelli.jfif" alt="">
-        <div>
-            <h2>Vali Anoda</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 150.00</h1>
-            <h3>Sumudu House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/sesame.jpg" alt="">
-        <div>
-            <h2>Sesame</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 650.00</h1>
-            <h3>Lakmal Foods</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
-
-    <div class="product__grid-item">
-        <img src="/assets/images/pachchaperumal.jfif" alt="">
-        <div>
-            <h2>Pachchaperumal</h2>
-            <h3>1 kg</h3>
-            <h1>Rs. 550.00</h1>
-            <h3>Comida House</h3>
-            <a href="/products/view?id=10" class="product-select-btn">Select</a>
-        </div>
-    </div>
+<!--
+-->
 
 
 </div>
