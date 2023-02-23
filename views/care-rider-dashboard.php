@@ -1,3 +1,15 @@
+
+<?php
+/**
+ *@var array $care_rider
+ *@var string $active_link
+ */
+if (!$care_rider['is_verified']) {
+echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 

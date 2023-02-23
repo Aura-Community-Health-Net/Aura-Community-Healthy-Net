@@ -74,7 +74,7 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $care_rider = $result->fetch_assoc();
 
-            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout", layoutParams: [
+            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider], layoutParams: [
                 "care_rider" => $care_rider,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"

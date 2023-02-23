@@ -1,5 +1,4 @@
-<form id="reg-form" class="provider-signup-form" action="/provider-register?provider_type=care-rider" method="post"
-    enctype="multipart/form-data">
+<form id="reg-form" class="provider-signup-form" action="/provider-register?provider_type=care-rider" method="post" enctype="multipart/form-data">
     <div class="title">
         <h2 class="title-text">Register as Care Rider</h2>
     </div>
