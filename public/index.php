@@ -106,11 +106,12 @@ $app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsCon
 $app->router->get('/care-rider-dashboard/timeslots', [CareRiderTimeslotsController::class, 'getCareRiderTimeslotsPage']);
 $app->router->post('/care-rider-dashboard/timeslots', [CareRiderTimeslotsController::class, 'addCareRiderTimeslot']);
 //                                     Timeslots-delete
-$app->router->post('/care-rider-dashboard/timeslots-delete', [CareRiderTimeslotsController::class, 'deleteCareRiderTimeslot']);
+$app->router->post('/care-rider-dashboard/timeslot/delete', [CareRiderTimeslotsController::class, 'deleteCareRiderTimeSlots']);
 //                                    Timeslots-updates
-$app->router->get('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsController::class, 'getUpdatePopup']);
-$app->router->post('/care-rider-dashboard/timeslots-update', [CareRiderTimeslotsController::class, 'updateTimeSlot']);
-//                                  New-Requests
+$app->router->get('/care-rider-dashboard/timeslot/update', [CareRiderTimeslotsController::class, 'UpdateCareRiderTimeSlots']);
+
+
+//            Consumer-Care-Rider
 $app->router->get('/care-rider-dashboard/new-requests', [CareRiderNewRequestsController::class, 'getNewRequestsPage']);
 $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'getCareRiderProfilePage']);
 $app->router->get('/care-rider-dashboard/analytics', [AnalyticsController::class, 'getCareRiderAnalyticsPage']);

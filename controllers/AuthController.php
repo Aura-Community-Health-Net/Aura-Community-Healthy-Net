@@ -384,7 +384,7 @@ class AuthController extends Controller
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirm_password"];
 
-                $file1 = $_FILES["image"];
+                $file1 = $_FILES["profile_pic"];
                 $file_name1 = $file1["name"];
                 $file_tmp_name1 = $file1["tmp_name"];
 
@@ -437,12 +437,12 @@ class AuthController extends Controller
                     $role = "care-rider";
                     $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $role);
                     $stmt->execute();
-
-                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic, 
-                                                    driving_licence_number
-                                                    )VALUES ( ?, ?)");
-                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
-                    $stmt->execute();
+//
+//                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic,
+//                                                    driving_licence_number
+//                                                    )VALUES ( ?, ?)");
+//                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
+//                    $stmt->execute();
                     $_SESSION["nic"] = $nic;
                     $_SESSION["user_type"] = "Care Rider";
                     $_SESSION["is_admin"] = false;
