@@ -1,21 +1,22 @@
 <?php
 /**
  *@var $doctor;
- * @var $appointment;
+ * @var $appointment_confirm;
+ * @var $appointment_done;
  */
 /*if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }*/
 
 //print_r($doctor);
-//print_r($appointment);die();
+//print_r($appointment_done);die();
 ?>
 
 <div class="doctor-dashboard">
         <div class="doctor-dashboard__left__top">
                 <h3>New Appointment List</h3>
             <div class="appointment-list__item__scroll">
-                <?php foreach ($appointment as  $value) { ?>
+                <?php foreach ($appointment_confirm as  $value) { ?>
                     <div class="appointment-list__item">
                         <img src="<?php echo $value['profile_picture']?>">
                         <h5><b><?php echo $value['name']?></b><br>
@@ -50,21 +51,16 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
 
     <div class="doctor-dashboard__left__bottom">
         <h3>Past Patients List</h3>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
+        <div class="doctor-dashboard__patients__list__scroll">
+            <?php foreach ($appointment_done as  $value) { ?>
+                    <div class="doctor-dashboard__patients__list">
+                        <img src="<?php echo $value['profile_picture']?>">
+                        <h5><b><?php echo $value['name']?></b><br>
+                            <?php echo $value['mobile_number']?></h5>
+                    </div>
+            <?php } ?>
         </div>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
-        </div>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
-        </div>
+
     </div>
 
         <div class="doctor-dashboard__center__bottom">

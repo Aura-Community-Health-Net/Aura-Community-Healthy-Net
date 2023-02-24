@@ -17,10 +17,12 @@
     justify-content: center;
     border-radius: 10px;
 }
-.appointment-list__item__scroll{
+.appointment-list__item__scroll,.doctor-dashboard__patients__list__scroll{
+    margin-top: 0.75rem;
     overflow: scroll;
     overflow-x: hidden;
     width: 330px;
+    height: 200px;
 }
 .doctor-dashboard__left__top__data{
     background-color: #ffffff;
@@ -140,7 +142,7 @@
     margin-bottom: 1rem;
     background-color: #ffF;
     border-radius: 0.5rem;
-    width: 75%;
+    width: 95%;
     padding: 0.5rem .5rem;
 }
 .doctor-dashboard__consulted{

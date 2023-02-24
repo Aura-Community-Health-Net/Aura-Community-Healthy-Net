@@ -145,22 +145,28 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            $confirmation = 1;
-            $done = 0;
 
-            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = ? && appointment.done = ?");
-            $stmt->bind_param("sii", $nic,$confirmation,$done);
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = 1 && appointment.done = 0");
+            $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
-            $appointment = $result->fetch_all(MYSQLI_ASSOC);
+            $appointment_confirm = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = 1 && appointment.done = 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $appointment_done = $result->fetch_all(MYSQLI_ASSOC);
+            //print_r($appointment_done);die();
 
             return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
-                "doctor" => $doctor,"appointment"=>$appointment],
+                "doctor" => $doctor,"appointment_confirm"=>$appointment_confirm,"appointment_done"=>$appointment_done],
                 layoutParams:[
                     "title" => "Dashboard",
                     "active_link" => "dashboard",
                     "doctor" => $doctor,
-                    "appointment"=>$appointment
+                    "appointment_confirm"=>$appointment_confirm,
+                    "appointment_done"=>$appointment_done
                 ]);
 
         }
