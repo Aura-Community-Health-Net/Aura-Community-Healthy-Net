@@ -17,7 +17,7 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
             <div class="appointment-list__item__scroll">
                 <?php foreach ($appointment as  $value) { ?>
                     <div class="appointment-list__item">
-                        <img src="/assets/images/profilepic1.jpg">
+                        <img src="<?php echo $value['profile_picture']?>">
                         <h5><b><?php echo $value['name']?></b><br>
                             <?php echo $value['mobile_number']?></h5>
                         <i class="fa-solid fa-location-dot"></i>

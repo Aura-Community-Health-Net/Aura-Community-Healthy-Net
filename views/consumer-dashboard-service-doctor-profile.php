@@ -13,7 +13,7 @@ if (!isset($_GET['doctor-pay-btn'])){
     $consumer_nic = $_SESSION['nic'];
     $provider_nic = $_GET['provider_nic'];
 }
-//print_r($feedback);die();
+//print_r($feedback[0]);die();
 //print_r($time_slot);die();
 //print_r($doctor);die();
 ?>
@@ -23,7 +23,7 @@ if (!isset($_GET['doctor-pay-btn'])){
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__top__left">
-                        <img src="/assets/images/profilepic2.jpg">
+                        <img src="<?php echo $doctor['profile_picture']; ?>">
                         <div class="consumer-dashboard-doctor-profile__top__left__data">
                             <h3><b><?php echo $doctor['name']; ?></b></h3><br>
                             <h4><?php echo $doctor['field_of_study']; ?></h4>
@@ -82,7 +82,7 @@ if (!isset($_GET['doctor-pay-btn'])){
                     <div class="consumer-dashboard-doctor-profile__bottom__left">
                         <?php foreach ($feedback as  $value) { ?>
                         <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic5.jpg">
+                            <img src="<?php echo $value['profile_picture']?>">
                             <h3><b><?php echo $value['name']?></b></h3>
                             <h4><?php echo $value['date_time']?></h4>
                             <p><?php echo $value['text']?></p>

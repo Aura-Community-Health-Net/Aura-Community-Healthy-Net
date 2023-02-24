@@ -29,7 +29,7 @@ if (isset($_GET['appointment_confirm_btn'])){
             <div class="doctor-appointments__left">
 
                 <div class="doctor-appointments__left__data">
-                    <img src="/assets/images/profilepic1.jpg">
+                    <img src="<?php echo $value['profile_picture'];?>">
                     <p><?php echo $value['name'];?></p>
                     <p><?php echo $value['from_time']. " - " . $value['to_time'];?></p>
                     <p><?php echo $value['mobile_number'];?></p>
