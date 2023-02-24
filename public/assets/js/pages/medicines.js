@@ -22,13 +22,15 @@ const deleteMedicineCancelButton = document.querySelector("#delete-medicine-canc
 const updateMedicineModal = document.querySelector("#update-medicine-modal");
 const updateMedicineOverlay = document.querySelector("#update-medicine-overlay");
 
-const updateMedicineConfirmButton = document.querySelector("#update-medicine-ok-btn");
-const updateMedicineCancelButton = document.querySelector("#update-medicine-cancel-btn");
+// const updateMedicineConfirmButton = document.querySelector("#update-medicine-ok-btn");
+// const updateMedicineCancelButton = document.querySelector("#update-medicine-cancel-btn");
 
 
 
 const deleteMedicineButtons = document.querySelectorAll(".medicine-delete");
 const updateMedicineButtons = document.querySelectorAll(".medicine-update");
+
+const updateMedicineForm = document.querySelector("#update-medicine-form");
 
 
 deleteMedicineButtons.forEach(function (deleteMed_button){
@@ -37,7 +39,7 @@ deleteMedicineButtons.forEach(function (deleteMed_button){
           const splittedID = elementID.split("-");
 
           deleteMedicineModal.innerHTML = `
-              <h3>Do you really want to delete ${deleteMed_button.dataset.name}</h3>
+              <h3>Do you really want to delete ${deleteMed_button.dataset.medicinename}</h3>
             <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
             <div class="modal-actions">
               <button class="cancel-btn" id="delete-medicine-cancel-btn">Cancel</button>
@@ -71,6 +73,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
     const elementID = updateMed_Button.id;
     const splittedID = elementID.split("-");
+    const tr = updateMed_Button.parentElement.parentElement;
 
 
 
@@ -78,14 +81,29 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
     updateMedicineModal.innerHTML = `
 
-           <h3>Do you really want to update ${updateMed_Button.dataset.name}</h3>
-           <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
+           <h3>Update medicine information for ${updateMed_Button.dataset.medicinename}</h3>
             <div class="modal-actions">
-              <button class="cancel-btn" id="update-medicine-cancel-btn">Cancel</button>
+               <form class="medicine-update-form" action="/pharmacy-dashboard/medicines/update?med_id=${splittedID[2]}" method="post">
+                  <label class="form-input__label" for="">Medicine Image</label>
+                <label class="form-input__label" for="">Medicine Name</label>
+                <input  class="form-input__input" type="text" name="name" value="${tr.dataset.medicinename}">
+                <label class="form-input__label" for="">Quantity</label>
+                <input class="form-input__input" type="text" name="quantity" value="${tr.dataset.medicinequantity}">
+                <label class="form-input__label" for="">Quantity Unit</label>
+                <input class="form-input__input" type="text" name="quantity_unit" value="${tr.dataset.medicinequantity_unit}">
 
-               <form action="/pharmacy-dashboard/medicines/update?med_id=${splittedID[2]}" method="post">
-                       <button class="ok-btn" id="update-medicine-ok-btn"><a href="/pharmacy-dashboard/medicines/update-medicines">ok</a> </button>
+                <label class="form-input__label" for="">Price</label>
+                <input class="form-input__input" type="text" name="price" value="${tr.dataset.medicineprice}">
+                <label class="form-input__label" for="">Stock</label>
+                <input class="form-input__input" type="text" name="stock" value="${tr.dataset.medicinestock}">
+                <label class="form-input__label" for="">Stock Unit</label>
+                <input class="form-input__input" type="text" name="stock-unit" value="${tr.dataset.medicinesstock_unit}">
 
+                
+                <div class="update-btn-section">
+                    <button class="cancel-btn" id="update-medicine-cancel-btn" type="button">Cancel</button>
+                    <button class="ok-btn" id="update-medicine-ok-btn" type="submit">Ok</button>
+                </div>
                </form>
 
             <div>
@@ -126,10 +144,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
 
 
 
-// updateMedicineConfirmButton.addEventListener("click",()=>{
-//   window.location.href = 'http://localhost:8080/pharmacy-dashboard/medicines/update';
-//
-// })
+
 
 
 
@@ -246,6 +261,12 @@ function updateMedicineOpenModal()
   updateMedicineOverlay.classList.add("overlay-open");
 
 }
+
+//
+// updateMedicineConfirmButton.addEventListener("click", () => {
+//   console.log("Clicked add ok button")
+//   updateMedicineForm.submit();
+// });
 
 
 
