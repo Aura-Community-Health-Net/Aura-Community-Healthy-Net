@@ -1,12 +1,43 @@
+<?php
+
+/**
+ * @var array $medicines_list
+ * @var array $pharmacy_details
+ */
+
+$provider_image = $pharmacy_details['profile_picture'];
+$provider_name = $pharmacy_details['provider_name'];
+$pharmacy_name = $pharmacy_details['pharmacy_name'];
+$pharmacist_regNo = $pharmacy_details['pharmacist_reg_no'];
+$address = $pharmacy_details['address'];
+$med_image = $pharmacy_details['image'];
+$med_name = $pharmacy_details['name'];
+$med_quantity = $pharmacy_details['quantity'];
+$med_quantity_unit = $pharmacy_details['quantity_unit'];
+$med_price = $pharmacy_details['price'];
+
+
+
+
+?>
+
+
+
+
+
 <div class="item-top__container">
     <div class="item-top-left__container">
-        <img src="/assets/images/profilepic1.jpg" alt="">
-        <div class="provider__overview-detail">
-            <h2>Anuj Kumara</h2>
-            <h3>New Loyed Pharmacy</h3>
-            <p>Reg No : AP 2043</p>
-            <p>No.43, Wackwella Road, Galle</p>
-        </div>
+
+        <?php   echo "
+        <img src='$provider_image' alt=''>
+        <div class='provider__overview-detail'>
+            <h2>$provider_name</h2>
+            <h3>$pharmacy_name</h3>
+            <p>Reg No : $pharmacist_regNo</p>
+            <p>$address</p>
+        </div>";
+        ?>
+
     </div>
 
     <div class="item-top-right__container">
@@ -16,76 +47,30 @@
                 <i class="fa fa-search"></i>
             </div>
         </form>
-        <div class="overview-items">
-            <img src="/assets/images/alerid-10-mg-10-comprimate-terapia-1956.png" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
-        </div>
 
-        <div class="overview-items">
-            <img src="/assets/images/baclof-10mg-tablet-10.jpg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
+        <?php
+        foreach ($medicines_list as $medicines_list) {
 
-        </div>
+            $list_med_image = $medicines_list['image'];
+            $list_med_name = $medicines_list['name'];
+            $list_med_quantity = $medicines_list['quantity'];
+            $list_med_quantity_unit = $medicines_list['quantity_unit'];
+            $list_med_price = $medicines_list['price'];
 
-        <div class="overview-items">
-            <img src="/assets/images/drugs(1).jpg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
 
-        </div>
+            echo "    <div class='overview - items'>
+            <img src='$list_med_image' alt=''>
+            <p class='overview-items__name'>$list_med_name </p>
+            <p>$list_med_quantity  $list_med_quantity_unit</p>
+            <p>Rs. $list_med_price</p>
+        </div>";
 
-        <div class="overview-items">
-            <img src="/assets/images/exerdrin.jpg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
+        }
 
-        </div>
+        ?>
 
-        <div class="overview-items">
-            <img src="/assets/images/losartan.png" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
 
-        </div>
 
-        <div class="overview-items">
-            <img src="/assets/images/GASTREZZ-BOTTLE-1-1.png" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
-
-        </div>
-
-        <div class="overview-items">
-            <img src="/assets/images/zinc.jpg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
-
-        </div>
-
-        <div class="overview-items">
-            <img src="/assets/images/zaart.jpeg" alt="">
-            <p>AMOXICILLIN+CLAVULANIC ACID Tablet/ capsule </p>
-            <p>375 mg</p>
-            <p>375 mg</p>
-            <p>Rs. 52.00</p>
-
-        </div>
     </div>
 
 </div>

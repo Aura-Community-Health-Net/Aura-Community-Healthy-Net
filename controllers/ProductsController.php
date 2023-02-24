@@ -250,6 +250,9 @@ class ProductsController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
+
+
+
             $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
             $stmt->bind_param("d", $product_id);
             $stmt->execute();

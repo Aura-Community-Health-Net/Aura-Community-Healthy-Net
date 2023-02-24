@@ -161,7 +161,9 @@ $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getCo
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
-$app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
+
+$app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[ConsumerController::class,'getConsumerMedicinesPayment']);
+$app->router->get('/consumer-dashboard/service/pharmacy/view',[ConsumerController::class,'getConsumerPharmacyOverview']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
 
 //for cart
