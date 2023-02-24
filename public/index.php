@@ -133,6 +133,7 @@ $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsControlle
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'DoctorAppointments']);
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
+$app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'DoctorPatients']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'DoctorFeedback']);

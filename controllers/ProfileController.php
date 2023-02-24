@@ -311,11 +311,13 @@ class ProfileController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ? && appointment_id IS NULL");
             $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $time_slot = $result->fetch_all(MYSQLI_ASSOC);
+
+            //print_r($time_slot);die();
 
             $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
             $stmt->bind_param("s", $provider_nic);

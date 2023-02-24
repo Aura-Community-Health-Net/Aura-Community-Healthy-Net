@@ -24,12 +24,6 @@ class PatientsController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
         $doctor = $result->fetch_assoc();
-        $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ?");
-        $stmt->bind_param("s", $nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $timeslots = $result->fetch_all(MYSQLI_ASSOC);
-
         /*var_dump($timeslots);
         exit();*/
         return self::render(view: 'doctor-dashboard-patients', layout: "doctor-dashboard-layout", params: [
@@ -38,6 +32,44 @@ class PatientsController extends Controller
             "title" => "Patients",
             "active_link" => "doctor",
             "doctor" => $doctor
+        ]);
+    }
+
+
+    public static function DoctorPatients(): array|bool|string
+    {
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType != "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+
+        $db = new database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor = $result->fetch_assoc();
+
+
+        $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot INNER JOIN appointment ON doctor_time_slot.appointment_id = appointment.appointment_id INNER JOIN service_consumer ON service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.done = 1 GROUP BY appointment.consumer_nic ORDER BY doctor_time_slot.date DESC");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $patient_details = $result->fetch_all(MYSQLI_ASSOC);
+
+        //print_r($patient_details);die();
+
+        return self::render(view: 'doctor-dashboard-patients', layout: "doctor-dashboard-layout", params: [
+            "doctor" => $doctor,"patient_details"=>$patient_details
+        ], layoutParams: [
+            "title" => "Patients",
+            "active_link" => "doctor",
+            "doctor" => $doctor,
+            "patient_details"=>$patient_details
         ]);
     }
 }
