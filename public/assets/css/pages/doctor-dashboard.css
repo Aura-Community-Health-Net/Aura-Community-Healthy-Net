@@ -19,7 +19,7 @@
 }
 .appointment-list__item__scroll,.doctor-dashboard__patients__list__scroll{
     margin-top: 0.75rem;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     width: 330px;
     height: 200px;
