@@ -1,20 +1,21 @@
 <?php
-
 /**
- * @var array $medicines_list
- * @var array $pharmacy_details
+ * @var array $medicines
+ * @var array $pharmacy
  */
 
-$provider_image = $pharmacy_details['profile_picture'];
-$provider_name = $pharmacy_details['provider_name'];
-$pharmacy_name = $pharmacy_details['pharmacy_name'];
-$pharmacist_regNo = $pharmacy_details['pharmacist_reg_no'];
-$address = $pharmacy_details['address'];
-$med_image = $pharmacy_details['image'];
-$med_name = $pharmacy_details['name'];
-$med_quantity = $pharmacy_details['quantity'];
-$med_quantity_unit = $pharmacy_details['quantity_unit'];
-$med_price = $pharmacy_details['price'];
+
+
+$provider_image = $pharmacy['profile_picture'];
+$provider_name = $pharmacy['name'];
+$pharmacy_name = $pharmacy['pharmacy_name'];
+$pharmacist_regNo = $pharmacy['pharmacist_reg_no'];
+$address = $pharmacy['address'];
+//$med_image = $pharmacy['image'];
+//$med_name = $pharmacy['name'];
+//$med_quantity = $pharmacy['quantity'];
+//$med_quantity_unit = $pharmacy['quantity_unit'];
+//$med_price = $pharmacy['price'];
 
 
 
@@ -49,16 +50,16 @@ $med_price = $pharmacy_details['price'];
         </form>
 
         <?php
-        foreach ($medicines_list as $medicines_list) {
+        foreach ($medicines as $medicine) {
 
-            $list_med_image = $medicines_list['image'];
-            $list_med_name = $medicines_list['name'];
-            $list_med_quantity = $medicines_list['quantity'];
-            $list_med_quantity_unit = $medicines_list['quantity_unit'];
-            $list_med_price = $medicines_list['price'];
+            $list_med_image = $medicine['image'];
+            $list_med_name = $medicine['name'];
+            $list_med_quantity = $medicine['quantity'];
+            $list_med_quantity_unit = $medicine['quantity_unit'];
+            $list_med_price = $medicine['price'];
 
 
-            echo "    <div class='overview - items'>
+            echo "    <div class='overview-items'>
             <img src='$list_med_image' alt=''>
             <p class='overview-items__name'>$list_med_name </p>
             <p>$list_med_quantity  $list_med_quantity_unit</p>
