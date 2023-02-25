@@ -15,7 +15,7 @@ class ConsumerController extends Controller
       $nic =$_SESSION["nic"];
       $userType = $_SESSION["user_type"];
       if(!$nic || $userType !== "consumer"){
-          header("location: /provider-login");
+          header("location: /login");
           return "";
       } else {
           $db = new Database();
@@ -28,13 +28,12 @@ class ConsumerController extends Controller
 
       $db = new Database();
 
-      $stmt = $db->connection->prepare("SELECT * FROM pharmacy");
+      $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic");
       $stmt->execute();
       $result = $stmt->get_result();
-      $pharmacy = $result->fetch_all(MYSQLI_ASSOC);
-
+      $pharmacies = $result->fetch_all(MYSQLI_ASSOC);
       return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacylist', layout: "consumer-dashboard-layout", params : [
-          'pharmacy' => $pharmacy
+          'pharmacies' => $pharmacies
       ],
 
           layoutParams: [
@@ -88,6 +87,7 @@ class ConsumerController extends Controller
 
 
        $nic =$_SESSION["nic"];
+       $id = $_GET["id"];
        $userType = $_SESSION["user_type"];
        if(!$nic || $userType !== "consumer"){
            header("location: /provider-login");
@@ -99,32 +99,39 @@ class ConsumerController extends Controller
            $stmt->execute();
            $result = $stmt->get_result();
            $consumer = $result->fetch_assoc();
-           var_dump($consumer);
 
 
-           $stmt = $db->connection->prepare("SELECT p.provider_nic,p.profile_picture,p.name as provider_name, h.pharmacy_name,h.pharmacist_reg_no,p.address,m.image,m.name,m.quantity,m.quantity_unit,m.price FROM medicine m INNER JOIN  service_provider p ON p.provider_nic = m.provider_nic INNER JOIN `pharmacy` h  ON h.provider_nic = p.provider_nic WHERE p.provider_nic = ?");
-           $stmt->bind_param("s",$nic);
+           $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN service_provider s ON m.provider_nic = s.provider_nic WHERE s.id = ?");
+
+           //go through
+
+           $stmt->bind_param("s",$id);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $medicines = $result->fetch_all(MYSQLI_ASSOC);
+//           var_dump($medicines);
+
+//           $provider_nic = $pharmacy['provider_nic'];
+
+
+
+
+
+           $stmt = $db->connection->prepare("SELECT * FROM service_provider s INNER  JOIN pharmacy p ON s.provider_nic = p.provider_nic WHERE s.id = ?");
+           $stmt->bind_param("s",$id);
            $stmt->execute();
            $result = $stmt->get_result();
            $pharmacy = $result->fetch_assoc();
-           var_dump($pharmacy);
 
-           $stmt = $db->connection->prepare("SELECT * FROM medicine WHERE provider_nic = ?");
-           $stmt->bind_param("s",$pharmacy['provider_nic']);
-           $stmt->execute();
-           $result = $stmt->get_result();
-           $medicines_list = $result->fetch_all(MYSQLI_ASSOC);
-           var_dump($medicines_list);
 
 
            return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacy-dashboard', layout: "consumer-dashboard-layout",params: [
-               'pharmacy_details' => $pharmacy,
-               'other_medicines' => $medicines_list
+               'pharmacy' => $pharmacy,
+               'medicines' => $medicines
            ], layoutParams: [
                "consumer" => $consumer,
                "active_link" => "pharmacy",
                "title" => "Pharmacy"]);
-
 
 
 

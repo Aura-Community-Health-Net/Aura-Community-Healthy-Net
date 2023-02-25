@@ -106,6 +106,7 @@ class AuthController extends Controller
 
                     $stmt = $db->connection->prepare("INSERT INTO service_provider (
                             provider_nic, 
+                            id,
                             name, 
                             address, 
                             email_address, 
@@ -115,7 +116,7 @@ class AuthController extends Controller
                             bank_branch_name, 
                             profile_picture, 
                             bank_account_number, 
-                            provider_type) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            provider_type) VALUES ( ?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $profilePic = "/uploads/$new_file_name2";
                     $type = 'doctor';
@@ -228,6 +229,7 @@ class AuthController extends Controller
 
                     $result = $db->connection->prepare("INSERT INTO service_provider(
                              provider_nic,
+                             id,
                              name,
                              address,
                              email_address,
@@ -237,7 +239,7 @@ class AuthController extends Controller
                              bank_branch_name,
                              profile_picture,
                              bank_account_number,
-                             provider_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                             provider_type) VALUES (?,UUID(),?,?,?,?,?,?,?,?,?,?)");
 
                     $picFile = "/uploads/$new_picfile_name";
                     $provider_type = "pharmacy";
@@ -335,7 +337,8 @@ class AuthController extends Controller
 
                 if (empty($errors)) {
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
-                    $stmt = $db->connection->prepare("INSERT INTO service_provider (provider_nic, 
+                    $stmt = $db->connection->prepare("INSERT INTO service_provider (provider_nic,
+                                   id,
                                     name, 
                                     address, 
                                     email_address, 
@@ -345,7 +348,7 @@ class AuthController extends Controller
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
@@ -421,6 +424,7 @@ class AuthController extends Controller
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
                     $stmt = $db->connection->prepare("INSERT INTO  service_provider (
                                        provider_nic ,
+                                       id,
                                        name ,
                                        address,
                                        email_address,
@@ -431,7 +435,7 @@ class AuthController extends Controller
                                        profile_picture,
                                        bank_account_number,
                                        provider_type )
-                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                             VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $role = "care-rider";
