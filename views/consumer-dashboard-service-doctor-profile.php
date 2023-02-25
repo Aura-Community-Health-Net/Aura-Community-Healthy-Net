@@ -94,7 +94,6 @@ if (!isset($_GET['doctor-pay-btn'])){
                     <div class="consumer-dashboard-doctor-profile__bottom__right">
                         <h3>Give your Feedback</h3>
                         <form action="/consumer-dashboard/services/doctor/profile" method="GET">
-                            <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">
                             <input type="text" name="doctor-feedback" class="doctor-feedback">
                             <input name="provider_nic" value="<?php echo $provider_nic?>" type="text" hidden >
                             <button name="doctor-feedback-btn" >Submit</button>

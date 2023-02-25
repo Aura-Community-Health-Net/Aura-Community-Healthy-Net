@@ -14,14 +14,14 @@ if (!isset($_GET['doctor-appointment-btn'])){
 ?>
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
-        <form action="" class="form-item--search">
+        <form action="/consumer-dashboard/services/doctor" class="form-item--search" method="get">
 
             <div class="search-bar">
                 <input type="text" placeholder="Search..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit" ><i class="fa fa-search"></i></button>
             </div>
 
-            <select class="form-items--dropdown" name="doctor-categories" id="doctor-categories" onchange="filterDoctor()">
+            <select class="form-items--dropdown" name="doctor-categories" id="doctor-categories" onchange="filterDoctor(value)">
                 <option value="Western">Western Doctor</option>
                 <option value="Indigenous">Indigenous Doctor</option>
                 <option value="Counselor">Counsellor</option>

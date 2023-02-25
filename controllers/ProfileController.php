@@ -275,10 +275,21 @@ class ProfileController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $doctor = $result->fetch_all(MYSQLI_ASSOC);
+            //print_r($_GET);
+            if(empty($_GET)){
+                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $doctor = $result->fetch_all(MYSQLI_ASSOC);
+            }else{
+                $name = strtoupper($_GET['search']);
+                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE name=?");
+                $stmt->bind_param("s", $name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $doctor = $result->fetch_all(MYSQLI_ASSOC);
+            }
+
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout",params: ['consumer'=>$consumer,'doctor'=>$doctor], layoutParams: [
@@ -333,8 +344,8 @@ class ProfileController extends Controller
                       text,
                       date_time,
                       provider_nic,
-                      consumer_nic)VALUES (?,?,?,?)");
-                $stmt->bind_param("ssss", $doctorFeedback,$feedbackDatetime,$provider_nic,$nic);
+                      consumer_nic)VALUES (?,now(),?,?)");
+                $stmt->bind_param("sss", $doctorFeedback,$provider_nic,$nic);
                 $stmt->execute();
                 $result = $stmt->get_result();
             }

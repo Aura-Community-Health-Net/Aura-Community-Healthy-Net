@@ -26,7 +26,7 @@
                                 <img src="<?php echo $value['profile_picture'];?>">
                                 <p><?php echo $value['name'];?></p>
                                 <p><?php echo $value['mobile_number'];?></p>
-                                <p><?php echo $value['date'];?></p>
+                                <p><?php echo $value['MAX(doctor_time_slot.date)'];?></p>
                                 <p>Lorem Ipsum is simply Lorem simply</p>
                             </div>
                 <?php }?>
