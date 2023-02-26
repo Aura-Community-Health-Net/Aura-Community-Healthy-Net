@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
-use app\core\Database;
+use app\core\database;
 
 
 
@@ -127,9 +127,9 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function getConsumerServicesDoctorProfilePage($id): bool|array|string
+    public function getConsumerServicesDoctorProfilePage(): bool|array|string
     {
-        print_r($id);die();
+        //print_r($id);die();
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer") {
@@ -260,7 +260,7 @@ class ProfileController extends Controller
     }
 
     public function ConsumerServicesDoctor(): bool|array|string
-    {
+    { //print_r($_GET);
 
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
@@ -275,8 +275,9 @@ class ProfileController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            //print_r($_GET);
+
             if(empty($_GET)){
+
                 $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -294,6 +295,7 @@ class ProfileController extends Controller
 
         return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout",params: ['consumer'=>$consumer,'doctor'=>$doctor], layoutParams: [
             "consumer" => $consumer,
+            "doctor"=>$doctor,
             "active_link" => "profile",
             "title" => "Profile"
         ]);
@@ -301,7 +303,7 @@ class ProfileController extends Controller
 
     public function ConsumerServicesDoctorProfile(): bool|array|string
     {
-        //print_r($_GET);die();
+        //print_r($_POST);
         $provider_nic = $_GET['provider_nic'];
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
@@ -338,7 +340,7 @@ class ProfileController extends Controller
 
             if (isset($_GET['doctor-feedback-btn'])){
                 $doctorFeedback = $_GET['doctor-feedback'];
-                $feedbackDatetime = $_GET['feedback-datetime'];
+                //$feedbackDatetime = $_GET['feedback-datetime'];
 
                 $stmt = $db->connection->prepare("INSERT INTO feedback (
                       text,

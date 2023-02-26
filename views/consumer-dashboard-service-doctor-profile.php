@@ -38,7 +38,7 @@ if (!isset($_GET['doctor-pay-btn'])){
                     </div>
                 </td>
                 <td>
-                    <form action="/consumer-dashboard/services/doctor/profile/payment" method="get">
+                    <form action="/consumer-dashboard/services/doctor/profile/payment" method="GET">
                         <div class="consumer-dashboard-doctor-profile__top__right">
                             <h4>Available Time-Slots</h4>
                             <div class="consumer-dashboard-doctor-profile__top__right__dropdown">

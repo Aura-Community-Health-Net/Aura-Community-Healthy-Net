@@ -3,7 +3,7 @@
  * @var array $doctor;
  *
  */
-
+//print_r($doctor);
 //print_r($_SESSION['nic']);die();
 
 if (!isset($_GET['doctor-appointment-btn'])){
@@ -14,7 +14,7 @@ if (!isset($_GET['doctor-appointment-btn'])){
 ?>
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
-        <form action="/consumer-dashboard/services/doctor" class="form-item--search" method="get">
+        <form action="/consumer-dashboard/services/doctor" class="form-item--search" method="GET">
 
             <div class="search-bar">
                 <input type="text" placeholder="Search..." name="search">
