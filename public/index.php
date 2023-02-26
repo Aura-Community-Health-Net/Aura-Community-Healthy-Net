@@ -167,7 +167,8 @@ $app->router->get('/consumer-dashboard/service/pharmacy/view',[ConsumerControlle
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
 
 //for cart
-$app->router->get('/cart/add', [CartController::class, 'addToCart']);
+$app->router->post('/cart/add', [CartController::class, 'addToCart']);
+$app->router->get('/cart', [CartController::class, 'getCustomerCardPage']);
 
 //  Run the application
 $app->run();
