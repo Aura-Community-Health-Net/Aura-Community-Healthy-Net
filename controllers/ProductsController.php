@@ -239,7 +239,9 @@ class ProductsController extends Controller
     {
         $nic = $_SESSION["nic"];
         $product_id = $_GET["id"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType !== 'consumer') {
             header("location: /login");
             return "";
         } else {
@@ -250,10 +252,7 @@ class ProductsController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-
-
-
-            $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
+            $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price, p.product_id FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
             $stmt->bind_param("d", $product_id);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -264,15 +263,47 @@ class ProductsController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product_list = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT c.profile_picture, c.name, f.date_time, f.text FROM feedback f INNER JOIN service_consumer  c ON c.consumer_nic = f.consumer_nic WHERE f.provider_nic = ? ORDER BY f.date_time DESC");
+            $stmt->bind_param("s", $product["provider_nic"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback_list = $result->fetch_all(MYSQLI_ASSOC);
+
             return self::render(view: 'consumer-dashboard-product-overview', layout: 'consumer-dashboard-layout', params: [
                 'product_details'=>$product,
-                'other_products'=>$product_list
+                'other_products'=>$product_list,
+                'feedback_for_sellers' => $feedback_list
             ], layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Natural Food Products",
                 "active_link" => "dashboard-product"
             ]);
         }
+    }
+
+    public static function addProductFeedback(): string
+    {
+        $nic = $_SESSION["nic"];
+        $product_id = $_GET["product_id"];
+        $providerType = $_SESSION["user_type"];
+        $product_feedback = $_POST["product-feedback"];
+        $provider_nic = $_GET["provider_nic"];
+
+        if (!$nic || $providerType!=='consumer')
+        {
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("INSERT INTO feedback (text, date_time, provider_nic, consumer_nic) VALUES (?, now(), ?, ?)");
+            $stmt->bind_param("sss", $product_feedback, $provider_nic, $nic);
+            $stmt->execute();
+            header("location: /products/view?id=$product_id");
+            return "";
+        }
+
+
     }
 
     public static function getConsumerProductPayment(): bool|array|string
