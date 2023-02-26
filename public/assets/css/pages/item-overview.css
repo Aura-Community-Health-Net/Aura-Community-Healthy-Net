@@ -60,7 +60,7 @@
 .overview-items{
     background-color: white;
     padding: 0.3rem;
-    margin: 1rem;
+    margin: 1rem 0.5rem;
     padding-inline: 1rem;
     border-radius: 8px;
     display: flex;
@@ -86,6 +86,7 @@
 .overview-items img{
     width: 90px;
     height: 90px;
+    object-fit: cover;
 }
 
 .overview-items button{
@@ -107,7 +108,7 @@
     margin: 1rem;
     border-radius: 8px;
     overflow-y: auto;
-    height: 20rem;
+    height: 25rem;
     width: 50rem;
 }
 
@@ -150,4 +151,9 @@
 
 .overview-items__card{
     display: flex;
+}
+
+.feedback-textarea{
+    padding: 1rem;
+    margin-bottom: 2rem;
 }
