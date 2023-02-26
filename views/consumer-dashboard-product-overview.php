@@ -41,18 +41,15 @@ $product_price = $product_details['price']/100;
             <h2>$product_name</h2>
             <p>$product_quantity $product_quantity_unit</p>
             <h1>Rs. $product_price</h1>
-            <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout'>Continue to pay</a></button>
+            <div class='overview-items__card'>
+                <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout'>Continue to pay</a></button>
+                <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
+            </div>
         </div>"
         ?>
     </div>
 
     <div class="item-top-right__container">
-        <form action="">
-            <div class="search-bar">
-                <input type="text" placeholder="Search Product..." name="search">
-                <i class="fa fa-search"></i>
-            </div>
-        </form>
         <?php
         foreach ($other_products as $other_product){
             $rest_product_image = $other_product['image'];
@@ -62,12 +59,17 @@ $product_price = $product_details['price']/100;
             $rest_product_price = $other_product['price']/100;
             echo "<div class='overview-items'>
                 <img src='$rest_product_image' alt=''>
-                <p class='overview-items__name'>$rest_product_name </p>
-                <p>$rest_product_quantity $rest_product_quantity_unit</p>
-                <p>Rs. $rest_product_price</p>
+                <div>
+                    <p class='overview-items__name'>$rest_product_name </p>
+                    <p>$rest_product_quantity $rest_product_quantity_unit</p>
+                    <p class='overview-items__price'>Rs. $rest_product_price</p>
+                    <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
+                </div>
+
                 </div>";
         }
         ?>
+
     </div>
 
 </div>
