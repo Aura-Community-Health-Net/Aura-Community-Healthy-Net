@@ -2,8 +2,10 @@
 /**
  * @var array $product_details
  * @var array $other_products
+ * @var array $feedback_for_sellers
  */
 
+$provider_nic = $product_details['provider_nic'];
 $provider_image = $product_details['profile_picture'];
 $provider_name = $product_details['provider_name'];
 $business_name = $product_details['business_name'];
@@ -14,6 +16,7 @@ $product_name = $product_details['name'];
 $product_quantity = $product_details['quantity'];
 $product_quantity_unit = $product_details['quantity_unit'];
 $product_price = $product_details['price']/100;
+$product_id = $product_details['product_id'];
 
 ?>
 
@@ -76,81 +79,43 @@ $product_price = $product_details['price']/100;
 
 <div class="item-bottom-container">
     <div class="item-bottom-left-container">
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
-                </div>
-                <h4>12th of January 2023</h4>
-            </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
-            </p>
-        </div>
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
+            <?php
+            if (empty($feedback_for_sellers)){
+                echo "No feedback yet";
+            } else{
+                foreach ($feedback_for_sellers as $feedback_for_seller){
+                    $feedback_profile_pic = $feedback_for_seller['profile_picture'];
+                    $feedback_consumer_name = $feedback_for_seller['name'];
+                    $feedback_date = $feedback_for_seller['date_time'];
+                    $feedback_text = $feedback_for_seller['text'];
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
-                </div>
-                <h4>12th of January 2023</h4>
-            </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
-            </p>
-        </div>
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
+                    echo "
+                <div class='consumer-feedback'>
+                <div class='consumer-feedback__header'>
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Sanath Gunapala</h3>
+                <div class='consumer-feedback__header-profile'>
+                    <img class='product-seller-orders-profile-pic' src='$feedback_profile_pic' alt=''>
+                    <h3>$feedback_consumer_name</h3>
                 </div>
-                <h4>12th of January 2023</h4>
+                <h4>$feedback_date</h4>
             </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
+            <p class='consumer-feedback__body'>
+                $feedback_text
             </p>
-        </div>
+                </div>";
+
+                }
+            }
+
+            ?>
     </div>
 
     <div class="item-bottom-right-container">
         <h3>Give your feedback</h3>
-        <form action="">
-            <textarea name="" id="" cols="28" rows="17"></textarea>
+        <form action="<?php echo "/consumer-dashboard/products-overview/feedback?provider_nic=$provider_nic&product_id=$product_id";?>" method="post" >
+            <textarea class="feedback-textarea" name="product-feedback" id="" cols="28" rows="17"></textarea>
+            <button class="btn">Submit</button>
         </form>
     </div>
 </div>
