@@ -32,7 +32,7 @@
                     <?php } ?>
             </table>
     </div>
-    <form class="timeslots-form" action="/doctor-dashboard/timeslots" id="add-timeslot-form" method="POST">
+    <form class="timeslots-form" action="/doctor-dashboard/timeslots/add" id="add-timeslot-form" method="POST">
         <table>
             <tr>
                 <th><label class="timeslots-label" for="date">Date</label></th>

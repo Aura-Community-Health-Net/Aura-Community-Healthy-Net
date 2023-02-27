@@ -2,15 +2,10 @@
 /**
  * @var array $appointments
  * @var array $doctor
- * @var array $timeslots
  * @var array $appointments_details
  */
-//print_r($appointments_details);die();
-
-if (isset($_GET['appointment_confirm_btn'])){
-    $appointment_id = $_GET['appointment_id'];
-}
-//print_r($appointment_id);
+//print_r($appointments_details);
+//$provider_nic = $_SESSION['nic'];
 ?>
 
 <div class="doctor-appointments_container">
@@ -36,12 +31,10 @@ if (isset($_GET['appointment_confirm_btn'])){
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                         <div class="doctor-appointments__buttons">
-                            <form action="/doctor-dashboard/appointments" method="GET">
+                            <form action="/doctor-dashboard/appointments?id=<?php echo $value['appointment_id'];?>" method="post">
                                 <button style="background-color: #0002A1">Cancel</button>
-                                <input name="appointment_id" value="<?php echo $value['appointment_id']?>" type="text" hidden >
-                                <button name="appointment_confirm_btn" style="background-color: #00005C " onclick="window.location.reload()">Confirm</button>
+                                <button style="background-color: #00005C "">Confirm</button>
                             </form>
-
                         </div>
             </div>
             <?php } ?>

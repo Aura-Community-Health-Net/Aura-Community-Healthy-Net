@@ -4,6 +4,8 @@
  * @var array $doctor
  * @var string $active_link
  **/
+
+//print_r($doctor);
 ?>
 
 <!doctype html>
