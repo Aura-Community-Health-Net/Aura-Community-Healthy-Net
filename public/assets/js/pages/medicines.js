@@ -84,9 +84,9 @@ updateMedicineButtons.forEach(function (updateMed_Button){
            <h3>Update medicine information for ${updateMed_Button.dataset.medicinename}</h3>
             <div class="modal-actions">
                <form class="medicine-update-form" action="/pharmacy-dashboard/medicines/update?med_id=${splittedID[2]}" method="post">
-                  <label class="form-input__label" for="">Medicine Image</label>
+                
                 <label class="form-input__label" for="">Medicine Name</label>
-                <input  class="form-input__input" type="text" name="name" value="${tr.dataset.medicinename}">
+                <input  class="form-input__input" type="text" name="med_name" value="${tr.dataset.medicinename}">
                 <label class="form-input__label" for="">Quantity</label>
                 <input class="form-input__input" type="text" name="quantity" value="${tr.dataset.medicinequantity}">
                 <label class="form-input__label" for="">Quantity Unit</label>
@@ -97,7 +97,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
                 <label class="form-input__label" for="">Stock</label>
                 <input class="form-input__input" type="text" name="stock" value="${tr.dataset.medicinestock}">
                 <label class="form-input__label" for="">Stock Unit</label>
-                <input class="form-input__input" type="text" name="stock-unit" value="${tr.dataset.medicinesstock_unit}">
+                <input class="form-input__input" type="text" name="stock_unit" value="${tr.dataset.medicinesstock_unit}">
 
                 
                 <div class="update-btn-section">

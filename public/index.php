@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Importing core classes
-use app\controllers\ConsumerController;
+
 use app\core\Application;
 use app\controllers\OrdersController;
 
@@ -99,6 +99,7 @@ $app->router->post('/pharmacy-dashboard/medicines/update',[MedicinesController::
 $app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
 $app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
+$app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'PharmacyFeedback']);
 $app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
 $app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPharmacyProfilePage']);
 
@@ -159,13 +160,14 @@ $app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileControl
 $app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
-$app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
-$app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
+$app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'getPharmacyList']);
+$app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);
 
-$app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[ConsumerController::class,'getConsumerMedicinesPayment']);
-$app->router->get('/consumer-dashboard/service/pharmacy/view',[ConsumerController::class,'getConsumerPharmacyOverview']);
+$app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[MedicinesController::class,'getConsumerMedicinesPayment']);
+$app->router->get('/consumer-dashboard/service/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
 $app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsController::class, 'addProductFeedback']);
+$app->router->post('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'addPharmacyFeedback']);
 
 //for cart
 $app->router->post('/cart/add', [CartController::class, 'addToCart']);
