@@ -381,11 +381,11 @@ class MedicinesController extends Controller
 
 
 
-    public static function addPharmacyFeedback()
+    public static function addPharmacyFeedback(): string
     {
         $nic = $_SESSION["nic"];
         $providerType = $_GET["user_type"];
-        $pharmacy_feedback = $_GET["pharmacy_feedback"];
+        $pharmacy_feedback = $_POST["pharmacy-feedback"];
         $provider_nic = $_GET["provider_nic"];
 
         if(!$nic || !$providerType=='consumer')
@@ -400,7 +400,7 @@ class MedicinesController extends Controller
             $stmt = $db->connection->prepare("INSERT INTO feedback(text,date_time,provider_nic,consumer_nic) VALUES(?,now(),?,?)");
             $stmt->bind_param("sss",$pharmacy_feedback,$provider_nic,$nic);
             $stmt->execute();
-            header("location:/consumer-dashboard/service/pharmacy/view");
+            header("location:/consumer-dashboard/services/pharmacy/view");
             return "";
 
 

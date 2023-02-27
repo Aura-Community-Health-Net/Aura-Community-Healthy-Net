@@ -164,10 +164,10 @@ $app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);
 
 $app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[MedicinesController::class,'getConsumerMedicinesPayment']);
-$app->router->get('/consumer-dashboard/service/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
+$app->router->get('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
 $app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsController::class, 'addProductFeedback']);
-$app->router->post('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'addPharmacyFeedback']);
+$app->router->post('/consumer-dashboard/services/pharmacy/view/feedback',[MedicinesController::class,'addPharmacyFeedback']);
 
 //for cart
 $app->router->post('/cart/add', [CartController::class, 'addToCart']);
