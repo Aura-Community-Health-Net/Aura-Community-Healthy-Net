@@ -32,6 +32,7 @@ use app\controllers\ProfileController;
 
 use app\controllers\FeedbacksController;
 use app\controllers\ProductsController;
+use app\controllers\ConsumerDoctorController;
 
 
 // Implementing environment variable loading
@@ -138,7 +139,7 @@ $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'g
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'DoctorFeedback']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
-$app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'DoctorProfile']);
+
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
@@ -153,14 +154,18 @@ $app->router->get('/product-checkout', [ProductsController::class, 'getConsumerP
 $app->router->post('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
 $app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
-$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
-$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'ConsumerServicesDoctor']);
-$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
-$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'ConsumerServicesDoctorProfile']);
-$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
-$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'ConsumerServicesDoctorProfilePayment']);
+
+$app->router->get('/consumer-dashboard/services/doctor', [ConsumerDoctorController::class, 'getConsumerServicesDoctorPage']);
+$app->router->post('/consumer-dashboard/services/doctor-filter', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFilter']);
+
+$app->router->get('/consumer-dashboard/services/doctor/profile', [ConsumerDoctorController::class, 'getConsumerServicesDoctorProfilePage']);
+$app->router->post('/consumer-dashboard/services/doctor/profile-feedback', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFeedback']);
+$app->router->post('/consumer-dashboard/services/doctor/profile-timeSlot', [ConsumerDoctorController::class, 'ConsumerServicesDoctorTimeslot']);
+
+$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ConsumerDoctorController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
-$app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
+
 $app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
 $app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);

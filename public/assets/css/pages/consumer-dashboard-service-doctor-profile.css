@@ -192,6 +192,7 @@
     width: 500px;
     height: 300px;
     border: none;
+    vertical-align: center;
 }
 .consumer-dashboard-doctor-profile__bottom table{
     border-spacing: 50px;
