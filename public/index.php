@@ -169,7 +169,7 @@ $app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsCo
 
 //for cart
 $app->router->post('/cart/add', [CartController::class, 'addToCart']);
-$app->router->get('/cart', [CartController::class, 'getCustomerCardPage']);
+$app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 
 //  Run the application
 $app->run();

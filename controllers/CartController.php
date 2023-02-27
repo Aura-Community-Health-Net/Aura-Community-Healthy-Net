@@ -11,12 +11,14 @@ class CartController extends Controller
     {
         $nic = $_SESSION["nic"];
         $product_id = $_GET["product_id"];
-        if (!$nic) {
+        $userType = $_SESSION["user_type"];
+
+        if (!$nic || $userType !== "consumer") {
             header("location: /login");
             return "";
         } else {
             $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt = $db->connection->prepare("SELECT * FROM cart WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -26,17 +28,23 @@ class CartController extends Controller
                 $stmt->bind_param("s", $nic);
                 $stmt->execute();
                 $result = $stmt->get_result();
+                $cartId = $stmt->insert_id;
+            } else {
+                $cartId = $cart["cart_id"];
             }
 
             $stmt = $db->connection->prepare("INSERT INTO cart_item (cart_id, product_id) VALUES (?, ?)");
-            $stmt->bind_param("s", $nic);
+            $stmt->bind_param("dd", $cartId, $product_id);
             $stmt->execute();
             $result = $stmt->get_result();
+            header("location: /products/view?id=$product_id");
             return "";
         }
+        return "";
     }
 
-    public static function getCustomerCardPage(){
+    public static function getCustomerCartPage(): bool|array|string
+    {
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer"){

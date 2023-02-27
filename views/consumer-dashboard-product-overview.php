@@ -46,7 +46,10 @@ $product_id = $product_details['product_id'];
             <h1>Rs. $product_price</h1>
             <div class='overview-items__card'>
                 <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout'>Continue to pay</a></button>
-                <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
+                <form action='/cart/add?product_id=$product_id' method='post'>
+                    <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
+                </form>
+                
             </div>
         </div>"
         ?>
