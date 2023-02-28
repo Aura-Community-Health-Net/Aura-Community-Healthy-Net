@@ -46,9 +46,8 @@ $product_id = $product_details['product_id'];
             <h1>Rs. $product_price</h1>
             <div class='overview-items__card'>
                 <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout'>Continue to pay</a></button>
-                <form action='/cart/add?product_id=$product_id' method='post'>
-                    <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
-                </form>
+                    <button id='add-to-cart-btn' class='add-to-cart-btn' data-id='$product_id'><i class='fa-solid fa-cart-plus'></i></button>
+               
                 
             </div>
         </div>"
@@ -122,3 +121,5 @@ $product_id = $product_details['product_id'];
         </form>
     </div>
 </div>
+
+<script src="/assets/js/pages/product-overview.js" type="module"></script>

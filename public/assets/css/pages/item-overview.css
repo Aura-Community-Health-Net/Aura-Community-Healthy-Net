@@ -151,6 +151,7 @@
 
 .overview-items__card{
     display: flex;
+    align-items: center;
 }
 
 .feedback-textarea{
