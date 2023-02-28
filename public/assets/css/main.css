@@ -10,6 +10,7 @@
 @import "components/sidebar.css";
 @import "components/form-items.css";
 @import "components/tables.css";
+@import "components/notifier.css";
 
 /* Importing Pages */
 @import "pages/product-seller-choose-category.css";
