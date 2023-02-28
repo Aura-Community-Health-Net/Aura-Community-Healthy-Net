@@ -12,7 +12,7 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
 }*/
 
 //print_r($all_patients);
-//print_r($patient_details);die();
+//print_r($patient_details);
 ?>
 
 <div class="doctor-dashboard">

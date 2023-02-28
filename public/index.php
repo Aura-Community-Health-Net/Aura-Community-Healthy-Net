@@ -126,18 +126,17 @@ $app->router->get('/care-rider-dashboard/profile', [ProfileController::class, 'g
 $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, 'Profile']);
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
-$app->router->get('/doctor-dashboard', [DashboardController::class, 'DoctorDashboard']);
+//$app->router->get('/doctor-dashboard', [DashboardController::class, 'DoctorDashboard']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
 $app->router->post('/doctor-dashboard/timeslots/add', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
 $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
-//$app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'DoctorAppointments']);
+$app->router->post('/doctor-dashboard/appointments-conform-cancel', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
-$app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'DoctorPatients']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
-$app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'DoctorFeedback']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
 
 

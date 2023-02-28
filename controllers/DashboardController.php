@@ -91,60 +91,12 @@ class DashboardController extends Controller
             return "";
         } else {
             $db = new Database();
+
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
-
-            return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
-                "doctor" => $doctor],
-                layoutParams:[
-                "title" => "Dashboard",
-                "active_link" => "dashboard",
-                "doctor" => $doctor
-
-            ]);
-
-        }
-    }
-
-    public static function getConsumerDashboardPage(): array |bool|string{
-        $nic = $_SESSION["nic"];
-        if (!$nic){
-            header("location: /login");
-            return "";
-        } else{
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-
-            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', layoutParams: [
-                "consumer" => $consumer,
-                "title" => "Dashboard",
-                "active_link" => "dashboard"
-            ]);
-        }
-    }
-
-    public static function DoctorDashboard(): array |bool|string
-    {
-        $nic = $_SESSION["nic"];
-        $provideType = $_SESSION["user_type"];
-        if (!$nic || $provideType !== "doctor") {
-            header("location: /provider-login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $doctor = $result->fetch_assoc();
-
 
             $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = 1 && appointment.done = 0");
             $stmt->bind_param("s", $nic);
@@ -176,22 +128,37 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $patient_details = $result->fetch_assoc();
 
-
-            //print_r($patient_details);die();
+            print_r($patient_details);
 
             return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
                 "doctor" => $doctor,"appointment_confirm"=>$appointment_confirm,"appointment_done"=>$appointment_done,"new_patients"=>$new_patients,"all_patients"=>$all_patients,"patient_details"=>$patient_details],
                 layoutParams:[
                     "title" => "Dashboard",
                     "active_link" => "dashboard",
-                    "doctor" => $doctor,
-                    "new_patients"=>$new_patients,
-                    "all_patients"=>$all_patients,
-                    "appointment_confirm"=>$appointment_confirm,
-                    "appointment_done"=>$appointment_done,
-                    "patient_details"=>$patient_details
+                    "doctor" => $doctor
                 ]);
 
+        }
+    }
+
+    public static function getConsumerDashboardPage(): array |bool|string{
+        $nic = $_SESSION["nic"];
+        if (!$nic){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Dashboard",
+                "active_link" => "dashboard"
+            ]);
         }
     }
 }
