@@ -128,7 +128,7 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $patient_details = $result->fetch_assoc();
 
-            print_r($patient_details);
+            //print_r($patient_details);
 
             return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
                 "doctor" => $doctor,"appointment_confirm"=>$appointment_confirm,"appointment_done"=>$appointment_done,"new_patients"=>$new_patients,"all_patients"=>$all_patients,"patient_details"=>$patient_details],

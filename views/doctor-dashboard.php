@@ -7,9 +7,9 @@
  * @var $all_patients;
  * @var array $patient_details;
  */
-/*if (!$doctor['is_verified']) {
+if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
-}*/
+}
 
 //print_r($all_patients);
 //print_r($patient_details);

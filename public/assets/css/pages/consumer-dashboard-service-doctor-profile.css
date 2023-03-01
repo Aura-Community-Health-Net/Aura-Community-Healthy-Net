@@ -136,13 +136,14 @@
 }
 .consumer-dashboard-doctor-profile__bottom__left__data{
     background-color: #ffffff;
-    width: 466px;
-    height: 97px;
+    width: auto;
+    height: auto;
     position: relative;
     left: 0;
     bottom: 0;
     border-radius: 5px;
-    padding: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
     margin-bottom: 20px;
 }
 .consumer-dashboard-doctor-profile__bottom__left__data img{
