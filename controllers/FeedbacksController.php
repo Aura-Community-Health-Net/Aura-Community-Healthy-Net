@@ -184,4 +184,81 @@ class FeedbacksController extends Controller
     }
 
 
+
+    public  static  function PharmacyFeedback():array|bool|string
+    {
+
+        $provider_nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$provider_nic || $providerType !== "pharmacy")
+        {
+            header("location: /provider-login");
+            return "";
+        }
+
+
+        else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer c on f.consumer_nic = c.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $feedbacks = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+            //print_r($consumer);die();
+
+            return self::render(view: 'pharmacy-dashboard-feedback', layout: "pharmacy-dashboard-layout", params: ['pharmacy'=>$pharmacy,'feedback'=>$feedbacks], layoutParams: [
+                "pharmacy" => $pharmacy,
+                "feedback"=>$feedbacks,
+                "title" => "Feedback",
+                 "active_link" => "feedback"
+            ]);
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
+

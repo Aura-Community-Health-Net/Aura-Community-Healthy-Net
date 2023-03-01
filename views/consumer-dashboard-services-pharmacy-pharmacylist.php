@@ -28,7 +28,7 @@
         </div>
 
         <div  class='services-pharmacy-attributes' id='services-pharmacy-pharmacyViewButton'>
-            <button class='pharmacy-view-btn'><a href='/consumer-dashboard/service/pharmacy/view?id=$id'>view</a></button>
+            <button class='pharmacy-view-btn'><a href='/consumer-dashboard/services/pharmacy/view?id=$id'>view</a></button>
         </div>
 
         <div  class='services-pharmacy-attributes' id='services-pharmacy-presUpload-btn'>

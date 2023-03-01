@@ -2,10 +2,12 @@
 /**
  * @var array $medicines
  * @var array $pharmacy
+ * @var array $feedback_set
  */
 
 
-
+$provider_id = $pharmacy['id'];
+$provider_nic = $pharmacy['provider_nic'];
 $provider_image = $pharmacy['profile_picture'];
 $provider_name = $pharmacy['name'];
 $pharmacy_name = $pharmacy['pharmacy_name'];
@@ -18,18 +20,13 @@ $address = $pharmacy['address'];
 //$med_price = $pharmacy['price'];
 
 
-
-
 ?>
-
-
-
 
 
 <div class="item-top__container">
     <div class="item-top-left__container">
 
-        <?php   echo "
+        <?php echo "
         <img src='$provider_image' alt=''>
         <div class='provider__overview-detail'>
             <h2>$provider_name</h2>
@@ -42,12 +39,7 @@ $address = $pharmacy['address'];
     </div>
 
     <div class="item-top-right__container">
-        <form action="">
-            <div class="search-bar">
-                <input type="text" placeholder="Search Product..." name="search">
-                <i class="fa fa-search"></i>
-            </div>
-        </form>
+
 
         <?php
         foreach ($medicines as $medicine) {
@@ -59,17 +51,19 @@ $address = $pharmacy['address'];
             $list_med_price = $medicine['price'];
 
 
-            echo "    <div class='overview-items'>
+            echo "    <div class='overview-items overview-medicine'>
             <img src='$list_med_image' alt=''>
-            <p class='overview-items__name'>$list_med_name </p>
-            <p>$list_med_quantity  $list_med_quantity_unit</p>
-            <p>Rs. $list_med_price</p>
+            <div>
+               <p class='overview-items__name'>$list_med_name </p>
+               <p>$list_med_quantity  $list_med_quantity_unit</p>
+               <p class='overview-items__price'>Rs. $list_med_price</p> 
+            </div>
+           
         </div>";
 
         }
 
         ?>
-
 
 
     </div>
@@ -78,81 +72,51 @@ $address = $pharmacy['address'];
 
 <div class="item-bottom-container">
     <div class="item-bottom-left-container">
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
+        <?php
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Jack Henrick</h3>
-                </div>
-                <h4>12th of January 2023</h4>
-            </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
-            </p>
-        </div>
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Jane Roseld</h3>
-                </div>
-                <h4>12th of January 2023</h4>
-            </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
-            </p>
-        </div>
-        <div class="consumer-feedback">
-            <div class="consumer-feedback__header">
+        if (empty($feedback_set)) {
+            echo "No Feedback yet";
+        } else {
 
-                <div class="consumer-feedback__header-profile">
-                    <img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt="">
-                    <h3>Mary Shevon</h3>
+            foreach ($feedback_set as $feedback) {
+
+                $feedback_profilepic = $feedback['profile_picture'];
+                $feedback_consumerName = $feedback['name'];
+                $feedback_date = $feedback['date_time'];
+                $feedback_text = $feedback['text'];
+
+                echo "
+        
+        <div class='consumer-feedback'>
+            <div class='consumer-feedback__header'>
+
+                <div class='consumer-feedback__header-profile'>
+                    <img class='product-seller-orders-profile-pic' src='$feedback_profilepic' alt=''>
+                    <h3>$feedback_consumerName</h3>
                 </div>
-                <h4>12th of January 2023</h4>
+                <h4>$feedback_date</h4>
             </div>
-            <p class="consumer-dashboard__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                to
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                versions
-                of Lorem Ipsum
+            <p class='consumer-dashboard__body'>
+             $feedback_text
             </p>
-        </div>
+        </div>";
+
+
+            }
+        }
+
+
+        ?>
     </div>
-    
-    <div class="item-bottom-right-container">
+    <div class='item-bottom-right-container'>
         <h3>Give your feedback</h3>
-        <form action="">
-            <textarea name="" id="" cols="28" rows="17"></textarea>
+        <form action="<?php echo "/consumer-dashboard/services/pharmacy/view/feedback?id=$provider_id&provider_nic=$provider_nic"; ?>"
+              method="post">
+            <textarea class="feedback-textarea" name="pharmacy-feedback" id="" cols="28" rows="17"></textarea>
+            <button class="btn">submit</button>
         </form>
     </div>
 </div>
+
+

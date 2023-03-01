@@ -170,4 +170,7 @@
     justify-content: center;
     margin: 1rem;
     border-radius: 15px;
+
+.overview-medicine{
+    gap: 3rem;
 }
