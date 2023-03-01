@@ -347,18 +347,19 @@ class MedicinesController extends Controller
             $pharmacy = $result->fetch_assoc();
 
 
-            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,f.date_time,f.text FROM feedback f INNER  JOIN service_consumer c ON c.consumer_nic=f.consumer_nic WHERE f.provider_nic = ? ORDER BY f.date_time DESC ");
+            $stmt = $db->connection->prepare("SELECT sp.profile_picture,sp.name,f.date_time,f.text FROM feedback f INNER  JOIN service_provider sp ON sp.provider_nic=f.provider_nic WHERE sp.id = ? ORDER BY f.date_time DESC ");
             $stmt->bind_param("s",$id);
             $stmt->execute();
             $result = $stmt->get_result();
             $feedback_set = $result->fetch_all(MYSQLI_ASSOC);
+//            exit();
 
 
 
             return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacy-dashboard', layout: "consumer-dashboard-layout",params: [
                 'pharmacy' => $pharmacy,
                 'medicines' => $medicines,
-                'feedback' => $feedback_set
+                'feedback_set' => $feedback_set
             ], layoutParams: [
                 "consumer" => $consumer,
                 "active_link" => "pharmacy",
@@ -384,9 +385,10 @@ class MedicinesController extends Controller
     public static function addPharmacyFeedback(): string
     {
         $nic = $_SESSION["nic"];
-        $providerType = $_GET["user_type"];
+        $providerType = $_SESSION["user_type"];
         $pharmacy_feedback = $_POST["pharmacy-feedback"];
         $provider_nic = $_GET["provider_nic"];
+        $id = $_GET["id"];
 
         if(!$nic || $providerType!=='consumer')
         {
@@ -397,10 +399,11 @@ class MedicinesController extends Controller
         else{
 
             $db = new Database();
+
             $stmt = $db->connection->prepare("INSERT INTO feedback(text,date_time,provider_nic,consumer_nic) VALUES(?,now(),?,?)");
             $stmt->bind_param("sss",$pharmacy_feedback,$provider_nic,$nic);
             $stmt->execute();
-            header("location:/consumer-dashboard/services/pharmacy/view");
+            header("location:/consumer-dashboard/services/pharmacy/view?id=$id");
             return "";
 
 
