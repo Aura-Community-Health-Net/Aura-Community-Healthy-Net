@@ -180,10 +180,10 @@ class FeedbacksController extends Controller
     public  static  function PharmacyFeedback():array|bool|string
     {
 
-        $nic = $_SESSION["nic"];
+        $provider_nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
 
-        if (!$nic || $providerType !== "pharmacy")
+        if (!$provider_nic || $providerType !== "pharmacy")
         {
             header("location: /provider-login");
             return "";
@@ -194,13 +194,13 @@ class FeedbacksController extends Controller
 
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
+            $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer c on f.consumer_nic = c.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
 

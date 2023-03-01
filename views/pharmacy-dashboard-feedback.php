@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var array $feedbacks
+ * @var array $feedback
  * @var array $pharmacy
  * @var string $active_link
  */
@@ -16,11 +16,11 @@
 
 
         <?php
-         foreach ($feedbacks as $feedback){
+         foreach ($feedback as $Feedback){
 
-            $name = $feedback['name'];
-            $date_time = $feedback['date_time'];
-            $text = $feedback['text'];
+            $name = $Feedback['name'];
+            $date_time = $Feedback['date_time'];
+            $text = $Feedback['text'];
 
             echo "
             <div class='pharmacy-feedback__details'>
