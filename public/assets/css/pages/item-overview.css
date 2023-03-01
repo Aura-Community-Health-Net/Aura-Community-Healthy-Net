@@ -159,6 +159,19 @@
     margin-bottom: 2rem;
 }
 
+.no-feedback {
+    text-align: center;
+    font-weight: bolder;
+    padding: 2rem;
+    background-color: #D9D9F9;
+    font-size: 1.5rem;
+    color: #030246;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    border-radius: 15px;
+}
+
 .overview-medicine{
     gap: 3rem;
 }

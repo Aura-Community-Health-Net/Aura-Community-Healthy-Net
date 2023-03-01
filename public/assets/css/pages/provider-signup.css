@@ -123,3 +123,8 @@
     margin-top: -1rem;
     margin-bottom: 1rem;
 }
+
+.errors{
+    font-size: 0.8rem;
+    color: red;
+}

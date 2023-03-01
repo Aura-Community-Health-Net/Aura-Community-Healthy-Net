@@ -107,9 +107,15 @@ class ProfileController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product_seller = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, p.business_name, s.email_address, s.provider_nic, s.mobile_number, s.address FROM service_provider s INNER JOIN `healthy_food/natural_medicine_provider` p ON s.provider_nic = p.provider_nic WHERE p.provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product_seller_view = $result->fetch_assoc();
         }
 
-        return self::render(view: 'product-seller-dashboard-profile', layout: "product-seller-dashboard-layout", layoutParams: [
+        return self::render(view: 'product-seller-dashboard-profile', layout: "product-seller-dashboard-layout", params: ['profile_details' => $product_seller_view], layoutParams: [
             "product_seller" => $product_seller,
             "active_link" => "profile",
             "title" => "Profile"

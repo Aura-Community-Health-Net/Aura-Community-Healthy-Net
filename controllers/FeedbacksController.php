@@ -102,9 +102,17 @@ class FeedbacksController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product_seller = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer s ON f.consumer_nic = s.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback_list = $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        return self::render(view: 'product-seller-dashboard-feedback', layout: "product-seller-dashboard-layout", layoutParams: [
+        return self::render(view: 'product-seller-dashboard-feedback', layout: "product-seller-dashboard-layout", params: [
+            'feedback_from_consumers' => $feedback_list
+        ], layoutParams: [
             "product_seller" => $product_seller,
             "active_link" => "feedback",
             "title" => "Feedback"
