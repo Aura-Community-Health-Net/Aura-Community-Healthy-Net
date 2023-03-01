@@ -388,9 +388,9 @@ class MedicinesController extends Controller
         $pharmacy_feedback = $_POST["pharmacy-feedback"];
         $provider_nic = $_GET["provider_nic"];
 
-        if(!$nic || !$providerType=='consumer')
+        if(!$nic || $providerType!=='consumer')
         {
-            header("location:/login");
+            header("location: /login");
             return "";
         }
 
