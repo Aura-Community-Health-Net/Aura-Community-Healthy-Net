@@ -38,8 +38,14 @@
                 <h2>Aura</h2>
                 <h5>Community Health Net</h5>
             </div>
+
         </div>
         <div class="dashboard-header__profile">
+            <div class="header-link__container">
+                <a class="header-link" href="/">Home</a>
+                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+            </div>
             <p>
                 <?php echo $care_rider["name"]; ?>
             </p>
@@ -75,7 +81,7 @@
 
                 <li>
                     <a href="/care-rider-dashboard/new-requests">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                        <button class="navbtn" <?php echo $active_link === 'new-requests' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             <span class="nav-title">New Requests</span>
                         </button>
@@ -85,7 +91,7 @@
 
                 <li>
                     <a href="/care-rider-dashboard/analytics">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                        <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                             <span class="nav-title">Analytics</span>
                         </button>
@@ -95,7 +101,7 @@
 
                 <li>
                     <a href="/care-rider-dashboard/feedback">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                        <button class="navbtn" <?php echo $active_link === 'fedback' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                             <span class="nav-title">Feedback</span>
                         </button>
@@ -105,11 +111,21 @@
 
                 <li>
                     <a href="/care-rider-dashboard/profile">
-                        <button class="navbtn" <?php echo $active_link === 'dashboard' ? 'active' : '' ?>">
+                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                             <span class="nav-title">Profile</span>
                         </button>
                     </a>
+
+                </li>
+                <li class="logout">
+                    <form action="/logout" method="post">
+                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="nav-title">Logout</span>
+                        </button>
+                    </form>
 
                 </li>
             </ul>

@@ -38,8 +38,15 @@
                 <h2>Aura</h2>
                 <h5>Community Health Net</h5>
             </div>
+
         </div>
         <div class="dashboard-header__profile">
+
+            <div class="header-link__container">
+                <a class="header-link" href="/">Home</a>
+                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+            </div>
             <p>
                 <?php echo $admin["name"]; ?>
             </p>
@@ -73,7 +80,7 @@
                 </li>
 
                 <li>
-                    <a href="/admin-dashboard/payments">
+                    <a href="/admin-dashboard/due-payments">
                         <button class="navbtn" <?php echo $active_link === 'payments' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             <span class="nav-title">Payments</span>
@@ -89,14 +96,14 @@
                             <span class="nav-title">Feedback</span>
                         </button>
                     </a>
-
                 </li>
 
-                <li>
-                    <a href="/admin-dashboard/profile">
+                <li class="logout">
+                    <a href="/administrator-login">
                         <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
-                            <span class="nav-title">Profile</span>
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="nav-title">Logout</span>
                         </button>
                     </a>
 

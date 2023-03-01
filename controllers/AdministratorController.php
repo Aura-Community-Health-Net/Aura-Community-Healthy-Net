@@ -15,7 +15,7 @@ class AdministratorController extends Controller
             $provider_type = $_GET["provider_type"] ?? "doctor";
 
             if ($provider_type == "doctor") {
-                $sql = "SELECT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic INNER JOIN doc_qualifications dq on d.provider_nic = dq.provider_nic WHERE is_verified = 0";
+                $sql = "SELECT DISTINCT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic INNER JOIN doc_qualifications dq on d.provider_nic = dq.provider_nic WHERE is_verified = 0";
             } elseif ($provider_type == "pharmacy") {
                 $sql = "SELECT * FROM service_provider INNER JOIN pharmacy p on service_provider.provider_nic = p.provider_nic WHERE is_verified = 0";
             } elseif ($provider_type == "product-seller") {
@@ -46,4 +46,39 @@ class AdministratorController extends Controller
         header("location: /admin-login");
         return "";
     }
+
+    public static function getAdministratorDashboardPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Dashboard",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "dashboard"
+        ]);
+    }
+
+    public static function getAdministratorDuePaymentsPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Due Payments",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "payments"
+        ]);
+    }
+
+    public static function getAdministratorFeedbackPage(): bool|array|string
+    {
+        return self::render(view: 'administrator-dashboard-feedback', layout: "admin-dashboard-layout", params: [], layoutParams: [
+            "title" => "Feedback",
+            "admin" => [
+                "name" => "Randima Dias"
+            ],
+            "active_link" => "feedback"
+        ]);
+    }
+    
 }
+

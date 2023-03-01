@@ -1,0 +1,44 @@
+.care-rider-profile-pic__container{
+    background-color: #EFEEFD  ;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 20px;
+    width: 1000px;
+    margin-left:250px
+}
+
+.care-rider-profile-pic__header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.care-rider-profile-pic__header img{
+    height: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+}
+
+.care-rider-profile-pic__header h1{
+    font-size: 2rem;
+}
+
+.care-rider-profile-pic__header h2{
+    color: #666666;
+    padding-top: 1rem;
+}
+
+.care-rider-profile-pic__details{
+    text-align: center;
+    padding-block: 1.5rem;
+}
+
+.care-rider-profile-pic__details h3{
+    padding-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
+}

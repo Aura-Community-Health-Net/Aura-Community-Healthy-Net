@@ -1,4 +1,17 @@
 
+.modal_edit{
+    width: 580px;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 100;
+    display: none;
+}
 .modal{
     width: 380px;
     padding: 2.5rem;

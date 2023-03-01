@@ -67,7 +67,7 @@
 }
 
 .provider-signup-header__title h3 {
-    color: #666;
+    color: #0002A1;
 }
 
 .provider-signup-header ul {
@@ -83,14 +83,13 @@
 }
 
 .provider-signup-header a {
-    color: #000;
     font-size: 1.2rem;
     text-decoration: none;
 }
 
 
 .title {
-    background-color: #A198FF;
+    background-color: #7579E7;
     margin-left: 0;
     margin-right: 0;
     padding: 0.8rem;
@@ -102,7 +101,7 @@
 }
 
 .title-text {
-    color: #062D77;
+    color: #00005C;
     font-size: 1.5rem;
     font-family: 'Raleway', sans-serif;
     font-weight: bolder;
@@ -123,4 +122,9 @@
     text-align: center;
     margin-top: -1rem;
     margin-bottom: 1rem;
+}
+
+.errors{
+    font-size: 0.8rem;
+    color: red;
 }

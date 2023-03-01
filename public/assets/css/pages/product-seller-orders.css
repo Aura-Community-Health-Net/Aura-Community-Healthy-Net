@@ -1,0 +1,19 @@
+/*.product-seller__orders-header{*/
+/*    display: flex;*/
+/*    gap: 7rem;*/
+/*    margin-block: 3rem;*/
+/*    margin-inline: 2rem;*/
+/*    background-color: #D9D9F9;*/
+/*    padding: 3rem;*/
+/*}*/
+
+/*.product-seller__orders-header div{*/
+/*    padding-inline: 2rem;*/
+/*    font-weight: bold;*/
+/*}*/
+
+.product-seller-orders-profile-pic{
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}

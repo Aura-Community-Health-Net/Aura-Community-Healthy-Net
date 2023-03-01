@@ -38,8 +38,14 @@
                 <h2>Aura</h2>
                 <h5>Community Health Net</h5>
             </div>
+
         </div>
         <div class="dashboard-header__profile">
+            <div class="header-link__container">
+                <a class="header-link" href="/">Home</a>
+                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+            </div>
             <p>
                 <?php echo $pharmacy["name"]; ?>
             </p>
@@ -84,7 +90,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/pharmacy-dashboard/analytics">
                         <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                             <span class="nav-title">Analytics</span>
@@ -94,7 +100,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/pharmacy-dashboard/feedback">
                         <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
 
                             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
@@ -105,7 +111,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/pharmacy-dashboard/profile">
                         <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
 
                             <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
@@ -114,6 +120,25 @@
                     </a>
 
                 </li>
+
+
+                <li class="logout">
+                    <form action="/provider-logout" method="post">
+                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                              <span class="nav-icon">
+                                 <i class="fa-solid fa-right-from-bracket"></i></span>
+                              <span class="nav-title">Logout</span>
+                        </button>
+                    </form>
+
+                </li>
+
+
+
+
+
+
+
             </ul>
         </nav>
 

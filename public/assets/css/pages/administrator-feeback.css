@@ -1,0 +1,41 @@
+.administrator-feedback__container{
+    background-color: #F8F8F8;
+    padding: 3rem;
+    margin: 2rem;
+    border-radius: 20px;
+
+}
+
+.administrator-feedback{
+    background-color: white;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 10px;
+
+}
+
+.administrator-feedback__details{
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.administrator-feedback__details div{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.administrator-feedback__details h4{
+    color: #666666;
+    font-weight: normal;
+    text-align: right;
+}
+
+.administrator-feedback-profile{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}

@@ -149,3 +149,15 @@ add-btn:hover {
     color: rgba(0, 0, 0, 0.3);
 }
 
+.update-btn-section{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.product-update-form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
