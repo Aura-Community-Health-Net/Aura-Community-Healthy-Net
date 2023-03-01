@@ -145,7 +145,7 @@ class AuthController extends Controller
                     return "";
 
                 } else {
-                    return self::render(view: 'doctor-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'doctor-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
             #endregion
             #region Pharmacy Signup
@@ -262,7 +262,7 @@ class AuthController extends Controller
                     $RESULT = $result->get_result();
 
                 } else {
-                    return self::render(view: 'provider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'pharmacy-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
                 $_SESSION["nic"] = $nic;
                 $_SESSION["user_type"] = "pharmacy";
@@ -365,7 +365,7 @@ class AuthController extends Controller
                     $_SESSION["user_type"] = "product-seller";
 
                 } else {
-                    return self::render(view: 'provider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'product-seller-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
                 header("location: /product-seller-dashboard");
                 return "";
@@ -453,7 +453,7 @@ class AuthController extends Controller
                     header("location: /care-rider-dashboard");
                     return "";
                 } else {
-                    return self::render(view: 'care-rider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'care-rider-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
 
 
@@ -527,16 +527,16 @@ class AuthController extends Controller
                         break;
                     default:
                         $errors["system"] = "Internal Server Error";
-                        return self::render(view: 'provider-login', params: ['errors' => $errors]);
+                        return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
                 return "";
             } else {
                 $errors["password"] = "Incorrect Password";
-                return self::render(view: 'provider-login', params: ['errors' => $errors]);
+                return self::render(view: 'provider-login',layout: 'provider-signup-layout', params: ['errors' => $errors]);
             }
         } else {
             $errors["email"] = "Incorrect Email";
-            return self::render(view: 'provider-login', params: ['errors' => $errors]);
+            return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
         }
     }
 
@@ -565,11 +565,11 @@ class AuthController extends Controller
                 return "";
             }
             $errors["password"] = "Password is incorrect";
-            return self::render(view: 'administrator-login', params: ['errors' => $errors]);
+            return self::render(view: 'administrator-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
         }
 
         $errors["email"] = "Email doesn't exist";
-        return self::render(view: 'administrator-login', params: ['errors' => $errors]);
+        return self::render(view: 'administrator-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
 
     }
 
@@ -675,7 +675,7 @@ class AuthController extends Controller
         } else {
             $errors["email"] = "Email doesn't exist";
         }
-        return self::render(view: "consumer-login", params: ["errors" => $errors]);
+        return self::render(view: "consumer-login", layout: 'consumer-signup-layout', params: ["errors" => $errors]);
     }
 
 
