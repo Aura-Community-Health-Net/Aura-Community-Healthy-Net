@@ -6,6 +6,7 @@
  */
 
 
+$provider_id = $pharmacy['id'];
 $provider_nic = $pharmacy['provider_nic'];
 $provider_image = $pharmacy['profile_picture'];
 $provider_name = $pharmacy['name'];
@@ -19,18 +20,13 @@ $address = $pharmacy['address'];
 //$med_price = $pharmacy['price'];
 
 
-
-
 ?>
-
-
-
 
 
 <div class="item-top__container">
     <div class="item-top-left__container">
 
-        <?php   echo "
+        <?php echo "
         <img src='$provider_image' alt=''>
         <div class='provider__overview-detail'>
             <h2>$provider_name</h2>
@@ -55,17 +51,19 @@ $address = $pharmacy['address'];
             $list_med_price = $medicine['price'];
 
 
-            echo "    <div class='overview-items'>
+            echo "    <div class='overview-items overview-medicine'>
             <img src='$list_med_image' alt=''>
-            <p class='overview-items__name'>$list_med_name </p>
-            <p>$list_med_quantity  $list_med_quantity_unit</p>
-            <p>Rs. $list_med_price</p>
+            <div>
+               <p class='overview-items__name'>$list_med_name </p>
+               <p>$list_med_quantity  $list_med_quantity_unit</p>
+               <p class='overview-items__price'>Rs. $list_med_price</p> 
+            </div>
+           
         </div>";
 
         }
 
         ?>
-
 
 
     </div>
@@ -77,21 +75,18 @@ $address = $pharmacy['address'];
         <?php
 
 
-        if(empty($feedback_set)){
+        if (empty($feedback_set)) {
             echo "No Feedback yet";
-        }
-        else{
+        } else {
 
-        foreach ($feedback_set as $feedback)
+            foreach ($feedback_set as $feedback) {
 
-        {
+                $feedback_profilepic = $feedback['profile_picture'];
+                $feedback_consumerName = $feedback['name'];
+                $feedback_date = $feedback['date_time'];
+                $feedback_text = $feedback['text'];
 
-        $feedback_profilepic = $feedback['profile_picture'];
-        $feedback_consumerName =  $feedback['name'];
-        $feedback_date = $feedback['date_time'];
-        $feedback_text = $feedback['text'];
-
-        echo "
+                echo "
         
         <div class='consumer-feedback'>
             <div class='consumer-feedback__header'>
@@ -106,18 +101,20 @@ $address = $pharmacy['address'];
              $feedback_text
             </p>
         </div>";
-        
-        
-     }   }
-        
-        
+
+
+            }
+        }
+
+
         ?>
     </div>
     <div class='item-bottom-right-container'>
         <h3>Give your feedback</h3>
-        <form action="<?php echo "/consumer-dashboard/services/pharmacy/view/feedback?provider_nic=$provider_nic";?>" method="post">
+        <form action="<?php echo "/consumer-dashboard/services/pharmacy/view/feedback?id=$provider_id&provider_nic=$provider_nic"; ?>"
+              method="post">
             <textarea class="feedback-textarea" name="pharmacy-feedback" id="" cols="28" rows="17"></textarea>
-            <button class = "btn">submit</button>
+            <button class="btn">submit</button>
         </form>
     </div>
 </div>
