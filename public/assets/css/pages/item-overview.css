@@ -159,7 +159,7 @@
     margin-bottom: 2rem;
 }
 
-.no-feedback{
+.no-feedback {
     text-align: center;
     font-weight: bolder;
     padding: 2rem;
@@ -170,6 +170,7 @@
     justify-content: center;
     margin: 1rem;
     border-radius: 15px;
+}
 
 .overview-medicine{
     gap: 3rem;
