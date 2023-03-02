@@ -16,7 +16,13 @@
 
 
         <?php
-         foreach ($feedback as $Feedback){
+        if(empty($feedback)){
+            echo " <div class='no-feedback'>
+            No feedback yet
+        </div>";
+        }
+        else{
+        foreach ($feedback as $Feedback) {
 
             $name = $Feedback['name'];
             $date_time = $Feedback['date_time'];
@@ -34,7 +40,9 @@
             </div>
                 <p>$text</p>
            ";
-         } ?>
+        } } ?>
+
+
     </div>
 
 

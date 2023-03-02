@@ -1,23 +1,42 @@
 <?php
 /**
-* @var array $profile
+ * @var  array $pharmacy
+ * @var  array $pharmacy_details
+ *
 */
+//
+//var_dump($pharmacy_details);
  ?>
 
 
 <div class="pharmacy-profile">
 
- <div class="pharmacy-profile__content">
+    <?php
 
-      <div class="pharmacy-profile__owner-profile">
-            <div class="pharmacy-profile__owner-profile__profile-pic">
-               <img src="/assets/images/profilepic7.jpg" alt="">
+    foreach ($pharmacy_details as $pharmacyDetails)
+        {
+            $pharmacy_owner_name = $pharmacyDetails['name'];
+            $pharmacy_name = $pharmacyDetails['pharmacy_name'];
+            $pharmacy_regNo = $pharmacyDetails['pharmacist_reg_no'];
+            $pharmacy_profile = $pharmacyDetails['profile_picture'];
+            $pharmacy_owner_email = $pharmacyDetails['email_address'];
+//            $pharmacy_nic = $pharmacyDetails['provider_nic'];
+            $pharmacy_nic = $_SESSION['nic'];
+            $pharmacy_mobile = $pharmacyDetails['mobile_number'];
+            $pharmacy_address = $pharmacyDetails['address'];
+
+            echo "
+             <div class='pharmacy-profile__content'>
+
+      <div class='pharmacy-profile__owner-profile'>
+            <div class='pharmacy-profile__owner-profile__profile-pic'>
+               <img src='$pharmacy_profile' alt=''>
 
              </div>
-             <div class="pharmacy-profile__owner-profile__pharmacy-details">
-                 <p class="pharmacy-owner-name">Ravishi Palihawadana</p>
-                 <p class="pharmacy-name">New Oxford Pharmacy</p>
-                 <p class="pharmacy-regNo">AP5742</p>
+             <div class='pharmacy-profile__owner-profile__pharmacy-details'>
+                 <p class='pharmacy-owner-name'>$pharmacy_owner_name</p>
+                 <p class='pharmacy-name'>$pharmacy_name</p>
+                 <p class='pharmacy-regNo'>$pharmacy_regNo</p>
 
              </div>
 
@@ -28,19 +47,23 @@
 
 
 
-      <div class="pharmacy-profile__owner-details">
+      <div class='pharmacy-profile__owner-details'>
 
-          <p class="owner-details__attributes">Email Address</p>
-          <p class="owner-details__values">rogsmith45@gmail.com</p>
-          <p class="owner-details__attributes">NIC</p>
-          <p class="owner-details__values">9865325667V</p>
-          <p class="owner-details__attributes">Mobile Number</p>
-          <p class="owner-details__values">07766655476</p>
-          <p class="owner-details__attributes">Address</p>
-          <p class="owner-details__values">Gower Street,colombo 7</p>
+          <p class='owner-details__attributes'>Email Address</p>
+          <p class='owner-details__values'>$pharmacy_owner_email</p>
+          <p class='owner-details__attributes'>NIC</p>
+          <p class='owner-details__values'>$pharmacy_nic</p>
+          <p class='owner-details__attributes'>Mobile Number</p>
+          <p class='owner-details__values'>$pharmacy_mobile</p>
+          <p class='owner-details__attributes'>Address</p>
+          <p class='owner-details__values'>$pharmacy_address</p>
 
       </div>
  </div>
+
+
+       "; }?>
+
 
 </div>
 
