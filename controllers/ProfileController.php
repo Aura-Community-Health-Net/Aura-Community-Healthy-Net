@@ -59,24 +59,35 @@ class ProfileController extends Controller
 
     public static function getPharmacyProfilePage(): bool|array|string
     {
-        $nic = $_SESSION["nic"];
+        $provider_nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if (!$nic) {
+        if (!$provider_nic || $providerType !== "pharmacy") {
             header("location: /provider-login");
             return "";
         } else {
 
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
+            $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            return self::render(view: 'pharmacy-dashboard-profile', layout: "pharmacy-dashboard-layout", params: [], layoutParams: [
-                "pharmacy" => $pharmacy,
-                "title" => "Profile",
-                "active_link" => ""
+
+            $stmt = $db->connection->prepare("SELECT s.name,p.pharmacy_name,p.pharmacist_reg_no,s.email_address,s.mobile_number,s.address,s.profile_picture FROM  service_provider s INNER  JOIN pharmacy p ON s.provider_nic = p.provider_nic WHERE s.provider_nic = ?");
+            $stmt->bind_param("s",$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
+
+            return self::render(view: 'pharmacy-dashboard-profile', layout: "pharmacy-dashboard-layout", params: [
+                'pharmacy' => $pharmacy,
+                'pharmacy_details' => $pharmacy_details
+            ], layoutParams: [
+                'pharmacy' => $pharmacy,
+                "active_link" => "profile",
+                "title" => "Profile"
+
             ]);
         }
     }
@@ -356,4 +367,24 @@ class ProfileController extends Controller
             "title" => "Doctor"
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

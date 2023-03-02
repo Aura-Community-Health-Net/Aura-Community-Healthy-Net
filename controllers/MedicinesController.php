@@ -311,6 +311,7 @@ class MedicinesController extends Controller
 
         $nic =$_SESSION["nic"];
         $id = $_GET["id"];
+
         $userType = $_SESSION["user_type"];
         if(!$nic || $userType !== "consumer"){
             header("location: /provider-login");
@@ -324,7 +325,7 @@ class MedicinesController extends Controller
             $consumer = $result->fetch_assoc();
 
 
-            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN service_provider s ON m.provider_nic = s.provider_nic WHERE s.id = ?");
+            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ?");
 
             //go through
 
