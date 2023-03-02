@@ -77,7 +77,7 @@ class DoctorAppointmentsController extends Controller
                 $stmt->execute();
                 $result = $stmt->get_result();
             }else{
-                $stmt = $db->connection->prepare("UPDATE appointment SET done = 2 WHERE appointment_id = ?");
+                $stmt = $db->connection->prepare("UPDATE appointment SET done = 1 WHERE appointment_id = ?");
                 $stmt->bind_param("i",$appointment_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
