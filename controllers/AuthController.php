@@ -527,16 +527,16 @@ class AuthController extends Controller
                         break;
                     default:
                         $errors["system"] = "Internal Server Error";
-                        return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
+                        return self::render(view: 'provider-login', params: ['errors' => $errors]);
                 }
                 return "";
             } else {
                 $errors["password"] = "Incorrect Password";
-                return self::render(view: 'provider-login',layout: 'provider-signup-layout', params: ['errors' => $errors]);
+                return self::render(view: 'provider-login', params: ['errors' => $errors]);
             }
         } else {
             $errors["email"] = "Incorrect Email";
-            return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
+            return self::render(view: 'provider-login', params: ['errors' => $errors]);
         }
     }
 
@@ -663,6 +663,7 @@ class AuthController extends Controller
         $result = $stmt->get_result();
         if($result->num_rows > 0){
             $consumer = $result->fetch_assoc();
+            var_dump($consumer);
             if (password_verify($password, $consumer["password"])){
                 $_SESSION["nic"] = $consumer["consumer_nic"];
                 $_SESSION["user_type"] = "consumer";
@@ -675,7 +676,7 @@ class AuthController extends Controller
         } else {
             $errors["email"] = "Email doesn't exist";
         }
-        return self::render(view: "consumer-login", layout: 'consumer-signup-layout', params: ["errors" => $errors]);
+        return self::render(view: "consumer-login", params: ["errors" => $errors]);
     }
 
 

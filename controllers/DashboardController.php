@@ -10,7 +10,9 @@ class DashboardController extends Controller
     public static function getProductSellerDashboardPage(): array |bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
         } else {
@@ -20,9 +22,17 @@ class DashboardController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product_seller = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT p.image, p.name, c.category_name, p.quantity, p.quantity_unit, p.price FROM product p INNER JOIN product_category c on p.category_id = c.category_id WHERE provider_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product_lists = $result->fetch_all(MYSQLI_ASSOC);
+
             return self::render(
             view: 'product-seller-dashboard', layout: "product-seller-dashboard-layout", params: [
-                    "product_seller" => $product_seller
+                    "product_seller" => $product_seller,
+                    "product_lists" => $product_lists
                 ],
             layoutParams: [
                     "title" => "Dashboard",
@@ -38,7 +48,8 @@ class DashboardController extends Controller
     {
 
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
         } else {
@@ -111,7 +122,8 @@ class DashboardController extends Controller
 
     public static function getConsumerDashboardPage(): array |bool|string{
         $nic = $_SESSION["nic"];
-        if (!$nic){
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "consumer"){
             header("location: /login");
             return "";
         } else{

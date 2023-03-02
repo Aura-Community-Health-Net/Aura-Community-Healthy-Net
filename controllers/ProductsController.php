@@ -34,7 +34,8 @@ class ProductsController extends Controller
     public static function getProductSellerMedFruitsVegPage(): array|bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /product-seller-login");
             return "";
         } else {
