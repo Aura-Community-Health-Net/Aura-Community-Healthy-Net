@@ -5,8 +5,10 @@
  * @var $appointment_done;
  * @var $new_patients;
  * @var $all_patients;
- * @var array $patient_details;
+ * @var $patient_details;
+ * @var $count_appointments;
  */
+print_r($count_appointments);
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
@@ -68,20 +70,22 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
 
         <div class="doctor-dashboard__center__bottom">
             <h3>Consulted</h3>
+            <?php if($count_appointments['COUNT(done)']>0){?>
             <div class="doctor-dashboard__consulted">
                 <div class="doctor-dashboard__consulted__profile">
-                    <img src="<?php echo $patient_details['profile_picture']?>">
+                    <img src=" <?php echo $patient_details['profile_picture'];?>">
                     <div>
-                        <h4><b><?php echo $patient_details['name']?></b></h4>
-                        <h5><?php echo $patient_details['mobile_number']?></h5>
+                        <h4><b> <?php echo $patient_details['name'] ;?></b></h4>
+                        <h5> <?php echo $patient_details['mobile_number'] ;?></h5>
                     </div>
                 </div>
                <div class="doctor-dashboard__consulted__details">
-                   <p><b>Last Checked</b><?php echo " ". $patient_details['MAX(doctor_time_slot.date)']?></p>
-                   <p><b>Address</b><?php echo " ". $patient_details['address']?></p>
+                   <p><b>Last Checked</b> <?php echo " ". $patient_details['MAX(doctor_time_slot.date)'] ;?></p>
+                   <p><b>Address</b> <?php echo " ". $patient_details['address'] ;?></p>
                    <p><b>Observation</b>Lorem Ipsum is simple text of the printing and typesetting industry.</p>
                </div>
             </div>
+            <?php } ?>
         </div>
 
         <div class="doctor-dashboard__right__bottom">

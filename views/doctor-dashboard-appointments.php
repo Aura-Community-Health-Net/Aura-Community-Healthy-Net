@@ -9,6 +9,7 @@
 
 $cancel = 1;
 $confirm = 2;
+$done = 3;
 ?>
 
 <div class="doctor-appointments_container" xmlns="http://www.w3.org/1999/html">
@@ -36,8 +37,14 @@ $confirm = 2;
                         <?php $appointment_id = $value['appointment_id']?>
                     </div>
                     <div class="doctor-appointments__buttons">
+                        <?php if($value['confirmation']==0){?>
                         <button value="Cancel" formaction="<?php echo"/doctor-dashboard/appointments-conform-cancel?appointment_id=$appointment_id&id=$cancel"?>" type="submit" style="background-color: #0002A1">Cancel</button>
                         <button value="Confirm" formaction="<?php echo"/doctor-dashboard/appointments-conform-cancel?appointment_id=$appointment_id&id=$confirm"?>" type="submit" style="background-color: #00005C">Confirm</button>
+                        <?php } else {?>
+                            <div class="doctor-appointments__buttons-consulted">
+                                <button value="Done" formaction="<?php echo"/doctor-dashboard/appointments-conform-cancel?appointment_id=$appointment_id&id=$done"?>" type="submit" style="background-color: #0002A1;align-items: center">Consulted</button>
+                            </div>
+                        <?php } ?>
                     </div>
                 </form>
             </div>

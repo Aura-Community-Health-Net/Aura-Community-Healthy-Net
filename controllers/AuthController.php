@@ -17,7 +17,7 @@ class AuthController extends Controller
         switch ($providerType) {
             #region Doctor Signup
             case 'doctor':
-                print_r($_POST);
+                //print_r($_POST);
                 $name = $_POST["doc-name"];
                 $nic = $_POST["nic"];
                 $email = $_POST["email"];
@@ -65,37 +65,36 @@ class AuthController extends Controller
                 $sql = "SELECT * FROM service_provider WHERE email_address = '$email'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Email address already in use";
-                    $errors["email1"] = "Email address already in use";
+                    $errors["email"] = "Email address already in use";
                 }
 
 
                 $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobile_number'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Mobile number already in use";
                     $errors["mobile_number"] = "Mobile number already in use";
                 }
 
                 $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "NIC already in use";
                     $errors["nic"] = "NIC already in use";
                 }
 
+                $sql = "SELECT * FROM doctor WHERE slmc_reg_no = '$reg_no'";
+                $result = $db->connection->query(query: $sql);
+                if ($result->num_rows > 0) {
+                    $errors["reg_no"] = "Registration number already in use";
+                }
 
                 $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$account_no'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Account number already in use";
-                    $errors["account_no"] = "NIC already in use";
+                    $errors["account_no"] = "Account number already in use";
                 }
 
-                $sql = "SELECT * FROM service_provider WHERE  = '$account_no'";
-
-                if ($password !== $con_password) {
-                    $errors["confirmPassword"] = "Password and Confirm Password must match.";
+                if ($password != $con_password) {
+                    $errors["con_password"] = "Password and Confirm Password must match.";
                 }
 
                 if (!isset($_POST["ua"])) {
@@ -144,6 +143,7 @@ class AuthController extends Controller
                     $_SESSION["is_admin"] = false;
                     header("location: /doctor-dashboard");
                     return "";
+
 
                 } else {
                     return self::render(view: 'doctor-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);

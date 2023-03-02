@@ -148,10 +148,11 @@
 .doctor-dashboard__consulted{
     display: flex;
     flex-direction: column;
-    width: 90%;
-    padding: 1rem;
     border-radius: 8px;
     margin-top: 0.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    width: 95%;
 }
 .doctor-dashboard__consulted__details{
     display: flex;
@@ -159,9 +160,7 @@
     text-align: justify;
     gap: 1rem;
 }
-.doctor-dashboard__consulted{
-    background-color: #ffffff;
-}
+
 .doctor-dashboard__consulted img{
     width: 40px;
     height: 40px;

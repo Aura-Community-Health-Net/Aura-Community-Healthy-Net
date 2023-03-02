@@ -32,9 +32,9 @@ class DoctorAppointmentsController extends Controller
         $appointments = $result->fetch_all(MYSQLI_ASSOC);
 
 
-        $confirmation = 0;
-        $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot INNER JOIN appointment ON doctor_time_slot.appointment_id = appointment.appointment_id  INNER JOIN service_consumer ON service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = ?");
-        $stmt->bind_param("si", $nic,$confirmation);
+        $done = 0;
+        $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot INNER JOIN appointment ON doctor_time_slot.appointment_id = appointment.appointment_id  INNER JOIN service_consumer ON service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.done = ? && appointment.confirmation < 2");
+        $stmt->bind_param("si", $nic,$done);
         $stmt->execute();
         $result = $stmt->get_result();
         $appointment_details = $result->fetch_all(MYSQLI_ASSOC);
@@ -71,8 +71,13 @@ class DoctorAppointmentsController extends Controller
                 $stmt->bind_param("i",$appointment_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
-            }else{
+            }elseif ($id==1){
                 $stmt = $db->connection->prepare("UPDATE appointment SET confirmation = 2 WHERE appointment_id = ?");
+                $stmt->bind_param("i",$appointment_id );
+                $stmt->execute();
+                $result = $stmt->get_result();
+            }else{
+                $stmt = $db->connection->prepare("UPDATE appointment SET done = 2 WHERE appointment_id = ?");
                 $stmt->bind_param("i",$appointment_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
