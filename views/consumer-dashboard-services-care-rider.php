@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var array $care_rider;
+ *
+ */
+//print_r($care_rider);
+?>
 <head>
     <link rel="stylesheet" href="/assets/css/main.css">
 
@@ -23,101 +30,23 @@
             </form>
     </div>
         <div class="care-rider__card-details">
+            <?php foreach ($care_rider as $value) {?>
             <div class="care-rider-container">
-
                 <div class="care-rider-card">
-                    <img src="/assets/images/profilepic2.jpg">
+                    <img src="<?php echo $value['profile_picture']; ?>">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Kamal Sahabandu</h2>
+                        <h2><?php echo $value['name']?></h2>
                         <div>
-                            <p><span>Type of Vehicle </span> :Car</p>
-                            <p><span>color </span> :Yellow</p>
-                            <p><span>Mobile No </span> :0762345678</p>
+                            <p><span>Type of Vehicle </span><?php echo $value['type']?></p>
+                            <p><span>color </span> :<?php echo $value['color']?></p>
+                            <p><span>Mobile No </span> <?php echo $value['mobile_number']?></p>
                         </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
+                        <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
                             <button > Request</button>
                         </a>
                     </div>
                 </div>
-
-                <div class="care-rider-card">
-                    <img src="/assets/images/profilepic3.jpg">
-                    <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Lahiru Sampath</h2>
-                        <div>
-                            <p><span>Type of Vehicle </span>: Wagan r</p>
-                            <p><span>color </span> :Red</p>
-                            <p><span>Mobile No </span> :0712345678</p>
-                        </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
-                            <button > Request</button>
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="care-rider-card">
-                    <img src="/assets/images/profilepic4.jpg">
-                    <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Ravishi Palihawadana</h2>
-                        <div>
-                            <p><span>Type of Vehicle </span> :Aqua</p>
-                            <p><span>color </span> :White</p>
-                            <p><span>Mobile No </span>: 0752345678</p>
-                        </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
-                            <button > Request</button>
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="care-rider-card">
-                    <img src="/assets/images/profilepic5.jpg">
-                    <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Anjana Dilshan</h2>
-                        <div>
-                            <p><span>Type of Vehicle </span> :KDH Van</p>
-                            <p><span>color </span> :Black</p>
-                            <p><span>Mobile No </span> :0712345678</p>
-                        </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
-                            <button > Request</button>
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="care-rider-card">
-                    <img src="/assets/images/profilepic6.jpg">
-                    <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Dhanuka Iroshana</h2>
-                        <div>
-                            <p><span>Type of Vehicle </span> :Wagan r</p>
-                            <p><span>color </span> :White</p>
-                            <p><span>Mobile No </span> :0712345678</p>
-                        </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
-                            <button > Request</button>
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="care-rider-card">
-                    <img src="/assets/images/profilepic7.jpg">
-                    <div class="consumer-dashboard-care-rider__bottom__center__data">
-                        <h2>  Dumindu Lakshan</h2>
-                        <div>
-                            <p><span>Type of Vehicle </span>: Caraven</p>
-                            <p><span>color </span> :Brown</p>
-                            <p><span>Mobile No </span> :0712345678</p>
-                        </div>
-                        <a href="/consumer-dashboard/services/care-rider/request">
-                            <button > Request</button>
-                        </a>
-                    </div>
-                </div>
-
             </div>
+            <?php } ?>
+        </div>
 

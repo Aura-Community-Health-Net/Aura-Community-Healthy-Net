@@ -15,21 +15,22 @@
     </tr>
     </thead>
     <tbody class="care-rider-table-size">
-    <?php foreach ($timeslots as  $value) { ?>
+    <?php foreach ($timeslots as  $timeslot) {
+        ?>
 
 
         <tr>
-            <td class="time-slots-td"><?php echo $value['slot_number']; ?></td>
-            <td><?php echo $value['date']; ?></td>
-            <td><?php echo date('l', strtotime($value['date'])); ?></td>
-            <td><?php echo $value['from_time']; ?></td>
-            <td><?php echo $value['to_time']; ?></td>
+            <td class="time-slots-td"><?php echo $timeslot['slot_number']; ?></td>
+            <td><?php echo $timeslot['date']; ?></td>
+            <td><?php echo date('l', strtotime($timeslot['date'])); ?></td>
+            <td><?php echo $timeslot['from_time']; ?></td>
+            <td><?php echo $timeslot['to_time']; ?></td>
 
             <td id='action-block'>
-                <button id='edit-care-rider-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--edit care-rider-timeslot-edit'>
+                <button id='edit-care-rider-timeslot-<?php echo $timeslot['slot_number']; ?>' data-slot="<?php echo $timeslot['slot_number']; ?>" data-date="<?php echo $timeslot['date'];?>" data-fromtime="<?php echo $timeslot['from_time']; ?>" data-totime="<?php echo $timeslot['to_time']; ?>" class='action-btn action-btn--edit care-rider-timeslot-edit'>
                     <i class='fa-solid fa-pen'></i>
                 </button>
-                <button id='delete-care-rider-timeslot-<?php echo $value['slot_number']; ?>' data-slot='<?php echo $value['slot_number']; ?>' class='action-btn action-btn--delete care-rider-timeslot-delete'>
+                <button id='delete-care-rider-timeslot-<?php echo $timeslot['slot_number']; ?>' data-slot='<?php echo $timeslot['slot_number']; ?>' class='action-btn action-btn--delete care-rider-timeslot-delete'>
                     <i class='fa-solid fa-trash'></i>
                 </button>
             </td>
@@ -74,6 +75,10 @@
 
     </div>
 </div>
+<div class="overlay" id="edit-care-rider-timeslot-overlay">
+    <div class="modal_edit" id="edit-care-rider-timeslot-modal">
 
+    </div>
+</div>
 
 <script src="/assets/js/pages/care-rider-timeslots.js"></script>

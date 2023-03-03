@@ -7,7 +7,7 @@ use app\core\Database;
 
 class CareRiderNewRequestsController extends Controller
 {
-    public static function getNewRequestsPage()
+    public static function getNewRequestsPage():array|bool|string
     {
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];

@@ -52,7 +52,31 @@ class CareRiderTimeslotsController extends Controller
             header("location: /provider-login");
             return "";
         }
+
         $db = new Database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $care_rider = $result->fetch_assoc();
+
+
+        if (!$care_rider["is_verified"]) {
+            return "
+        <style>
+        .verification-error{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4rem;
+            color: rgba(0, 0, 0, 0.3);
+        }
+       </style>
+        <div class='verification-error'>You're not verified, Please check later</div>";
+        }
+
 
         $errors = [];
         if (empty($errors)) {
@@ -99,31 +123,29 @@ class CareRiderTimeslotsController extends Controller
         }
     }
 
-//
-//    public static function UpdateCareRiderTimeSlots(): array|bool|string
-//    {
-//        $nic = $_SESSION['nic'];
-//        $providerType = $_SESSION['user_type'];
-//        if (!$nic || $providerType != "care-rider") {
-//            header("location: /provider-login");
-//            return "";
-//
-//        } else {
-//
-//            $slot_number = $_GET['slotNo'];
-//            $updateDate = $_POST["update-date"];
-//            $updateFromTime = $_POST["update-fromTime"];
-//            $updateTOTime = $_POST["update-toTime"];
-//
-//            $db = new Database();
-//            $stmt = $db->connection->prepare("UPDATE  care_rider_time_slot SET date=?,
-//                                    from_time=?, to_time=?, provider_nic=?     WHERE slot_number =? ");
-//            $stmt->bind_param("SSSS", $updateDate,$updateFromTime, $updateTOTime,$nic);
-//            $stmt->execute();
-//            $result = $stmt->get_result();
-//            header("location:/care-rider-dashboard/timeslots ");
-//            return "";
-//
-//        }
-//    }
+
+ public static function UpdateCareRiderTimeSlots(): array|bool|string
+  {
+      $nic = $_SESSION['nic'];
+     $providerType = $_SESSION['user_type'];
+     if (!$nic || $providerType != "care-rider") {
+          header("location: /provider-login");
+
+     } else {
+
+         $slot_number = $_GET["slotNo"];
+         $editDate = $_POST["edit-date"];
+         $editFromTime = $_POST["edit-fromTime"];
+         $editTOTime = $_POST["edit-toTime"];
+
+           $db = new Database();
+            $stmt = $db->connection->prepare("UPDATE  care_rider_time_slot SET date=?,
+                                    from_time=?, to_time=? WHERE slot_number =? AND provider_nic =? ");
+            $stmt->bind_param("sssss", $editDate,$editFromTime, $editTOTime,$slot_number,$nic);
+            $stmt->execute();
+           $result = $stmt->get_result();
+          header("location:/care-rider-dashboard/timeslots ");
+     }
+      return "";
+  }
 }

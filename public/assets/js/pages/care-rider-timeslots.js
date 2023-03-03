@@ -11,6 +11,10 @@ const deleteCareRiderTimeslotModal = document.querySelector("#delete-care-rider-
 const deleteCareRiderTimeslotOverlay = document.querySelector("#delete-care-rider-timeslot-overlay");
 const deleteCareRiderTimeslotButtons = document.querySelectorAll(".care-rider-timeslot-delete");
 
+const editCareRiderTimeSlotModal = document.querySelector("#edit-care-rider-timeslot-modal");
+const editCareRiderTimeSlotOverlay = document.querySelector("#edit-care-rider-timeslot-overlay");
+const editCareRiderTimeSlotButtons = document.querySelectorAll(".care-rider-timeslot-edit");
+
 
 addCareRiderTimeslotModalButton.addEventListener("click", () => {
     console.log("clicked");
@@ -97,3 +101,91 @@ function attachDeleteButtonListener(button){
 }
 deleteCareRiderTimeslotButtons.forEach(attachDeleteButtonListener);
 
+
+const openEditCareRiderTimeSlotModal = () => {
+    editCareRiderTimeSlotModal.style.display = "block";
+    editCareRiderTimeSlotOverlay.style.display = "block";
+    editCareRiderTimeSlotModal.classList.add("modal-open");
+    editCareRiderTimeSlotOverlay.classList.add("overlay-open");
+};
+
+editCareRiderTimeSlotOverlay.addEventListener("click", (e) => {
+    console.log("click on overlay");
+    if (e.target === editCareRiderTimeSlotOverlay) {
+        closeEditCareRiderTimeSlotModal();
+    }
+});
+
+function closeEditCareRiderTimeSlotModal() {
+    editCareRiderTimeSlotOverlay.classList.remove("overlay-open");
+    editCareRiderTimeSlotModal.classList.remove("modal-open");
+    editCareRiderTimeSlotModal.classList.add("modal-close");
+    editCareRiderTimeSlotOverlay.classList.add("overlay-close");
+    setTimeout(() => {
+        editCareRiderTimeSlotModal.style.display = "none";
+        editCareRiderTimeSlotOverlay.style.display = "none";
+        editCareRiderTimeSlotModal.classList.remove("modal-close");
+        editCareRiderTimeSlotOverlay.classList.remove("overlay-close");
+    }, 200);
+}
+
+function attachEditButtonListener(button){
+    button.addEventListener("click", function () {
+
+        const slotNo = button.dataset.slot;
+        console.log(slotNo)
+
+        const date =button.dataset.date;
+        console.log(date);
+
+        const fromTime =button.dataset.fromtime;
+        console.log(fromTime);
+
+        const toTime =button.dataset.totime;
+        console.log(toTime);
+
+
+
+
+        editCareRiderTimeSlotModal.innerHTML = `<h3>Enter the details to Edit</h3>
+<form action="/care-rider-dashboard/timeslot/update?slotNo=${slotNo}" class="care-rider-timeslots-form"  id="edit-care-rider-timeslot-form" method="POST">
+        <table class="items-table">
+            <thead>
+                <tr>
+                      <th >Date</th>
+                      <th >From Time</th>
+                      <th >To Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                   <tr>
+                       <td><input type="date" id="edit-date" name="edit-date"></td>
+                       <td><input type="time" id="edit-from-time" name="edit-fromTime"></td>
+                       <td><input type="time" id="edit-to-time" name="edit-toTime"></td>
+                   </tr>           
+            </tbody>
+        </table>
+
+        <div class="modal-actions">
+            <button class="cancel-btn" id="edit-cancel-btn">Cancel</button>
+           
+                <button class="ok-btn" id="edit-ok-btn">Ok</button>
+</form>
+        </div>
+        `;
+        document.getElementById("edit-date").value = date;
+        document.getElementById("edit-from-time").value = fromTime;
+        document.getElementById("edit-to-time").value = toTime;
+
+        const editCancelBtn = editCareRiderTimeSlotModal.querySelector("#edit-cancel-btn");
+        editCancelBtn.addEventListener("click", (e) => {
+            console.log("click on cancel button");
+            if (e.target === editCancelBtn) {
+                closeEditCareRiderTimeSlotModal();
+            }
+        });
+
+        openEditCareRiderTimeSlotModal();
+    });
+}
+editCareRiderTimeSlotButtons.forEach(attachEditButtonListener);

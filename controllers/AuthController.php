@@ -438,11 +438,18 @@ class AuthController extends Controller
                     $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $role);
                     $stmt->execute();
 //
-//                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic,
-//                                                    driving_licence_number
-//                                                    )VALUES ( ?, ?)");
-//                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
-//                    $stmt->execute();
+                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic,
+                                                    driving_licence_number
+                                                    )VALUES ( ?, ?)");
+                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
+                    $stmt->execute();
+
+                    $stmt = $db->connection->prepare("INSERT INTO vehicle ( number_plate,color,type,provider_nic
+                                                    )VALUES ( ?,?,?,?)");
+                    $stmt->bind_param("ssss",$numberPlate,$color,$typeOfVehicle, $nic);
+                    $stmt->execute();
+
+
                     $_SESSION["nic"] = $nic;
                     $_SESSION["user_type"] = "Care Rider";
                     $_SESSION["is_admin"] = false;
