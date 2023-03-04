@@ -60,8 +60,17 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
+
+            $stmt = $db->connection->prepare("SELECT m.image, m.name,  m.quantity, m.quantity_unit, m.price FROM medicine m  WHERE provider_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $medicines_lists = $result->fetch_all(MYSQLI_ASSOC);
+
+
             return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", params: [
-                'pharmacy' => $pharmacy
+                'pharmacy' => $pharmacy,
+                'medicines' => $medicines_lists
             ], layoutParams: [
                 "pharmacy" => $pharmacy,
                 "title" => "Dashboard",

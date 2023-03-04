@@ -217,7 +217,6 @@ class AuthController extends Controller
                 $sql = "SELECT * FROM pharmacy WHERE pharmacist_reg_no = '$pharmacyRegNo'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Pharmacist Registration Number already in use";
                     $errors["pharmacyregno"] = "Pharmacist Registration Number already in use";
                 }
 
@@ -264,6 +263,7 @@ class AuthController extends Controller
 
                     $result->bind_param("sssssssssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
                     $result->execute();
+                    $Result = $result->get_result();
 
 
 
@@ -281,6 +281,7 @@ class AuthController extends Controller
                     $_SESSION["nic"] = $nic;
                     $_SESSION["user_type"] = "pharmacy";
                     $_SESSION["is_admin"] = false;
+
                 } else {
                     return self::render(view: 'pharmacy-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }

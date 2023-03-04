@@ -1,6 +1,7 @@
 <?php
 /**
  *@var array $pharmacy
+ * @var array $medicines
  *@var string $active_link
  */
 
@@ -83,39 +84,26 @@ if (!$pharmacy['is_verified']) {
 
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
-        <h3>New Orders</h3>
+        <h3>Medicines List</h3>
         <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/baclof-10mg-tablet-10.jpg" alt="">
-            <h4></h4>
-            <h4>Omeprazole Tablets</h4>
-            <h4>20mg</h4>
-            <h4>Rs. 650</h4>
-        </div>
+            <?php foreach ($medicines as $medicine) {
 
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/alerid-10-mg-10-comprimate-terapia-1956.png" alt="">
-            <h4></h4>
-            <h4>Alerid</h4>
-            <h4>100mg</h4>
-            <h4>Rs. 350</h4>
-        </div>
+                $med_image = $medicine['image'];
+                $med_name = $medicine['name'];
+                $med_price = $medicine['price'];
+                $med_quantity = $medicine['quantity'];
+                $med_quantity_unit = $medicine['quantity_unit'];
 
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/GASTREZZ-BOTTLE-1-1.png" alt="">
+                echo " <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
             <h4></h4>
-            <h4>Paracetamol</h4>
-            <h4>10 mg</h4>
-            <h4>Rs.50</h4>
-        </div>
-
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/losartan.png" alt="">
-            <h4></h4>
-            <h4>Benaclof</h4>
-            <h4>50 mg</h4>
-            <h4>Rs.400</h4>
+            <h4>$med_name</h4>
+            <h4>$med_quantity $med_quantity_unit</h4>
+            <h4>Rs. $med_price</h4>";
+            }
+            ?>
         </div>
     </div>
+
     <div class="dashboard__bottom-cards">
         <h3>Analytics</h3>
         <img class="dashboard-analytics-img" src="/assets/images/dashboard-analytics.jpg" alt="">
