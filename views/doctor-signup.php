@@ -16,18 +16,33 @@
                 <label class="form-input__label" for="nic">NIC <sup>*</sup></label>
                 <input class="form-input__input" id="nic" type="text" name="nic"
                     value="<?php echo $_POST['nic'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["nic"])) {
+                    echo "<p class = 'errors'> {$errors["nic"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="email">Email Address <sup>*</sup></label>
                 <input class="form-input__input" id="email" type="email" name="email"
                     value="<?php echo $_POST['email'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["email"])) {
+                    echo "<p class = 'errors'> {$errors["email"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="mobile-number">Mobile Number <sup>*</sup></label>
                 <input class="form-input__input" id="mobile-number" type="tel" name="mobile-number"
                     value="<?php echo $_POST['mobile-number'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["mobile_number"])) {
+                    echo "<p class = 'errors'> {$errors["mobile_number"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
@@ -40,6 +55,11 @@
                 <label class="form-input__label" for="reg-num">SLMC Registration Number <sup>*</sup></label>
                 <input class="form-input__input" id="reg-num" type="text" name="reg-num"
                     value="<?php echo $_POST['reg-num'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["reg_no"])) {
+                    echo "<p class = 'errors'> {$errors["reg_no"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
@@ -76,6 +96,11 @@
                 <label class="form-input__label" for="account-num">Bank Account Number <sup>*</sup></label>
                 <input class="form-input__input" id="account-num" type="text" name="account-num"
                     value="<?php echo $_POST['account-num'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["account_no"])) {
+                    echo "<p class = 'errors'> {$errors["account_no"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
@@ -113,6 +138,11 @@
                 <label class="form-input__label" for="con-password">Confirm Password <sup>*</sup></label>
                 <input class="form-input__input" id="con-password" type="password" name="con-password"
                     value="<?php echo $_POST['con-password'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["con_password"])) {
+                    echo "<p class = 'errors'> {$errors["con_password"]}</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -123,16 +153,16 @@
         <div class="provider-signup-form__bottom__top">
             <div class="western">
                 <label>Western</label>
-                <input type="radio" name="western" id="western">
+                <input type="radio" value="Western" name="doctor_type" id="western">
             </div>
 
             <div class="indigenous">
                 <label>Indigenous</label>
-                <input type="radio" name="indigenous" id="indigenous">
+                <input type="radio" value="Indigenous" name="doctor_type" id="indigenous">
             </div>
             <div class="counselor">
                 <label>Counselor</label>
-                <input type="radio" name="counselor" id="counselor">
+                <input type="radio" value="Counselor" name="doctor_type" id="counselor">
             </div>
         </div>
 
@@ -152,7 +182,7 @@
 
 
         <div id="form-input">
-            <button id="reg-btn" class="btn" style="background-color: #00005C">Register</button>
+            <button id="reg-btn" type="submit" class="btn" style="background-color: #00005C">Register</button>
         </div>
     </div>
 </form>

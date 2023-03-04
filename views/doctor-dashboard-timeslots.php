@@ -3,7 +3,6 @@
  * @var array $timeslots
  *
  */
-
 ?>
 <div class="doctor-timeslots">
     <div class="items-table__scroll">
@@ -27,12 +26,13 @@
                             <td><?php echo $value['to_time']; ?></td>
                             <td id='action-block'>
                                 <button id='edit-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" data-date="<?php echo $value['date'];?>" data-fromtime="<?php echo $value['from_time']; ?>" data-totime="<?php echo $value['to_time']; ?>" class='action-btn action-btn--edit timeslot-edit'><i class='fa-solid fa-pen'></i></button>
-                                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button></td>
+                                <button id='delete-timeslot-<?php echo $value['slot_number']; ?>' data-slot="<?php echo $value['slot_number']; ?>" class='action-btn action-btn--delete timeslot-delete'><i class='fa-solid fa-trash'></i></button>
+                            </td>
                         </tr>
                     <?php } ?>
             </table>
     </div>
-    <form class="timeslots-form" action="/doctor-dashboard/timeslots" id="add-timeslot-form" method="POST">
+    <form class="timeslots-form" action="/doctor-dashboard/timeslots/add" id="add-timeslot-form" method="POST">
         <table>
             <tr>
                 <th><label class="timeslots-label" for="date">Date</label></th>

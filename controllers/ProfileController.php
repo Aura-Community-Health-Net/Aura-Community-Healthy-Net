@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
-use app\core\Database;
+use app\core\database;
 
 
 
@@ -43,14 +43,27 @@ class ProfileController extends Controller
             return "";
         } else {
             $db = new Database();
+
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM doc_qualifications WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctorQualification = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM doctor WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $profile = $result->fetch_assoc();
         }
 
-        return self::render(view: 'doctor-dashboard-profile', layout: "doctor-dashboard-layout", layoutParams: [
+        return self::render(view: 'doctor-dashboard-profile', layout: "doctor-dashboard-layout",params: ['doctor'=>$doctor,'profile'=>$profile,'doctorQualification'=>$doctorQualification], layoutParams: [
             "doctor" => $doctor,
             "active_link" => "profile",
             "title" => "Profile"
@@ -120,77 +133,6 @@ class ProfileController extends Controller
         ]);
     }
 
-
-    public function getConsumerServicesDoctorPage(): bool|array|string
-    {
-        $nic = $_SESSION["nic"];
-        $userType = $_SESSION["user_type"];
-        if (!$nic || $userType !== "consumer") {
-            header("location: /login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-        }
-
-        return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout", layoutParams: [
-            "consumer" => $consumer,
-            "active_link" => "profile",
-            "title" => "Doctor"
-        ]);
-    }
-
-    public function getConsumerServicesDoctorProfilePage($id): bool|array|string
-    {
-        print_r($id);die();
-        $nic = $_SESSION["nic"];
-        $userType = $_SESSION["user_type"];
-        if (!$nic || $userType !== "consumer") {
-            header("location: /login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-        }
-
-        return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout", layoutParams: [
-            "consumer" => $consumer,
-            "active_link" => "profile",
-            "title" => "Doctor"
-        ]);
-    }
-
-    public function getConsumerServicesDoctorProfilePaymentPage(): bool|array|string
-    {
-        $nic = $_SESSION["nic"];
-        $userType = $_SESSION["user_type"];
-        if (!$nic || $userType !== "consumer") {
-            header("location: /login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-        }
-
-        return self::render(view: 'consumer-dashboard-service-doctor-profile-payment', layout: "consumer-dashboard-layout", layoutParams: [
-            "consumer" => $consumer,
-            "active_link" => "profile",
-            "title" => "Doctor"
-        ]);
-    }
-
     public function getConsumerProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -207,12 +149,13 @@ class ProfileController extends Controller
             $consumer = $result->fetch_assoc();
         }
 
-        return self::render(view: 'consumer-dashboard-profile', layout: "consumer-dashboard-layout", layoutParams: [
+        return self::render(view: 'consumer-dashboard-profile', layout: "consumer-dashboard-layout",params: ["consumer"=>$consumer], layoutParams: [
             "consumer" => $consumer,
             "active_link" => "profile",
             "title" => "Profile"
         ]);
     }
+
 
     public function DoctorProfile():bool|array|string
     {
@@ -367,24 +310,4 @@ class ProfileController extends Controller
             "title" => "Doctor"
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

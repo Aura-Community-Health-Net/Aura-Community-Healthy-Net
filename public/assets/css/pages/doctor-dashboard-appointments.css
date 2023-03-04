@@ -23,9 +23,9 @@
     padding: 0.5rem .5rem;
     border-radius: 5px;
 }
-/*.doctor-appointments__left__data:first-of-type{
-    margin-top: 1rem;
-}*/
+.doctor-appointments__left__background{
+    /*background-color: #ffffff;*/
+}
 .doctor-appointments__right{
     display: flex;
     flex-direction: column;
@@ -73,11 +73,6 @@
     padding: 1rem;
     margin: 0 auto;
 }
-
-.doctor-appointments__left table{
-    /*margin-top: 5px;
-    margin-left: 5px;*/
-}
 .doctor-appointments__left th{
     height: 30px;
 }
@@ -90,6 +85,10 @@
     margin-top: 10px;
     margin-left: 40px;
     font-size: 1rem;
+}
+.doctor-appointments__buttons-consulted{
+    align-items: center;
+    justify-content: center;
 }
 
 
