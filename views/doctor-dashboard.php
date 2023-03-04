@@ -8,7 +8,7 @@
  * @var $patient_details;
  * @var $count_appointments;
  */
-print_r($count_appointments);
+//print_r($count_appointments);
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
