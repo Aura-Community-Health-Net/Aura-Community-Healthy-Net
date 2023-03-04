@@ -527,6 +527,8 @@ class AuthController extends Controller
             $provider = $result->fetch_assoc();
             $providerType = $provider['provider_type'];
             if (password_verify($password, $provider["password"])) {
+
+
                 $_SESSION["is_admin"] = false;
                 $_SESSION['nic'] = $provider['provider_nic'];
                 $_SESSION['user_type'] = $providerType;
