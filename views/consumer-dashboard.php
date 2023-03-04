@@ -7,9 +7,9 @@
                 <h4>Kamal Deshapriya</h4>
                 <h5>0723456766</h5>
             </div>
-            <h5>Doctor</h5>
-            <h5>Western</h5>
-            <h5>5th of February 2023</h5>
+            <h4>Doctor</h4>
+            <h4>Western</h4>
+            <h4>4th of February 2023</h4>
         </div>
 
         <div class="dashboard__top-cards__detail">
@@ -18,9 +18,9 @@
                 <h4>Semini Peduru</h4>
                 <h5>0713457878</h5>
             </div>
-            <h5>Pharmacy</h5>
-            <h5>Loyed Pharma</h5>
-            <h5>3rd of February 2023</h5>
+            <h4>Pharmacy</h4>
+            <h4>Loyed Pharma</h4>
+            <h4>3rd of February 2023</h4>
         </div>
 
         <div class="dashboard__top-cards__detail">
@@ -29,9 +29,9 @@
                 <h4>Anoj Karunarathna</h4>
                 <h5>0775578780</h5>
             </div>
-            <h5>Product Seller</h5>
-            <h5>Sumudu House</h5>
-            <h5>28th of January 2023</h5>
+            <h4>Product Seller</h4>
+            <h4>Sumudu House</h4>
+            <h4>28th of January 2023</h4>
         </div>
 
         <div class="dashboard__top-cards__detail">
@@ -40,9 +40,9 @@
                 <h4>Kamal Disasekara</h4>
                 <h5>0717898778</h5>
             </div>
-            <h5>Doctor</h5>
-            <h5>Indigenous</h5>
-            <h5>5th of February 2023</h5>
+            <h4>Doctor</h4>
+            <h4>Indigenous</h4>
+            <h4>5th of February 2023</h4>
         </div>
     </div>
 

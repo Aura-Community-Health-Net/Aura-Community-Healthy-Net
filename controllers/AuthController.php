@@ -191,28 +191,45 @@ class AuthController extends Controller
 
                 $db = new Database();
                 $errors = [];
-                $sql = "SELECT * FROM `service_provider` WHERE email_address = '$emailAddress' ";
-                $result = $db->connection->query($sql);
 
+                $sql = "SELECT * FROM service_provider WHERE email_address = '$emailAddress'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["emailaddress"] = "Email already exists";
+                    $errors["emailaddress"] = "Email address already in use";
                 }
 
+
+                $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["address"] = "Address already exists";
+                    $errors["nic"] = "NIC already in use";
                 }
 
+
+                $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobile'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["pharmacyregno"] = "pharmacy reg number already exists";
+                    $errors["mobile_number"] = "Mobile Number already in use";
                 }
 
+
+
+                $sql = "SELECT * FROM pharmacy WHERE pharmacist_reg_no = '$pharmacyRegNo'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["mobile"] = "Mobile number already exists";
+                    echo "Pharmacist Registration Number already in use";
+                    $errors["pharmacyregno"] = "Pharmacist Registration Number already in use";
                 }
 
+
+
+
+                $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$bankAccNo'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     $errors["bankaccno"] = "Bank account number already exists";
                 }
+
 
 
                 if ($password != $confirmPassword) {
@@ -247,7 +264,7 @@ class AuthController extends Controller
 
                     $result->bind_param("sssssssssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
                     $result->execute();
-                    $RESULT = $result->get_result();
+
 
 
                     $result = $db->connection->prepare("INSERT INTO pharmacy(
@@ -261,13 +278,13 @@ class AuthController extends Controller
                     $result->bind_param("ssss", $nic, $pharmacyRegNo, $pharmacyName, $nmra);
                     $result->execute();
                     $RESULT = $result->get_result();
-
+                    $_SESSION["nic"] = $nic;
+                    $_SESSION["user_type"] = "pharmacy";
+                    $_SESSION["is_admin"] = false;
                 } else {
                     return self::render(view: 'pharmacy-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
-                $_SESSION["nic"] = $nic;
-                $_SESSION["user_type"] = "pharmacy";
-                $_SESSION["is_admin"] = false;
+
 
                 header("location: /pharmacy-dashboard");
                 return "";
@@ -528,16 +545,16 @@ class AuthController extends Controller
                         break;
                     default:
                         $errors["system"] = "Internal Server Error";
-                        return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
+                        return self::render(view: 'provider-login', params: ['errors' => $errors]);
                 }
                 return "";
             } else {
                 $errors["password"] = "Incorrect Password";
-                return self::render(view: 'provider-login',layout: 'provider-signup-layout', params: ['errors' => $errors]);
+                return self::render(view: 'provider-login', params: ['errors' => $errors]);
             }
         } else {
             $errors["email"] = "Incorrect Email";
-            return self::render(view: 'provider-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
+            return self::render(view: 'provider-login', params: ['errors' => $errors]);
         }
     }
 
@@ -664,6 +681,7 @@ class AuthController extends Controller
         $result = $stmt->get_result();
         if($result->num_rows > 0){
             $consumer = $result->fetch_assoc();
+            var_dump($consumer);
             if (password_verify($password, $consumer["password"])){
                 $_SESSION["nic"] = $consumer["consumer_nic"];
                 $_SESSION["user_type"] = "consumer";
@@ -676,7 +694,7 @@ class AuthController extends Controller
         } else {
             $errors["email"] = "Email doesn't exist";
         }
-        return self::render(view: "consumer-login", layout: 'consumer-signup-layout', params: ["errors" => $errors]);
+        return self::render(view: "consumer-login", params: ["errors" => $errors]);
     }
 
 

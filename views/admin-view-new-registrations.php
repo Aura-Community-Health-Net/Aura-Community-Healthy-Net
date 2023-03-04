@@ -70,7 +70,7 @@ if (empty($new_registrations)) {
             echo "<li class='data-title'> <div>SLMC Reg No</div> <div>{$registration['slmc_reg_no']}</div></li>";
             echo "<li class='data-title'> <div>Field of study</div> <div>{$registration['field_of_study']}</div></li>";
             // echo "<li class='data-title'> <div>Certificate of MBBS</div> <div>{$registration['certificate_of_mbbs']}</div></li>";
-            echo "<li class='data-title'> <div>Qualifications</div> <div>{$registration['qualification']}</div></li>";
+            echo "<li class='data-title'> <div>Qualifications</div> <div>{$registration['qualifications']}</div></li>";
             echo "<li class='data-title'> <div>Bank Account Number</div> <div>{$registration['bank_account_number']}</div></li>";
             echo "<li class='data-title'> <div>Bank Name</div> <div>{$registration['bank_name']}</div></li>";
             echo "<li class='data-title'> <div>Bank Branch Number</div> <div>{$registration['bank_branch_name']}</div></li>";
@@ -126,7 +126,10 @@ if (empty($new_registrations)) {
             echo "</ul>";
         }
         echo "<form class='verify' action='/service-providers/verify?nic={$registration['provider_nic']}&provider_type=$provider_type' method='post'>
-                    <button class='verify-btn'>Verify</button>
+                    <div class='verification-button-section'>
+                        <button class='verify-btn'>Verify</button>
+                        <button class='verify-btn'>Deny</button>
+                    </div>
                   </form>";
         echo "</div>";
 

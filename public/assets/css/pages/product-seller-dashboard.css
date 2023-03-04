@@ -1,6 +1,6 @@
 .dashboard__top-container{
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     margin: 2rem;
     justify-content: center;
 }
@@ -78,8 +78,9 @@
 
 .dashboard__bottom-cards{
     background-color: #EFEEFD;
-    padding: 1rem;
+    padding: 1rem 1rem 3rem;
     border-radius: 10px;
+    position: relative;
 }
 
 .dashboard__bottom-product-img{
@@ -113,4 +114,18 @@
     margin: 0.5rem 1rem;
     border-radius: 8px;
     text-align: justify;
+}
+
+.all-products-btn{
+    padding: 0.3rem 1rem;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
 }

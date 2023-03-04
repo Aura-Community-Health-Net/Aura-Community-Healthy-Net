@@ -2,6 +2,7 @@
 /**
  *@var array $product_seller
  *@var string $active_link
+ * @var array $product_lists
  */
 
 if (!$product_seller['is_verified']) {
@@ -83,38 +84,33 @@ if (!$product_seller['is_verified']) {
 
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
-        <h3>New Orders</h3>
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/nil-veralu.jfif" alt="">
-            <h4>Nil Veralu</h4>
-            <h4>Medicinal Fruits & Vegetables</h4>
-            <h4>100 g</h4>
-            <h4>Rs. 150</h4>
-        </div>
+        <h3>Products List</h3>
 
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/vali%20anoda.jfif" alt="">
-            <h4>Vali Anoda</h4>
-            <h4>Medicinal Fruits & Vegetables</h4>
-            <h4>1 kg</h4>
-            <h4>Rs. 550</h4>
-        </div>
+            <?php
+            foreach ($product_lists as $product_list){
+                $product_image = $product_list['image'];
+                $product_name = $product_list['name'];
+                $category_name = $product_list['category_name'];
+                $product_quantity = $product_list['quantity'];
+                $product_quantity_unit = $product_list['quantity_unit'];
+                $product_price = $product_list['price']/100;
 
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/belimal.webp" alt="">
-            <h4>Beli Mal</h4>
-            <h4>Seeds</h4>
-            <h4>100 g</h4>
-            <h4>Rs. 350</h4>
-        </div>
+                echo "
+                <div class='dashboard__bottom-cards__detail'>
+                <img class='dashboard__bottom-product-img' src='$product_image' alt=''>
+            <h4>$product_name</h4>
+            <h4>$category_name</h4>
+            <h4>$product_quantity $product_quantity_unit</h4>
+            <h4>Rs. $product_price</h4>
+            </div>
+           
+                ";
+            }
+            ?>
+        <a href='/product-seller-dashboard/categories'>
+            <button class="all-products-btn">All Products</button>
+        </a>
 
-        <div class="dashboard__bottom-cards__detail">
-            <img class="dashboard__bottom-product-img" src="/assets/images/porridge.jfif" alt="">
-            <h4>Vegetable Porridge</h4>
-            <h4>Cooked Foods</h4>
-            <h4>1 l</h4>
-            <h4>Rs. 550</h4>
-        </div>
     </div>
     <div class="dashboard__bottom-cards">
         <h3>Analytics</h3>

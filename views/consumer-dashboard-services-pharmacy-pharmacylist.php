@@ -17,6 +17,7 @@
          $id = $pharmacy['id'];
 
 
+
          echo "
          <div class = 'services-pharmacy-pharmacyList'>
         
