@@ -109,25 +109,25 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = 1 && appointment.done = 0");
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? &&  appointment.done = 0");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $appointment_confirm = $result->fetch_all(MYSQLI_ASSOC);
 
-            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.confirmation = 1 && appointment.done = 1");
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.done = 1");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $appointment_done = $result->fetch_all(MYSQLI_ASSOC);
 
-            $stmt = $db->connection->prepare("SELECT COUNT(confirmation) FROM appointment WHERE provider_nic = ? && done = 0 && confirmation = 1");
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && done = 0");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $new_patients = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT COUNT(confirmation) FROM appointment WHERE provider_nic = ? && confirmation = 1");
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();

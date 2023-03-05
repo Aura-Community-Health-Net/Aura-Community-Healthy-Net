@@ -8,13 +8,13 @@
         <div class="provider-signup-form__left">
             <div id="form-input">
                 <label class="form-input__label" for="doc-name">Name <sup>*</sup></label>
-                <input class="form-input__input" id="doc-name" type="text" name="doc-name"
+                <input class="form-input__input" id="doc-name" type="text" name="doc-name" tabindex="1"
                     value="<?php echo $_POST['doc-name'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="nic">NIC <sup>*</sup></label>
-                <input class="form-input__input" id="nic" type="text" name="nic"
+                <input class="form-input__input" id="nic" type="text" name="nic" tabindex="2"
                     value="<?php echo $_POST['nic'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["nic"])) {
@@ -25,7 +25,7 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="email">Email Address <sup>*</sup></label>
-                <input class="form-input__input" id="email" type="email" name="email"
+                <input class="form-input__input" id="email" type="email" name="email" tabindex="3"
                     value="<?php echo $_POST['email'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["email"])) {
@@ -36,7 +36,7 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="mobile-number">Mobile Number <sup>*</sup></label>
-                <input class="form-input__input" id="mobile-number" type="tel" name="mobile-number"
+                <input class="form-input__input" id="mobile-number" type="tel" name="mobile-number" tabindex="4"
                     value="<?php echo $_POST['mobile-number'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["mobile_number"])) {
@@ -47,13 +47,13 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="address">Address <sup>*</sup></label>
-                <input class="form-input__input" id="address" type="text" name="address"
+                <input class="form-input__input" id="address" type="text" name="address" tabindex="5"
                     value="<?php echo $_POST['address'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="reg-num">SLMC Registration Number <sup>*</sup></label>
-                <input class="form-input__input" id="reg-num" type="text" name="reg-num"
+                <input class="form-input__input" id="reg-num" type="text" name="reg-num" tabindex="6"
                     value="<?php echo $_POST['reg-num'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["reg_no"])) {
@@ -64,13 +64,13 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="field-study">Field Of Study <sup>*</sup></label>
-                <input class="form-input__input" id="field-study" type="text" name="field-study"
+                <input class="form-input__input" id="field-study" type="text" name="field-study" tabindex="7"
                     value="<?php echo $_POST['field-study'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="mbbs-certificate">Certificate of MBBS <sup>*</sup></label>
-                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate" accept="image/*" style="display: none; visibility: hidden;"
+                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate" tabindex="8" accept="application/pdf" style="display: none; visibility: hidden"
                        required>
 
                 <div class="form-upload-component">
@@ -87,14 +87,14 @@
         <div class="provider-signup-form__right">
             <div id="form-input">
                 <label class="form-input__label" for="qualifications">Qualifications <sup>*</sup></label>
-                <textarea class="form-input__textarea" id="qualifications" name="qualifications"
+                <textarea class="form-input__textarea" id="qualifications" name="qualifications" tabindex="9"
                     placeholder="Please put qualifications with separating commas" rows="5"
                     value="<?php echo $_POST['qualifications'] ?? ''; ?>" required></textarea>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="account-num">Bank Account Number <sup>*</sup></label>
-                <input class="form-input__input" id="account-num" type="text" name="account-num"
+                <input class="form-input__input" id="account-num" type="text" name="account-num" tabindex="10"
                     value="<?php echo $_POST['account-num'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["account_no"])) {
@@ -105,19 +105,19 @@
 
             <div id="form-input">
                 <label class="form-input__label" for="bank-name">Bank Name <sup>*</sup></label>
-                <input class="form-input__input" id="bank-name" type="text" name="bank-name"
+                <input class="form-input__input" id="bank-name" type="text" name="bank-name" tabindex="11"
                     value="<?php echo $_POST['bank-name'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="branch-name">Bank Branch Name <sup>*</sup></label>
-                <input class="form-input__input" id="branch-name" type="text" name="branch-name"
+                <input class="form-input__input" id="branch-name" type="text" name="branch-name" tabindex="12"
                     value="<?php echo $_POST['branch-name'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="profile-pic">Profile Picture <sup>*</sup></label>
-                <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File"
+                <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File" tabindex="13"
                        name="profile-pic" style="display: none; visibility: hidden;" accept="image/*" required>
 
                 <div class="form-upload-component">

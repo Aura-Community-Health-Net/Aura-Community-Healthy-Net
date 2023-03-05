@@ -154,20 +154,19 @@ class ConsumerDoctorController extends Controller
             $provider_nic = $_GET['provider_nic'];
             $slot_number = $_POST['available-time-slot'];
             print_r($_POST);
-            $done = $confirmation = 0;
+            $done = 0;
 
             $db = new Database();
             $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
-                      confirmation,
                       provider_nic,
-                      consumer_nic)VALUES (?,?,?,?)");
-            $stmt->bind_param("iiss", $done,$confirmation,$provider_nic,$nic);
+                      consumer_nic)VALUES (?,?,?)");
+            $stmt->bind_param("iss", $done,$provider_nic,$nic);
             $stmt->execute();
             $result = $stmt->get_result();
 
             $result2 = $stmt->insert_id;
-            print_r($result2);
+            //print_r($result2);
             $appointment_id = $result2;
             $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
                                WHERE slot_number = $slot_number");
