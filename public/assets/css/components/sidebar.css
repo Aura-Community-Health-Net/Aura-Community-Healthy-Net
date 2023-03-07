@@ -167,3 +167,7 @@ a:-webkit-any-link {
     margin-top: auto;
     margin-bottom: 3rem;
 }
+
+.navbtn--link {
+    border-radius: 0;
+}

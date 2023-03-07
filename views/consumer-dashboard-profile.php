@@ -1,37 +1,33 @@
+<?php
+/**
+ * @var array $consumer;
+ */
 
-<div class="consumer-dashboard-profile">
-    <div class="consumer-dashboard-profile_background">
-        <div class="consumer-dashboard-profile__top">
-            <table>
-                <tr>
-                    <td>
-                        <img src="/assets/images/profilepic2.jpg">
-                    </td>
-                    <td>
-                        <h2>Pasindu Fernando</h2>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="consumer-dashboard-profile__bottom">
-            <table>
-                <tr>
-                    <td><b>Email Address</b></td>
-                    <td>samanperera@gmail.com</td>
-                </tr>
-                <tr>
-                    <td><b>NIC</b></td>
-                    <td>567634456V</td>
-                </tr>
-                <tr>
-                    <td><b>Mobile Number</b></td>
-                    <td>070-3454334</td>
-                </tr>
-                <tr>
-                    <td><b>Address</b></td>
-                    <td>No.1, Thelwatta, Ambalangoda</td>
-                </tr>
-            </table>
-        </div>
+$consumer_image = $consumer['profile_picture'];
+$consumer_name = $consumer['name'];
+$consumer_email = $consumer['email_address'];
+$consumer_nic = $consumer['consumer_nic'];
+$consumer_mobile_number = $consumer['mobile_number'];
+$consumer_address = $consumer["address"];
+
+?>
+
+<div class="product-seller-profile-pic__container">
+    <?php
+    echo "
+    <div class='product-seller-profile-pic__header'>
+        <img src='$consumer_image' alt=''>
+        <h1>$consumer_name</h1>
     </div>
+
+    <div class='product-seller-profile-pic__details'>
+        <h3> <span>Email Address</span> $consumer_email</h3>
+        <h3><span>NIC</span> $consumer_nic</h3>
+        <h3><span>Mobile Number</span> $consumer_mobile_number</h3>
+        <h3><span>Address</span> $consumer_address</h3>
+    </div>
+    "
+    ?>
+
 </div>
+

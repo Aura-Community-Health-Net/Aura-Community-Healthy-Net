@@ -2,12 +2,11 @@
 
     background-color: #D9D9D9;
     height: 550px;
-/*    width:1150px;*/
-    margin-left: 65px;
-    margin-top: 40px;
+    margin:40px 9rem;
     border-radius: 1rem;
     display:flex;
     flex-direction: row;
+
 
 
 }
@@ -18,11 +17,17 @@
     background-color: #ffffff;
     height: 360px ;
     width: 250px ;
-    margin-left: 100px;
     margin-top: 60px;
     border-radius: 0.7rem;
     display: flex;
     flex-direction: column;
+
+}
+.pharmacy-neworders-main-block
+{
+    margin:auto;
+    display: flex;
+    gap: 3rem;
 
 }
 
@@ -42,7 +47,7 @@
 
 .adinfo-btn
 {
-    background-color: #008DFF;
+    background-color: #00005C;
     color: #ffffff;
     height: 0.8cm;
     width:4cm ;
@@ -85,7 +90,7 @@
 .pharmacy-neworders-advanceinfo
 {
     background-color: #D9D9D9;
-    height: 550px;
+    /*height: 550px;*/
     width:700px;
     /*    width:1150px;*/
     margin-left: 300px;
@@ -123,6 +128,7 @@
 {
     display: flex;
     flex-direction: column;
+    width: 800px;
 }
 
 .pharmacy-neworders-advanceinfo__consumer-details
@@ -140,6 +146,10 @@
 .consumer-details__details__name
 {
    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 12px;
+
+    /*padding: 0.5rem;*/
 
 }
 
@@ -151,16 +161,68 @@
 
 .pharmacy-neworders-advanceinfo__order-med-details__description
 {
-     margin-left:3cm ;
+    margin-left:5cm ;
     margin-top: 1rem;
-    line-height: 1cm;
+    padding-block: 0.5rem;
 
 }
 
-.pharmacy-neworders-advanceinfo__order-med-details__description__description
+.pharmacy-neworders-advanceinfo__order-med-details__description__medicinesList
 {
-    padding: 1rem;
+
+    padding:1rem 3rem;
+    margin-right: 5rem;
+    background-color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.pharmacy-neworders-advanceinfo__order-med-details__description__Note
+{
+
+   /* padding-inline: 1rem;
     margin-right: 1rem;
+    background-color: #ffffff;*/
+
+    padding:1rem 3rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 3rem;
+
+}
+.pharmacy-neworders-advanceinfo__order-med-details__description__AdvanceAmount
+{
+
+   /* padding-inline: 1rem;
+    margin-right: 1rem;
+    background-color: #ffffff;*/
+
+    margin-right: 17rem;
+    background-color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding:1rem 3rem;
+    border-radius: 8px;
+
+
+}
+.pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount
+{
+
+   /* padding-inline: 1rem;
+    margin-right: 1rem;
+    background-color: #ffffff;*/
+
+    padding:1rem 3rem;
+    border-radius: 8px;
+    margin-right: 17rem;
+    background-color: #ffffff;
+    /* margin-bottom: 0.5rem;*/
+    margin-top: 1rem;
+    align-content: center;
 
 }
 
@@ -170,14 +232,33 @@
 
 }
 
-.pharmacy-neworders-advanceinfo__order-med-details__names__name
+.pharmacy-neworders-advanceinfo__order-med-details__names__availableMedList
 {
-    line-height: 2.5cm;
+    font-weight: bold;
+    margin-top: 25px;
+    width: 5cm;
+}
+
+.pharmacy-neworders-advanceinfo__order-med-details__names__AdvanceAmount
+{
+    font-weight: bold;
+    margin-top:10px;
+}
+
+.pharmacy-neworders-advanceinfo__order-med-details__names__TotalAmount
+{
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+.pharmacy-neworders-advanceinfo__order-med-details__names__Note{
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .advance-info-submit-button
 {
-    background-color: #008DFF;
+    background-color: #00005C;
     color: white;
     border-radius: 8px;
     border:none;
@@ -188,3 +269,15 @@
     margin-left: 240px;
     cursor: pointer;
 }
+
+.consumer-details__identity__consumer-name
+{
+    font-weight: bold;
+}
+
+
+.adinfo-btn a
+{
+    color: white;
+}
+

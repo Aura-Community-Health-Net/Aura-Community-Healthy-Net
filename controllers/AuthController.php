@@ -17,6 +17,7 @@ class AuthController extends Controller
         switch ($providerType) {
             #region Doctor Signup
             case 'doctor':
+                //print_r($_POST);
                 $name = $_POST["doc-name"];
                 $nic = $_POST["nic"];
                 $email = $_POST["email"];
@@ -32,7 +33,29 @@ class AuthController extends Controller
                 $branch_name = $_POST["branch-name"];
                 $password = $_POST["password"];
                 $con_password = $_POST["con-password"];
-                //$western = $_POST["western"];
+                $doctor_type = $_POST['doctor_type'];
+
+
+                $certificate = $_FILES["certificate"];
+                $file_name1 = $certificate["name"];
+                $file_tmp_name1 = $certificate["tmp_name"];
+
+                $random_id1 = bin2hex(random_bytes(24));
+                $new_file_name1 = $nic . $random_id1 . "user" . $file_name1;
+                move_uploaded_file($file_tmp_name1, Application::$ROOT_DIR . "/public/uploads/$new_file_name1");
+
+
+
+                $profile = $_FILES["profile-pic"];
+                $file_name2 = $profile["name"];
+                $file_tmp_name2 = $profile["tmp_name"];
+
+                $random_id2 = bin2hex(random_bytes(24));
+                $new_file_name2 = $nic . $random_id2 . "user" . $file_name2;
+                move_uploaded_file($file_tmp_name2, Application::$ROOT_DIR . "/public/uploads/$new_file_name2");
+
+
+
 
                 //var_dump($_POST);
                 $db = new database();
@@ -42,37 +65,36 @@ class AuthController extends Controller
                 $sql = "SELECT * FROM service_provider WHERE email_address = '$email'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Email address already in use";
-                    $errors["email1"] = "Email address already in use";
+                    $errors["email"] = "Email address already in use";
                 }
 
 
                 $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobile_number'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Mobile number already in use";
                     $errors["mobile_number"] = "Mobile number already in use";
                 }
 
                 $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "NIC already in use";
                     $errors["nic"] = "NIC already in use";
                 }
 
+                $sql = "SELECT * FROM doctor WHERE slmc_reg_no = '$reg_no'";
+                $result = $db->connection->query(query: $sql);
+                if ($result->num_rows > 0) {
+                    $errors["reg_no"] = "Registration number already in use";
+                }
 
                 $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$account_no'";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    echo "Account number already in use";
-                    $errors["account_no"] = "NIC already in use";
+                    $errors["account_no"] = "Account number already in use";
                 }
 
-                $sql = "SELECT * FROM service_provider WHERE  = '$account_no'";
-
-                if ($password !== $con_password) {
-                    $errors["confirmPassword"] = "Password and Confirm Password must match.";
+                if ($password != $con_password) {
+                    $errors["con_password"] = "Password and Confirm Password must match.";
                 }
 
                 if (!isset($_POST["ua"])) {
@@ -82,13 +104,9 @@ class AuthController extends Controller
                 if (empty($errors)) {
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
 
-                    /*$name = $_FILES['profile_picture']['name'] ;
-                    $profile_picture = addslashes(file_get_contents($_FILES['profile_picture']['tmp_name'])) ;
-                    print_r($name);die();
-                    $sql = "INSERT INTO service_provider (name, profile_picture) VALUES ('', '{$name}', '{$profile_picture}')";*/
-
                     $stmt = $db->connection->prepare("INSERT INTO service_provider (
                             provider_nic, 
+                            id,
                             name, 
                             address, 
                             email_address, 
@@ -98,17 +116,19 @@ class AuthController extends Controller
                             bank_branch_name, 
                             profile_picture, 
                             bank_account_number, 
-                            provider_type) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    $type = 'doctor';
-                    $image = 'https://gravatar.com/avatar/9561081df0c8cbb56e16e188e45481ee?s=400&d=robohash&r=x';
-                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $image, $account_no, $type);
+                            provider_type) VALUES ( ?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                    $profilePic = "/uploads/$new_file_name2";
+                    $type = "doctor";
+                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
 
-                    $cer = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.template.net%2Fbusiness%2Fcertificate-templates%2Ffree-medical-certificate-template%2F&psig=AOvVaw0XN8_Vo0xo9mi77IOmHu4G&ust=1669053380239000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCMim5sGqvfsCFQAAAAAdAAAAABAE';
+
+                    $certificate = "/uploads/$new_file_name1";
                     $stmt = $db->connection->prepare("INSERT INTO doctor (provider_nic, slmc_reg_no, field_of_study, certificate_of_mbbs, type) VALUES ( ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $cer, $type);
+                    $stmt->bind_param("sssss", $nic, $reg_no, $field_of_study, $certificate, $doctor_type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
@@ -124,8 +144,9 @@ class AuthController extends Controller
                     header("location: /doctor-dashboard");
                     return "";
 
+
                 } else {
-                    return self::render(view: 'doctor-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'doctor-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
             #endregion
             #region Pharmacy Signup
@@ -170,28 +191,44 @@ class AuthController extends Controller
 
                 $db = new Database();
                 $errors = [];
-                $sql = "SELECT * FROM `service_provider` WHERE email_address = '$emailAddress' ";
-                $result = $db->connection->query($sql);
 
+                $sql = "SELECT * FROM service_provider WHERE email_address = '$emailAddress'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["emailaddress"] = "Email already exists";
+                    $errors["emailaddress"] = "Email address already in use";
                 }
 
+
+                $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["address"] = "Address already exists";
+                    $errors["nic"] = "NIC already in use";
                 }
 
+
+                $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobile'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["pharmacyregno"] = "pharmacy reg number already exists";
+                    $errors["mobile_number"] = "Mobile Number already in use";
                 }
 
+
+
+                $sql = "SELECT * FROM pharmacy WHERE pharmacist_reg_no = '$pharmacyRegNo'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
-                    $errors["mobile"] = "Mobile number already exists";
+                    $errors["pharmacyregno"] = "Pharmacist Registration Number already in use";
                 }
 
+
+
+
+                $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$bankAccNo'";
+                $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     $errors["bankaccno"] = "Bank account number already exists";
                 }
+
 
 
                 if ($password != $confirmPassword) {
@@ -209,6 +246,7 @@ class AuthController extends Controller
 
                     $result = $db->connection->prepare("INSERT INTO service_provider(
                              provider_nic,
+                             id,
                              name,
                              address,
                              email_address,
@@ -218,14 +256,15 @@ class AuthController extends Controller
                              bank_branch_name,
                              profile_picture,
                              bank_account_number,
-                             provider_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                             provider_type) VALUES (?,UUID(),?,?,?,?,?,?,?,?,?,?)");
 
                     $picFile = "/uploads/$new_picfile_name";
                     $provider_type = "pharmacy";
 
                     $result->bind_param("sssssssssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
                     $result->execute();
-                    $RESULT = $result->get_result();
+                    $Result = $result->get_result();
+
 
 
                     $result = $db->connection->prepare("INSERT INTO pharmacy(
@@ -239,13 +278,14 @@ class AuthController extends Controller
                     $result->bind_param("ssss", $nic, $pharmacyRegNo, $pharmacyName, $nmra);
                     $result->execute();
                     $RESULT = $result->get_result();
+                    $_SESSION["nic"] = $nic;
+                    $_SESSION["user_type"] = "pharmacy";
+                    $_SESSION["is_admin"] = false;
 
                 } else {
-                    return self::render(view: 'provider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'pharmacy-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
-                $_SESSION["nic"] = $nic;
-                $_SESSION["user_type"] = "pharmacy";
-                $_SESSION["is_admin"] = false;
+
 
                 header("location: /pharmacy-dashboard");
                 return "";
@@ -316,7 +356,8 @@ class AuthController extends Controller
 
                 if (empty($errors)) {
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
-                    $stmt = $db->connection->prepare("INSERT INTO service_provider (provider_nic, 
+                    $stmt = $db->connection->prepare("INSERT INTO service_provider (provider_nic,
+                                   id,
                                     name, 
                                     address, 
                                     email_address, 
@@ -326,7 +367,7 @@ class AuthController extends Controller
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
@@ -343,7 +384,7 @@ class AuthController extends Controller
                     $_SESSION["user_type"] = "product-seller";
 
                 } else {
-                    return self::render(view: 'provider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'product-seller-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
                 header("location: /product-seller-dashboard");
                 return "";
@@ -365,13 +406,13 @@ class AuthController extends Controller
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirm_password"];
 
-                $file = $_FILES["profile_pic"];
-                $file_name = $file["name"];
-                $file_tmp_name = $file["tmp_name"];
+                $file1 = $_FILES["profile_pic"];
+                $file_name1 = $file1["name"];
+                $file_tmp_name1 = $file1["tmp_name"];
 
                 $random_id = bin2hex(random_bytes(24));
-                $new_file_name = $nic . $random_id . "profile_pic" . $file_name;
-                move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
+                $new_file_name = $nic . $random_id . "profile_pic" . $file_name1;
+                move_uploaded_file($file_tmp_name1, Application::$ROOT_DIR . "/public/uploads/$new_file_name");
 
                 $db = new Database();
                 $errors = [];
@@ -402,6 +443,7 @@ class AuthController extends Controller
                     $hashedPassword = password_hash(password: $password, algo: PASSWORD_DEFAULT);
                     $stmt = $db->connection->prepare("INSERT INTO  service_provider (
                                        provider_nic ,
+                                       id,
                                        name ,
                                        address,
                                        email_address,
@@ -412,25 +454,25 @@ class AuthController extends Controller
                                        profile_picture,
                                        bank_account_number,
                                        provider_type )
-                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                             VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $role = "care-rider";
                     $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $role);
                     $stmt->execute();
-
-                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic, 
-                                                    driving_licence_number
-                                                    )VALUES ( ?, ?)");
-                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
-                    $stmt->execute();
+//
+//                    $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic,
+//                                                    driving_licence_number
+//                                                    )VALUES ( ?, ?)");
+//                    $stmt->bind_param("ss", $nic, $drivingLicenseNumber);
+//                    $stmt->execute();
                     $_SESSION["nic"] = $nic;
                     $_SESSION["user_type"] = "Care Rider";
                     $_SESSION["is_admin"] = false;
                     header("location: /care-rider-dashboard");
                     return "";
                 } else {
-                    return self::render(view: 'care-rider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'care-rider-signup', layout: 'provider-signup-layout', params: ['errors' => $errors]);
                 }
 
 
@@ -542,11 +584,11 @@ class AuthController extends Controller
                 return "";
             }
             $errors["password"] = "Password is incorrect";
-            return self::render(view: 'administrator-login', params: ['errors' => $errors]);
+            return self::render(view: 'administrator-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
         }
 
         $errors["email"] = "Email doesn't exist";
-        return self::render(view: 'administrator-login', params: ['errors' => $errors]);
+        return self::render(view: 'administrator-login', layout: 'provider-signup-layout', params: ['errors' => $errors]);
 
     }
 
@@ -623,7 +665,7 @@ class AuthController extends Controller
         } else {
             return self::render(view: 'consumer-signup', params: ['errors' => $errors]);
         }
-        header("location: /");
+        header("location: /consumer-dashboard");
         return "";
     }
 
@@ -640,6 +682,7 @@ class AuthController extends Controller
         $result = $stmt->get_result();
         if($result->num_rows > 0){
             $consumer = $result->fetch_assoc();
+            var_dump($consumer);
             if (password_verify($password, $consumer["password"])){
                 $_SESSION["nic"] = $consumer["consumer_nic"];
                 $_SESSION["user_type"] = "consumer";
@@ -664,6 +707,27 @@ class AuthController extends Controller
     public static function registrationOverview(): bool|array|string
     {
         return self::render(view: "registration-overview");
+    }
+
+    public static function providerLogout(): string
+    {
+        session_destroy();
+        header("location: /provider-login");
+        return "";
+    }
+
+    public static function consumerLogout(): string
+    {
+        session_destroy();
+        header("location: /login");
+        return "";
+    }
+
+    public static function adminLogout(): string
+    {
+        session_destroy();
+        header("location: /administrator-login");
+        return "";
     }
 
 

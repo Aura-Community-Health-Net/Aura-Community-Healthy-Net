@@ -36,12 +36,10 @@ class FeedbacksController extends Controller
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
 
-        if (!$nic || $providerType !== "doctor")
-        {
+        if (!$nic || $providerType !== "doctor") {
             header("location: /provider-login");
             return "";
-        }
-        else {
+        } else {
 
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
@@ -50,10 +48,16 @@ class FeedbacksController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            return self::render(view: 'doctor-dashboard-feedback', layout: "doctor-dashboard-layout", params: [], layoutParams: [
-                "pharmacy" => $doctor,
-                "title" => "Feedback",
-                "active_link" => ""
+            $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback = $result->fetch_all(MYSQLI_ASSOC);
+
+            return self::render(view: 'doctor-dashboard-feedback', layout: "doctor-dashboard-layout", params: ['doctor' => $doctor, 'feedback' => $feedback], layoutParams: [
+                "doctor" => $doctor,
+                "feedback" => $feedback,
+                "title" => "Feedback"
             ]);
         }
     }
@@ -64,12 +68,10 @@ class FeedbacksController extends Controller
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
 
-        if (!$nic || $providerType !== "pharmacy")
-        {
+        if (!$nic || $providerType !== "pharmacy") {
             header("location: /provider-login");
             return "";
-        }
-        else {
+        } else {
 
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
@@ -88,9 +90,9 @@ class FeedbacksController extends Controller
 
     public static function getProductSellerFeedbackPage(): bool|array|string
     {
-        $nic =$_SESSION["nic"];
+        $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType !== "product-seller"){
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
         } else {
@@ -100,23 +102,28 @@ class FeedbacksController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product_seller = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer s ON f.consumer_nic = s.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback_list = $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        return self::render(view: 'product-seller-dashboard-feedback', layout: "product-seller-dashboard-layout", layoutParams: [
+        return self::render(view: 'product-seller-dashboard-feedback', layout: "product-seller-dashboard-layout", params: [
+            'feedback_from_consumers' => $feedback_list
+        ], layoutParams: [
             "product_seller" => $product_seller,
             "active_link" => "feedback",
             "title" => "Feedback"
         ]);
     }
 
-
-
-
     public  static function getConsumerFeedbackPage()
     {
-        $nic =$_SESSION["nic"];
+        $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
-        if(!$nic || $userType !== "consumer"){
+        if (!$nic || $userType !== "consumer") {
             header("location: /provider-login");
             return "";
         } else {
@@ -131,8 +138,49 @@ class FeedbacksController extends Controller
         return self::render(view: 'consumer-dashboard-feedback', layout: "consumer-dashboard-layout", layoutParams: [
             "consumer" => $consumer,
             "active_link" => "feedback",
-            "title" => "Feedback"]);
+            "title" => "Feedback"
+        ]);
     }
 
 
+
+    public  static  function PharmacyFeedback(): array|bool|string
+    {
+
+        $provider_nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$provider_nic || $providerType !== "pharmacy")
+        {
+            header("location: /provider-login");
+            return "";
+        } else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer c on f.consumer_nic = c.consumer_nic WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $feedbacks = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+            //print_r($consumer);die();
+
+            return self::render(view: 'pharmacy-dashboard-feedback', layout: "pharmacy-dashboard-layout", params: ['pharmacy' => $pharmacy, 'feedback' => $feedbacks], layoutParams: [
+                "pharmacy" => $pharmacy,
+                "feedback" => $feedbacks,
+                "title" => "Feedback",
+                "active_link" => "feedback"
+            ]);
+        }
+    }
 }

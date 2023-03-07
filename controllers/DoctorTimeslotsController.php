@@ -45,11 +45,34 @@ class DoctorTimeslotsController extends Controller
     {
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];
-        if(!$nic || $providerType !== "doctor"){
+        if (!$nic || $providerType !== "doctor") {
             header("location: /provider-login");
             return "";
         }
-        $db = new database();
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor = $result->fetch_assoc();
+
+
+        if (!$doctor["is_verified"]) {
+            return "
+        <style>
+        .verification-error{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4rem;
+            color: rgba(0, 0, 0, 0.3);
+        }
+       </style>
+        <div class='verification-error'>You're not verified, Please check later</div>";
+        }
 
         $errors = [];
         if (empty($errors)) {
@@ -62,7 +85,7 @@ class DoctorTimeslotsController extends Controller
                               
                               ) VALUES ( ?, ?, ?,? )");
 
-            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"],$nic);
+            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"], $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /doctor-dashboard/timeslots");
@@ -71,5 +94,51 @@ class DoctorTimeslotsController extends Controller
         } else {
             return self::render(view: 'doctor-dashboard-timeslots', layout: "doctor-dashboard-layout", layoutParams: ['errors' => $errors]);
         }
+    }
+
+    public static function deleteTimeslot(): array|bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+        $slot_number = $_GET["slotNo"];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("DELETE FROM doctor_time_slot WHERE slot_number = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $slot_number, $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        header("location: /doctor-dashboard/timeslots");
+        return "";
+    }
+
+    public static function editTimeslot(): array|bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "doctor") {
+            header("location: /provider-login");
+            return "";
+        }
+        $slot_number = $_GET["slotNo"];
+        $editDate = $_POST["edit-date"];
+        $editFromTime = $_POST["edit-fromTime"];
+        $editTOTime = $_POST["edit-toTime"];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET date = ?,
+                              from_time = ?,
+                              to_time = ?,
+                              provider_nic = ? WHERE slot_number = $slot_number");
+        $stmt->bind_param("ssss", $editDate, $editFromTime, $editTOTime,$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+
+        header("location: /doctor-dashboard/timeslots");
+        return "";
     }
 }

@@ -1,0 +1,11 @@
+.care-rider-order-details{
+    display: flex;
+    /*flex-direction: row;*/
+    gap: 2rem;
+    justify-content: space-between;
+    margin-inline: 3rem;
+}
+
+.time-slots-td{
+    padding-block: 0.5rem;
+}

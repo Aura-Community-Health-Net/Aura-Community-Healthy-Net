@@ -2,6 +2,8 @@
 /**
  * @var array $pharmacy
  * @var array $medicines
+ * @var string $title
+ * @var string $active_link
  */
 ?>
 <table class="items-table">
@@ -17,18 +19,35 @@
     </tr>
     <?php
     foreach ($medicines as $medicine) {
+
+        $med_id = $medicine['med_id'];
+        $med_name = $medicine['name'];
+        $med_price = $medicine['price'];
+        $med_quantity = $medicine['quantity'];
+        $med_quantity_unit = $medicine['quantity_unit'];
+        $med_stock = $medicine['stock'];
+        $med_stock_unit = $medicine['stock_unit'];
+
+
         echo "
-                      <tr>   
+                    <tr data-medicineid='$med_id' data-medicinename='$med_name' data-medicineprice='$med_price' data-medicinequantity ='$med_quantity' data-medicinequantity_unit='$med_quantity_unit' data-medicinestock ='$med_stock' data-medicinesstock_unit ='$med_stock_unit'>  
+                     
                     <td id='image-block'><img class='products-img' src='{$medicine['image']}' alt=''></td>
-                    <td>{$medicine['med_id']}</td>
-                    <td>{$medicine['name']}</td>
+                    <td>{$med_id}</td>
+                    <td>{$med_name}</td>
                     <td>{$medicine['price']}</td>
                     <td>{$medicine['quantity']}</td>
                     <td>{$medicine['quantity_unit']}</td>
                     <td>{$medicine['stock']}</td>
                     <td>{$medicine['stock_unit']}</td>
                     
-                    <td id='action-block'><button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> <button class='action-btn action-btn--delete'><i class='fa-solid fa-trash'></i></button></td>
+                    <td id='action-block'>
+                        <button id = 'delete-medicines-$med_id' data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
+                        <button id = 'update-medicines-$med_id'  data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--update medicine-update'><i class='fa-solid fa-pen'></i></button>
+
+                    </td>
+                    
+                                        
         </tr>";
     } ?>
 </table>
@@ -77,5 +96,25 @@
         </div>
     </div>
 </div>
+
+
+<div class="overlay" id="delete-medicine-overlay">
+    <div class="modal" id="delete-medicine-modal">
+
+    </div>
+</div>
+
+
+<div class="overlay" id="update-medicine-overlay">
+    <div class="modal" id="update-medicine-modal">
+
+    </div>
+
+</div>
+
+
+
+
+
 
 <script src="/assets/js/pages/medicines.js"></script>

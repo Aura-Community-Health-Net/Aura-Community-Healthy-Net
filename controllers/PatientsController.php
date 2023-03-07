@@ -9,26 +9,35 @@ class PatientsController extends Controller
 {
     public static function getDoctorPatientsPage(): array|bool|string
     {
+
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType != "doctor") {
             header("location: /provider-login");
             return "";
-        }else{
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $product_seller = $result->fetch_assoc();
         }
 
-        return self::render(view: 'doctor-dashboard-patients', layout: "doctor-dashboard-layout", params: [
-            "product_seller" => $product_seller
-        ], layoutParams: [
-            "title" => "Past Patients",
-            "product_seller" => $product_seller,
-            "active_link" => "patients"
-        ]);
+        $db = new database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor = $result->fetch_assoc();
 
+        $stmt = $db->connection->prepare("SELECT MAX(doctor_time_slot.date),service_consumer.profile_picture,service_consumer.name,doctor_time_slot.date,service_consumer.mobile_number FROM doctor_time_slot INNER JOIN appointment ON appointment.appointment_id = doctor_time_slot.appointment_id INNER JOIN service_consumer ON service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.done = 1 GROUP BY appointment.consumer_nic ");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $patient_details = $result->fetch_all(MYSQLI_ASSOC);
+
+
+        return self::render(view: 'doctor-dashboard-patients', layout: "doctor-dashboard-layout", params: [
+            "doctor" => $doctor,"patient_details"=>$patient_details
+        ], layoutParams: [
+            "title" => "Patients",
+            "active_link" => "doctor",
+            "doctor" => $doctor,
+        ]);
     }
 }

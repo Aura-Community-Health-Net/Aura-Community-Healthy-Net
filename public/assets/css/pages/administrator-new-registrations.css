@@ -96,3 +96,8 @@
     text-align: center;
 }
 
+.verification-button-section{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 10rem;
+}

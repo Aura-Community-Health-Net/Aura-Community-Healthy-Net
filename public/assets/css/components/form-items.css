@@ -77,6 +77,10 @@
     font-size: 1.5rem;
 }
 
+.continue-to-pay-btn{
+    color: white;
+}
+
 .form-item--search button{
     border: none;
     outline: none;

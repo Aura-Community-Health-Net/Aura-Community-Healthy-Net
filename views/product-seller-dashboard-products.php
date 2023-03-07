@@ -28,19 +28,26 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         $price = (int) $product["price"] / 100;
         $id = $product['product_id'];
         $name = $product['name'];
-        echo "<tr>
-       
+        $categoryId = $product['category_id'];
+        $quantity = $product['quantity'];
+        $quantity_unit = $product['quantity_unit'];
+        $stock = $product['stock'];
+        $stock_unit = $product['stock_unit'];
+
+
+        echo "<tr data-productid='$id' data-productname='$name' data-productquantity='$quantity' data-productquantity_unit='$quantity_unit' data-productprice='$price' data-productstock = '$stock' data-productstock_unit = '$stock_unit'>
+        
         <td id='image-block'>
         <img src='{$product["image"]}' alt='' class='products-img'>
         </td>
-        <td>{$id}</td>
-        <td>{$name}</td>
+        <td >{$id}</td>
+        <td >{$name}</td>
         <td>{$product['quantity']} {$product['quantity_unit']} </td> 
         <td>{$price}</td>
         <td>{$product['stock']} {$product['stock_unit']}</td>
         <td id='action-block'>
-        <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> 
-        <button id='delete-product-$id' data-productName='$name' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
+        <button id='update-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--edit product-update'><i class='fa-solid fa-pen'></i></button> 
+        <button id='delete-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
     </tr>";
     }
 
@@ -105,9 +112,17 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         </div>
     </div>
 </div>
+
 <div class="overlay" id="delete-product-overlay">
     <div class="modal" id="delete-product-modal">
 
     </div>
 </div>
+
+<div class="overlay" id="update-product-overlay">
+    <div class="modal" id="update-product-modal">
+
+    </div>
+</div>
+
 <script src="/assets/js/pages/products.js"></script>
