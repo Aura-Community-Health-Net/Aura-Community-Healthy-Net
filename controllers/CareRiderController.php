@@ -66,12 +66,11 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $result = $stmt->get_result();
             $care_rider = $result->fetch_all(MYSQLI_ASSOC);
 
-            $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_consumer.profile_picture, service_consumer.name FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
             $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $feedback = $result->fetch_all(MYSQLI_ASSOC);
-
             if (isset($_GET['feedback-btn'])) {
                 $careRiderFeedback = $_GET['care-rider-feedback'];
                 $feedbackDatetime = $_GET['feedback-datetime'];
@@ -86,9 +85,10 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
                 $result = $stmt->get_result();
             }
         }
-        return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:["care_rider"=>$care_rider], layoutParams: [
+        return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:["care_rider"=>$care_rider,"feedback"=>$feedback], layoutParams: [
             "consumer" => $consumer,
             "care_rider"=>$care_rider,
+            "feedback"=> $feedback,
             "active_link" => "requests",
             "title" => "Care Rider"]);
     }
@@ -146,9 +146,15 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $result = $stmt->get_result();
             $care_rider = $result->fetch_all(MYSQLI_ASSOC);
 
-            return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:["care_rider"=>$care_rider], layoutParams: [
+        $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_consumer.profile_picture, service_consumer.name FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
+        $stmt->bind_param("s", $provider_nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feedback = $result->fetch_all(MYSQLI_ASSOC);
+        return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:["care_rider"=>$care_rider,"feedback"=>$feedback], layoutParams: [
                 "consumer" => $consumer,
                 "care_rider"=>$care_rider,
+                "feedback"=> $feedback,
                 "active_link" => "requests",
                 "title" => "Care Rider"]);
 

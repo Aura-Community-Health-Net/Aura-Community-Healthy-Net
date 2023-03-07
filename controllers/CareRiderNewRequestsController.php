@@ -24,9 +24,26 @@ class CareRiderNewRequestsController extends Controller
         $result = $stmt->get_result();
         $careRider = $result->fetch_assoc();
 
-        return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout", layoutParams: ["care_rider" => $careRider,
+
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $requests = $result->fetch_all(MYSQLI_ASSOC);
+
+
+        $confirmation = 0;
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.request_id = ride_request.request_id INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = ?");
+        $stmt->bind_param("si", $nic,$confirmation);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $request_details = $result->fetch_all(MYSQLI_ASSOC);
+
+        return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details ] ,layoutParams: array("care_rider" => $careRider,
             "active_link" => "new-requests",
-            "title" => "New Requests"]);
+            "title" => "New Requests",
+            "care_rider"=>$careRider
+        ));
     }
 
 }

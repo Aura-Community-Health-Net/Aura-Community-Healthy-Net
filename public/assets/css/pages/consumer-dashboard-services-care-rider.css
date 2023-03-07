@@ -23,19 +23,14 @@
 }
 
 .care-rider__card-details{
-    display: flex;
+    display: grid;
     gap: 3rem;
     width: 100%;
     margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2rem 2rem;
 }
 
-.care-rider-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem;
-    width: 100%;
-}
 
 .care-rider-card {
     display: flex;

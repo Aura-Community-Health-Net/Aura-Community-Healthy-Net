@@ -395,6 +395,17 @@ class AuthController extends Controller
                 $db = new Database();
                 $errors = [];
 
+                //nic
+                $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
+                $result = $db->connection->query(query: $sql);
+
+                if ($result->num_rows > 0) {
+                    //            echo "Email already in use";
+                    $errors["nic"] = "nic already in use";
+                }
+
+
+                //email
                 $sql = "SELECT * FROM service_provider WHERE email_address = '$email'";
                 $result = $db->connection->query(query: $sql);
 
@@ -404,6 +415,7 @@ class AuthController extends Controller
                 }
 
 
+                //mobile number
                 $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobileNumber'";
                 $result = $db->connection->query(query: $sql);
 
@@ -411,6 +423,37 @@ class AuthController extends Controller
                     $errors["mobile_number"] = "Mobile number already in use";
 
                 }
+
+
+                //number plate
+                $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate'";
+                $result = $db->connection->query(query: $sql);
+
+                if ($result->num_rows > 0) {
+                    $errors["number_plate"] = "number plate already in use";
+
+                }
+
+
+                //driving licence number
+                $sql = "SELECT * FROM care_rider WHERE driving_licence_number = '  $drivingLicenseNumber '";
+                $result = $db->connection->query(query: $sql);
+
+                if ($result->num_rows > 0) {
+                    $errors["driving_licence_number"] = "driving licence number already in use";
+
+                }
+
+
+                //bank account number
+                $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$bankNo'";
+                $result = $db->connection->query(query: $sql);
+
+                if ($result->num_rows > 0) {
+                    //            echo "Email already in use";
+                    $errors["bank_account_number"] = "bank account number already in use";
+                }
+
 
 
                 if ($password != $confirmPassword) {
@@ -451,12 +494,13 @@ class AuthController extends Controller
 
 
                     $_SESSION["nic"] = $nic;
-                    $_SESSION["user_type"] = "Care Rider";
+                    $_SESSION["user_type"] = "care-rider";
                     $_SESSION["is_admin"] = false;
                     header("location: /care-rider-dashboard");
                     return "";
                 } else {
-                    return self::render(view: 'care-rider-signup', params: ['errors' => $errors]);
+                    return self::render(view: 'care-rider-signup', params: ['errors' => $errors],layout: "provider-signup-layout"
+                    );
                 }
 
 

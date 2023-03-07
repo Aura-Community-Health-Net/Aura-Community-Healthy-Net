@@ -28,8 +28,10 @@ class CareRiderTimeslotsController extends Controller
         $result = $stmt->get_result();
         $careRider = $result->fetch_assoc();
 
-        $sql = "SELECT * FROM care_rider_time_slot  ";
-        $result = $db->connection->query(query: $sql);
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot WHERE provider_nic = ? ") ;
+        $stmt->bind_param("s",$nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $timeslots = [];
         //        $product2=null;
         while ($row = $result->fetch_assoc()) {

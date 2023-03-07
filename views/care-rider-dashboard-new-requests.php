@@ -1,9 +1,11 @@
 <?php
 /**
- * @var array $appointments
- * @var array $doctor
- * @var array $timeslots
+ * @var array $requests
+ * @var array $careRider
+ * @var array $request_details
  */
+$cancel = 1;
+$confirm =2;
 ?>
 
 <head>
@@ -20,46 +22,29 @@
                 <th>Location</th>
             </tr>
         </table>
-        <div class="care-rider-new-requests__left__data">
-            <p><img src="/assets/images/profilepic1.jpg">&nbsp;&nbsp;
-                Kamal Deshapriya &nbsp; &nbsp; &nbsp; &nbsp;
-                4.00 pm - 4.30 pm &nbsp; &nbsp; &nbsp; &nbsp;
-                0762639672   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src="/assets/images/care-rider-location.png" style="width: 20px"  >
-            </p>
-<!--            <button style="background-color: #7ABCF1">Cancel</button>-->
-            <button style="background-color: #008DFF">Start the Ride</button>
+        <div class="doctor-appointments__left__background">
+            <?php foreach ($request_details as  $value) { ?>
+                <div class="doctor-appointments__left">
+                    <form action="" method="post">
+                        <div class="doctor-appointments__left__data">
+                            <img src="<?php echo $value['profile_picture'];?>">
+                            <p><?php echo $value['name'];?></p>
+                            <p><?php echo $value['from_time']. " - " . $value['to_time'];?></p>
+                            <p><?php echo $value['mobile_number'];?></p>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <?php $request_id = $value['request_id']?>
+                        </div>
+                        <div class="doctor-appointments__buttons">
+                            <button value="Cancel" formaction="<?php echo"/care-rider-dashboard/appointments-conform-cancel?request_id=$request_id&id=$cancel"?>" type="submit" style="background-color: #0002A1">Cancel</button>
+                            <button value="Confirm" formaction="<?php echo"/care-rider-dashboard/appointments-conform-cancel?request_id=$request_id&id=$confirm"?>" type="submit" style="background-color: #00005C">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            <?php } ?>
         </div>
-        <div class="care-rider-new-requests__left__data">
-            <p><img src="/assets/images/profilepic1.jpg">&nbsp;&nbsp;
-                Kamala Dahanayake &nbsp; &nbsp; &nbsp; &nbsp;
-                3.45 pm - 4.45 pm &nbsp; &nbsp; &nbsp; &nbsp;
-                076-2978546   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <img src="/assets/images/care-rider-location.png" style="width: 15px" >
-            </p>
-            <button style="background-color: #7ABCF1">Cancel</button>
-            <button style="background-color: #008DFF">Confirm</button>
-        </div>
-        <div class="care-rider-new-requests__left__data">
-            <p><img src="/assets/images/profilepic1.jpg">&nbsp;&nbsp;
-                Anoj Kumarathunga &nbsp; &nbsp; &nbsp; &nbsp;
-                5.00 pm - 5.30 pm &nbsp; &nbsp; &nbsp; &nbsp;
-                076-2378678   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <img src="/assets/images/care-rider-location.png" style="width: 15px" >
-            </p>
-            <button style="background-color: #7ABCF1">Cancel</button>
-            <button style="background-color: #008DFF">Confirm</button>
-        </div>
-        <div class="care-rider-new-requests__left__data">
-            <p><img src="/assets/images/profilepic1.jpg">&nbsp;&nbsp;
-                Semini Peduruarachchi &nbsp; &nbsp; &nbsp; &nbsp;
-                5.10 pm - 5.30 pm &nbsp; &nbsp; &nbsp; &nbsp;
-                076546472   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;
-                <img src="/assets/images/care-rider-location.png" style="width: 15px" >
-            </p>
-            <button style="background-color: #7ABCF1">Cancel</button>
-            <button style="background-color: #008DFF">Confirm</button>
-        </div>
+
+
+
     </div>
 
 

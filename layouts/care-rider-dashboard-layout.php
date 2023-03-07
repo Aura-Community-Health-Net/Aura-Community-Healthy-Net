@@ -119,7 +119,7 @@
 
                 </li>
                 <li class="logout">
-                    <form action="/logout" method="post">
+                    <form action="/provider-logout" method="post">
                         <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
