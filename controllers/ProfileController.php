@@ -3,10 +3,8 @@
 namespace app\controllers;
 
 use app\core\Controller;
-<<<<<<< HEAD
-=======
 use app\core\database;
->>>>>>> 185fcf6cf39410acdcd00654acad7bd28e4115a1
+
 
 
 
@@ -136,10 +134,7 @@ class ProfileController extends Controller
         ]);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
- }
-=======
+
 
     public function getConsumerServicesDoctorPage(): bool|array|string
     {
@@ -210,8 +205,7 @@ class ProfileController extends Controller
         ]);
     }
 
-=======
->>>>>>> 185fcf6cf39410acdcd00654acad7bd28e4115a1
+
     public function getConsumerProfilePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -390,4 +384,4 @@ class ProfileController extends Controller
         ]);
     }
 }
->>>>>>> 5270b3e561bd3ae1d616946a80414e6a5960c0a8
+
