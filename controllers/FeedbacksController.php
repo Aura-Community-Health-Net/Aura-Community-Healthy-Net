@@ -23,8 +23,12 @@ class FeedbacksController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
         $careRider = $result->fetch_assoc();
-
-        return self::render(view: "care-rider-dashboard-feedback", layout: "care-rider-dashboard-layout", params: [], layoutParams: [
+        $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_consumer.profile_picture, service_consumer.name FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feedback = $result->fetch_all(MYSQLI_ASSOC);
+        return self::render(view: "care-rider-dashboard-feedback", layout: "care-rider-dashboard-layout", params: ["feedback"=>$feedback], layoutParams: [
             "care_rider" => $careRider,
             "title" => "Feedback",
             "active_link" => "feedbacks"
@@ -134,9 +138,15 @@ class FeedbacksController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
         }
+        $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_provider.profile_picture, service_provider.name FROM feedback INNER JOIN service_provider on feedback.provider_nic = service_provider.provider_nic WHERE feedback.consumer_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feedback = $result->fetch_all(MYSQLI_ASSOC);
 
-        return self::render(view: 'consumer-dashboard-feedback', layout: "consumer-dashboard-layout", layoutParams: [
+        return self::render(view: 'consumer-dashboard-feedback', layout: "consumer-dashboard-layout", params:["feedback"=>$feedback],layoutParams: [
             "consumer" => $consumer,
+            "feedback"=>$feedback,
             "active_link" => "feedback",
             "title" => "Feedback"
         ]);

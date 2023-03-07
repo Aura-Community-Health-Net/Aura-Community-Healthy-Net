@@ -24,13 +24,13 @@ class ProfileController extends Controller
         $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        $careRider = $result->fetch_assoc();
+        $care_rider = $result->fetch_assoc();
 
 
-        return self::render(view: 'care-rider-dashboard-profile', layout: "care-rider-dashboard-layout", params: [], layoutParams: [
+        return self::render(view: 'care-rider-dashboard-profile', layout: "care-rider-dashboard-layout", params: ["care_rider"=>$care_rider], layoutParams: [
             "active_link" => "Profile",
             "title" => "Profile",
-            "care_rider" => $careRider
+            "care_rider"=>$care_rider,
         ]);
     }
     
