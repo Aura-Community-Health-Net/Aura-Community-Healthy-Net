@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Importing core classes
-use app\controllers\ConsumerController;
+
 use app\core\Application;
 use app\controllers\OrdersController;
 
@@ -32,8 +32,9 @@ use app\controllers\ProfileController;
 
 use app\controllers\FeedbacksController;
 use app\controllers\ProductsController;
+use app\controllers\ConsumerDoctorController;
 
-
+use app\controllers\CartController;
 // Implementing environment variable loading
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -92,12 +93,13 @@ $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharma
 $app->router->get('/pharmacy-dashboard/medicines', [MedicinesController::class, 'viewMedPage']);
 $app->router->post('/pharmacy-dashboard/medicines', [MedicinesController::class, 'addMed']);
 $app->router->post('/pharmacy-dashboard/medicines/delete',[MedicinesController::class,'deleteMedicines']);
-$app->router->get('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'getupdateMedicinesForm']);
+//$app->router->get('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'getupdateMedicinesForm']);
 $app->router->post('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'updateMedicines']);
 //$app->router->post('/pharmacy-dashboard/medicines/update-medicines',[MedicinesController::class,'editMedicines']);
 $app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
 $app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
+$app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'PharmacyFeedback']);
 $app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
 $app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPharmacyProfilePage']);
 
@@ -131,17 +133,19 @@ $app->router->get('/consumer-dashboard/services/care-rider/request/feedback',[Ca
 
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
+//$app->router->get('/doctor-dashboard', [DashboardController::class, 'DoctorDashboard']);
 $app->router->get('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'getDoctorTimeslotsPage']);
-$app->router->post('/doctor-dashboard/timeslots', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
+$app->router->post('/doctor-dashboard/timeslots/add', [DoctorTimeslotsController::class, 'addDoctorTimeslots']);
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
 $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
+$app->router->post('/doctor-dashboard/appointments-conform-cancel', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
-$app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'DoctorFeedback']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
-$app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'DoctorProfile']);
+
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
@@ -155,19 +159,36 @@ $app->router->get('/product-checkout', [ProductsController::class, 'getConsumerP
 $app->router->post('/product-checkout', [ProductsController::class, 'getConsumerProductPayment']);
 $app->router->get('/consumer-dashboard/products-overview', [ProductsController::class, 'getConsumerProductOverviewPage']);
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
-$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'getConsumerServicesDoctorPage']);
-$app->router->get('/consumer-dashboard/services/doctor', [ProfileController::class, 'ConsumerServicesDoctor']);
-$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'getConsumerServicesDoctorProfilePage']);
-$app->router->get('/consumer-dashboard/services/doctor/profile', [ProfileController::class, 'ConsumerServicesDoctorProfile']);
-$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ProfileController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+
+$app->router->get('/consumer-dashboard/services/doctor', [ConsumerDoctorController::class, 'getConsumerServicesDoctorPage']);
+$app->router->post('/consumer-dashboard/services/doctor-filter', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFilter']);
+
+$app->router->get('/consumer-dashboard/services/doctor/profile', [ConsumerDoctorController::class, 'getConsumerServicesDoctorProfilePage']);
+$app->router->post('/consumer-dashboard/services/doctor/profile-feedback', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFeedback']);
+$app->router->post('/consumer-dashboard/services/doctor/profile-timeSlot', [ConsumerDoctorController::class, 'ConsumerServicesDoctorTimeslot']);
+
+$app->router->get('/consumer-dashboard/services/doctor/profile/payment', [ConsumerDoctorController::class, 'getConsumerServicesDoctorProfilePaymentPage']);
+
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getConsumerProfilePage']);
+
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
-$app->router->get('/consumer-dashboard/services/pharmacy',[ConsumerController::class,'getPharmacyList']);
-$app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[ConsumerController::class,'getPharmacyPaymentReceipt']);
-$app->router->get('/consumer-dashboard/service/pharmacy/pharmacy-dashboard',[ConsumerController::class,'getPharmacyDashboard']);
+$app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'getPharmacyList']);
+$app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);
+
+
+$app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[MedicinesController::class,'getConsumerMedicinesPayment']);
+$app->router->get('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
+$app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsController::class, 'addProductFeedback']);
+$app->router->post('/consumer-dashboard/services/pharmacy/view/feedback',[MedicinesController::class,'addPharmacyFeedback']);
+
+//for cart
+$app->router->post('/cart/add', [CartController::class, 'addToCart']);
+$app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
+
 //  Run the application
 $app->run();
+
 
 ?>
 

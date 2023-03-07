@@ -20,7 +20,7 @@
                     <div class="doctor-feedbacks__data">
                         <table>
                             <tr>
-                                <td><img src="/assets/images/profilepic3.jpg"></td>
+                                <td><img src="<?php echo $value['profile_picture'];?>"></td>
                                 <td><h3><b><?php echo $value['name'];?></b></h3></td>
                                 <td><h4><?php echo $value['date_time'];?></h4></td>
                             </tr>

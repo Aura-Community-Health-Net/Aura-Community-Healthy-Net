@@ -189,10 +189,12 @@ function attachUpdateButtonListener(button){
                 <input class="form-input__input" type="text" name="quantity_unit" value="${tr.dataset.productquantity_unit}">                
                 <label class="form-input__label" for="">Price</label>
                 <input class="form-input__input" type="text" name="price" value="${tr.dataset.productprice}">
-                <label class="form-input__label" for="">Stock</label>
+                ${parseInt(categoryID) !== 5 ?
+                `<label class="form-input__label" for="">Stock</label>
                 <input class="form-input__input" type="text" name="stock" value="${tr.dataset.productstock}">
                 <label class="form-input__label" for="">Stock Unit</label>
-                <input class="form-input__input" type="text" name="stock_unit" value="${tr.dataset.productstock_unit}">                
+                <input class="form-input__input" type="text" name="stock_unit" value="${tr.dataset.productstock_unit}">
+                `: ""}
                 <div class="update-btn-section">
                     <button class="cancel-btn" id="update-cancel-btn" type="button">Cancel</button>
                     <button class="ok-btn" id="update-ok-btn">Ok</button>

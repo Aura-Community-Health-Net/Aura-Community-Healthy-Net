@@ -1,17 +1,37 @@
+<?php
+/**
+ * @var array $profile_details;
+ */
+
+$provider_image = $profile_details['profile_picture'];
+$provider_name = $profile_details['name'];
+$business_name = $profile_details['business_name'];
+$provider_email = $profile_details['email_address'];
+$provider_nic = $profile_details['provider_nic'];
+$provider_mobile_number = $profile_details['mobile_number'];
+$provider_address = $profile_details["address"];
+
+?>
+
 <div class="product-seller-profile-pic__container">
-    <div class="product-seller-profile-pic__header">
-        <img src="/assets/images/profilepic2.jpg" alt="">
+    <?php
+    echo "
+    <div class='product-seller-profile-pic__header'>
+        <img src='$provider_image' alt=''>
         <div>
-            <h1>Lakmal Serasingha</h1>
-            <h2>Sumudu Food House</h2>
+            <h1>$provider_name</h1>
+            <h2>$business_name</h2>
         </div>
     </div>
 
-    <div class="product-seller-profile-pic__details">
-        <h3> <span>Email Address</span>  lakmalsrasingha@gmail.com</h3>
-        <h3><span>NIC</span>   889845895V</h3>
-        <h3><span>Mobile Number</span>  0725578345</h3>
-        <h3><span>Address</span>  No 60/2, Wackwella Road, Galle</h3>
+    <div class='product-seller-profile-pic__details'>
+        <h3> <span>Email Address</span>  $provider_email</h3>
+        <h3><span>NIC</span>   $provider_nic</h3>
+        <h3><span>Mobile Number</span>  $provider_mobile_number</h3>
+        <h3><span>Address</span>  $provider_address</h3>
     </div>
+    "
+    ?>
+
 </div>
 

@@ -5,6 +5,7 @@
     height: 35px;
 }
 .items-table__scroll{
+    margin: auto;
     overflow: auto;
     height: 350px;
     width: 1200px;

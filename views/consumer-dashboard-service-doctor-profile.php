@@ -4,16 +4,10 @@
  * @var $time_slot;
  * @var $feedback;
  */
-if (!isset($_GET['doctor-feedback-btn'])){
-    $provider_nic = $_GET['provider_nic'];
-}
 
-/*if (!isset($_GET['doctor-pay-btn'])){
-    $provider_nic = $_GET['provider_nic'];
-}*/
-//print_r($feedback);die();
-//print_r($time_slot);die();
-//print_r($doctor);die();
+$provider_nic = $_GET['provider_nic'];
+//print_r($doctor);
+
 ?>
 <div class="consumer-dashboard-doctor-profile">
     <div class="consumer-dashboard-doctor-profile__top">
@@ -21,7 +15,7 @@ if (!isset($_GET['doctor-feedback-btn'])){
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__top__left">
-                        <img src="/assets/images/profilepic2.jpg">
+                        <img src="<?php echo $doctor['profile_picture']; ?>">
                         <div class="consumer-dashboard-doctor-profile__top__left__data">
                             <h3><b><?php echo $doctor['name']; ?></b></h3><br>
                             <h4><?php echo $doctor['field_of_study']; ?></h4>
@@ -36,6 +30,7 @@ if (!isset($_GET['doctor-feedback-btn'])){
                     </div>
                 </td>
                 <td>
+                    <form action="/consumer-dashboard/services/doctor/profile-timeSlot?provider_nic=<?php echo $provider_nic;?>" method="POST">
                         <div class="consumer-dashboard-doctor-profile__top__right">
                             <h4>Available Time-Slots</h4>
                             <div class="consumer-dashboard-doctor-profile__top__right__dropdown">
@@ -50,7 +45,8 @@ if (!isset($_GET['doctor-feedback-btn'])){
                                             <td><?php echo $value['from_time']?></td>
                                             <td><?php echo $value['to_time']?></td>
                                             <td><?php echo " ";?></td>
-                                            <td><input type="radio"></td>
+                                            <td><input type="radio" value="<?php echo $value['slot_number'];?>" name="available-time-slot">
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </table>
@@ -62,8 +58,9 @@ if (!isset($_GET['doctor-feedback-btn'])){
                                 </div>
                             </div>
                             <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00 for an appointment</p>
-                            <a href="/consumer-dashboard/services/doctor/profile/payment"><button name="doctor-pay-btn">Continue to Pay</button></a>
+                                <button name="doctor-pay-btn">Continue to Pay</button>
                         </div>
+                    </form>
                 </td>
             </tr>
         </table>
@@ -75,7 +72,7 @@ if (!isset($_GET['doctor-feedback-btn'])){
                     <div class="consumer-dashboard-doctor-profile__bottom__left">
                         <?php foreach ($feedback as  $value) { ?>
                         <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                            <img src="/assets/images/profilepic5.jpg">
+                            <img src="<?php echo $value['profile_picture']?>">
                             <h3><b><?php echo $value['name']?></b></h3>
                             <h4><?php echo $value['date_time']?></h4>
                             <p><?php echo $value['text']?></p>
@@ -86,10 +83,8 @@ if (!isset($_GET['doctor-feedback-btn'])){
                 <td>
                     <div class="consumer-dashboard-doctor-profile__bottom__right">
                         <h3>Give your Feedback</h3>
-                        <form action="/consumer-dashboard/services/doctor/profile" method="GET">
-                            <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">
-                            <input type="text" name="doctor-feedback" class="doctor-feedback">
-                            <input name="provider_nic" value="<?php echo $provider_nic?>" type="text" hidden >
+                        <form action="/consumer-dashboard/services/doctor/profile-feedback?provider_nic=<?php echo $_GET['provider_nic']; ?>" method="POST">
+                            <textarea name="doctor-feedback" class="doctor-feedback"> </textarea>
                             <button name="doctor-feedback-btn" >Submit</button>
                         </form>
                     </div>
