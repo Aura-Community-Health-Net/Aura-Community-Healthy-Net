@@ -21,7 +21,7 @@
             <table>
                 <tr>
                     <th>
-                        <img src="/assets/images/profilepic8.jpg">
+                        <img src="<?php echo $doctor['profile_picture']; ?>">
                     </th>
                     <th>
                         <h2><?php echo $doctor['name']; ?></h2>

@@ -203,6 +203,8 @@ function attachEditButtonListener(button){
     });
 }
 
+edittimeslotButtons.forEach(attachEditButtonListener);
+
 function timeSlotDate(val){
     console.log(val);
         var  filter, table, tr, td, i, txtValue;
@@ -222,4 +224,41 @@ function timeSlotDate(val){
         }
 
 }
-edittimeslotButtons.forEach(attachEditButtonListener);
+
+function filterDoctor(val){
+
+    jQuery.ajax({
+        url: '/consumer-dashboard/services/doctor',
+        type: 'GET',
+        data: JSON.stringify(val),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            alert(data.success);
+        },
+        error: function () {
+            alert("error");
+        },
+        async: false
+    });
+
+    /*var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("doctor-categories");
+    filter = input.value;
+    console.log(filter);
+    table = document.getElementById("doctor-container");
+    tr = table.getElementsByTagName("div");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("h2")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }*/
+
+}
+
+

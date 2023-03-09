@@ -1,7 +1,10 @@
 <?php
 /**
  * @var array $patients
+ * @var $patient_details
  */
+
+//print_r($patient_details);die();
 ?>
 
 <head>
@@ -10,49 +13,21 @@
 </head>
 
 <div class="doctor-patients">
-    <table>
-        <tr>
-            <th class="doctor-patients__head">Name</th>
-            <th class="doctor-patients__head">Mobile No</th>
-            <th class="doctor-patients__head">Last Checked</th>
-            <th class="doctor-patients__head">Observation</th>
-        </tr>
-    </table>
-
-    <div class="doctor-patients__data">
-        <img src="/assets/images/profilepic1.jpg">
-        <p>Kamal Deshapriya</p>
-        <p>0762639672</p>
-        <p>28th of October 2022</p>
-        <p>Lorem Ipsum is simply Lorem simply</p>
-    </div>
-    <div class="doctor-patients__data">
-        <img src="/assets/images/profilepic2.jpg">
-        <p>Sahan Kariyawasam</p>
-        <p>076-2978546</p>
-        <p>28th of October 2022</p>
-        <p>Lorem Ipsum is simply Lorem simply</p>
-    </div>
-    <div class="doctor-patients__data">
-        <img src="/assets/images/profilepic3.jpg">
-        <p>Ravishi Palihawadana</p>
-        <p>076-2978546</p>
-        <p>28th of October 2022</p>
-        <p>Lorem Ipsum is simply Lorem simply</p>
-    </div>
-    <div class="doctor-patients__data">
-        <img src="/assets/images/profilepic4.jpg">
-        <p>Lahiru Sampath</p>
-        <p>0762639672</p>
-        <p>28th of October 2022</p>
-        <p>Lorem Ipsum is simply Lorem simply</p>
-    </div>
-    <div class="doctor-patients__data">
-        <img src="/assets/images/profilepic5.jpg">
-        <p>Randima Dias</p>
-        <p>0762639672</p>
-        <p>28th of October 2022</p>
-        <p>Lorem Ipsum is simply Lorem simply</p>
-    </div>
-
+        <table>
+            <tr>
+                <th class="doctor-patients__head">Name</th>
+                <th class="doctor-patients__head">Mobile No</th>
+                <th class="doctor-patients__head">Last Checked</th>
+                <th class="doctor-patients__head">Observation</th>
+            </tr>
+        </table>
+                <?php foreach ($patient_details as $value) {?>
+                            <div class="doctor-patients__data">
+                                <img src="<?php echo $value['profile_picture'];?>">
+                                <p><?php echo $value['name'];?></p>
+                                <p><?php echo $value['mobile_number'];?></p>
+                                <p><?php echo $value['MAX(doctor_time_slot.date)'];?></p>
+                                <p>Lorem Ipsum is simply Lorem simply</p>
+                            </div>
+                <?php }?>
 </div>

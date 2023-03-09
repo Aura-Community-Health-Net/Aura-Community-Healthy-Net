@@ -49,7 +49,30 @@ class DoctorTimeslotsController extends Controller
             header("location: /provider-login");
             return "";
         }
-        $db = new database();
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor = $result->fetch_assoc();
+
+
+        if (!$doctor["is_verified"]) {
+            return "
+        <style>
+        .verification-error{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4rem;
+            color: rgba(0, 0, 0, 0.3);
+        }
+       </style>
+        <div class='verification-error'>You're not verified, Please check later</div>";
+        }
 
         $errors = [];
         if (empty($errors)) {

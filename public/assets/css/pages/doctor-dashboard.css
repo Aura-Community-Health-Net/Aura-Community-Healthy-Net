@@ -17,6 +17,13 @@
     justify-content: center;
     border-radius: 10px;
 }
+.appointment-list__item__scroll,.doctor-dashboard__patients__list__scroll{
+    margin-top: 0.75rem;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 330px;
+    height: 200px;
+}
 .doctor-dashboard__left__top__data{
     background-color: #ffffff;
     margin-bottom: 10px;
@@ -98,8 +105,8 @@
     margin-bottom: 1rem;
     background-color: #ffF;
     border-radius: 8px;
-    width: 75%;
-    padding: 0.5rem .5rem;
+    width: 95%;
+    padding: 0.5rem 0.5rem;
 }
 .doctor-dashboard__patients__count{
     background-color: #ffffff;
@@ -135,16 +142,17 @@
     margin-bottom: 1rem;
     background-color: #ffF;
     border-radius: 0.5rem;
-    width: 75%;
+    width: 95%;
     padding: 0.5rem .5rem;
 }
 .doctor-dashboard__consulted{
     display: flex;
     flex-direction: column;
-    width: 90%;
-    padding: 1rem;
     border-radius: 8px;
     margin-top: 0.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    width: 95%;
 }
 .doctor-dashboard__consulted__details{
     display: flex;
@@ -152,9 +160,7 @@
     text-align: justify;
     gap: 1rem;
 }
-.doctor-dashboard__consulted{
-    background-color: #ffffff;
-}
+
 .doctor-dashboard__consulted img{
     width: 40px;
     height: 40px;

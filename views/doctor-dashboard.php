@@ -1,33 +1,34 @@
 <?php
 /**
  *@var $doctor;
+ * @var $appointment_confirm;
+ * @var $appointment_done;
+ * @var $new_patients;
+ * @var $all_patients;
+ * @var $patient_details;
+ * @var $count_appointments;
  */
+//print_r($count_appointments);
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
 
+//print_r($all_patients);
+//print_r($patient_details);
 ?>
 
 <div class="doctor-dashboard">
         <div class="doctor-dashboard__left__top">
-            <h3>New Appointment List</h3>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="appointment-list__item">
-                <img src="/assets/images/profilepic1.jpg">
-                <h5><b>Kamal Deshapriya</b><br>
-                    076-2978546</h5>
-                <i class="fa-solid fa-location-dot"></i>
+                <h3>New Appointment List</h3>
+            <div class="appointment-list__item__scroll">
+                <?php foreach ($appointment_confirm as  $value) { ?>
+                    <div class="appointment-list__item">
+                        <img src="<?php echo $value['profile_picture']?>">
+                        <h5><b><?php echo $value['name']?></b><br>
+                            <?php echo $value['mobile_number']?></h5>
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 
@@ -35,11 +36,11 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
             <h3>Past Patients List</h3>
             <div class="doctor-dashboard__patients__count">
                 <h3>New Patients</h3>
-                <h1 style="color: #5BC849">5</h1>
+                <h1 style="color: #5BC849"><?php echo $new_patients['COUNT(confirmation)'];?></h1>
             </div>
             <div class="doctor-dashboard__patients__count">
                 <h3>All Patients</h3>
-                <h1 style="color: #FF0000">35</h1>
+                <h1 style="color: #FF0000"><?php echo $all_patients['COUNT(confirmation)'];?></h1>
             </div>
         </div>
 
@@ -55,39 +56,36 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
 
     <div class="doctor-dashboard__left__bottom">
         <h3>Past Patients List</h3>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
+        <div class="doctor-dashboard__patients__list__scroll">
+            <?php foreach ($appointment_done as  $value) { ?>
+                    <div class="doctor-dashboard__patients__list">
+                        <img src="<?php echo $value['profile_picture']?>">
+                        <h5><b><?php echo $value['name']?></b><br>
+                            <?php echo $value['mobile_number']?></h5>
+                    </div>
+            <?php } ?>
         </div>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
-        </div>
-        <div class="doctor-dashboard__patients__list">
-            <img src="/assets/images/profilepic1.jpg">
-            <h5><b>Kamal Deshapriya</b><br>
-                076-2978546</h5>
-        </div>
+
     </div>
 
         <div class="doctor-dashboard__center__bottom">
             <h3>Consulted</h3>
+            <?php if($count_appointments['COUNT(done)']>0){?>
             <div class="doctor-dashboard__consulted">
                 <div class="doctor-dashboard__consulted__profile">
-                    <img src="/assets/images/profilepic1.jpg">
+                    <img src=" <?php echo $patient_details['profile_picture'];?>">
                     <div>
-                        <h4><b>Kamal Deshapriya</b></h4>
-                        <h5>076-2978546</h5>
+                        <h4><b> <?php echo $patient_details['name'] ;?></b></h4>
+                        <h5> <?php echo $patient_details['mobile_number'] ;?></h5>
                     </div>
                 </div>
                <div class="doctor-dashboard__consulted__details">
-                   <p><b>Last Checked</b>29th of October 2022</p>
-                   <p><b>Address</b>No 35, Galhena, Galle</p>
+                   <p><b>Last Checked</b> <?php echo " ". $patient_details['MAX(doctor_time_slot.date)'] ;?></p>
+                   <p><b>Address</b> <?php echo " ". $patient_details['address'] ;?></p>
                    <p><b>Observation</b>Lorem Ipsum is simple text of the printing and typesetting industry.</p>
                </div>
             </div>
+            <?php } ?>
         </div>
 
         <div class="doctor-dashboard__right__bottom">
