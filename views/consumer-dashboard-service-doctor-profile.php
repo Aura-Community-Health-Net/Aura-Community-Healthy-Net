@@ -3,10 +3,11 @@
  * @var $doctor;
  * @var $time_slot;
  * @var $feedback;
+ * @var $doctor_qualifications;
  */
 
 $provider_nic = $_GET['provider_nic'];
-//print_r($doctor);
+//print_r($doctor_qualifications);die();
 
 ?>
 <div class="consumer-dashboard-doctor-profile">
@@ -20,12 +21,7 @@ $provider_nic = $_GET['provider_nic'];
                             <h3><b><?php echo $doctor['name']; ?></b></h3><br>
                             <h4><?php echo $doctor['field_of_study']; ?></h4>
                             <h4>SLMC Reg.No: <?php echo $doctor['slmc_reg_no']; ?></h4>
-                            <p>Lorem Ipsum is simply dummy text of the hgiiir
-                                printing and typesetting industry. Lorem dfdsss
-                                Ipsum has been the industry's standard ddssda
-                                dummy text ever since the 1500s, when an qwee
-                                unknown printer took a galley of type and easss
-                                scrambled it to make a type specimen book.</p>
+                            <p><?php echo $doctor_qualifications[0]['qualifications'] . $doctor_qualifications[1]['qualifications']; ?></p>
                         </div>
                     </div>
                 </td>
