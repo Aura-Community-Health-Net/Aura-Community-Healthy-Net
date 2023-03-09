@@ -107,7 +107,7 @@ class FeedbacksController extends Controller
             $result = $stmt->get_result();
             $product_seller = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer s ON f.consumer_nic = s.consumer_nic WHERE provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT * FROM feedback f INNER JOIN service_consumer s ON f.consumer_nic = s.consumer_nic WHERE provider_nic = ? ORDER BY f.date_time DESC");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();

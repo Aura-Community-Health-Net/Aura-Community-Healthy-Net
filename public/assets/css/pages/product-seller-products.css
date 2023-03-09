@@ -137,6 +137,9 @@ add-btn:hover {
 
 .dashboard-header__profile p {
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .verification-error {

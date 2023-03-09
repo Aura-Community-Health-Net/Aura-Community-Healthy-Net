@@ -45,7 +45,7 @@ $product_id = $product_details['product_id'];
             <p>$product_quantity $product_quantity_unit</p>
             <h1>Rs. $product_price</h1>
             <div class='overview-items__card'>
-                <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout'>Continue to pay</a></button>
+                <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout?product_id=$product_id'>Continue to pay</a></button>
                     <button id='add-to-cart-btn' class='add-to-cart-btn' data-id='$product_id'><i class='fa-solid fa-cart-plus'></i></button>
                
                 

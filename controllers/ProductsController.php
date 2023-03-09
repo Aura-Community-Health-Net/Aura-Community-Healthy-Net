@@ -310,7 +310,8 @@ class ProductsController extends Controller
     public static function getConsumerProductPayment(): bool|array|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType!=='consumer') {
             header("location: /login");
             return "";
         } else {

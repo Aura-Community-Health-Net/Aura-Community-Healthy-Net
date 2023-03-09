@@ -35,6 +35,8 @@ use app\controllers\ProductsController;
 use app\controllers\ConsumerDoctorController;
 
 use app\controllers\CartController;
+use app\controllers\PaymentsController;
+
 // Implementing environment variable loading
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -186,10 +188,12 @@ $app->router->post('/consumer-dashboard/services/pharmacy/view/feedback',[Medici
 $app->router->post('/cart/add', [CartController::class, 'addToCart']);
 $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 
+//payment routes
+$app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
+
 //  Run the application
 $app->run();
 
 
 ?>
 
-<!-- /=I am going to implement products update part -->
