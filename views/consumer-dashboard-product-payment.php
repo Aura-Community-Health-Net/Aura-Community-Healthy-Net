@@ -1,44 +1,58 @@
 <div class="consumer-product__payment-container">
     <h2>Payment Details</h2>
-    <form action="">
-        <div class="consumer-product__card-type">
-            <label class="consumer-payment__label" for="">Card Type</label>
-            <div class="consumer-product__card-options">
-                <div>
-                    <img src="/assets/images/visa.jpg" alt="">
-                    <label for="visa">Visa</label>
-                    <input type="radio" id="visa" name="card-type">
-                </div>
-                <div>
-                    <img src="/assets/images/master-card.png" alt="">
-                    <label for="master">Master Card</label>
-                    <input type="radio" id="master" name="card-type">
-                </div>
-            </div>
-        </div>
-        
-        <div class="consumer-product__card-num">
-            <label class="consumer-payment__label" for="">Card Number</label>
-            <input class="consumer-payment__input" type="text">
-        </div>
 
-        <div class=consumer-product__expire-date>
-            <label class="consumer-payment__label" for="">Expiration Date</label>
-            <input class="consumer-payment__input" type="date">
-
+    <form id="payment-form">
+        <div id="link-authentication-element">
+            <!--Stripe.js injects the Link Authentication Element-->
         </div>
-        
-        <div class="consumer-product__cvn">
-            <label class="consumer-payment__label" for="">CVN</label>
-            <div>
-                <input class="consumer-payment__input" type="text">
-                <i class="fa-solid fa-circle-info"></i>
-            </div>
-<!--            <p>This code is a three or four digits number printed on the back or front of credit cards</p>-->
+        <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
         </div>
-
-        <button type="button" class="product__pay-btn" id="product__pay-btn">Pay</button>
+        <button id="submit" class="btn btn--block mt-4">
+            <i class="fa-solid fa-spinner hidden" id="payment-spinner"></i>
+            <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
     </form>
+<!--    <form action="">-->
+<!--        <div class="consumer-product__card-type">-->
+<!--            <label class="consumer-payment__label" for="">Card Type</label>-->
+<!--            <div class="consumer-product__card-options">-->
+<!--                <div>-->
+<!--                    <img src="/assets/images/visa.jpg" alt="">-->
+<!--                    <label for="visa">Visa</label>-->
+<!--                    <input type="radio" id="visa" name="card-type">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <img src="/assets/images/master-card.png" alt="">-->
+<!--                    <label for="master">Master Card</label>-->
+<!--                    <input type="radio" id="master" name="card-type">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        -->
+<!--        <div class="consumer-product__card-num">-->
+<!--            <label class="consumer-payment__label" for="">Card Number</label>-->
+<!--            <input class="consumer-payment__input" type="text">-->
+<!--        </div>-->
+<!---->
+<!--        <div class=consumer-product__expire-date>-->
+<!--            <label class="consumer-payment__label" for="">Expiration Date</label>-->
+<!--            <input class="consumer-payment__input" type="date">-->
+<!---->
+<!--        </div>-->
+<!--        -->
+<!--        <div class="consumer-product__cvn">-->
+<!--            <label class="consumer-payment__label" for="">CVN</label>-->
+<!--            <div>-->
+<!--                <input class="consumer-payment__input" type="text">-->
+<!--                <i class="fa-solid fa-circle-info"></i>-->
+<!--            </div>-->
+<!--           <p>This code is a three or four digits number printed on the back or front of credit cards</p>-->
+<!--        </div>-->
+<!---->
+<!--        <button type="button" class="product__pay-btn" id="product__pay-btn">Pay</button>-->
+<!--    </form>-->
 
     <div class="overlay" id="consumer-payment-overlay">
         <div class="modal" id="consumer-payment-modal">
@@ -56,3 +70,24 @@
     </div>
     <script src="/assets/js/pages/consumer-payment.js"></script>
 </div>
+
+<script>
+    const params = new URLSearchParams(window.location.search)
+    const productID = params.get("product_id");
+
+    async function getProductPrice() {
+        const res = await fetch(`/verify-product-amount?product_id=${productID}`, {
+            method: "get"
+        })
+        const data = await res.text();
+        console.log(data)
+    }
+
+    const now = Date.now()
+    getProductPrice();
+    const later = Date.now()
+    console.log(`it took ${later - now} milliseconds`)
+
+
+
+</script>

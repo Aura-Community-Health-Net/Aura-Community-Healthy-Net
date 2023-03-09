@@ -71,7 +71,20 @@ class AdministratorController extends Controller
 
     public static function getAdministratorFeedbackPage(): bool|array|string
     {
-        return self::render(view: 'administrator-dashboard-feedback', layout: "admin-dashboard-layout", params: [], layoutParams: [
+        $is_admin = $_SESSION["is_admin"];
+        if(!$is_admin){
+            header("location: /administrator-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.provider_type, f.text, f.date_time FROM service_provider s INNER JOIN feedback f on s.provider_nic = f.provider_nic ORDER BY f.date_time DESC");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback_from_providers = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return self::render(view: 'administrator-dashboard-feedback', layout: "admin-dashboard-layout", params: [
+            'feedback_from_providers' => $feedback_from_providers
+        ], layoutParams: [
             "title" => "Feedback",
             "admin" => [
                 "name" => "Randima Dias"
