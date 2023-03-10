@@ -1,18 +1,45 @@
-<head><link rel="stylesheet" href="/assets/css/main.css"></head>
+<?php
+/**
+ *@var array $care_rider ;
+ *
+ *
+ *
+ **/
+?>
 
-<div class="care-rider-profile-pic__container">
-    <div class="care-rider-profile-pic__header">
-        <img src="/assets/images/profilepic2.jpg" alt="">
-        <div>
-            <h1>Lasith Lakshan</h1>
-            <h2>Care Rider</h2>
+<head>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Care-Rider-Profile</title>
+</head>
+
+<div class="doctor-profile">
+    <div class="doctor-profile__background">
+        <div class="doctor-profile__data">
+            <table>
+                <tr>
+                    <th>
+                        <img src="<?php echo $care_rider['profile_picture']; ?>">
+                    </th>
+                    <th>
+                        <h2><?php echo $care_rider['name']; ?></h2>
+                        <h3>Care Rider</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <td><b>Email Address</b></td>
+                    <td><?php echo $care_rider['email_address']; ?></td>
+                </tr>
+                <tr>
+                    <td><b>NIC</b></td>
+                    <td><?php echo $care_rider['provider_nic']; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Mobile Number</b></td>
+                    <td><?php echo $care_rider['mobile_number']; ?></td>
+                </tr>
+
+
+            </table>
         </div>
-    </div>
-
-    <div class="care-rider-profile-pic__details">
-        <h3> <span>Email Address</span>  lasith@gmail.com</h3>
-        <h3><span>NIC</span>   3445545895V</h3>
-        <h3><span>Mobile Number</span>  0758578345</h3>
-        <h3><span>Address</span>  No:1,Thelwatta,Ambalangoda</h3>
     </div>
 </div>

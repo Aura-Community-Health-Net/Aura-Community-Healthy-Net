@@ -47,9 +47,13 @@
                 <a class="header-link" href="/contactcdcd-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
             </div>
-            <p>
-                <?php echo $admin["name"]; ?>
-            </p>
+            <div class="admin-header">
+                <p>
+                    <?php echo $admin["name"]; ?>
+                    <img src="/assets/images/admin-profile-pic.jpg" alt="">
+                </p>
+            </div>
+
         </div>
     </header>
 

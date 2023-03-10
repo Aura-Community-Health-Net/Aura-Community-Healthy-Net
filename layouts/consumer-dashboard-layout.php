@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
           rel="stylesheet">
-
+    <script src="https://js.stripe.com/v3/"></script>
     <title>
         <?php echo $title ?>
     </title>
@@ -164,7 +164,6 @@
 </div>
 
 <script src="/assets/js/components/sidebar.js"></script>
-
 </body>
 
 </html>
