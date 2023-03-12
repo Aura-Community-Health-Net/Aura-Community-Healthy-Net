@@ -190,6 +190,7 @@ $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 
 //payment routes
 $app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
+$app->router->post('/payments/verify', [PaymentsController::class, 'verifyPayments']);
 
 //  Run the application
 $app->run();
