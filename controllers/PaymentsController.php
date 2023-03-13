@@ -157,15 +157,56 @@ class PaymentsController extends Controller
                 $order_id = $metadata["order_id"];
                 PaymentsController::logPayment($order_id);
                 try {
+                    $db->connection->begin_transaction();
                     $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
                     $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
                     $stmt->execute();
+
+                    $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
+                    $stmt->bind_param("d", $order_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $order_items = $result->fetch_all(MYSQLI_ASSOC);
+
+                    if ($order_items){
+                        foreach ($order_items as $order_item){
+                            $product_quantity = $order_item["num_of_items"];
+                            $product_id = $order_item["product_id"];
+
+                            $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
+                            $stmt->bind_param("d", $product_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $product = $result->fetch_assoc();
+
+                            if (!$product){
+                                throw new Exception("Item not found");
+                            } else {
+                                $stock = $product["stock"];
+                                if ($product_quantity > $stock){
+                                    throw new Exception('Not enough items');
+                                } else{
+                                    $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
+                                    $stmt->bind_param("dd", $product_quantity, $product_id);
+                                    $stmt->execute();
+                                }
+                            }
+                        }
+                        if ($db->connection->errno){
+                            $db->connection->rollback();
+                            return "";
+                        } else {
+                            $db->connection->commit();
+                        }
+                    }
                     return "";
                 } catch (Exception $e){
+                    $db->connection->rollback();
+                    $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
                     try {
                         $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
                         $stripeClient = new StripeClient([
-                            'api_key' => $stripeSecretKey,
+                            'api_key' => $stripe_secret_key,
                         ]);
                         $stripeClient->refunds->create([
                             'payment_intent' => $paymentIntent->id,

@@ -23,12 +23,24 @@
     padding: 1rem 2rem;
     border-radius: 8px;
     text-align: center;
+
+}
+
+.stock-notice{
+    position: absolute;
+    color: white;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: red;
+    border-radius: 8px;
 }
 
 .item-top-middle__container{
     background-color: #D9D9F9;
     padding: 1rem;
     border-radius: 8px;
+    position: relative;
 }
 
 .item-top-middle__container img{

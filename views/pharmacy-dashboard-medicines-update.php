@@ -32,7 +32,6 @@
             <td><input type="number" name="quantity" value="<?php echo $_POST['quantity'] ?? ''; ?>"></td>
             <td><input type="text" name="quantity_unit" value="<?php echo $_POST['quantity_unit'] ?? ''; ?>"></td>
             <td><input type="number" name="stock" value="<?php echo $_POST['stock'] ?? ''; ?>"></td>
-            <td><input type="text" name="stock_unit" value="<?php echo $_POST['stock_unit'] ?? ''; ?>"></td>
         </tr>
     </table>
 
