@@ -192,6 +192,9 @@ $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 $app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
 $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPayments']);
 
+$app->router->get('/verify-fees-amount', [PaymentsController::class, 'calculateChargeForFees']);
+$app->router->post('/payments/fees/verify', [PaymentsController::class, 'verifyFeesPayments']);
+
 //  Run the application
 $app->run();
 
