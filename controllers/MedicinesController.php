@@ -18,7 +18,6 @@ class MedicinesController extends Controller
         $quantity = (int) $_POST["quantity"];
         $quantity_unit = $_POST["quantity_unit"];
         $stock = (int) $_POST["stock"];
-        $stock_unit = $_POST["stock_unit"];
 
         $filename = $image["name"];
         $file_full_path = $image["full_path"];
@@ -68,11 +67,10 @@ class MedicinesController extends Controller
                      stock,
                      quantity,
                      quantity_unit,
-                     stock_unit,
-                     provider_nic) VALUES (?,?,?,?,?,?,?,?)");
+                     provider_nic) VALUES (?,?,?,?,?,?,?)");
 
         $image = "/uploads/$newfile_name";
-        $stmt->bind_param("ssiiisss", $med_name, $image, $price, $stock, $quantity, $quantity_unit, $stock_unit, $nic);
+        $stmt->bind_param("ssiiiss", $med_name, $image, $price, $stock, $quantity, $quantity_unit, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
         header("location: /pharmacy-dashboard/medicines");
@@ -185,13 +183,12 @@ class MedicinesController extends Controller
         $med_quantity = (int) $_POST["quantity"];
         $med_quantity_unit = $_POST["quantity_unit"];
         $med_stock = (int) $_POST["stock"];
-        $med_stock_unit = $_POST["stock_unit"];
         $db = new Database();
 
-        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ?, stock_unit = ? WHERE med_id = ? AND provider_nic = ?");
+        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ? WHERE med_id = ? AND provider_nic = ?");
 
 
-        $stmt->bind_param("siiissis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_stock_unit,$med_id,$nic);
+        $stmt->bind_param("siiisis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_id,$nic);
 
 
         $stmt->execute();

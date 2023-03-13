@@ -84,7 +84,6 @@ class ProductsController extends Controller
         $category = (int)$_GET["category"];
         if ($category != 5) {
             $stock = (int)$_POST["stock"];
-            $stock_unit = $_POST["stock_unit"];
         }
         $file = $_FILES["image"];
         $file_name = $file["name"];
@@ -131,11 +130,10 @@ class ProductsController extends Controller
                      quantity_unit,
                      price, 
                      stock,
-                     stock_unit,
                      provider_nic, 
-                     category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $image = "/uploads/$new_file_name";
-        $stmt->bind_param("ssisiissi", $image, $product_name, $quantity, $quantity_unit, $price, $stock, $stock_unit, $nic, $category);
+        $stmt->bind_param("ssisiisi", $image, $product_name, $quantity, $quantity_unit, $price, $stock, $nic, $category);
         $result = $stmt->execute();
         header("location: /product-seller-dashboard/products?category=$category");
         return "";
@@ -177,15 +175,14 @@ class ProductsController extends Controller
         $quantity_unit = $_POST['quantity_unit'];
         $price = $_POST['price'] * 100;
         $stock = $_POST['stock'];
-        $stock_unit = $_POST['stock_unit'];
 
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ?,stock = ?, stock_unit = ? WHERE product_id = ? AND provider_nic = ?");
+        $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ?,stock = ? WHERE product_id = ? AND provider_nic = ?");
         if ($category_id == 5){
             $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ? WHERE product_id = ? AND provider_nic = ?");
         }
         if ($category_id != 5){
-            $stmt->bind_param("ssdsdsds", $name, $quantity, $price, $quantity_unit, $stock, $stock_unit, $product_id, $nic);
+            $stmt->bind_param("ssdsdds", $name, $quantity, $price, $quantity_unit, $stock, $product_id, $nic);
         } else {
             $stmt->bind_param("ssdsds", $name, $quantity, $price, $quantity_unit, $product_id, $nic);
 
@@ -214,17 +211,15 @@ class ProductsController extends Controller
 
             $db = new Database();
             if (!$category_id) {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic");
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic");
             } else {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.category_id = ?");
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.category_id = ?");
                 $stmt->bind_param("d", $category_id);
 
             }
             $stmt->execute();
             $result = $stmt->get_result();
             $products = $result->fetch_all(MYSQLI_ASSOC);
-//            var_dump($product);
-//            exit();
 
             return self::render(view: 'consumer-dashboard-products', layout: 'consumer-dashboard-layout', params: [
                 'products'=>$products
@@ -253,7 +248,7 @@ class ProductsController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price, p.product_id FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
+            $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price, p.product_id, p.category_id, p.stock FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
             $stmt->bind_param("d", $product_id);
             $stmt->execute();
             $result = $stmt->get_result();

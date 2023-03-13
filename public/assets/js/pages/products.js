@@ -193,7 +193,6 @@ function attachUpdateButtonListener(button){
                 `<label class="form-input__label" for="">Stock</label>
                 <input class="form-input__input" type="text" name="stock" value="${tr.dataset.productstock}">
                 <label class="form-input__label" for="">Stock Unit</label>
-                <input class="form-input__input" type="text" name="stock_unit" value="${tr.dataset.productstock_unit}">
                 `: ""}
                 <div class="update-btn-section">
                     <button class="cancel-btn" id="update-cancel-btn" type="button">Cancel</button>

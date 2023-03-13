@@ -8,7 +8,6 @@
  *
  */
 $stock = $_POST["stock"] ?? "";
-$stock_unit = $_POST["stock_unit"] ?? "";
 ?>
 <table class="items-table">
     <tr>
@@ -32,10 +31,9 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         $quantity = $product['quantity'];
         $quantity_unit = $product['quantity_unit'];
         $stock = $product['stock'];
-        $stock_unit = $product['stock_unit'];
 
 
-        echo "<tr data-productid='$id' data-productname='$name' data-productquantity='$quantity' data-productquantity_unit='$quantity_unit' data-productprice='$price' data-productstock = '$stock' data-productstock_unit = '$stock_unit'>
+        echo "<tr data-productid='$id' data-productname='$name' data-productquantity='$quantity' data-productquantity_unit='$quantity_unit' data-productprice='$price' data-productstock = '$stock'>
         
         <td id='image-block'>
         <img src='{$product["image"]}' alt='' class='products-img'>
@@ -44,7 +42,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         <td >{$name}</td>
         <td>{$product['quantity']} {$product['quantity_unit']} </td> 
         <td>{$price}</td>
-        <td>{$product['stock']} {$product['stock_unit']}</td>
+        <td>{$product['stock']}</td>
         <td id='action-block'>
         <button id='update-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--edit product-update'><i class='fa-solid fa-pen'></i></button> 
         <button id='delete-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
@@ -67,10 +65,6 @@ $stock_unit = $_POST["stock_unit"] ?? "";
             <?php if ($category != 5) {
                 echo '<th><label class="products-label" for="stock">Stock</label></th>';
             } ?>
-            <?php if ($category != 5) {
-                echo '<th><label class="products-label" for="stock_unit">Stock Unit</label> </th>';
-            } ?>
-
         </tr>
 
         <tr>
@@ -92,9 +86,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
             <td><input type="number" id="price" name="price" value="<?php echo $_POST['price'] ?? ''; ?>" required></td>
             <?php if ($category != 5) {
                 $stock = $_POST["stock"] ?? "";
-                $stock_unit = $_POST["stock_unit"] ?? "";
                 echo "<td><input type='number' id='stock' name='stock' value='$stock' required></td>";
-                echo "<td><input type='text' id='stock_unit' name='stock_unit' value='$stock_unit' required></td>";
             } ?>
         </tr>
     </table>

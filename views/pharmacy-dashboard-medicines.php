@@ -26,11 +26,10 @@
         $med_quantity = $medicine['quantity'];
         $med_quantity_unit = $medicine['quantity_unit'];
         $med_stock = $medicine['stock'];
-        $med_stock_unit = $medicine['stock_unit'];
 
 
         echo "
-                    <tr data-medicineid='$med_id' data-medicinename='$med_name' data-medicineprice='$med_price' data-medicinequantity ='$med_quantity' data-medicinequantity_unit='$med_quantity_unit' data-medicinestock ='$med_stock' data-medicinesstock_unit ='$med_stock_unit'>  
+                    <tr data-medicineid='$med_id' data-medicinename='$med_name' data-medicineprice='$med_price' data-medicinequantity ='$med_quantity' data-medicinequantity_unit='$med_quantity_unit' data-medicinestock ='$med_stock'>  
                      
                     <td id='image-block'><img class='products-img' src='{$medicine['image']}' alt=''></td>
                     <td>{$med_id}</td>
@@ -39,7 +38,6 @@
                     <td>{$medicine['quantity']}</td>
                     <td>{$medicine['quantity_unit']}</td>
                     <td>{$medicine['stock']}</td>
-                    <td>{$medicine['stock_unit']}</td>
                     
                     <td id='action-block'>
                         <button id = 'delete-medicines-$med_id' data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
@@ -79,7 +77,6 @@
             <td><input type="number" name="quantity" value="<?php echo $_POST['quantity'] ?? ''; ?>"></td>
             <td><input type="text" name="quantity_unit" value="<?php echo $_POST['quantity_unit'] ?? ''; ?>"></td>
             <td><input type="number" name="stock" value="<?php echo $_POST['stock'] ?? ''; ?>"></td>
-            <td><input type="text" name="stock_unit" value="<?php echo $_POST['stock_unit'] ?? ''; ?>"></td>
         </tr>
     </table>
     <button type="button" id="add-med-btn" class="add-btn">
