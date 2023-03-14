@@ -83,11 +83,19 @@ class ConsumerDoctorController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE service_provider.provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider JOIN doctor on service_provider.provider_nic = doctor.provider_nic  WHERE service_provider.provider_nic = ?");
             $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT qualifications FROM doc_qualifications  WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor_qualifications = $result->fetch_all(MYSQLI_ASSOC);
+
+            //print_r($doctor_qualifications[0]['qualifications']);
 
             $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ? && appointment_id IS NULL");
             $stmt->bind_param("s", $provider_nic);
@@ -103,7 +111,7 @@ class ConsumerDoctorController extends Controller
 
             //print_r($doctor);
         }
-        return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout",params:["consumer"=>$consumer,"doctor"=>$doctor,"time_slot"=>$time_slot,"feedback"=>$feedback] , layoutParams: [
+        return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout",params:["consumer"=>$consumer,"doctor"=>$doctor,"time_slot"=>$time_slot,"feedback"=>$feedback,"doctor_qualifications"=>$doctor_qualifications] , layoutParams: [
             "consumer" => $consumer,
             "active_link" => "profile",
             "title" => "Doctor"
@@ -154,20 +162,19 @@ class ConsumerDoctorController extends Controller
             $provider_nic = $_GET['provider_nic'];
             $slot_number = $_POST['available-time-slot'];
             print_r($_POST);
-            $done = $confirmation = 0;
+            $done = 0;
 
             $db = new Database();
             $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
-                      confirmation,
                       provider_nic,
-                      consumer_nic)VALUES (?,?,?,?)");
-            $stmt->bind_param("iiss", $done,$confirmation,$provider_nic,$nic);
+                      consumer_nic)VALUES (?,?,?)");
+            $stmt->bind_param("iss", $done,$provider_nic,$nic);
             $stmt->execute();
             $result = $stmt->get_result();
 
             $result2 = $stmt->insert_id;
-            print_r($result2);
+            //print_r($result2);
             $appointment_id = $result2;
             $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
                                WHERE slot_number = $slot_number");

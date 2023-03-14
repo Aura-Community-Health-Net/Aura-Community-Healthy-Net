@@ -36,11 +36,11 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
             <h3>Past Patients List</h3>
             <div class="doctor-dashboard__patients__count">
                 <h3>New Patients</h3>
-                <h1 style="color: #5BC849"><?php echo $new_patients['COUNT(confirmation)'];?></h1>
+                <h1 style="color: #5BC849"><?php echo $new_patients['COUNT(done)'];?></h1>
             </div>
             <div class="doctor-dashboard__patients__count">
                 <h3>All Patients</h3>
-                <h1 style="color: #FF0000"><?php echo $all_patients['COUNT(confirmation)'];?></h1>
+                <h1 style="color: #FF0000"><?php echo $all_patients['COUNT(done)'];?></h1>
             </div>
         </div>
 

@@ -17,6 +17,11 @@ $product_quantity = $product_details['quantity'];
 $product_quantity_unit = $product_details['quantity_unit'];
 $product_price = $product_details['price']/100;
 $product_id = $product_details['product_id'];
+$category_id = $product_details['category_id'];
+$product_stock = $product_details['stock'];
+$is_available = $product_stock > 0 || $category_id === 5 ? "" : "<p class='stock-notice'>No stock</p>";
+$is_button_active = $product_stock > 0 || $category_id === 5 ? "" : "disabled";
+$href = $product_stock > 0 || $category_id === 5 ? "#" : "/product-checkout?product_id=$product_id";
 
 ?>
 
@@ -40,12 +45,13 @@ $product_id = $product_details['product_id'];
         <?php
         echo "
         <img src='$product_image' alt=''>
+        $is_available
         <div class='overview-items__detail'>
             <h2>$product_name</h2>
-            <p>$product_quantity $product_quantity_unit</p>
+            <h3>$product_quantity $product_quantity_unit</h3>
             <h1>Rs. $product_price</h1>
             <div class='overview-items__card'>
-                <button class='btn'><a class='continue-to-pay-btn'  href='/product-checkout?product_id=$product_id'>Continue to pay</a></button>
+                <button class='btn' $is_button_active><a class='continue-to-pay-btn'  href='$href'>Continue to pay</a></button>
                     <button id='add-to-cart-btn' class='add-to-cart-btn' data-id='$product_id'><i class='fa-solid fa-cart-plus'></i></button>
                
                 

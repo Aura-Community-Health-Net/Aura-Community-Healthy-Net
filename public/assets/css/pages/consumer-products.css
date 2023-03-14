@@ -13,6 +13,17 @@
     background-color: #F8F8F8;
     box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.2);
     border-radius: 20px;
+    position: relative;
+}
+
+.product__grid-item p{
+    position: absolute;
+    color: white;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: red;
+    border-radius: 8px;
 }
 
 .product__grid-item img {
