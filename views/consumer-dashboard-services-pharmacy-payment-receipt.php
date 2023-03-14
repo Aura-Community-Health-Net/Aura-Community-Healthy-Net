@@ -45,14 +45,14 @@
         </div>
     </div>
     <div class="consumer-pharmacy-neworders-advanceinfo__button">
-<<<<<<< HEAD
-        <button class="advance-info-submit-button" id="advance-info-submit-button">Continue to Pay</button>
-=======
+
+
+
 
 
         <button class="advance-info-submit-button" id="advance-info-submit-button"><a href="/consumer-dashboard/services/pharmacy/medicines-payment">Continue to Pay</a></button>
 
->>>>>>> 185fcf6cf39410acdcd00654acad7bd28e4115a1
+
 
     </div>
 </div>
