@@ -60,7 +60,7 @@
     </div>
 
     <div class="dashboard-container">
-        <nav class="dashboard-container__side-nav">
+        <nav class="dashboard-container__side-nav active">
             <ul>
                 <li>
                     <a href="/care-rider-dashboard">
@@ -136,7 +136,7 @@
         </main>
     </div>
 
-    <div class="toggle">
+    <div class="toggle active">
         <i class="fa-solid fa-bars"></i>
     </div>
 
