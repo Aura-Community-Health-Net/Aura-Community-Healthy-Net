@@ -10,8 +10,8 @@ $products = is_null($products) ? [] : $products;
 
 <form action="" class="form-item--search">
     <div class="search-bar">
-        <input type="text" placeholder="Search Product..." name="search">
-        <a href="/products/view?id=10" type="submit"><i class="fa fa-search"></i></a>
+        <input type="text" placeholder="Search Product..." name="search" id="search" onkeyup="search()">
+        <button href="" type="submit"><i class="fa fa-search"></i></button>
     </div>
     <select class="form-items--dropdown" name="product-categories" id="product-categories">
         <option value="Medicinal Fruits & Vegetables">Medicinal Fruits & Vegetables</option>
@@ -22,7 +22,7 @@ $products = is_null($products) ? [] : $products;
     </select>
 </form>
 
-<div class="consumer-product__grid-container">
+<div class="consumer-product__grid-container" id="consumer-product__grid-container">
     <?php
     foreach ($products as $product){
         $product_id = $product['product_id'];
@@ -37,7 +37,7 @@ $products = is_null($products) ? [] : $products;
         $is_available = $product_stock > 0 || $category_id === 5 ? "" : "<p>No stock</p>";
         echo "<div class='product__grid-item'>
         <img src='$product_image' alt=''>
-        <div>
+        <div class='product'>
             <h2>$product_name</h2>
             <h3>$product_quantity $product_quantity_unit</h3>
             $is_available
@@ -57,3 +57,4 @@ $products = is_null($products) ? [] : $products;
 
 </div>
 
+<script src="/assets/js/components/search.js"></script>
