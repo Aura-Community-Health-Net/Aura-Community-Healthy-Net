@@ -50,10 +50,10 @@
 
 <div class="registration-overview__container">
     <img src="/assets/images/doctor-reg.png" alt="">
-    <img src="/assets/images/pharmacy-reg.png" alt="">
+    <img src="/assets/images/pharmacy-reg.webp" alt="">
     <img src="/assets/images/products-reg.png" alt="">
-    <img src="/assets/images/care-rider-reg.png" alt="">
-    <img src="/assets/images/consumer-reg.png" alt="">
+    <img src="/assets/images/care-rider-reg.webp" alt="">
+    <img src="/assets/images/consumer-reg.webp" alt="">
 </div>
 
 <div class="registration-overview__buttons">
