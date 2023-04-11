@@ -50,7 +50,7 @@
             <div class="admin-header">
                 <p>
                     <?php echo $admin["name"]; ?>
-                    <img src="/assets/images/admin-profile-pic.jpg" alt="">
+                    <img src="/assets/images/admin-profile-pic.webp" alt="">
                 </p>
             </div>
 

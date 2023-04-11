@@ -8,7 +8,6 @@ menuToggle.onclick = function (){
     navigation.classList.toggle('active')
 }
 
-
 let navbtn = document.querySelectorAll('.navbtn');
 for (let i = 0; i<navbtn.length; i++){
     navbtn[i].onclick = function (){

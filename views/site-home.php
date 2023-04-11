@@ -123,7 +123,7 @@
             </div>
 
             <div class="services-cat">
-                <img src="/assets/images/care_rider-lan.png" alt="">
+                <img src="/assets/images/care_rider-lan.webp" alt="">
                 <h3>Care Rider</h3>
                 <div class="description">
                     <p>In case of emergency you will be able to make a request to the Care Riders according to your
