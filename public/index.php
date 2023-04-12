@@ -131,7 +131,7 @@ $app->router->post('/care-rider-dashboard/profile', [ProfileController::class, '
 $app->router->get('/consumer-dashboard/services/care-rider',[CareRiderController::class,'getCareRiderChoosePage']);
 //$app->router->get('/consumer-dashboard/services/care-rider-rider',[CareRiderController::class,'CareRiderChoose']);
 $app->router->get('/consumer-dashboard/services/care-rider/request',[CareRiderController::class,'getCareRiderRequestsPage']);
-$app->router->get('/consumer-dashboard/services/care-rider/request/feedback',[CareRiderController::class,'addConsumerCareRiderFeedback']);
+$app->router->post('/consumer-dashboard/services/care-rider/request/feedback',[CareRiderController::class,'addConsumerCareRiderFeedback']);
 
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);

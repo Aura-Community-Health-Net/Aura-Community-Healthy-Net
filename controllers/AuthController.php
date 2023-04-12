@@ -735,7 +735,6 @@ class AuthController extends Controller
         $result = $stmt->get_result();
         if($result->num_rows > 0){
             $consumer = $result->fetch_assoc();
-            var_dump($consumer);
             if (password_verify($password, $consumer["password"])){
                 $_SESSION["nic"] = $consumer["consumer_nic"];
                 $_SESSION["user_type"] = "consumer";
