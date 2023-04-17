@@ -29,10 +29,52 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $product_lists = $result->fetch_all(MYSQLI_ASSOC);
 
+            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS order_count FROM product_order WHERE status = 'paid' AND provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name,  
+                   p.name
+            FROM service_consumer s 
+                INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
+                INNER JOIN product p on ohp.product_id = p.product_id 
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders_list = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name, 
+                   s.mobile_number, 
+                   cg.category_name, 
+                   p.name,
+                   p.quantity,
+                   p.quantity_unit,
+                   p.image
+            FROM service_consumer s 
+                INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
+                INNER JOIN product p on ohp.product_id = p.product_id 
+                INNER JOIN product_category cg on p.category_id = cg.category_id 
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $order_preview = $result->fetch_assoc();
+
             return self::render(
-            view: 'product-seller-dashboard', layout: "product-seller-dashboard-layout", params: [
+            view: 'product-seller-dashboard', layout: "product-seller-dashboard-layout",
+            params: [
                     "product_seller" => $product_seller,
-                    "product_lists" => $product_lists
+                    "product_lists" => $product_lists,
+                    "orders_count" => $orders_count,
+                    "orders_list" => $orders_list,
+                    "order_preview" => $order_preview
                 ],
             layoutParams: [
                     "title" => "Dashboard",

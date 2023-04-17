@@ -7,7 +7,7 @@ use app\core\Database;
 
 class AdministratorController extends Controller
 {
-    public static function getNewRegistrationPage(): array |bool|string
+    public static function getNewRegistrationPage(): array|bool|string
     {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
@@ -15,7 +15,37 @@ class AdministratorController extends Controller
             $provider_type = $_GET["provider_type"] ?? "doctor";
 
             if ($provider_type == "doctor") {
-                $sql = "SELECT DISTINCT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic INNER JOIN doc_qualifications dq on d.provider_nic = dq.provider_nic WHERE is_verified = 0";
+                $sql = "SELECT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic WHERE is_verified = 0";
+                $result = $db->connection->query(query: $sql);
+                $new_registrations = $result->fetch_all(MYSQLI_ASSOC);
+                $doc_details_list = [];
+
+                foreach ($new_registrations as $row) {
+                    $stmt = $db->connection->prepare("SELECT * FROM doc_qualifications WHERE provider_nic = ?");
+                    $stmt->bind_param("s", $row["provider_nic"]);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $qualifications = $result->fetch_all(MYSQLI_ASSOC);
+
+                    $doc_details = [
+                        "personal" => $row,
+                        "qualifications" => []
+                    ];
+                    foreach ($qualifications as $qualification) {
+                        $doc_details["qualifications"][] = $qualification["qualifications"];
+                    }
+                    $doc_details_list[] = $doc_details;
+                }
+
+                return self::render(view: 'admin-view-new-registrations', layout: "admin-dashboard-layout", params: [
+                    "new_registrations" => $doc_details_list
+                ], layoutParams: [
+                    "title" => "New Registrations",
+                    "admin" => [
+                        "name" => "Randima Dias"
+                    ],
+                    "active_link" => "new-registrations"
+                ]);
             } elseif ($provider_type == "pharmacy") {
                 $sql = "SELECT * FROM service_provider INNER JOIN pharmacy p on service_provider.provider_nic = p.provider_nic WHERE is_verified = 0";
             } elseif ($provider_type == "product-seller") {
@@ -35,10 +65,10 @@ class AdministratorController extends Controller
             return self::render(view: 'admin-view-new-registrations', layout: "admin-dashboard-layout", params: [
                 "new_registrations" => $new_registrations
             ], layoutParams: [
-                "title" => "New Registrations", 
+                "title" => "New Registrations",
                 "admin" => [
                     "name" => "Randima Dias"
-                ], 
+                ],
                 "active_link" => "new-registrations"
             ]);
         }
@@ -60,7 +90,19 @@ class AdministratorController extends Controller
 
     public static function getAdministratorDuePaymentsPage(): bool|array|string
     {
-        return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [], layoutParams: [
+        $db = new Database();
+        $is_admin = $_SESSION["is_admin"];
+        $provider_nic = $_SESSION["nic"];
+
+        $stmt = $db->connection->prepare("SELECT p.provider_nic, sum(p.amount) AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY provider_nic ORDER BY amount DESC");
+//        $stmt->bind_param("s", $provider_nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $payments = $result->fetch_all(MYSQLI_ASSOC);
+
+        return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [
+            'payments' => $payments
+        ], layoutParams: [
             "title" => "Due Payments",
             "admin" => [
                 "name" => "Randima Dias"
@@ -72,7 +114,7 @@ class AdministratorController extends Controller
     public static function getAdministratorFeedbackPage(): bool|array|string
     {
         $is_admin = $_SESSION["is_admin"];
-        if(!$is_admin){
+        if (!$is_admin) {
             header("location: /administrator-login");
             return "";
         } else {
@@ -92,6 +134,6 @@ class AdministratorController extends Controller
             "active_link" => "feedback"
         ]);
     }
-    
+
 }
 
