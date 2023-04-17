@@ -85,23 +85,27 @@ if (!$pharmacy['is_verified']) {
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
         <h3>Medicines List</h3>
-        <div class="dashboard__bottom-cards__detail">
-            <?php foreach ($medicines as $medicine) {
+        <div class='dashboard__bottom-cards__detail'>
+        <?php foreach ($medicines as $medicine) {
 
-                $med_image = $medicine['image'];
-                $med_name = $medicine['name'];
-                $med_price = $medicine['price'];
-                $med_quantity = $medicine['quantity'];
-                $med_quantity_unit = $medicine['quantity_unit'];
+            $med_image = $medicine['image'];
+            $med_name = $medicine['name'];
+            $med_price = $medicine['price'];
+            $med_quantity = $medicine['quantity'];
+            $med_quantity_unit = $medicine['quantity_unit'];
 
-                echo " <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
+            echo " <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
             <h4></h4>
             <h4>$med_name</h4>
             <h4>$med_quantity $med_quantity_unit</h4>
             <h4>Rs. $med_price</h4>";
-            }
-            ?>
+
+        }?>
         </div>
+
+
+
+
     </div>
 
     <div class="dashboard__bottom-cards">

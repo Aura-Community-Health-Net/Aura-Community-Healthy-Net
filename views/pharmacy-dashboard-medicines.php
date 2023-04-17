@@ -15,7 +15,7 @@
         <th>Quantity</th>
         <th>Quantity Unit</th>
         <th>Stock</th>
-        <th>Stock Unit</th>
+
     </tr>
     <?php
     foreach ($medicines as $medicine) {
@@ -60,7 +60,7 @@
             <th><label class="products-label">Quantity</label></th>
             <th><label class="products-label">Quantity Unit</label></th>
             <th><label class="products-label">Stock</label></th>
-            <th><label class="products-label">Stock Unit</label></th>
+
         </tr>
         <tr>
             <td><input type="file" id="add_img" name="image" style="display: none; visibility: hidden" accept="image/*"

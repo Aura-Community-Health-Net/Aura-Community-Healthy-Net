@@ -78,6 +78,9 @@ class MedicinesController extends Controller
 
     }
 
+
+
+
     public static function viewMedPage()
     {
         $nic = $_SESSION["nic"];
@@ -111,25 +114,87 @@ class MedicinesController extends Controller
 
 
 
-    public static function viewMedicineAdvanceInfo()
+    public static function getSendMedicineAdvanceInfoForm()
     {
 
-        $nic = $_SESSION["nic"];
+        $provider_nic = $_SESSION["nic"];
+        $provider_type = $_SESSION["user_type"];
+        $request_id = $_GET["id"];
 
-        if (!$nic) {
+
+
+
+        if (!$provider_nic|| !$provider_type == "pharmacy") {
             header("/pharmacy-login");
         } else {
-
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
+            $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            return self::render(view: 'pharmacy-dashboard-neworders-advanceinfo', layout: "pharmacy-dashboard-layout", layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
+            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.customer_remark,pr.request_id  FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? AND pr.request_id = ? ");
+            $stmt->bind_param("si",$provider_nic,$request_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $available_med_details = $result->fetch_assoc();
+
+
+
+            return self::render(view: 'pharmacy-dashboard-neworders-advanceinfo', layout: "pharmacy-dashboard-layout",
+                params:[
+                    "available_med_details" => $available_med_details,
+                ],
+                layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
 
         }
+    }
+
+
+
+    public static function sendMedicineAdvanceInfo()
+    {
+
+         $available_med_list = $_POST["medicines_list"];
+
+
+         $available_med_list = json_encode(explode(",", $available_med_list));
+
+
+         $total_amount = $_POST["total_amount"];
+         $advance_amount= $total_amount*0.3;
+         $note = $_POST["note"];
+         $request_id = $_GET["id"];
+
+
+
+
+        $provider_nic = $_SESSION["nic"];
+
+//        $db = new Database();
+//        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+//        $stmt->bind_param("s", $provider_nic);
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//        $pharmacy = $result->fetch_assoc();
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=? WHERE request_id = ? ");
+
+        $stmt->bind_param("ssssi", $total_amount,  $advance_amount, $available_med_list,$note,$request_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        header("location: /pharmacy-dashboard/new-orders");
+        return "";
+
+
+
+
+
+
+
+
     }
 
 
@@ -214,7 +279,100 @@ class MedicinesController extends Controller
 
 
 
+public static function RequestForPharmacy():bool|array|string
+{
 
+
+
+
+    $nic = $_SESSION["nic"];
+
+
+    if(!$nic )
+    {
+        header("location: /login");
+        return "";
+    }
+
+    else{
+
+        $id = $_GET["pharmacy_id"];  //get provider id by  event listner
+
+        var_dump($id);
+
+
+        $prescription = $_FILES["prescription"];
+        $customer_remark = $_POST["customer_remark"];
+
+        $filename = $prescription["name"];
+        $file_tmp_name = $prescription["tmp_name"];
+
+
+        $random_ID = bin2hex(random_bytes(48));
+        $newfile_name = $nic . $random_ID . "prescription" . $filename;
+        $dd = !file_exists(Application::$ROOT_DIR . "/public/uploads/prescriptions");
+
+        var_dump($dd);
+        if(!file_exists(Application::$ROOT_DIR . "/public/uploads/prescriptions"))
+        {
+            mkdir(Application::$ROOT_DIR . "/public/uploads/prescriptions",0777,true);
+        }
+        move_uploaded_file($file_tmp_name, Application::$ROOT_DIR . "/public/uploads/prescriptions/$newfile_name");
+        $prescription_image = "/uploads/prescriptions/$newfile_name";
+
+
+
+
+        $db = new Database();
+//    $stmt = $db->connection->prepare("SELECT s.id FROM pharmacy p INNER JOIN service_provider s  WHERE s.id = ? ");
+//    $stmt->bind_param("s",$id);
+//    $stmt->execute();
+//    $stmt->get_result();
+
+        $stmt = $db->connection->prepare("SELECT p.provider_nic FROM pharmacy p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE s.id = ? ");
+        $stmt->bind_param("s",$id);
+        $stmt->execute();
+        $provider = $stmt->get_result();
+        $provider_details = $provider->fetch_assoc();
+        $provider_nic = $provider_details["provider_nic"];
+
+        var_dump($provider_nic);
+
+//    var_dump($result);
+//    var_dump($id);
+
+
+
+
+        $stmt = $db->connection->prepare("INSERT INTO pharmacy_request(customer_remark,prescription,consumer_nic,provider_nic)
+                VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss",$customer_remark,$prescription_image,$nic,$provider_nic);
+
+//add provider nic for bind param
+
+        $stmt->execute();
+               header("location: /consumer-dashboard/services/pharmacy");
+        return "";
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -239,27 +397,25 @@ class MedicinesController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
+
+
+            $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacies = $result->fetch_all(MYSQLI_ASSOC);
+            return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacylist', layout: "consumer-dashboard-layout", params: [
+                'pharmacies' => $pharmacies
+            ],
+
+                layoutParams: [
+                    "consumer" => $consumer,
+                    "active_link" => "pharmacy",
+                    "title" => "Pharmacy"]);
+
+
         }
-
-        $db = new Database();
-
-        $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $pharmacies = $result->fetch_all(MYSQLI_ASSOC);
-        return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacylist', layout: "consumer-dashboard-layout", params : [
-            'pharmacies' => $pharmacies
-        ],
-
-            layoutParams: [
-                "consumer" => $consumer,
-                "active_link" => "pharmacy",
-                "title" => "Pharmacy"]);
-
-
-
-
-
     }
 
 
@@ -273,8 +429,11 @@ class MedicinesController extends Controller
 
         $nic =$_SESSION["nic"];
         $userType = $_SESSION["user_type"];
+        $id = $_GET["id"];
+//        var_dump($id);
+
         if(!$nic || $userType !== "consumer"){
-            header("location: /provider-login");
+            header("location: /login");
             return "";
         } else {
             $db = new Database();
@@ -283,21 +442,35 @@ class MedicinesController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
+
+
+
+            $stmt = $db->connection->prepare("SELECT pr.request_id,pr.available_medicines,pr.advance_amount,pr.total_amount,pr.pharmacy_remark,p.pharmacy_name FROM  pharmacy_request pr INNER JOIN pharmacy p ON pr.provider_nic = p.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
+            $stmt->bind_param("si",$nic,$id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $payment_details = $result->fetch_assoc();
+
+
+//            $stmt = $db->connection->prepare("SELECT p.pharmacy_name FROM pharmacy_request pr INNER JOIN pharmacy p ON p.provider_nic=pr.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
+//            $stmt->bind_param("si",$nic,$id);
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//            $pharmacy = $result->fetch_all(MYSQLI_ASSOC);
+//            var_dump($pharmacy);
+
+
+
+            return self::render(view: 'consumer-dashboard-services-pharmacy-payment-receipt', layout: "consumer-dashboard-layout",params:[
+                "payment_details" => $payment_details,
+
+            ], layoutParams: [
+                "consumer" => $consumer,
+                "active_link" => "pharmacy",
+                "title" => "Pharmacy"]);
+
+
         }
-
-        return self::render(view: 'consumer-dashboard-services-pharmacy-payment-receipt', layout: "consumer-dashboard-layout", layoutParams: [
-            "consumer" => $consumer,
-            "active_link" => "pharmacy",
-            "title" => "Pharmacy"]);
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -423,7 +596,44 @@ class MedicinesController extends Controller
     }
 
 
+   public  static function getPharmacyRequestDetailsPage(): bool|array|string
+   {
+       $nic = $_SESSION["nic"];
+       if (!$nic){
+           header("location: /login");
+           return "";
+       } else{
+           $db = new Database();
+           $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+           $stmt->bind_param("s", $nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $consumer = $result->fetch_assoc();
 
+//           $stmt = $db->connection->prepare("SELECT pr.request_id,pr.total_amount,pr.advance_amount,pr.pharmacy_remark,pr.available_medicines FROM pharmacy_request pr WHERE pr.consumer_nic = ?");
+//           $stmt->bind_param("s",$nic);
+//           $stmt->execute();
+//           $result = $stmt->get_result();
+//           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
+
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ");
+           $stmt->bind_param("s",$nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
+
+
+           return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails', layout: 'consumer-dashboard-layout', params:[
+//               "pharmacy_request_details" => $pharmacy_request_details,
+               "pharmacy_details" => $pharmacy_details
+           ],layoutParams: [
+               "consumer" => $consumer,
+               "title" => "Medicines",
+               "active_link" => "dashboard-medicines"
+           ]);
+       }
+
+   }
 
 
 
