@@ -1,3 +1,8 @@
+<?php
+/**
+ *@var array $orders
+ **/
+?>
 <table class="items-table">
 
     <table class="items-table">
@@ -10,50 +15,28 @@
             <th>Quantity</th>
         </tr>
 
-        <tr>
-            <td><img class="product-seller-orders-profile-pic" src="/assets/images/profilepic1.jpg" alt=""></td>
-            <td>Ramya Silva</td>
-            <td>0712278657</td>
-            <td>Medicinal Fruits & Vegetables</td>
-            <td>Nelli</td>
-            <td>500 g</td>
-        </tr>
+        <?php
+        foreach ($orders as $order){
+            $profile_picture = $order['profile_picture'];
+            $consumer_name = $order['consumer_name'];
+            $mobile_number = $order['mobile_number'];
+            $category = $order['category_name'];
+            $product = $order['name'];
+            $quantity = $order['quantity'];
+            $quantity_unit = $order['quantity_unit'];
 
-        <tr>
-            <td><img class="product-seller-orders-profile-pic" src="/assets/images/profilepic2.jpg" alt=""></td>
-            <td>Oshada Perera</td>
-            <td>0715574537</td>
-            <td>Leaves</td>
-            <td>Curry Leaves</td>
-            <td>500 g</td>
+            echo "
+            <tr>
+            <td><img class='product-seller-orders-profile-pic' src='$profile_picture' alt=''></td>
+            <td>$consumer_name</td>
+            <td>$mobile_number</td>
+            <td>$category</td>
+            <td>$product</td>
+            <td>$quantity $quantity_unit</td>
         </tr>
-
-        <tr>
-            <td><img class="product-seller-orders-profile-pic" src="/assets/images/profilepic3.jpg" alt=""></td>
-            <td>Kokila Pawan</td>
-            <td>0756478666</td>
-            <td>Seeds</td>
-            <td>Cumin Seeds</td>
-            <td>1 kg</td>
-        </tr>
-
-        <tr>
-            <td><img class="product-seller-orders-profile-pic" src="/assets/images/profilepic4.jpg" alt=""></td>
-            <td>Navam Rathnayaka</td>
-            <td>0721378345</td>
-            <td>Dried Hearbs</td>
-            <td>Belimal</td>
-            <td>1 kg</td>
-        </tr>
-
-        <tr>
-            <td><img class="product-seller-orders-profile-pic" src="/assets/images/profilepic5.jpg" alt=""></td>
-            <td>Sumanapala Dahanayaka</td>
-            <td>071237435</td>
-            <td>Cooked Foods</td>
-            <td>Vegetable Porridge</td>
-            <td>1 l</td>
-        </tr>
+            ";
+        }
+        ?>
 
     </table>
 

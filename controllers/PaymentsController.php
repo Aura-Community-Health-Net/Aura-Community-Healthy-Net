@@ -161,10 +161,11 @@ class PaymentsController extends Controller
                     $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
                     $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
                     $stmt->execute();
-
+                    PaymentsController::logPayment("initial step to mark unpaid as paid succeeded");
                     $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
                     $stmt->bind_param("d", $order_id);
                     $stmt->execute();
+                    PaymentsController::logPayment("selected order items");
                     $result = $stmt->get_result();
                     $order_items = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -176,19 +177,24 @@ class PaymentsController extends Controller
                             $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
                             $stmt->bind_param("d", $product_id);
                             $stmt->execute();
+                            PaymentsController::logPayment("successfully got a product");
                             $result = $stmt->get_result();
                             $product = $result->fetch_assoc();
 
                             if (!$product){
+                                PaymentsController::logPayment("product doesnt exit");
                                 throw new Exception("Item not found");
                             } else {
-                                $stock = $product["stock"];
-                                if ($product_quantity > $stock){
-                                    throw new Exception('Not enough items');
-                                } else{
-                                    $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
-                                    $stmt->bind_param("dd", $product_quantity, $product_id);
-                                    $stmt->execute();
+                                $category_id = $product["category_id"];
+                                if ($category_id !== 5){
+                                    $stock = $product["stock"];
+                                    if ($product_quantity > $stock){
+                                        throw new Exception('Not enough items');
+                                    } else{
+                                        $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
+                                        $stmt->bind_param("dd", $product_quantity, $product_id);
+                                        $stmt->execute();
+                                    }
                                 }
                             }
                         }
@@ -201,6 +207,7 @@ class PaymentsController extends Controller
                     }
                     return "";
                 } catch (Exception $e){
+                    PaymentsController::logPayment($e);
                     $db->connection->rollback();
                     $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
                     try {
