@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if (!$nic || $providerType !== "product-seller") {
+        if (!$nic || $providerType !== "pharmacy") {
             header("location: /provider-login");
             return "";
         } else {

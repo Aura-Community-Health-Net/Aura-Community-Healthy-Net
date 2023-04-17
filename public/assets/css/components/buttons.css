@@ -63,3 +63,44 @@
     padding-block: 0.3rem;
     margin-top: 20px;
 }
+
+
+.pharmacy-request{
+    color: white;
+    height: 1rem;
+    width: 5cm;
+
+}
+
+/*#services-pharmacy-presUpload-btn{*/
+
+
+/*    background-color: #008DFF;*/
+/*    border: none;*/
+/*    border-radius: 0.6rem;*/
+/*    cursor: pointer;*/
+/*    color: white;*/
+/*    padding-left: 0.4rem;*/
+
+/*}*/
+
+/*#request-pharmacy{*/
+/*    font-size: 1rem;*/
+/*}*/
+
+
+#attach-prescription-cancel-btn
+{
+    margin-left: 140px;
+    background-color: #00005C;
+    height: 2.5rem;
+    margin-top: -35px;
+
+
+}
+
+#attach-prescription-ok-btn{
+    margin-top: 30px;
+}
+
+

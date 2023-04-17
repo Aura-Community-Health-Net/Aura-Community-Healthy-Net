@@ -33,19 +33,35 @@ class OrdersController extends Controller
 
     public static function viewNewOrderPage()
     {
-        $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $provider_nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$provider_nic || $providerType !== "pharmacy" ) {
             header("/pharmacy-login");
         } else {
 
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
+            $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            return self::render(view: 'pharmacy-dashboard-neworders', layout: "pharmacy-dashboard-layout", layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
+            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? ");
+            $stmt->bind_param("s",$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+            return self::render(view: 'pharmacy-dashboard-neworders', layout: "pharmacy-dashboard-layout", params:[
+
+                "orders" => $orders
+            ] ,layoutParams: [
+                "pharmacy" => $pharmacy,
+                "title" => "New Orders",
+                "active_link" => "new-orders"]);
         }
 
     }

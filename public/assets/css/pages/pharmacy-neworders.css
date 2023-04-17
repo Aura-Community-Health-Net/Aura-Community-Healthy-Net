@@ -21,13 +21,15 @@
     border-radius: 0.7rem;
     display: flex;
     flex-direction: column;
+    margin-left: 50px;
 
 }
 .pharmacy-neworders-main-block
 {
     margin:auto;
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
+    flex-direction: row;
 
 }
 
@@ -37,8 +39,60 @@
     height: 180px;
     margin-top: 10px;
     margin-left: 50px;
+    cursor: pointer;
+
+    /*object-fit: cover;*/
+    transition: .2s linear ;
+
 
 }
+
+.pres_img:hover
+{
+    transform: scale(1.1);
+}
+
+.popup_image{
+    display: none;
+}
+.popup_image img{
+    position: absolute;
+    /*margin-left: -130px;*/
+    /*margin-top: 50px;*/
+    margin-top: 160px;
+    margin-left: -130px;
+    transform: translate(-50%,-50%);
+    /*border-radius: 1rem;*/
+    /*object-fit: cover;*/
+    width: 400px;
+    height: 400px;
+
+
+    /*background-color: rgba(0,0,0,.9);*/
+    /*z-index: 100;*/
+}
+
+
+.popup_image span{
+    position: absolute;
+    margin-top:-55px;
+    margin-left: 70px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: black;
+    cursor: pointer;
+}
+
+
+
+.zoomed_pres_image{
+    width: 1500px;
+    height:800px;
+
+}
+
+
+
 
 .prescription_title
 {

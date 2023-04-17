@@ -98,8 +98,14 @@ $app->router->post('/pharmacy-dashboard/medicines/delete',[MedicinesController::
 //$app->router->get('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'getupdateMedicinesForm']);
 $app->router->post('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'updateMedicines']);
 //$app->router->post('/pharmacy-dashboard/medicines/update-medicines',[MedicinesController::class,'editMedicines']);
+
+
 $app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
-$app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'viewMedicineAdvanceInfo']);
+$app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'getSendMedicineAdvanceInfoForm']);
+$app->router->post('/pharmacy-dashboard/new-orders/view',[MedicinesController::class,'sendMedicineAdvanceInfo']);
+
+
+
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'PharmacyFeedback']);
 $app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
@@ -175,6 +181,10 @@ $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getCo
 
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'getPharmacyList']);
+$app->router->post('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'RequestForPharmacy']);
+$app->router->get('/consumer-dashboard/services/pharmacy/request-details',[MedicinesController::class,'getPharmacyRequestDetailsPage']);
+
+
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);
 
 

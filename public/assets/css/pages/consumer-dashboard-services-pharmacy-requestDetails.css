@@ -1,0 +1,33 @@
+.pharmacy_request__left{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    margin-left: 6rem;
+    margin-top: 2rem;
+    background-color:#d9d9d9;
+    border-radius: 5px;
+}
+
+
+.pharmacy_request__left__background{
+
+}
+
+
+.pharmacy_request__left__data{
+    display: flex;
+    gap: 2rem;
+
+}
+
+#pharmacy-request-consumer-profile{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+
+#accept-request-btn a{
+    color: white;
+
+}
