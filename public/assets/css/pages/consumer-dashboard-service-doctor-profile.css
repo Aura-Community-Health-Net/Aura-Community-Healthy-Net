@@ -12,14 +12,14 @@
     border-radius: 10px;
 }
 .consumer-dashboard-doctor-profile__top__right__timeslot{
-    position: absolute;
+    /*position: absolute;*/
     top: 64px;
     overflow: auto;
     height: 270px;
     width: 600px;
 }
 .consumer-dashboard-doctor-profile__top__left img{
-    position: relative;
+    /*position: relative;*/
     left: 2px;
     /*top: 20px;*/
     width: 189px;
@@ -28,7 +28,7 @@
 }
 .consumer-dashboard-doctor-profile__top__left__data{
     background-color: #EFEEFD ;
-    position: relative;
+    /*position: relative;*/
     width: 410px;
     height: auto;
     border-radius: 8px;
@@ -55,6 +55,9 @@
     height: 452px;
     position: relative;
     border-radius: 8px;
+    overflow: auto;
+    /*height: 270px;
+    width: 600px;*/
 }
 .consumer-dashboard-doctor-profile__top__right h4{
     position: relative;
@@ -74,12 +77,13 @@
     text-align: center;
     margin-bottom: 9px;
 }
+/*.consumer-dashboard-doctor-profile__top__right__location{
+    width: 400px;
+}*/
 .consumer-dashboard-doctor-profile__top__right__location p{
-    position: absolute;
-    left: 177px;
-    top: 353px;
+    margin-right: 400px;
 }
-.consumer-dashboard-doctor-profile__top__right__location__search{
+/*.consumer-dashboard-doctor-profile__top__right__location__search{
     position: absolute;
     background-color: #ffffff;
     width: 245px;
@@ -93,25 +97,21 @@
     position: relative;
     left: 210px;
     top: 3px;
-}
+}*/
 .consumer-dashboard-doctor-profile__top__right_p{
-    position: absolute;
-    top: 403px;
-    text-align: center;
-    left: 30px;
+    text-align: left;
+    padding: 10px;
 }
 .consumer-dashboard-doctor-profile__top__right button{
-    position: absolute;
     font-size: 1rem;
     color: #ffffff;
     background-color: #00005C;
     padding: 15px 32px;
     border: none;
-    margin-top: 6rem;
     border-radius: 5px;
     cursor: pointer;
-    left: 443px;
-    top: 292px;
+    margin-left: 400px;
+    margin-bottom: 20px;
 }
 .consumer-dashboard-doctor-profile__top table{
     border-spacing: 55px;
@@ -129,9 +129,9 @@
     background-color: #ffffff;
     width: auto;
     height: auto;
-    position: relative;
+    /*position: relative;
     left: 0;
-    bottom: 0;
+    bottom: 0;*/
     border-radius: 5px;
     padding-left: 17px;
     padding-right: 17px;
@@ -165,9 +165,9 @@
     background-color: #00005C;
     color: #ffff;
     font-size: 1rem;
-    position: relative;
+    /*position: relative;
     top: 20px;
-    left: 10px;
+    left: 10px;*/
     alignment: center;
     border: none;
     padding: 10px 56px;
@@ -175,9 +175,9 @@
     cursor: pointer;
 }
 .consumer-dashboard-doctor-profile__bottom__right{
-    position: absolute;
+    /*position: absolute;
     top: 50px;
-    left: 525px;
+    left: 525px;*/
 }
 .doctor-feedback{
     margin-top: 10px;

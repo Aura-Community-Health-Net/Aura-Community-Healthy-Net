@@ -12,6 +12,9 @@ use Stripe\StripeClient;
 use Exception;
 use JsonException;
 use app\core\Application;
+
+
+
 class PaymentsController extends Controller
 {
     public static function calculateChargeForProduct(): string
@@ -237,7 +240,7 @@ class PaymentsController extends Controller
     }
 
 
-    public static function calculateChargeForFees(): string
+    public static function calculateChargeForDoctorFees(): string
     {
         $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
         Stripe::setApiKey($stripe_secret_key);
@@ -286,32 +289,32 @@ class PaymentsController extends Controller
             }
         }
 
-        try {
-            /*$product_id = $_GET["product_id"];
+        /*try {
+            $appointment_id = $_GET["appointment_id"];
 
-            $stmt = $db->connection->prepare("SELECT * FROM product where product_id = ?");
-            $stmt->bind_param("d", $product_id);
+            $stmt = $db->connection->prepare("SELECT * FROM appointment where appointment_id = ?");
+            $stmt->bind_param("d", $appointment_id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $product = $result->fetch_assoc();*/
+            $fees = $result->fetch_assoc();
 
         } catch (Exception $e) {
             http_response_code(500);
             header("Content-Type: application/json");
             return json_encode(["message" => $e->getMessage()]);
-        }
+        }*/
 
-        $stmt1 = $db->connection->prepare("INSERT INTO appointment (provider_nic, consumer_nic) VALUE (?, ?)");
+        /*$stmt1 = $db->connection->prepare("INSERT INTO appointment (provider_nic, consumer_nic) VALUE (?, ?)");*/
 
-        $order_id = null;
-        try {
+        $appointment_id = null;
+        /*try {
             $db->connection->begin_transaction();
             $stmt1->bind_param("ss", $product["provider_nic"], $nic);
             $stmt1->execute();
             $order_id = $stmt1->insert_id;
-            /*$stmt2 = $db->connection->prepare("INSERT INTO order_has_product (product_id, order_id, price_at_order) VALUES (?, ?, ?)");
+            $stmt2 = $db->connection->prepare("INSERT INTO order_has_product (product_id, order_id, price_at_order) VALUES (?, ?, ?)");
             $stmt2->bind_param("ddd", $product_id, $order_id, $product["price"]);
-            $stmt2->execute();*/
+            $stmt2->execute();
             if ($db->connection->errno) {
                 $db->connection->rollback();
             } else {
@@ -322,18 +325,19 @@ class PaymentsController extends Controller
             http_response_code(500);
             header("Content-Type: application/json");
             return json_encode(["message" => $e->getMessage()]);
-        }
+        }*/
+        $fees = 1500;
 
-        try {
+        /*try {
             $paymentIntent = PaymentIntent::create([
-                'amount' => '1500',
+                'amount' => $fees,
                 'currency' => 'lkr',
                 'payment_method_types' => [
                     'card'
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => [/*"order_id"=>$order_id*/]
+                'metadata' => ["appointment_id"=>$appointment_id]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -345,15 +349,20 @@ class PaymentsController extends Controller
             http_response_code(500);
             header("Content-Type: application/json");
             return json_encode(["message" => "Internal Server Error"]);
-        }
+        }*/
     }
 
-        public static function verifyFeesPayments(){
+
+
+
+    public static function verifyFeesPayments(){
         try {
             $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             $body = [];
         }
+        http_response_code(500);
+        //var_dump($body);exit();
         PaymentsController::logPayment($body);
         $type = $body['type'];
         PaymentsController::logPayment($type);
@@ -380,8 +389,8 @@ class PaymentsController extends Controller
                 PaymentsController::logPayment($appointment_id);
                 try {
                     $db->connection->begin_transaction();
-                    $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
-                    $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
+                    $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
+                    $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
                     $stmt->execute();
 
                     $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
@@ -390,7 +399,7 @@ class PaymentsController extends Controller
                     $result = $stmt->get_result();
                     $order_items = $result->fetch_all(MYSQLI_ASSOC);
 
-                    if ($order_items){
+                    /*if ($order_items){
                         foreach ($order_items as $order_item){
                             $product_quantity = $order_item["num_of_items"];
                             $product_id = $order_item["product_id"];
@@ -420,7 +429,7 @@ class PaymentsController extends Controller
                         } else {
                             $db->connection->commit();
                         }
-                    }
+                    }*/
                     return "";
                 } catch (Exception $e){
                     $db->connection->rollback();

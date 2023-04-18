@@ -227,7 +227,7 @@ function timeSlotDate(val){
 
 function filterDoctor(val){
 
-    jQuery.ajax({
+    /*jQuery.ajax({
         url: '/consumer-dashboard/services/doctor',
         type: 'GET',
         data: JSON.stringify(val),
@@ -239,9 +239,9 @@ function filterDoctor(val){
             alert("error");
         },
         async: false
-    });
+    });*/
 
-    /*var input, filter, table, tr, td, i, txtValue;
+    var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("doctor-categories");
     filter = input.value;
     console.log(filter);
@@ -257,7 +257,7 @@ function filterDoctor(val){
                 tr[i].style.display = "none";
             }
         }
-    }*/
+    }
 
 }
 

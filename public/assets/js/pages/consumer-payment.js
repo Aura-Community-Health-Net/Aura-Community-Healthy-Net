@@ -1,5 +1,5 @@
-const consumerPaymentModalButton = document.getElementById("product__pay-btn");
-const consumerPaymentModal = document.querySelector("#consumer-payment-modal");
+
+
 const consumerPaymentForm = document.querySelector("#consumer-payment-form");
 const consumerPaymentOverlay = document.querySelector("#consumer-payment-overlay");
 const consumerPaymentOKBtn = document.querySelector("#consumer-payment-ok-btn");
@@ -18,12 +18,7 @@ const deletePaymentOverlay = document.querySelector("#consumer-payment-overlay")
 //
 // const deletePaymentButtons = document.querySelectorAll(".product-delete");
 
-consumerPaymentModalButton.addEventListener("click", () => {
-    consumerPaymentModal.style.display = "block";
-    consumerPaymentOverlay.style.display = "block";
-    consumerPaymentModal.classList.add("modal-open");
-    consumerPaymentOverlay.classList.add("overlay-open");
-});
+
 
 consumerPaymentOKBtn.addEventListener("click", () => {
     consumerPaymentForm.submit();

@@ -22,10 +22,18 @@ class ConsumerDoctorController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
+            $name = isset($_GET['q'])? $_GET['q']:"";
+
+            if(!$name){
                 $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $doctor = $result->fetch_all(MYSQLI_ASSOC);
+
+            }else{
+                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE name LIKE '%$name%'");
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $doctor = $result->fetch_all(MYSQLI_ASSOC);
+
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout",params: ['consumer'=>$consumer,'doctor'=>$doctor], layoutParams: [
@@ -35,7 +43,7 @@ class ConsumerDoctorController extends Controller
         ]);
     }
 
-    public function ConsumerServicesDoctorFilter(): bool|array|string
+    /*public function ConsumerServicesDoctorFilter(): bool|array|string
     {
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
@@ -63,7 +71,7 @@ class ConsumerDoctorController extends Controller
             "active_link" => "profile",
             "title" => "Profile"
         ]);
-    }
+    }*/
 
     public function getConsumerServicesDoctorProfilePage(): bool|array|string
     {
@@ -161,7 +169,7 @@ class ConsumerDoctorController extends Controller
 
             $provider_nic = $_GET['provider_nic'];
             $slot_number = $_POST['available-time-slot'];
-            print_r($_POST);
+            //print_r($_POST);
             $done = 0;
 
             $db = new Database();
@@ -174,15 +182,14 @@ class ConsumerDoctorController extends Controller
             $result = $stmt->get_result();
 
             $result2 = $stmt->insert_id;
-            //print_r($result2);
             $appointment_id = $result2;
-            $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
+            /*$stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
                                WHERE slot_number = $slot_number");
             $stmt->bind_param("s",$appointment_id );
             $stmt->execute();
-            $result = $stmt->get_result();
+            $result = $stmt->get_result();*/
 
-            header("location: /consumer-dashboard/services/doctor/profile/payment");
+            header("location: /consumer-dashboard/services/doctor/profile/payment?appointment_id=$appointment_id");
         }
 
         return self::render(view: 'consumer-dashboard-service-doctor-profile', layout: "consumer-dashboard-layout", layoutParams: [

@@ -50,7 +50,7 @@
     <!--    </div>-->
 
 
-    <script src="/assets/js/pages/consumer-payment.js"></script>
+    <!--<script src="/assets/js/pages/consumer-payment.js"></script>-->
 </div>
 
 <script>
@@ -70,14 +70,16 @@
         const stripe = Stripe("pk_test_51MisoQB9kJ5FDFAyDuNbY1BHait7n2fiQoM9s1zupkOW6hJxnjeCglOBaOaNgWdNFmRoPyuMeuX9ori14IUwplMU00KUCgpU6n");
         console.log(stripe);
         const params = new URLSearchParams(window.location.search)
-        //const productID = params.get("product_id");
+        const appointmentID = params.get("appointment_id");
+        console.log(appointmentID);
 
-        async function getProductPrice() {
+        async function getDoctorFees() {
 
             try {
-                const res = await fetch(`/verify-fees-amount`, {
+                const res = await fetch(`/verify-DoctorFees-amount?appointment_id=${appointmentID}`, {
                     method: "get"
                 })
+                //console.log(res);
                 const responseCode = res.status;
                 console.log(responseCode);
                 switch (responseCode){
@@ -101,9 +103,11 @@
 
                         break;
                     case 500:
-                        const errorData = await res.json();
-                        const errorMessage = errorData.message;
-                        console.error(errorMessage);
+                        const errorData = await res.text();
+                        console.log(errorData);
+                        return;
+                        /*const errorMessage = errorData.message;
+                        console.error(errorMessage);*/
                         break;
                 }
             } catch (error){
@@ -111,7 +115,7 @@
             }
         }
 
-        getProductPrice();
+        getDoctorFees();
         // initialize();
 // checkStatus();
 

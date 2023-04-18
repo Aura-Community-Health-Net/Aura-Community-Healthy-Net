@@ -163,7 +163,6 @@ $app->router->get('/consumer-dashboard/products-overview', [ProductsController::
 $app->router->get('/consumer-dashboard/feedback',[FeedbacksController::class,'getConsumerFeedbackPage']);
 
 $app->router->get('/consumer-dashboard/services/doctor', [ConsumerDoctorController::class, 'getConsumerServicesDoctorPage']);
-$app->router->post('/consumer-dashboard/services/doctor-filter', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFilter']);
 
 $app->router->get('/consumer-dashboard/services/doctor/profile', [ConsumerDoctorController::class, 'getConsumerServicesDoctorProfilePage']);
 $app->router->post('/consumer-dashboard/services/doctor/profile-feedback', [ConsumerDoctorController::class, 'ConsumerServicesDoctorFeedback']);
@@ -192,7 +191,7 @@ $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 $app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
 $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPayments']);
 
-$app->router->get('/verify-fees-amount', [PaymentsController::class, 'calculateChargeForFees']);
+$app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calculateChargeForDoctorFees']);
 $app->router->post('/payments/fees/verify', [PaymentsController::class, 'verifyFeesPayments']);
 
 //  Run the application
