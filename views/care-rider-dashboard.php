@@ -3,7 +3,16 @@
 /**
  *@var array $care_rider
  *@var string $active_link
+ * @var $request_confirm;
+ * @var $request_done;
+ * @var $new_request;
+ * @var $all_request;
+ * @var $request_details;
+ * @var $count_request;
+
  */
+/*var_dump($request_details);
+die();*/
 if (!$care_rider['is_verified']) {
 echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
@@ -11,66 +20,61 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang=""
 
     <link rel="stylesheet" href="/assets/css/main.css">
-<div class="dashboard__top-container">
-    <div class="dashboard__top-cards">
-        <h3>New Requests List</h3>
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
-            <div>
-                <h4>Lakisha Lakmini</h4>
-                <h5>071-5275437</h5>
+<!--<div class="dashboard__top-container">-->
+<!--    <div class="dashboard__top-cards">-->
+<!--        <h3>New Requests List</h3>-->
+<!--        <div class="dashboard__top-cards__detail">-->
+<!--            --><?php //foreach ($request_confirm as  $value) { ?>
+<!--                <div class="appointment-list__item">-->
+<!--                    <img src="--><?php //echo $value['profile_picture']?><!--">-->
+<!--                    <h5><b>--><?php //echo $value['name']?><!--</b><br>-->
+<!--                        --><?php //echo $value['mobile_number']?><!--</h5>-->
+<!--                    <i class="fa-solid fa-location-dot"></i>-->
+<!--                </div>-->
+<!--        </div>-->
+<!--        --><?php //} ?>
+        <div class="doctor-dashboard">
+            <div class="doctor-dashboard__left__top">
+                <h3>New Appointment List</h3>
+                <div class="appointment-list__item__scroll">
+                    <?php foreach ($request_confirm as  $value) { ?>
+                        <div class="appointment-list__item">
+                            <img src="<?php echo $value['profile_picture']?>">
+                            <h5><b><?php echo $value['name']?></b><br>
+                                <?php echo $value['mobile_number']?></h5>
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
-        </div>
 
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic2.jpg" alt="">
-            <div>
-                <h4>Kamal Deshabandu</h4>
-                <h5>075-3455667</h5>
-            </div>
-        </div>
-
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic3.jpg" alt="">
-            <div>
-                <h4>Samith Chathuranga</h4>
-                <h5>071-3456789</h5>
-            </div>
-        </div>
-
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic4.jpg" alt="">
-            <div>
-                <h4>Kamani Ranathunga</h4>
-                <h5>075-7896555</h5>
-            </div>
-        </div>
-    </div>
 
     <div class="dashboard__top-cards">
         <h3>Request</h3>
+        <?php if($count_request['COUNT(done)']>0){?>
         <div class="dashboard__top-cards__info">
             <div class="dashboard__top-cards__detail">
-                <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
+                <img class="order-consumer-img" src=" <?php echo $request_details['profile_picture'];?>" alt="">
                 <div>
-                    <h4>Sachini Deshapriya</h4>
-                    <h5>0726778767</h5>
+                    <h4><?php echo $request_details['name'] ;?></h4>
+                    <h5><?php echo $request_details['mobile_number'] ;?></h5>
                 </div>
             </div>
 
             <div class="care-rider-order-details">
                 <div>
                     <h5>Date</h5>
-                    <h5>9th October 2023 </h5>
+                    <h5><?php echo " ". $request_details['MAX(care_rider_time_slot.date)'] ;?> </h5>
                 </div>
                 <div>
                     <h5>Time</h5>
                     <h5>12.00 pm</h5>
                 </div>
             </div>
+            <?php } ?>
         </div>
 
 
@@ -81,11 +85,11 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
         <h3>Request Count</h3>
         <div class="order-count__details">
             <h3>New Requests</h3>
-            <p class="new-order-count">15</p>
+            <h1 style="color: #5BC849"><?php echo $new_request['COUNT(done)'];?></h1>
         </div>
         <div class="order-count__details">
             <h3>All Requests</h3>
-            <p class="all-order-count">59</p>
+            <h1 style="color: #FF0000"><?php echo $all_request['COUNT(done)'];?></h1>
         </div>
     </div>
 </div>

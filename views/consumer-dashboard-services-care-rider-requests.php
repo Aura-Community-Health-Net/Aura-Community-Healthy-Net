@@ -51,8 +51,8 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                             <td><?php echo $value['from_time'] ?></td>
                                             <td><?php echo $value['to_time'] ?></td>
                                             <td><?php echo " "; ?></td>
-                                            <!--                                            <td><input type="radio" value="-->
-                                            <?php //echo $value['slot_number'];?><!--" name="available-time-slot">-->
+                                                                                        <td><input type="radio" value="
+                                            <?php echo $value['slot_number'];?>" name="available-time-slot">
                                             </td>
                                         </tr>
                                     <?php } ?>
