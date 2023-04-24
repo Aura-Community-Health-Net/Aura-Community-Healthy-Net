@@ -18,9 +18,9 @@
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
 
-                <div class="search-bar">
-                    <input type="Date" placeholder="Search Product..." name="date">
-                </div>
+<!--                <div class="search-bar">-->
+<!--                    <input type="Date" placeholder="Search Product..." name="date">-->
+<!--                </div>-->
 
 
                 <div class="search-bar">

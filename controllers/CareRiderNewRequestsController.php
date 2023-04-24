@@ -46,4 +46,38 @@ class CareRiderNewRequestsController extends Controller
         ));
     }
 
+
+    public static function CareRiderRequestsProcess() :array|bool|string {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType != "care-rider") {
+            header("location: /provider-login");
+            return "";
+        }
+
+        $db = new database();
+        if(empty($_GET)){
+            $empty = $_GET;
+        }else{
+            $request_id = $_GET['request_id'];
+            $id = $_GET['id'];
+
+            if($id==1){
+                $stmt = $db->connection->prepare("UPDATE ride_request SET done = 1 WHERE request_id = ?");
+                $stmt->bind_param("i",$request_id );
+                $stmt->execute();
+                $result = $stmt->get_result();
+            }
+        }
+        var_dump();
+        header("location: /care-rider-dashboard/new-requests");
+
+        return self::render(view: 'care-rider-dashboard-new-requests', layout: "care-rider-dashboard-layout", params: [
+        ], layoutParams: [
+            "active_link" => "new-requests",
+            "title" => "New Requests",
+        ]);
+
+    }
 }

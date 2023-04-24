@@ -189,3 +189,20 @@ function attachEditButtonListener(button){
     });
 }
 editCareRiderTimeSlotButtons.forEach(attachEditButtonListener);
+
+function CareRider(val) {
+
+    jQuery.ajax({
+        url: '/consumer-dashboard/services/care-rider',
+        type: 'GET',
+        data: JSON.stringify(val),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            alert(data.success);
+        },
+        error: function () {
+            alert("error");
+        },
+        async: false
+    });
+}
