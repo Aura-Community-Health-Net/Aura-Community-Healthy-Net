@@ -209,17 +209,25 @@ class ProductsController extends Controller
 
             $category_id = isset($_GET["category_id"]) ? $_GET['category_id']:false;
 
+            $search_query = isset($_GET["q"]) ? $_GET["q"]: "";
+
             $db = new Database();
             if (!$category_id) {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic");
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.name LIKE '%$search_query%'");
+//                $stmt->bind_param("s", $search_query);
             } else {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.category_id = ?");
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.category_id = ? AND p.name LIKE '%$search_query%'");
                 $stmt->bind_param("d", $category_id);
 
             }
             $stmt->execute();
+
             $result = $stmt->get_result();
             $products = $result->fetch_all(MYSQLI_ASSOC);
+
+//            var_dump($search_query);
+//            var_dump($products);
+//            exit();
 
             return self::render(view: 'consumer-dashboard-products', layout: 'consumer-dashboard-layout', params: [
                 'products'=>$products

@@ -96,7 +96,7 @@ updateMedicineButtons.forEach(function (updateMed_Button){
                 <input class="form-input__input" type="text" name="price" value="${tr.dataset.medicineprice}">
                 <label class="form-input__label" for="">Stock</label>
                 <input class="form-input__input" type="text" name="stock" value="${tr.dataset.medicinestock}">
-                <label class="form-input__label" for="">Stock Unit</label>
+              
 
                 
                 <div class="update-btn-section">

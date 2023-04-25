@@ -35,8 +35,8 @@ $confirm =2;
                             <?php $request_id = $value['request_id']?>
                         </div>
                         <div class="doctor-appointments__buttons">
-                            <button value="Cancel" formaction="<?php echo"/care-rider-dashboard/appointments-conform-cancel?request_id=$request_id&id=$cancel"?>" type="submit" style="background-color: #0002A1">Cancel</button>
-                            <button value="Confirm" formaction="<?php echo"/care-rider-dashboard/appointments-conform-cancel?request_id=$request_id&id=$confirm"?>" type="submit" style="background-color: #00005C">Confirm</button>
+                            <button value="Cancel" formaction="<?php echo"/care-rider-dashboard/request-conform-cancel?request_id=$request_id&id=$cancel"?>" type="submit" style="background-color: #0002A1">Cancel</button>
+                            <button value="Confirm" formaction="<?php echo"/care-rider-dashboard/request-conform-cancel?request_id=$request_id&id=$confirm"?>" type="submit" style="background-color: #00005C">Confirm</button>
                         </div>
                     </form>
                 </div>

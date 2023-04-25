@@ -25,15 +25,15 @@
 
 .due-payments__details{
     display: grid;
-    grid-template-columns: repeat(5 ,1fr);
-    gap: 8rem;
+    grid-template-columns: repeat(6 ,1fr);
+    gap: 3rem;
     justify-content: center;
     margin: 1rem;
 }
 
 .due-payments{
     display: grid;
-    grid-template-columns: repeat(5 ,1fr);
+    grid-template-columns: repeat(6 ,1fr);
     background-color: white;
     border-radius: 8px;
     padding: 0.5rem;

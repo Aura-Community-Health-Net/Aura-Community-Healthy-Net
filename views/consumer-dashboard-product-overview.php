@@ -21,7 +21,7 @@ $category_id = $product_details['category_id'];
 $product_stock = $product_details['stock'];
 $is_available = $product_stock > 0 || $category_id === 5 ? "" : "<p class='stock-notice'>No stock</p>";
 $is_button_active = $product_stock > 0 || $category_id === 5 ? "" : "disabled";
-$href = $product_stock > 0 || $category_id === 5 ? "#" : "/product-checkout?product_id=$product_id";
+$href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id=$product_id" : "#";
 
 ?>
 
