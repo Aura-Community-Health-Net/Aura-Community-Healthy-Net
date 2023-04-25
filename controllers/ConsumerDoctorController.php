@@ -169,6 +169,14 @@ class ConsumerDoctorController extends Controller
 
             $provider_nic = $_GET['provider_nic'];
             $slot_number = $_POST['available-time-slot'];
+            $dest_lat = $_POST['destination-lat'];
+            $dest_lng = $_POST['destination-lng'];
+
+            $location = json_encode([
+                "lat" => $dest_lat,
+                "lng" => $dest_lng
+            ]);
+
             //print_r($_POST);
             $done = 0;
 
@@ -176,18 +184,18 @@ class ConsumerDoctorController extends Controller
             $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
                       provider_nic,
-                      consumer_nic)VALUES (?,?,?)");
-            $stmt->bind_param("iss", $done,$provider_nic,$nic);
+                      consumer_nic, location)VALUES (?,?,?,?)");
+            $stmt->bind_param("isss", $done,$provider_nic,$nic, $location);
             $stmt->execute();
             $result = $stmt->get_result();
 
             $result2 = $stmt->insert_id;
             $appointment_id = $result2;
-            /*$stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
+            $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
                                WHERE slot_number = $slot_number");
             $stmt->bind_param("s",$appointment_id );
             $stmt->execute();
-            $result = $stmt->get_result();*/
+            $result = $stmt->get_result();
 
             header("location: /consumer-dashboard/services/doctor/profile/payment?appointment_id=$appointment_id");
         }

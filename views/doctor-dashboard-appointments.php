@@ -31,7 +31,7 @@ $done = 1;
                         <p><?php echo $value['name'];?></p>
                         <p><?php echo $value['from_time']. " - " . $value['to_time'];?></p>
                         <p><?php echo $value['mobile_number'];?></p>
-                        <i class="fa-solid fa-location-dot"></i>
+                        <button id='customer-location'  class='customer-location' ><i class="fa-solid fa-location-dot"></i></button>
                         <?php $appointment_id = $value['appointment_id']?>
                     </div>
                     <div class="doctor-appointments__buttons">

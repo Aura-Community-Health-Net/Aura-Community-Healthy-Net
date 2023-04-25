@@ -79,9 +79,7 @@
                 const res = await fetch(`/verify-DoctorFees-amount?appointment_id=${appointmentID}`, {
                     method: "get"
                 })
-                //console.log(res);
                 const responseCode = res.status;
-                console.log(responseCode);
                 switch (responseCode){
                     case 200:
                         const data = await res.json();
@@ -89,8 +87,8 @@
                         console.log(`client secret is ${clientSecret}`);
                         elements = stripe.elements({clientSecret});
 
-                        const linkAuthenticationElement = elements.create("linkAuthentication");
-                        linkAuthenticationElement.mount("#link-authentication-element");
+                        // const linkAuthenticationElement = elements.create("linkAuthentication");
+                        // linkAuthenticationElement.mount("#link-authentication-element");
 
                         const paymentElementOptions = {
                             layout: "tabs",
@@ -106,9 +104,6 @@
                         const errorData = await res.text();
                         console.log(errorData);
                         return;
-                        /*const errorMessage = errorData.message;
-                        console.error(errorMessage);*/
-                        break;
                 }
             } catch (error){
                 alert(error.message)
@@ -133,7 +128,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "https://2efa-112-134-246-182.ap.ngrok.io/checkout/success",
+                    return_url: "https://d2da-2401-dd00-1e-00-fffe.ngrok-free.app/checkout/success",
                     receipt_email: emailAddress,
                 },
             });

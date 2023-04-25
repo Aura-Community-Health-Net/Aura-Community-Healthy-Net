@@ -54,7 +54,8 @@ class ProfileController extends Controller
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
-            $doctorQualification = $result->fetch_assoc();
+            $doctorQualification = $result->fetch_all(MYSQLI_ASSOC);
+            //print_r($doctorQualification);
 
             $stmt = $db->connection->prepare("SELECT * FROM doctor WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);

@@ -14,7 +14,6 @@ use JsonException;
 use app\core\Application;
 
 
-
 class PaymentsController extends Controller
 {
     public static function calculateChargeForProduct(): string
@@ -24,7 +23,7 @@ class PaymentsController extends Controller
         $db = new Database();
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if (!$nic || $providerType!=='consumer'){
+        if (!$nic || $providerType !== 'consumer') {
             header("location: /login");
             return "";
         }
@@ -40,14 +39,14 @@ class PaymentsController extends Controller
         $customer_stripe_id = $customer["stripe_id"];
 
         try {
-                if(!$customer_stripe_id) {
-                    throw new Exception("No payment ID");
-                }
-                $stripeCustomer = Customer::retrieve([
-                    "id" => $customer_stripe_id
-                ]);
-                $stripeCustomerId = $stripeCustomer->id;
-        }catch (Exception $e) {
+            if (!$customer_stripe_id) {
+                throw new Exception("No payment ID");
+            }
+            $stripeCustomer = Customer::retrieve([
+                "id" => $customer_stripe_id
+            ]);
+            $stripeCustomerId = $stripeCustomer->id;
+        } catch (Exception $e) {
             if (($e instanceof ApiErrorException && $e->getStripeCode() === "resource_missing") || !$customer_stripe_id) {
                 $stripeCustomer = Customer::create([
                     'email' => $customer_email,
@@ -60,9 +59,9 @@ class PaymentsController extends Controller
                 $stmt->bind_param("ss", $stripeCustomerId, $nic);
                 $stmt->execute();
             } else {
-                    http_response_code(500);
-                    header("Content-Type: application/json");
-                    return json_encode(["message"=>"Internal Server Error"]);
+                http_response_code(500);
+                header("Content-Type: application/json");
+                return json_encode(["message" => "Internal Server Error"]);
             }
         }
 
@@ -75,16 +74,16 @@ class PaymentsController extends Controller
             $result = $stmt->get_result();
             $product = $result->fetch_assoc();
 
-        } catch (Exception $e){
+        } catch (Exception $e) {
             http_response_code(500);
             header("Content-Type: application/json");
-            return json_encode(["message"=>$e->getMessage()]);
+            return json_encode(["message" => $e->getMessage()]);
         }
 
         $stmt1 = $db->connection->prepare("INSERT INTO product_order (provider_nic, consumer_nic) VALUE (?, ?)");
 
         $order_id = null;
-        try{
+        try {
             $db->connection->begin_transaction();
             $stmt1->bind_param("ss", $product["provider_nic"], $nic);
             $stmt1->execute();
@@ -92,16 +91,16 @@ class PaymentsController extends Controller
             $stmt2 = $db->connection->prepare("INSERT INTO order_has_product (product_id, order_id, price_at_order) VALUES (?, ?, ?)");
             $stmt2->bind_param("ddd", $product_id, $order_id, $product["price"]);
             $stmt2->execute();
-            if ($db->connection->errno){
+            if ($db->connection->errno) {
                 $db->connection->rollback();
-            } else{
+            } else {
                 $db->connection->commit();
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             $db->connection->rollback();
             http_response_code(500);
             header("Content-Type: application/json");
-            return json_encode(["message"=>$e->getMessage()]);
+            return json_encode(["message" => $e->getMessage()]);
         }
 
         try {
@@ -113,7 +112,7 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["order_id"=>$order_id]
+                'metadata' => ["order_id" => $order_id]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -121,15 +120,17 @@ class PaymentsController extends Controller
             http_response_code(200);
             header("Content-Type: application/json");
             return json_encode($output);
-        } catch (Exception $e){
+        } catch (Exception $e) {
             http_response_code(500);
             header("Content-Type: application/json");
-            return json_encode(["message"=>"Internal Server Error"]);
+            return json_encode(["message" => "Internal Server Error"]);
         }
 
     }
 
-    public static function verifyPayments(){
+    public static function verifyPayments()
+    {
+        PaymentsController::logPayment("Called verify moment");
         try {
             $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
@@ -157,67 +158,113 @@ class PaymentsController extends Controller
             if ($customer) {
                 $metadata = $body["data"]["object"]["metadata"];
                 PaymentsController::logPayment($metadata);
-                $order_id = $metadata["order_id"];
-                PaymentsController::logPayment($order_id);
-                try {
-                    $db->connection->begin_transaction();
-                    $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
-                    $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
-                    $stmt->execute();
 
-                    $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
-                    $stmt->bind_param("d", $order_id);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $order_items = $result->fetch_all(MYSQLI_ASSOC);
+                $isOrderPayment = isset($metadata["order_id"]);
+                $isAppointment = isset($metadata["appointment_id"]);
+                PaymentsController::logPayment([
+                    "isOrder" => $isOrderPayment,
+                    "isAppointment" => $isAppointment
+                ]);
 
-                    if ($order_items){
-                        foreach ($order_items as $order_item){
-                            $product_quantity = $order_item["num_of_items"];
-                            $product_id = $order_item["product_id"];
+                if ($isOrderPayment) {
 
-                            $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
-                            $stmt->bind_param("d", $product_id);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-                            $product = $result->fetch_assoc();
+                    $order_id = $metadata["order_id"];
+                    PaymentsController::logPayment($order_id);
+                    try {
+                        $db->connection->begin_transaction();
+                        $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
+                        $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
+                        $stmt->execute();
 
-                            if (!$product){
-                                throw new Exception("Item not found");
-                            } else {
-                                $stock = $product["stock"];
-                                if ($product_quantity > $stock){
-                                    throw new Exception('Not enough items');
-                                } else{
-                                    $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
-                                    $stmt->bind_param("dd", $product_quantity, $product_id);
-                                    $stmt->execute();
+                        $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
+                        $stmt->bind_param("d", $order_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $order_items = $result->fetch_all(MYSQLI_ASSOC);
+
+                        if ($order_items) {
+                            foreach ($order_items as $order_item) {
+                                $product_quantity = $order_item["num_of_items"];
+                                $product_id = $order_item["product_id"];
+
+                                $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
+                                $stmt->bind_param("d", $product_id);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $product = $result->fetch_assoc();
+
+                                if (!$product) {
+                                    throw new Exception("Item not found");
+                                } else {
+                                    $stock = $product["stock"];
+                                    if ($product_quantity > $stock) {
+                                        throw new Exception('Not enough items');
+                                    } else {
+                                        $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
+                                        $stmt->bind_param("dd", $product_quantity, $product_id);
+                                        $stmt->execute();
+                                    }
                                 }
                             }
+                            if ($db->connection->errno) {
+                                $db->connection->rollback();
+                                return "";
+                            } else {
+                                $db->connection->commit();
+                            }
                         }
-                        if ($db->connection->errno){
+                        return "";
+                    } catch (Exception $e) {
+                        $db->connection->rollback();
+                        $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
+                        try {
+                            $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
+                            $stripeClient = new StripeClient([
+                                'api_key' => $stripe_secret_key,
+                            ]);
+                            $stripeClient->refunds->create([
+                                'payment_intent' => $paymentIntent->id,
+                                'amount' => $amount,
+                            ]);
+                            return "";
+                        } catch (ApiErrorException $e) {
+                            return "";
+                        }
+                    }
+                } else if ($isAppointment) {
+
+
+                    $appointment_id = (int)$metadata["appointment_id"];
+                    PaymentsController::logPayment($appointment_id);
+                    try {
+                        $db->connection->begin_transaction();
+                        $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
+                        $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
+                        $stmt->execute();
+
+                        if ($db->connection->errno) {
                             $db->connection->rollback();
                             return "";
                         } else {
                             $db->connection->commit();
                         }
-                    }
-                    return "";
-                } catch (Exception $e){
-                    $db->connection->rollback();
-                    $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
-                    try {
-                        $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
-                        $stripeClient = new StripeClient([
-                            'api_key' => $stripe_secret_key,
-                        ]);
-                        $stripeClient->refunds->create([
-                            'payment_intent' => $paymentIntent->id,
-                            'amount' => $amount,
-                        ]);
                         return "";
-                    } catch (ApiErrorException $e){
-                        return "";
+                    } catch (Exception $e) {
+                        $db->connection->rollback();
+                        $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
+                        try {
+                            $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
+                            $stripeClient = new StripeClient([
+                                'api_key' => $stripe_secret_key,
+                            ]);
+                            $stripeClient->refunds->create([
+                                'payment_intent' => $paymentIntent->id,
+                                'amount' => $amount,
+                            ]);
+                            return "";
+                        } catch (ApiErrorException $e) {
+                            return "";
+                        }
                     }
                 }
 
@@ -229,7 +276,8 @@ class PaymentsController extends Controller
         }
     }
 
-    public static function logPayment(mixed $body){
+    public static function logPayment(mixed $body)
+    {
         $logFile = fopen(Application::$ROOT_DIR . "/logs/payments.md", "a");
         fwrite($logFile, "## " . date("Y-m-d H:i:s") . "\n\n");
         fwrite($logFile, "```json\n");
@@ -289,55 +337,30 @@ class PaymentsController extends Controller
             }
         }
 
-        /*try {
+        try {
             $appointment_id = $_GET["appointment_id"];
 
             $stmt = $db->connection->prepare("SELECT * FROM appointment where appointment_id = ?");
             $stmt->bind_param("d", $appointment_id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $fees = $result->fetch_assoc();
+            $appointment = $result->fetch_assoc();
 
-        } catch (Exception $e) {
-            http_response_code(500);
-            header("Content-Type: application/json");
-            return json_encode(["message" => $e->getMessage()]);
-        }*/
-
-        /*$stmt1 = $db->connection->prepare("INSERT INTO appointment (provider_nic, consumer_nic) VALUE (?, ?)");*/
-
-        $appointment_id = null;
-        /*try {
-            $db->connection->begin_transaction();
-            $stmt1->bind_param("ss", $product["provider_nic"], $nic);
-            $stmt1->execute();
-            $order_id = $stmt1->insert_id;
-            $stmt2 = $db->connection->prepare("INSERT INTO order_has_product (product_id, order_id, price_at_order) VALUES (?, ?, ?)");
-            $stmt2->bind_param("ddd", $product_id, $order_id, $product["price"]);
-            $stmt2->execute();
-            if ($db->connection->errno) {
-                $db->connection->rollback();
-            } else {
-                $db->connection->commit();
+            if (!$appointment) {
+                http_response_code(400);
+                return json_encode("Appointment not found!");
             }
-        } catch (Exception $e) {
-            $db->connection->rollback();
-            http_response_code(500);
-            header("Content-Type: application/json");
-            return json_encode(["message" => $e->getMessage()]);
-        }*/
-        $fees = 1500;
 
-        /*try {
+
             $paymentIntent = PaymentIntent::create([
-                'amount' => $fees,
+                'amount' => 150000,
                 'currency' => 'lkr',
                 'payment_method_types' => [
                     'card'
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["appointment_id"=>$appointment_id]
+                'metadata' => ["appointment_id" => $appointment_id]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -348,14 +371,14 @@ class PaymentsController extends Controller
         } catch (Exception $e) {
             http_response_code(500);
             header("Content-Type: application/json");
-            return json_encode(["message" => "Internal Server Error"]);
-        }*/
+            return json_encode(["message" => $e->getMessage()]);
+        }
+
     }
 
 
-
-
-    public static function verifyFeesPayments(){
+    public static function verifyFeesPayments()
+    {
         try {
             $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
@@ -431,7 +454,7 @@ class PaymentsController extends Controller
                         }
                     }*/
                     return "";
-                } catch (Exception $e){
+                } catch (Exception $e) {
                     $db->connection->rollback();
                     $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
                     try {
@@ -444,7 +467,7 @@ class PaymentsController extends Controller
                             'amount' => $amount,
                         ]);
                         return "";
-                    } catch (ApiErrorException $e){
+                    } catch (ApiErrorException $e) {
                         return "";
                     }
                 }

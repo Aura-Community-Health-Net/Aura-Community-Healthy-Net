@@ -17,25 +17,25 @@ const edittimeslotButtons = document.querySelectorAll(".timeslot-edit");
 
 
 
-addtimeslotModalButton.addEventListener("click", () => {
+addtimeslotModalButton?.addEventListener("click", () => {
     addtimeslotModal.style.display = "block";
     addtimeslotOverlay.style.display = "block";
     addtimeslotModal.classList.add("modal-open");
     addtimeslotOverlay.classList.add("overlay-open");
 });
 
-addtimeslotOKBtn.addEventListener("click", () => {
+addtimeslotOKBtn?.addEventListener("click", () => {
     addtimeslotForm.submit();
 });
 
-addtimeslotOverlay.addEventListener("click", (e) => {
+addtimeslotOverlay?.addEventListener("click", (e) => {
     console.log("click on overlay");
     if (e.target === addtimeslotOverlay) {
         closeAddtimeslotModal();
     }
 });
 
-addtimeslotCancelBtn.addEventListener("click", (e) => {
+addtimeslotCancelBtn?.addEventListener("click", (e) => {
     console.log("click on cancel button");
     if (e.target === addtimeslotCancelBtn) {
         closeAddtimeslotModal();
@@ -64,7 +64,7 @@ const openDeletetimeslotModal = () => {
     deletetimeslotOverlay.classList.add("overlay-open");
 };
 
-deletetimeslotOverlay.addEventListener("click", (e) => {
+deletetimeslotOverlay?.addEventListener("click", (e) => {
     console.log("click on overlay");
     if (e.target === deletetimeslotOverlay) {
         closeDeletetimeslotModal();
@@ -123,7 +123,7 @@ const openEdittimeslotModal = () => {
     edittimeslotOverlay.classList.add("overlay-open");
 };
 
-edittimeslotOverlay.addEventListener("click", (e) => {
+edittimeslotOverlay?.addEventListener("click", (e) => {
     console.log("click on overlay");
     if (e.target === edittimeslotOverlay) {
         closeEdittimeslotModal();
@@ -157,9 +157,6 @@ function attachEditButtonListener(button){
 
         const toTime =button.dataset.totime;
         console.log(toTime);
-
-
-
 
         edittimeslotModal.innerHTML = `<h3>Enter the details to Edit</h3>
 <form action="/doctor-dashboard/timeslots/edit?slotNo=${slotNo}" class="timeslots-form"  id="edit-timeslot-form" method="POST">
@@ -226,20 +223,6 @@ function timeSlotDate(val){
 }
 
 function filterDoctor(val){
-
-    /*jQuery.ajax({
-        url: '/consumer-dashboard/services/doctor',
-        type: 'GET',
-        data: JSON.stringify(val),
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            alert(data.success);
-        },
-        error: function () {
-            alert("error");
-        },
-        async: false
-    });*/
 
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("doctor-categories");

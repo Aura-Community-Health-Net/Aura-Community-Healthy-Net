@@ -82,7 +82,7 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
                <div class="doctor-dashboard__consulted__details">
                    <p><b>Last Checked</b> <?php echo " ". $patient_details['MAX(doctor_time_slot.date)'] ;?></p>
                    <p><b>Address</b> <?php echo " ". $patient_details['address'] ;?></p>
-                   <p><b>Observation</b>Lorem Ipsum is simple text of the printing and typesetting industry.</p>
+                   <p><b>Mobile Number</b><?php echo " ". $patient_details['mobile_number'] ;?></p>
                </div>
             </div>
             <?php } ?>
