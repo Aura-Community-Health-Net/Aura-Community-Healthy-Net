@@ -166,6 +166,7 @@ class MedicinesController extends Controller
          $advance_amount= $total_amount*0.3;
          $note = $_POST["note"];
          $request_id = $_GET["id"];
+         $flag = 1;
 
 
 
@@ -180,9 +181,9 @@ class MedicinesController extends Controller
 //        $pharmacy = $result->fetch_assoc();
 
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=? WHERE request_id = ? ");
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=? ,Sent_Request=? WHERE request_id = ? ");
 
-        $stmt->bind_param("ssssi", $total_amount,  $advance_amount, $available_med_list,$note,$request_id);
+        $stmt->bind_param("ssssi", $total_amount,  $advance_amount, $available_med_list,$note,$flag,$request_id);
         $stmt->execute();
         $result = $stmt->get_result();
         header("location: /pharmacy-dashboard/new-orders");
@@ -494,12 +495,13 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
+            $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
 
-            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ?");
+            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? AND m.name LIKE '%$search_query%'");
 
             //go through
 
-            $stmt->bind_param("s",$id);
+            $stmt->bind_param("ss",$id,$search_query);
             $stmt->execute();
             $result = $stmt->get_result();
             $medicines = $result->fetch_all(MYSQLI_ASSOC);

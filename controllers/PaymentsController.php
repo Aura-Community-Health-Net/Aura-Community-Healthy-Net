@@ -243,7 +243,145 @@ class PaymentsController extends Controller
         fclose($logFile);
     }
 
-    public static function paymentSuccess(): bool|array|string
+
+    public static function ChargeForMedicine()
+    {
+        $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
+
+        Stripe::setApiKey($stripe_secret_key);
+
+
+        $nic = $_SESSION["nic"];
+        $user_type = $_SESSION["user_type"];
+
+        $medicines_request_id = $_GET["id"];
+
+        if(!$nic || $user_type!=="consumer")
+        {
+            header("location: /login");
+            return "";
+        }
+
+
+          $db = new Database();
+
+
+
+
+          $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+          $stmt->bind_param("s",$nic);
+          $stmt->execute();
+          $result = $stmt->get_result();
+          $customer = $result->fetch_assoc();
+          $customer_id = $customer["consumer_nic"];
+          $customer_name = $customer["name"];
+          $customer_email = $customer["email_address"];
+          $customer_mobile = $customer["mobile_number"];
+          $customer_stripeId = $customer["stripe_id"];
+
+
+
+          try {
+                if(!$customer_stripeId){
+                    throw new Exception("No Payment ID");
+                }
+
+                $StripeCustomer = Customer::retrieve([
+                    "id" => $customer_stripeId
+                ]);
+
+                $StripeCustomerId = $StripeCustomer->id;
+
+
+          }catch (\Exception $e){
+              //ApiErrorException class is inherited from Base Exception class(default php class)
+              //getstripecode() is a method of  a APIERROREXCEPTION CLASS which is available in stripe...not for normal error classes
+              //getstripecode() method returns the reason for the error
+              if (($e instanceof ApiErrorException && $e->getStripeCode() === "resource_missing") || !$customer_stripeId) {
+                  $StripeCustomer = Customer::create([
+                      'email' => $customer_email,
+                      'name' => $customer_name,
+                      'phone' => $customer_mobile
+                  ]);
+                  $StripeCustomerId = $StripeCustomer->id;
+
+                  $stmt = $db->connection->prepare("UPDATE service_consumer SET stripe_id = ? WHERE consumer_nic = ?");
+                  $stmt->bind_param("ss", $StripeCustomerId, $nic);
+                  $stmt->execute();
+              } else {
+                  http_response_code(500);
+                  header("Content-Type: application/json");
+                  return json_encode(["message"=>"Internal Server Error"]);
+              }
+          }
+
+        try {
+            $stmt = $db->connection->prepare("SELECT advance_amount FROM pharmacy_request WHERE request_id = ?");
+            $stmt->bind_param("i",$medicines_request_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $advance_amount = $result->fetch_assoc();
+
+        }catch (\Exception $e){
+            http_response_code(500);
+            header("Content-Type: application/json");
+            return $e->getMessage();
+        }
+
+        try {
+            $paymentIntent = PaymentIntent::create([
+                'amount' => $advance_amount,
+                'currency' => 'lkr',
+                'payment_method_types' => [
+                    'card'
+                ],
+                'customer' => $StripeCustomerId,
+                'receipt_email' => $customer_email,
+                'metadata' => ["request_id"=>$medicines_request_id]
+            ]);
+            $output = [
+                'clientSecret' => $paymentIntent->client_secret,
+            ];
+
+            http_response_code(200);
+            header("Content-Type:application/json");
+            return json_encode($output);
+
+
+        }catch (\Exception $e){
+            http_response_code(500);
+            header("Content-Type: application/json");
+            return "Internal Server Error.Please Try again later";
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static function paymentSuccess(): bool|array|string
     {
         $nic = $_SESSION["nic"];
         $usertype = $_SESSION["user_type"];

@@ -16,6 +16,7 @@ $note = $payment_details['pharmacy_remark'];
 $medicines_list = $payment_details['available_medicines'];
 $medicines = json_decode($medicines_list,true);
 
+
 //$medicines_list = json_decode($payment_details['medicines_list'],true);
 
 //$medicines_list = json_decode($payment_details['medicines_list'],true);
@@ -28,16 +29,18 @@ $request_id = $payment_details['request_id'];
 <div class='consumer-pharmacy-neworders-advanceinfo'>
     <?php
 
+     $medicines_list_elements = "";
 
+     foreach ($medicines as $medicine)
+     {
+         $medicines_list_elements = $medicines_list_elements."<li>$medicine</li>";
+     }
 
 
     echo "
-
-
     <div class='consumer-pharmacy-neworders-advanceinfo-pharmacyName'>
       <h2>$pharmacy_name</h2>
     </div>
- 
 
     <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details'>
         <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__names'>
@@ -54,18 +57,11 @@ $request_id = $payment_details['request_id'];
                 <p>Note</p>
             </div>
         </div>
-
- 
-
-
-
-
   
         <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description'>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__medicineList'>
                 <ul class='medicines_list'>
-                    <li>$medicines_list</li>
-
+                  $medicines_list_elements 
                 </ul>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount'>
@@ -79,9 +75,7 @@ $request_id = $payment_details['request_id'];
             </div>
         </div>
     </div>
-    <div class='consumer-pharmacy-neworders-advanceinfo__button'><button class='advance-info-submit-button' id='advance-info-submit-button'><a href='/consumer-dashboard/services/pharmacy/medicines-payment?id=$request_id'>Continue to Pay</a></button>
-
-
+    <div class='consumer-pharmacy-neworders-advanceinfo__button'><button class='advance-info-submit-button' id='advance-info-submit-button'><a href='/consumer-dashboard/services/pharmacy/medicines-checkout?id=$request_id'>Continue to Pay</a></button>
 
     </div>
 

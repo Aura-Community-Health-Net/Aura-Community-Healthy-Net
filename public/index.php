@@ -189,7 +189,9 @@ $app->router->get('/consumer-dashboard/services/pharmacy/request-details',[Medic
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);
 
 
-$app->router->get('/consumer-dashboard/services/pharmacy/medicines-payment',[MedicinesController::class,'getConsumerMedicinesPayment']);
+$app->router->get('/consumer-dashboard/services/pharmacy/medicines-checkout',[MedicinesController::class,'getConsumerMedicinesPayment']);
+$app->router->post('/consumer-dashboard/services/pharmacy/medicines-checkout',[MedicinesController::class,'getConsumerMedicinesPayment']);
+
 $app->router->get('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
 $app->router->get('/consumer-dashboard/services/care-rider/request/payment',[CareRiderController::class,'getCareRiderPaymentsPage']);
 $app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsController::class, 'addProductFeedback']);
@@ -202,6 +204,7 @@ $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 //payment routes
 $app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
 $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPayments']);
+$app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
 //  Run the application
 $app->run();

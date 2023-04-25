@@ -39,7 +39,13 @@ $address = $pharmacy['address'];
     </div>
 
     <div class="item-top-right__container">
+        <form action="/consumer-dashboard/services/pharmacy/view?id=<?php echo $provider_id?>" class="form-item--search" method="get">
+           <div class="search-bar">
+            <input type="text" placeholder="Search Medicine..." name="query" id="query">
+            <button href="" type="submit"><i class="fa fa-search"></i></button>
 
+          </div>
+        </form>
 
         <?php
         foreach ($medicines as $medicine) {

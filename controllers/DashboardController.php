@@ -110,9 +110,19 @@ class DashboardController extends Controller
             $medicines_lists = $result->fetch_all(MYSQLI_ASSOC);
 
 
+            $stmt = $db->connection->prepare("SELECT c.name,c.profile_picture,c.mobile_number FROM service_consumer c INNER JOIN pharmacy_request pr on c.consumer_nic = pr.consumer_nic where provider_nic = ?");
+            $stmt->bind_param("s",$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $new_orders = $result->fetch_all();
+
+
+
+
             return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", params: [
                 'pharmacy' => $pharmacy,
-                'medicines' => $medicines_lists
+                'medicines' => $medicines_lists,
+                'new_orders' => $new_orders
             ], layoutParams: [
                 "pharmacy" => $pharmacy,
                 "title" => "Dashboard",
