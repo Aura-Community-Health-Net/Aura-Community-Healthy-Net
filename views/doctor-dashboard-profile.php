@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td><b>Qualifications</b></td>
-                    <td><?php echo $doctorQualification['qualifications']; ?></td>
+                    <td><?php echo $doctorQualification[0]['qualifications']."<br>".$doctorQualification[0]['qualifications']; ?></td>
                 </tr>
 
             </table>
