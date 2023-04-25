@@ -11,23 +11,18 @@
 </head>
 <div class="consumer-dashboard-care-rider">
     <div class="consumer-dashboard-care-rider__top">
-            <form action="" class="form-item--search">
+        <form action="/consumer-dashboard/services/care-rider" class="form-item--search" method="get">
+            <div class="search-bar">
+                <input type="text" placeholder="Search ..." name="q" id="q">
+                <button href="" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <select class="form-items-dropdown" name="product-categories" id="product-categories">
+                <option value="Car">Car</option>
+                <option value="Van">Van</option>
+                <option value="Three-Weel">Three-Weel</option>
+            </select>
+        </form>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="Search..." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-
-<!--                <div class="search-bar">-->
-<!--                    <input type="Date" placeholder="Search Product..." name="date">-->
-<!--                </div>-->
-
-
-                <div class="search-bar">
-                    <input type="Time" placeholder="Search Product..." name="time">
-
-                </div>
-            </form>
     </div>
         <div class="care-rider__card-details">
             <?php foreach ($care_rider as $value) {?>

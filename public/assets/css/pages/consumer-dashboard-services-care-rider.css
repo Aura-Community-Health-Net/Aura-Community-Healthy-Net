@@ -89,3 +89,10 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.form-items-dropdown {
+    width: 18rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-left: 500px;
+}
