@@ -242,4 +242,28 @@ class PaymentsController extends Controller
         fwrite($logFile, "\n```\n\n");
         fclose($logFile);
     }
+
+    public static function paymentSuccess(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $usertype = $_SESSION["user_type"];
+        if (!$nic || $usertype !== "consumer"){
+            header("location: /login");
+            return "";
+        } else{
+            $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $service_consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer'=>$service_consumer], layoutParams: [
+            "service_consumer" => $service_consumer,
+            "active_link" => "dashboard-products",
+            "title" => "Natural Food Products"
+        ]);
+    }
 }
