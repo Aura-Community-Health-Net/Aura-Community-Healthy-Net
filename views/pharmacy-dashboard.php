@@ -2,6 +2,7 @@
 /**
  *@var array $pharmacy
  * @var array $medicines
+ * @var array $new_orders
  *@var string $active_link
  */
 
@@ -14,38 +15,27 @@ if (!$pharmacy['is_verified']) {
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
         <h3>New Orders</h3>
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
-            <div>
-                <h4>Kamal Deshapriya</h4>
-                <h5>Azithromycin</h5>
-            </div>
-        </div>
+  <?php
+    foreach ($new_orders as $new_order) {
 
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic2.jpg" alt="">
-            <div>
-                <h4>Semini Peduruarachchi</h4>
-                <h5>Meloxicam</h5>
-            </div>
-        </div>
+        $consumer_profile = $new_order["profile_picture"];
+        $consumer_name = $new_order["name"];
+        $mobile_number = $new_order["mobile_number"];
 
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic3.jpg" alt="">
-            <div>
-                <h4>Anoj Karunarathna</h4>
-                <h5>Zubsolv</h5>
-            </div>
-        </div>
 
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic4.jpg" alt="">
+        echo "
+        <div class='dashboard__top-cards__detail'>
+            <img class='order-consumer-img' src='$consumer_profile' alt=''>
             <div>
-                <h4>Kamal Disasekara</h4>
-                <h5>Cephalexin</h5>
+                <h4>$consumer_name</h4>
+                <h5>$mobile_number</h5>
             </div>
         </div>
-    </div>
+";
+    } ?>
+
+
+
 
     <div class="dashboard__top-cards">
         <h3>Orders</h3>
@@ -85,7 +75,7 @@ if (!$pharmacy['is_verified']) {
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
         <h3>Medicines List</h3>
-        <div class='dashboard__bottom-cards__detail'>
+
         <?php foreach ($medicines as $medicine) {
 
             $med_image = $medicine['image'];
@@ -94,14 +84,16 @@ if (!$pharmacy['is_verified']) {
             $med_quantity = $medicine['quantity'];
             $med_quantity_unit = $medicine['quantity_unit'];
 
-            echo " <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
+            echo"
+             <div class='dashboard__bottom-cards__detail'> <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
             <h4></h4>
             <h4>$med_name</h4>
             <h4>$med_quantity $med_quantity_unit</h4>
-            <h4>Rs. $med_price</h4>";
+            <h4>Rs. $med_price</h4>
+                  </div>";
 
         }?>
-        </div>
+
 
 
 
