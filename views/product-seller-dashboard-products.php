@@ -7,6 +7,7 @@
  * @var string $active_link
  *
  */
+
 $stock = $_POST["stock"] ?? "";
 ?>
 <table class="items-table">

@@ -8,9 +8,9 @@ $products = is_null($products) ? [] : $products;
 ?>
 
 
-<form action="" class="form-item--search">
+<form action="/consumer-dashboard/products" class="form-item--search" method="get">
     <div class="search-bar">
-        <input type="text" placeholder="Search Product..." name="search" id="search" onkeyup="search()">
+        <input type="text" placeholder="Search Product..." name="q" id="q">
         <button href="" type="submit"><i class="fa fa-search"></i></button>
     </div>
     <select class="form-items--dropdown" name="product-categories" id="product-categories">
@@ -56,5 +56,3 @@ $products = is_null($products) ? [] : $products;
 
 
 </div>
-
-<script src="/assets/js/components/search.js"></script>

@@ -29,10 +29,52 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $product_lists = $result->fetch_all(MYSQLI_ASSOC);
 
+            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS order_count FROM product_order WHERE status = 'paid' AND provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name,  
+                   p.name
+            FROM service_consumer s 
+                INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
+                INNER JOIN product p on ohp.product_id = p.product_id 
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders_list = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name, 
+                   s.mobile_number, 
+                   cg.category_name, 
+                   p.name,
+                   p.quantity,
+                   p.quantity_unit,
+                   p.image
+            FROM service_consumer s 
+                INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
+                INNER JOIN product p on ohp.product_id = p.product_id 
+                INNER JOIN product_category cg on p.category_id = cg.category_id 
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $order_preview = $result->fetch_assoc();
+
             return self::render(
-            view: 'product-seller-dashboard', layout: "product-seller-dashboard-layout", params: [
+            view: 'product-seller-dashboard', layout: "product-seller-dashboard-layout",
+            params: [
                     "product_seller" => $product_seller,
-                    "product_lists" => $product_lists
+                    "product_lists" => $product_lists,
+                    "orders_count" => $orders_count,
+                    "orders_list" => $orders_list,
+                    "order_preview" => $order_preview
                 ],
             layoutParams: [
                     "title" => "Dashboard",
@@ -104,7 +146,47 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $care_rider = $result->fetch_assoc();
 
-            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider], layoutParams: [
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? &&  ride_request.done = 0");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $request_confirm = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $request_done = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM ride_request WHERE provider_nic = ? && done = 0");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $new_request = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM ride_request WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $all_request = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM ride_request WHERE provider_nic = ? && done = 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $count_request = $result->fetch_assoc();
+            //print_r($count_timeSlots);
+
+            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $request_details = $result->fetch_assoc();
+
+
+            //print_r($patient_details);
+
+            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request], layoutParams: [
                 "care_rider" => $care_rider,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
@@ -193,7 +275,15 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', layoutParams: [
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
+                    FROM service_provider s
+                    INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic 
+                    INNER JOIN service_consumer c on c.consumer_nic = pr.consumer_nic WHERE c.consumer_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $services = $result->fetch_all(MYSQLI_ASSOC);
+            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', params: ["services" => $services],  layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
