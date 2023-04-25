@@ -25,7 +25,9 @@ else {
     $result = $stmt->get_result();
     $consumer = $result->fetch_assoc();
 
-    $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN vehicle on care_rider.provider_nic = vehicle.provider_nic ");
+    $search_query = isset($_GET["q"]) ? $_GET["q"]: "";
+
+    $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN vehicle on care_rider.provider_nic = vehicle.provider_nic  WHERE name LIKE '%$search_query%' ");
     $stmt->execute();
     $result = $stmt->get_result();
     $care_rider = $result->fetch_all(MYSQLI_ASSOC);
