@@ -1,0 +1,30 @@
+.calender_container{
+    display: flex;
+    padding: 2% 0px 0px 0px;
+    justify-content: center;
+}
+
+.calender{
+    overflow: hidden;
+    padding: 30px 50px 0px 50px;
+}
+
+.calender_header{
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.calender-body{
+    padding: 10px;
+}
+
+.calender-week-days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+    cursor: pointer;
+    color: rgb(104, 104, 104);
+}
+

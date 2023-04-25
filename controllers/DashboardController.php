@@ -225,7 +225,15 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', layoutParams: [
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
+                    FROM service_provider s
+                    INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic 
+                    INNER JOIN service_consumer c on c.consumer_nic = pr.consumer_nic WHERE c.consumer_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $services = $result->fetch_all(MYSQLI_ASSOC);
+            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', params: ["services" => $services],  layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
