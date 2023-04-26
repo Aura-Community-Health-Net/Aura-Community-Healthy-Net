@@ -135,6 +135,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $drop_lat = $_POST['drop-lat'];
             $drop_lng = $_POST['drop-lng'];
             $pickup_time= $_POST['pickup-time'];
+            $distance= $_POST['distance'];
 
             $location1 = json_encode([
                 "lat" => $pickup_lat,
@@ -148,12 +149,19 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $db = new Database();
             $done=0;
             $confirmation=0;
+            $cost=$distance*70;
 
-            $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,done,confirmation,provider_nic,consumer_nic
-                     )VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssssss", $pickup_time,$location1,$location2,$done,$confirmation,$provider_nic,$nic, );
+            $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,distance,done,confirmation,provider_nic,consumer_nic
+                     )VALUES (?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssssss", $pickup_time,$location1,$location2,$distance,$done,$confirmation,$provider_nic,$nic, );
             $stmt->execute();
             $result = $stmt->get_result();
+            $stmt = $db->connection->prepare("INSERT INTO ride (cost, distance, provider_nic, consumer_nic)
+                               VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss", $cost,$distance,$provider_nic,$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
 
             header("location: /consumer-dashboard/services/care-rider/request?provider_nic=$provider_nic");
         }
