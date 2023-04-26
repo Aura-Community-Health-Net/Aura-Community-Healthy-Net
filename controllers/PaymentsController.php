@@ -395,8 +395,6 @@ class PaymentsController extends Controller
             $amount = $body['data']['object']['amount'];
             PaymentsController::logPayment($amount);
 
-//            $customerModel = new Customer();
-//            $customer = $customerModel->getCustomerByPaymentId($stripeCustomerId);
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE stripe_id = ?");
             $stmt->bind_param("s", $stripeCustomerId);
@@ -422,37 +420,6 @@ class PaymentsController extends Controller
                     $result = $stmt->get_result();
                     $order_items = $result->fetch_all(MYSQLI_ASSOC);
 
-                    /*if ($order_items){
-                        foreach ($order_items as $order_item){
-                            $product_quantity = $order_item["num_of_items"];
-                            $product_id = $order_item["product_id"];
-
-                            $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
-                            $stmt->bind_param("d", $product_id);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-                            $product = $result->fetch_assoc();
-
-                            if (!$product){
-                                throw new Exception("Item not found");
-                            } else {
-                                $stock = $product["stock"];
-                                if ($product_quantity > $stock){
-                                    throw new Exception('Not enough items');
-                                } else{
-                                    $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
-                                    $stmt->bind_param("dd", $product_quantity, $product_id);
-                                    $stmt->execute();
-                                }
-                            }
-                        }
-                        if ($db->connection->errno){
-                            $db->connection->rollback();
-                            return "";
-                        } else {
-                            $db->connection->commit();
-                        }
-                    }*/
                     return "";
                 } catch (Exception $e) {
                     $db->connection->rollback();

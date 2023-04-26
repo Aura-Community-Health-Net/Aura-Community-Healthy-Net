@@ -17,6 +17,7 @@ class DoctorAppointmentsController extends Controller
             return "";
         }
 
+        //print_r($_GET);
         $db = new database();
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
         $stmt->bind_param("s", $nic);
@@ -38,6 +39,7 @@ class DoctorAppointmentsController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
         $appointment_details = $result->fetch_all(MYSQLI_ASSOC);
+        //print_r($appointment_details);
 
 
         return self::render(view: 'doctor-dashboard-appointments', layout: "doctor-dashboard-layout", params: [
@@ -54,6 +56,7 @@ class DoctorAppointmentsController extends Controller
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
 
+        //print_r($_GET);
         if (!$nic || $providerType != "doctor") {
             header("location: /provider-login");
             return "";
@@ -82,5 +85,35 @@ class DoctorAppointmentsController extends Controller
         ]);
 
     }
+
+//    public static function DoctorAppointmentsLocationProcess():array|bool|string{
+//        $nic = $_SESSION["nic"];
+//        $providerType = $_SESSION["user_type"];
+//
+//        $appointment_id = $_GET['appointment_id'];
+//        if (!$nic || $providerType != "doctor") {
+//            header("location: /provider-login");
+//            return "";
+//        }
+//
+//        print_r($_GET);
+//        $db = new database();
+//        $stmt = $db->connection->prepare("SELECT location FROM appointment WHERE appointment_id = ?");
+//        $stmt->bind_param("i", $appointment_id);
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//        $location = $result->fetch_assoc();
+//
+//        //print_r($location);
+//        header("location: /doctor-dashboard/appointments");
+//
+//        return self::render(view: 'doctor-dashboard-appointments', layout: "doctor-dashboard-layout", params: [
+//            "location"=>$location
+//        ], layoutParams: [
+//            "title" => "Appointments",
+//            "active_link" => "appointments",
+//        ]);
+//
+//    }
 
 }
