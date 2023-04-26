@@ -70,7 +70,8 @@ class MedicinesController extends Controller
                      provider_nic) VALUES (?,?,?,?,?,?,?)");
 
         $image = "/uploads/$newfile_name";
-        $stmt->bind_param("ssiiiss", $med_name, $image, $price, $stock, $quantity, $quantity_unit, $nic);
+        $med_price = $price*100;
+        $stmt->bind_param("ssiiiss", $med_name, $image, $med_price, $stock, $quantity, $quantity_unit, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
         header("location: /pharmacy-dashboard/medicines");
@@ -181,9 +182,11 @@ class MedicinesController extends Controller
 //        $pharmacy = $result->fetch_assoc();
 
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=? ,Sent_Request=? WHERE request_id = ? ");
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=?  WHERE request_id = ? ");
 
-        $stmt->bind_param("ssssi", $total_amount,  $advance_amount, $available_med_list,$note,$flag,$request_id);
+        $totalAmountInCents = $total_amount * 100;
+        $advanceAmountInCents = $advance_amount * 100;
+        $stmt->bind_param("ssssi", $totalAmountInCents, $advanceAmountInCents, $available_med_list,$note,$request_id);
         $stmt->execute();
         $result = $stmt->get_result();
         header("location: /pharmacy-dashboard/new-orders");
@@ -499,17 +502,10 @@ public static function RequestForPharmacy():bool|array|string
 
             $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? AND m.name LIKE '%$search_query%'");
 
-            //go through
-
             $stmt->bind_param("ss",$id,$search_query);
             $stmt->execute();
             $result = $stmt->get_result();
             $medicines = $result->fetch_all(MYSQLI_ASSOC);
-//           var_dump($medicines);
-
-//           $provider_nic = $pharmacy['provider_nic'];
-
-
 
 
 
@@ -658,7 +654,7 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            return self::render(view: 'consumer-dashboard-product-payment', layout: 'consumer-dashboard-layout', layoutParams: [
+            return self::render(view: 'consumer-dashboard-services-pharmacy-medicines-payment', layout: 'consumer-dashboard-layout', layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Medicines",
                 "active_link" => "dashboard-medicines"

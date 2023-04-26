@@ -1,29 +1,33 @@
 <?php
 /**
- *@var array $pharmacy
+ * @var array $pharmacy
  * @var array $medicines
- * @var array $new_orders
- *@var string $active_link
+ * @var array $orders_counts
+ * @var array $medicines_orders_list
+ * @var array $order_preview
+ * @var string $active_link
  */
 
 if (!$pharmacy['is_verified']) {
     echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
 
+
+
 ?>
 
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
         <h3>New Orders</h3>
-  <?php
-    foreach ($new_orders as $new_order) {
+        <?php
+        foreach ($medicines_orders_list as $new_order) {
 
-        $consumer_profile = $new_order["profile_picture"];
-        $consumer_name = $new_order["name"];
-        $mobile_number = $new_order["mobile_number"];
+            $consumer_profile = $new_order["profile_picture"];
+            $consumer_name = $new_order["consumer_name"];
+            $mobile_number = $new_order["mobile_number"];
 
 
-        echo "
+            echo "
         <div class='dashboard__top-cards__detail'>
             <img class='order-consumer-img' src='$consumer_profile' alt=''>
             <div>
@@ -32,44 +36,68 @@ if (!$pharmacy['is_verified']) {
             </div>
         </div>
 ";
-    } ?>
+        } ?>
 
-
+    </div>
 
 
     <div class="dashboard__top-cards">
         <h3>Orders</h3>
-        <div class="dashboard__top-cards__info">
-            <div class="dashboard__top-cards__detail">
-                <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
+
+
+        <?php
+
+        if ($order_preview === null) {
+            echo "NO ORDERS YET";
+        } else {
+
+            $consumer_name = $order_preview["consumer_name"];
+            $consumer_profile = $order_preview["profile_picture"];
+            $consumer_mobile = $order_preview["mobile_number"];
+            $med_prescription = $order_preview["prescription"];
+
+
+            echo "
+        <div class='dashboard__top-cards__info'>
+            <div class='dashboard__top-cards__detail'>
+                <img class='order-consumer-img' src='$consumer_profile' alt=''>
                 <div>
-                    <h4>Kamal Deshapriya</h4>
-                    <h5>0726778767</h5>
+                    <h4>$consumer_name</h4>
+                    <h5>$consumer_mobile</h5>
                 </div>
             </div>
 
-            <div class="product-order-details">
-                <h5>Amoxilin Tablets</h5><br>
-                <h5>375 mg</h5>
+            <div class='product-order-details'>
+                            <img class='order-product-img' src='$med_prescription' alt=''>
+
             </div>
-            <img class="order-product-img" src="/assets/images/drugs(1).jpg" alt="">
         </div>
 
-
+";
+        }
+        ?>
 
     </div>
 
-    <div class="dashboard__top-cards">
+    <?php foreach ($orders_counts as $count) {
+        $order_count = $count["order_count"];
+        echo "
+         
+
+    <div class='dashboard__top-cards'>
         <h3>Order Count</h3>
-        <div class="order-count__details">
+        <div class='order-count__details'>
             <h3>New Orders</h3>
-            <p class="new-order-count">15</p>
+            <p class='new-order-count'>15</p>
         </div>
-        <div class="order-count__details">
+        <div class='order-count__details'>
             <h3>All Orders</h3>
-            <p class="all-order-count">59</p>
+            <p class='all-order-count'>$order_count</p>
         </div>
     </div>
+
+";
+    } ?>
 </div>
 
 <div class="dashboard__bottom-container">
@@ -84,7 +112,7 @@ if (!$pharmacy['is_verified']) {
             $med_quantity = $medicine['quantity'];
             $med_quantity_unit = $medicine['quantity_unit'];
 
-            echo"
+            echo "
              <div class='dashboard__bottom-cards__detail'> <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
             <h4></h4>
             <h4>$med_name</h4>
@@ -92,10 +120,7 @@ if (!$pharmacy['is_verified']) {
             <h4>Rs. $med_price</h4>
                   </div>";
 
-        }?>
-
-
-
+        } ?>
 
 
     </div>

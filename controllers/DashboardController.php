@@ -110,11 +110,48 @@ class DashboardController extends Controller
             $medicines_lists = $result->fetch_all(MYSQLI_ASSOC);
 
 
-            $stmt = $db->connection->prepare("SELECT c.name,c.profile_picture,c.mobile_number FROM service_consumer c INNER JOIN pharmacy_request pr on c.consumer_nic = pr.consumer_nic where provider_nic = ?");
-            $stmt->bind_param("s",$nic);
+//            $stmt = $db->connection->prepare("SELECT c.name,c.profile_picture,c.mobile_number FROM service_consumer c INNER JOIN pharmacy_request pr on c.consumer_nic = pr.consumer_nic where provider_nic = ?");
+//            $stmt->bind_param("s",$nic);
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//            $new_orders = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS order_count FROM medicine_order WHERE status = 'paid' AND provider_nic = ?");
+            $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
-            $new_orders = $result->fetch_all();
+            $orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name,  
+                   s.mobile_number
+            FROM service_consumer s 
+                INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $medicines_orders_list = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+                   s.name AS consumer_name, 
+                   s.mobile_number,  
+                   r.prescription
+            FROM service_consumer s 
+                INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
+                INNER JOIN pharmacy_request r on s.consumer_nic = r.consumer_nic
+            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $order_preview = $result->fetch_assoc();
+
 
 
 
@@ -122,14 +159,21 @@ class DashboardController extends Controller
             return self::render(view: 'pharmacy-dashboard', layout: "pharmacy-dashboard-layout", params: [
                 'pharmacy' => $pharmacy,
                 'medicines' => $medicines_lists,
-                'new_orders' => $new_orders
+                'orders_counts' => $orders_count,
+                'medicines_orders_list' => $medicines_orders_list,
+                'order_preview' => $order_preview
             ], layoutParams: [
                 "pharmacy" => $pharmacy,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
             ]);
         }
-    }
+
+
+        }
+
+
+
 
     public static function getCareRiderDashboard(): bool|array|string
     {
