@@ -73,6 +73,7 @@ class PaymentsController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product = $result->fetch_assoc();
+            $provider_nic = $product['provider_nic'];
 
         } catch (Exception $e) {
             http_response_code(500);
@@ -112,7 +113,10 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["order_id" => $order_id]
+                'metadata' => [
+                    "order_id" => $order_id,
+                    "provider_nic" => $provider_nic
+                ]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -169,12 +173,21 @@ class PaymentsController extends Controller
                 if ($isOrderPayment) {
 
                     $order_id = $metadata["order_id"];
+                    $consumer_nic = $customer["consumer_nic"] ;
+                    $amount = (float)$body['data']['object']['amount']/100;
                     PaymentsController::logPayment($order_id);
                     try {
                         $db->connection->begin_transaction();
                         $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
-                        $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
+                        $stmt->bind_param("ds", $order_id, $consumer_nic);
                         $stmt->execute();
+                        $provider_nic = $metadata['provider_nic'];
+
+                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->execute();
+
 
                         $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
                         $stmt->bind_param("d", $order_id);
@@ -643,7 +656,7 @@ public static function paymentSuccess(): bool|array|string
         }
 
         return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer'=>$service_consumer], layoutParams: [
-            "service_consumer" => $service_consumer,
+            "consumer" => $service_consumer,
             "active_link" => "dashboard-products",
             "title" => "Natural Food Products"
         ]);
