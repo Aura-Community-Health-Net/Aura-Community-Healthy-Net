@@ -289,4 +289,8 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    public static function getUpcomingEvents(){
+
+    }
 }
