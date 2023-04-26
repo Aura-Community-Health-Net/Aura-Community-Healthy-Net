@@ -85,6 +85,7 @@ $app->router->post('/product-seller-dashboard/products/delete', [ProductsControl
 $app->router->post('/product-seller-dashboard/products', [ProductsController::class, 'addProducts']);
 $app->router->post('/product-seller-dashboard/products/update', [ProductsController::class, 'updateProducts']);
 $app->router->get('/product-seller-dashboard/orders', [OrdersController::class, 'getProductSellerOrdersPage']);
+$app->router->post('/product-seller-dashboard/orders/mark-as-done', [OrdersController::class, 'markOrderAsPrepared']);
 $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::class, 'getProductSellerFeedbackPage']);
 $app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
 $app->router->get('/product-seller-dashboard/analytics', [AnalyticsController::class, 'getProductSellerAnalyticsPage']);
