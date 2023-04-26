@@ -3,7 +3,8 @@
  *@var array $product_seller
  *@var string $active_link
  * @var array $product_lists
- * @var array $orders_count
+ * @var array $new_orders_count
+ * @var array $all_orders_count
  * @var array $orders_list
  * @var array $order_preview
  */
@@ -69,24 +70,34 @@ $product_image = $order_preview["image"];
 
     </div>
 
-    <?php
-    foreach ($orders_count as $order){
-        $order_count = $order["order_count"];
-        echo "
-        <div class='dashboard__top-cards'>
+    <div class='dashboard__top-cards'>
         <h3>Order Count</h3>
         <div class='order-count__details'>
+            <?php
+        foreach ($new_orders_count as $order){
+        $order_count = $order["order_count"];
+        echo "
             <h3>New Orders</h3>
-            <p class='new-order-count'>15</p>
+            <p class='new-order-count'>$order_count</p>
         </div>
-        <div class='order-count__details'>
-            <h3>All Orders</h3>
-            <p class='all-order-count'>$order_count</p>
-        </div>
-    </div>
+    
         ";
     }
     ?>
+    <?php
+    foreach($all_orders_count as $all_order){
+        $all_order_count = $all_order["all_order_count"];
+        echo "
+        <div class='order-count__details'>
+            <h3>All Orders</h3>
+            <p class='all-order-count'>$all_order_count</p>
+        </div>
+        ";
+    }
+
+    ?>
+
+        </div>
 
 </div>
 
