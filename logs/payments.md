@@ -5306,3 +5306,801 @@ null
 "68"
 ```
 
+## 2023-04-26 11:41:36
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:41:36
+
+```json
+{
+    "id": "evt_3N14qxB9kJ5FDFAy1Auw4ph6",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682502095,
+    "data": {
+        "object": {
+            "id": "pi_3N14qxB9kJ5FDFAy19eGmoGA",
+            "object": "payment_intent",
+            "amount": 23000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N14qxB9kJ5FDFAy19eGmoGA_secret_RIN60yzkhF0y5kCjMfa1ytnDY",
+            "confirmation_method": "automatic",
+            "created": 1682502095,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "785640037V",
+                "order_id": "70"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "nimaldahanayaka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_YCGl0tXB1sQGFc",
+        "idempotency_key": "82f96576-1e9a-40c1-9a8e-a9e533bec1ad"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:41:36
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-26 11:44:36
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:44:36
+
+```json
+{
+    "id": "evt_3N13yvB9kJ5FDFAy02XONE56",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682498745,
+    "data": {
+        "object": {
+            "id": "pi_3N13yvB9kJ5FDFAy04ALzHBV",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N13yvB9kJ5FDFAy04ALzHBV_secret_xirD0fPq7UmJnhhJnwy5byePA",
+            "confirmation_method": "automatic",
+            "created": 1682498745,
+            "currency": "lkr",
+            "customer": "cus_NgffrmLRGg2F7f",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "appointment_id": "51"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "saran@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_RX3pzWF6l8YseV",
+        "idempotency_key": "253016a2-9056-488d-a89b-446cdafbd25f"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:44:36
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-26 11:44:55
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:44:55
+
+```json
+{
+    "id": "evt_3N14uAB9kJ5FDFAy1ZOKNWWV",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682502294,
+    "data": {
+        "object": {
+            "id": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ",
+            "object": "payment_intent",
+            "amount": 65000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ_secret_ikuxuvFBFxKlzeGkrM0enH82v",
+            "confirmation_method": "automatic",
+            "created": 1682502294,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "887845673V",
+                "order_id": "71"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "nimaldahanayaka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_0wGFeGd300K7Xb",
+        "idempotency_key": "abcebaf2-a170-4b46-a5d0-79a23e0974aa"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:44:55
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-26 11:45:30
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:45:30
+
+```json
+{
+    "id": "evt_3N14uAB9kJ5FDFAy1fskrWyp",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682502330,
+    "data": {
+        "object": {
+            "id": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ",
+            "object": "payment_intent",
+            "amount": 65000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ_secret_ikuxuvFBFxKlzeGkrM0enH82v",
+            "confirmation_method": "automatic",
+            "created": 1682502294,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": {
+                "charge": "ch_3N14uAB9kJ5FDFAy18Ho0TtN",
+                "code": "card_declined",
+                "decline_code": "card_not_supported",
+                "doc_url": "https:\/\/stripe.com\/docs\/error-codes\/card-declined",
+                "message": "Your card is not supported. Please use a Visa, MasterCard, American Express, Discover, Diners Club, or JCB card",
+                "param": "number",
+                "payment_method": {
+                    "id": "pm_1N14ujB9kJ5FDFAy7DKY1a2a",
+                    "object": "payment_method",
+                    "billing_details": {
+                        "address": {
+                            "city": null,
+                            "country": "LK",
+                            "line1": null,
+                            "line2": null,
+                            "postal_code": null,
+                            "state": null
+                        },
+                        "email": "nimaldahanayaka@gmail.com",
+                        "name": null,
+                        "phone": null
+                    },
+                    "card": {
+                        "brand": "unionpay",
+                        "checks": {
+                            "address_line1_check": null,
+                            "address_postal_code_check": null,
+                            "cvc_check": "unchecked"
+                        },
+                        "country": "CN",
+                        "exp_month": 5,
+                        "exp_year": 2029,
+                        "fingerprint": "Dzha1VBYCxLKz2HK",
+                        "funding": "credit",
+                        "generated_from": null,
+                        "last4": "0005",
+                        "networks": {
+                            "available": [
+                                "unionpay"
+                            ],
+                            "preferred": null
+                        },
+                        "three_d_secure_usage": {
+                            "supported": true
+                        },
+                        "wallet": null
+                    },
+                    "created": 1682502329,
+                    "customer": null,
+                    "livemode": false,
+                    "metadata": [],
+                    "type": "card"
+                },
+                "type": "card_error"
+            },
+            "latest_charge": "ch_3N14uAB9kJ5FDFAy18Ho0TtN",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "887845673V",
+                "order_id": "71"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_ZmWLI6BnCqmdNx",
+        "idempotency_key": "aed10544-ecd8-4de2-b776-20b9de17bc79"
+    },
+    "type": "payment_intent.payment_failed"
+}
+```
+
+## 2023-04-26 11:45:30
+
+```json
+"payment_intent.payment_failed"
+```
+
+## 2023-04-26 11:45:32
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:45:32
+
+```json
+{
+    "id": "evt_3N13zCB9kJ5FDFAy0Q7Vs8BJ",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682498762,
+    "data": {
+        "object": {
+            "id": "pi_3N13zCB9kJ5FDFAy0cOITFmz",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N13zCB9kJ5FDFAy0cOITFmz_secret_fNyG3Mu4Nuu3z9wwJmP5L9E2W",
+            "confirmation_method": "automatic",
+            "created": 1682498762,
+            "currency": "lkr",
+            "customer": "cus_NgffrmLRGg2F7f",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "appointment_id": "51"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "saran@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_deCXtt1sabQ9r4",
+        "idempotency_key": "58711430-6847-4e92-88a3-307c428314c2"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:45:32
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-26 11:46:06
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:46:06
+
+```json
+{
+    "id": "evt_3N14uAB9kJ5FDFAy1EH9GmaZ",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682502366,
+    "data": {
+        "object": {
+            "id": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ",
+            "object": "payment_intent",
+            "amount": 65000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 65000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N14uAB9kJ5FDFAy1Mc2uRzZ_secret_ikuxuvFBFxKlzeGkrM0enH82v",
+            "confirmation_method": "automatic",
+            "created": 1682502294,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N14uAB9kJ5FDFAy1qCGixnX",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "887845673V",
+                "order_id": "71"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N14vJB9kJ5FDFAycijnUCA1",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_MP9bckBa2LCAVX",
+        "idempotency_key": "d384ee15-9b66-4798-8986-7b4c81eb120b"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-04-26 11:46:06
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-04-26 11:46:06
+
+```json
+"cus_Nls7GVufr6OhtH"
+```
+
+## 2023-04-26 11:46:06
+
+```json
+65000
+```
+
+## 2023-04-26 11:46:06
+
+```json
+{
+    "consumer_nic": "785644667V",
+    "stripe_id": "cus_Nls7GVufr6OhtH",
+    "name": "Nimal Dahanayaka",
+    "email_address": "nimaldahanayaka@gmail.com",
+    "profile_picture": "\/uploads\/785644667Vc44760a987ab90f5c1fb8bcf2d813b129355b8dc4f553cc9profile_picdownload (3).jfif",
+    "password": "$2y$10$YWdGYXGBwv5KRxop.UVAje5obC0cXkRTsjtcwaHSCmFsuYjh02G5O",
+    "mobile_number": "0756676377",
+    "address": "No 43A, Beligaha Junction, Galle"
+}
+```
+
+## 2023-04-26 11:46:06
+
+```json
+{
+    "provider_nic": "887845673V",
+    "order_id": "71"
+}
+```
+
+## 2023-04-26 11:46:06
+
+```json
+{
+    "isOrder": true,
+    "isAppointment": false
+}
+```
+
+## 2023-04-26 11:46:06
+
+```json
+"71"
+```
+
+## 2023-04-26 11:46:38
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:46:38
+
+```json
+{
+    "id": "evt_3N13ykB9kJ5FDFAy09rnA8AM",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682498734,
+    "data": {
+        "object": {
+            "id": "pi_3N13ykB9kJ5FDFAy0gtp6DTf",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N13ykB9kJ5FDFAy0gtp6DTf_secret_JARKpIUI9s8PffVs1EsaV9GvR",
+            "confirmation_method": "automatic",
+            "created": 1682498734,
+            "currency": "lkr",
+            "customer": "cus_NgffrmLRGg2F7f",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "appointment_id": "50"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "saran@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_mKXsThfKDazED0",
+        "idempotency_key": "a06264de-94c9-4f5b-9b03-f89b2f53bdac"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:46:38
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-26 11:46:55
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-26 11:46:55
+
+```json
+{
+    "id": "evt_3N1409B9kJ5FDFAy1ebfWGIU",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682498821,
+    "data": {
+        "object": {
+            "id": "pi_3N1409B9kJ5FDFAy1jE4hiEY",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N1409B9kJ5FDFAy1jE4hiEY_secret_0KJ3MB17omDk8S1aBwtuOje3y",
+            "confirmation_method": "automatic",
+            "created": 1682498821,
+            "currency": "lkr",
+            "customer": "cus_NgffrmLRGg2F7f",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "appointment_id": "51"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "saran@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_0WLCqRUvJJ3eyt",
+        "idempotency_key": "88f60ec1-31d4-4856-9a86-8c09d45f1f50"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-26 11:46:55
+
+```json
+"payment_intent.created"
+```
+
