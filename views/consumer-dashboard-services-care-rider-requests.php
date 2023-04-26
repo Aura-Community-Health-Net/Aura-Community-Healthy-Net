@@ -62,7 +62,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                     <input type="text" name="pickup-lng" id="pickup-lng" style="opacity: 0">
                                     <input type="text" name="drop-lat" id="drop-lat" style="opacity: 0">
                                     <input type="text" name="drop-lng" id="drop-lng" style="opacity: 0">
-
+                                     <input type="text" name="distance" id="distance" style="opacity: 0">
 
 
                                 <!--                    <div class="consumer-dashboard-care-rider-profile__top__right">-->
@@ -144,6 +144,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
     const pickupLngInput = document.querySelector("#pickup-lng")
     const dropLatInput = document.querySelector("#drop-lat")
     const dropLngInput = document.querySelector("#drop-lng")
+    const distanceInput = document.querySelector("#distance")
 
     async function initMap(lat, lng) {
         //@ts-ignore
@@ -186,6 +187,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     const distance = result.routes[0].legs[0].distance.value; // Get the driving distance in meters
                     console.log(`Driving distance: ${distance} meters`);
+                    distanceInput.value = distance / 1000;
                     const points = [];
                     const legs = result.routes[0].legs;
                     for (let i = 0; i < legs.length; i++) {
