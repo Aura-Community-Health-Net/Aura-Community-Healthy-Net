@@ -54,7 +54,30 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
         }
 
         else {
+
+//            $provider_nic = $_GET['provider_nic'];
+//            $pickup_lat = $_POST['pickup-lat'];
+//            $pickup_lng = $_POST['pickup-lng'];
+//            $drop_lat = $_POST['drop-lat'];
+//            $drop_lng = $_POST['drop-lng'];
+//            $pickup_time= $_POST['pickup-time'];
+//
+//            $location1 = json_encode([
+//                "lat" => $pickup_lat,
+//                "lng" => $pickup_lng
+//            ]);
+//
+//            $location2 = json_encode([
+//                "lat" => $drop_lat,
+//                "lng" => $drop_lng
+//            ]);
             $db = new Database();
+
+//            $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,done,confirmation,provider_nic,consumer_nic
+//                     )VALUES (?,?,?,?,?,?,?)");
+//            $stmt->bind_param("ssss", $pickup_time,$location1,$location2,$done,$confirmation,$provider_nic,$nic, );
+//            $stmt->execute();
+//            $result = $stmt->get_result();
 
             $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN care_rider_time_slot on care_rider.provider_nic = care_rider_time_slot.provider_nic WHERE service_provider.provider_nic =?");
             $stmt->bind_param("s", $provider_nic);
@@ -81,19 +104,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $stmt->execute();
             $result = $stmt->get_result();
             $feedback = $result->fetch_all(MYSQLI_ASSOC);
-//            if (isset($_GET['feedback-btn'])) {
-//                $careRiderFeedback = $_GET['care-rider-feedback'];
-//                $feedbackDatetime = $_GET['feedback-datetime'];
 //
-//                $stmt = $db->connection->prepare("INSERT INTO feedback (
-//                      text,
-//                      date_time,
-//                      provider_nic,
-//                      consumer_nic)VALUES (?,?,?,?)");
-//                $stmt->bind_param("ssss", $careRiderFeedback, $feedbackDatetime, $provider_nic, $nic);
-//                $stmt->execute();
-//                $result = $stmt->get_result();
-//            }
         }
         return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:["care_rider"=>$care_rider,"feedback"=>$feedback,"time_slot" =>$time_slot], layoutParams: [
             "consumer" => $consumer,
@@ -103,6 +114,57 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             "title" => "Care Rider",
            "time_slot" =>$time_slot]);
     }
+
+    public function getConsumerLocation(): bool|array|string
+    {
+//        print_r($_GET);
+        $provider_nic = $_GET['provider_nic'];
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer")
+        {
+            header("location: /provider-login");
+            return "";
+        }
+
+        else {
+
+            $provider_nic = $_GET['provider_nic'];
+            $pickup_lat = $_POST['pickup-lat'];
+            $pickup_lng = $_POST['pickup-lng'];
+            $drop_lat = $_POST['drop-lat'];
+            $drop_lng = $_POST['drop-lng'];
+            $pickup_time= $_POST['pickup-time'];
+
+            $location1 = json_encode([
+                "lat" => $pickup_lat,
+                "lng" => $pickup_lng
+            ]);
+
+            $location2 = json_encode([
+                "lat" => $drop_lat,
+                "lng" => $drop_lng
+            ]);
+            $db = new Database();
+            $done=0;
+            $confirmation=0;
+
+            $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,done,confirmation,provider_nic,consumer_nic
+                     )VALUES (?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssss", $pickup_time,$location1,$location2,$done,$confirmation,$provider_nic,$nic, );
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            header("location: /consumer-dashboard/services/care-rider/request?provider_nic=$provider_nic");
+        }
+        return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:[], layoutParams: [
+            "active_link" => "requests",
+            "title" => "Care Rider"]);
+    }
+
+
+
+
 //    public static function getCareRiderPaymentsPage(): bool|array|string
 //    {
 //        $nic = $_SESSION["nic"];
@@ -132,16 +194,16 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
 
         $provider_nic = $_POST['provider_nic'];
         $feedback_msg = $_POST['feedback-msg'];
-        $date_time = $_POST['feedback-datetime'];
+        //$date_time = $_POST['feedback-datetime'];
         $consumer_nic = $_SESSION["nic"];
 
         $db = new Database();
-        if ($provider_nic && $feedback_msg && $date_time && $consumer_nic){
+        if ($provider_nic && $feedback_msg && $consumer_nic){
             $stmt = $db->connection->prepare("INSERT INTO feedback (
                             text, date_time, provider_nic, consumer_nic
-                              ) VALUES ( ?, ?, ?, ? )");
+                              ) VALUES ( ?, now(), ?,  ? )");
 
-            $stmt->bind_param("ssss", $feedback_msg, $date_time, $provider_nic, $consumer_nic);
+            $stmt->bind_param("sss", $feedback_msg,$provider_nic,$consumer_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /consumer-dashboard/services/care-rider/request?provider_nic=$provider_nic");

@@ -3,17 +3,13 @@
  * @var $care_rider ;
  * @var $time_slot ;
  * @var $feedback ;
+ * @var $location;
  */
 if (!isset($_GET['care-rider-feedback-btn'])) {
     $provider_nic = $_GET['provider_nic'];
 }
 
-/*if (!isset($_GET['doctor-pay-btn'])){
-    $provider_nic = $_GET['provider_nic'];
-}*/
-//print_r($feedback);die();
-//print_r($time_slot);die();
-//print_r($doctor);die();
+
 ?>
 <link rel="stylesheet" href="/assets/css/main.css" xmlns="http://www.w3.org/1999/html">
 <div class="consumer-dashboard-doctor-profile">
@@ -37,12 +33,13 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                     </div>
                 </td>
                 <td>
-                    <form action="/consumer-dashboard/services/doctor/profile-timeSlot?provider_nic=<?php echo $provider_nic; ?>"
+                    <form action="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo $provider_nic; ?>"
                           method="POST">
-                        <div class="consumer-dashboard-doctor-profile__top__right">
+                        <div class="care-rider-dashboard-doctor-profile__top__right">
 
                             <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
                                 <h4>Available Time-Slots</h4>
+                                <div class="care-rider-dashboard-doctor-profile__top__right__timeslot">
                                 <table id="care-rider-available-slot">
                                     <?php foreach ($time_slot as $value) { ?>
                                         <tr>
@@ -51,21 +48,22 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                             <td><?php echo $value['from_time'] ?></td>
                                             <td><?php echo $value['to_time'] ?></td>
                                             <td><?php echo " "; ?></td>
-                                                                                        <td><input type="radio" value="
+                                            <td><input type="radio" value="
                                             <?php echo $value['slot_number'];?>" name="available-time-slot">
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </table>
-                                <form class="pickup-time-form" action="">
+                                </div>
+                            </div>
                                     <label for="">Pick up time</label>
-                                    <input type="time">
-                                    <input type="number" name="pickup-lat" id="pickup-lat" style="display:none">
-                                    <input type="number" name="pickup-lng" id="pickup-lng" style="display:none">
-                                    <input type="number" name="drop-lat" id="drop-lat" style="display:none">
-                                    <input type="number" name="drop-lng" id="drop-lng" style="display:none">
+                                    <input type="time" name="pickup-time" id="pickup-time">
+                                    <input type="text" name="pickup-lat" id="pickup-lat" style="opacity: 0">
+                                    <input type="text" name="pickup-lng" id="pickup-lng" style="opacity: 0">
+                                    <input type="text" name="drop-lat" id="drop-lat" style="opacity: 0">
+                                    <input type="text" name="drop-lng" id="drop-lng" style="opacity: 0">
 
-                                </form>
+
 
                                 <!--                    <div class="consumer-dashboard-care-rider-profile__top__right">-->
 
@@ -75,11 +73,12 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                     </div>
 
                                 </div>
-                                <btn class="btn"><a href="/consumer-dashboard/services/care-rider/request/payment">Continue
-                                        to Pay</a></btn>
+                                <button class="btn" type="submit">Continue to Pay</button>
+                        </div>
+                    </form>
 
                             </div>
-                        </div>
+
 
     </div>
 </div>
@@ -105,9 +104,9 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
             <td>
                 <div class="consumer-dashboard-doctor-profile__bottom__right">
                     <h3>Give your Feedback</h3>
-                    <form action="<?php echo "/consumer-dashboard/services/care-rider/request/feedback?provider_nic=$provider_nic"; ?>"
+                    <form action= "/consumer-dashboard/services/care-rider/request/feedback?provider_nic= <?php echo $_GET['provider_nic']; ?>"
                           method="post">
-                        <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">
+<!--                        <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">-->
                         <input type="text" name="feedback-msg" class="doctor-feedback">
                         <input name="provider_nic" value="<?php echo $provider_nic ?>" type="text" hidden>
                         <button name="care-rider-feedback-btn">Submit</button>
@@ -229,39 +228,6 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
 
             clearPolyline();
             drawPolyline(marker1.getPosition(), marker2.getPosition());
-            // let request = {
-            //     origin: marker1.getPosition(),
-            //     destination: marker2.getPosition(),
-            //     travelMode: 'DRIVING'
-            // };
-            // directionsService.route(request, function (result, status) {
-            //     console.log(result,status)
-            //     if (status === 'OK') {
-            //         // Display the route on the map
-            //         // directionsRenderer.setDirections(result);
-            //         const points = [];
-            //         const legs = result.routes[0].legs;
-            //         for (let i = 0; i < legs.length; i++) {
-            //             const steps = legs[i].steps;
-            //             for (let j = 0; j < steps.length; j++) {
-            //                 const nextSegment = steps[j].path;
-            //                 for (let k = 0; k < nextSegment.length; k++) {
-            //                     points.push(nextSegment[k]);
-            //                 }
-            //             }
-            //         }
-            //         // Create the polyline.
-            //         const polyline = new google.maps.Polyline({
-            //             path: points,
-            //             geodesic: true,
-            //             strokeColor: '#FF0000',
-            //             strokeOpacity: 1.0,
-            //             strokeWeight: 2
-            //         });
-            //         // Set the polyline on the map.
-            //         polyline.setMap(map);
-            //     }
-            // });
         })
 
         marker2.addListener('dragend', () => {
@@ -273,39 +239,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
             dropLngInput.value = lng
             clearPolyline();
             drawPolyline(marker1.getPosition(), marker2.getPosition());
-            // let request = {
-            //     origin: marker1.getPosition(),
-            //     destination: marker2.getPosition(),
-            //     travelMode: 'DRIVING'
-            // };
-            // directionsService.route(request, function (result, status) {
-            //     console.log(result,status)
-            //     if (status === 'OK') {
-            //         // Display the route on the map
-            //         //
-            //         const points = [];
-            //         const legs = result.routes[0].legs;
-            //         for (let i = 0; i < legs.length; i++) {
-            //             const steps = legs[i].steps;
-            //             for (let j = 0; j < steps.length; j++) {
-            //                 const nextSegment = steps[j].path;
-            //                 for (let k = 0; k < nextSegment.length; k++) {
-            //                     points.push(nextSegment[k]);
-            //                 }
-            //             }
-            //         }
-            //         // Create the polyline.
-            //         const polyline = new google.maps.Polyline({
-            //             path: points,
-            //             geodesic: true,
-            //             strokeColor: '#FF0000',
-            //             strokeOpacity: 1.0,
-            //             strokeWeight: 2
-            //         });
-            //         // Set the polyline on the map.
-            //         polyline.setMap(map);
-            //     }
-            // });
+
 
         })
 
