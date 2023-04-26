@@ -4856,3 +4856,453 @@ null
 "successfully got a product"
 ```
 
+## 2023-04-25 10:18:55
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-25 10:18:56
+
+```json
+{
+    "id": "evt_3N0h5PB9kJ5FDFAy1C424pD5",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682410735,
+    "data": {
+        "object": {
+            "id": "pi_3N0h5PB9kJ5FDFAy19mfdTYv",
+            "object": "payment_intent",
+            "amount": 45000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N0h5PB9kJ5FDFAy19mfdTYv_secret_ZpERxhllxMPqbcClcBDwCwO6S",
+            "confirmation_method": "automatic",
+            "created": 1682410735,
+            "currency": "lkr",
+            "customer": "cus_Nlsk1I0SlkcOfb",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "785640037V",
+                "order_id": "69"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "suranisooriyaarachchi@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_tEpzD4MmWfnLBA",
+        "idempotency_key": "6b6303f8-d10e-453a-8c0e-7d1edd3b42cd"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-25 10:18:56
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-25 10:19:27
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-25 10:19:27
+
+```json
+{
+    "id": "evt_3N0h5PB9kJ5FDFAy1tBO5X6Z",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682410766,
+    "data": {
+        "object": {
+            "id": "pi_3N0h5PB9kJ5FDFAy19mfdTYv",
+            "object": "payment_intent",
+            "amount": 45000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 45000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N0h5PB9kJ5FDFAy19mfdTYv_secret_ZpERxhllxMPqbcClcBDwCwO6S",
+            "confirmation_method": "automatic",
+            "created": 1682410735,
+            "currency": "lkr",
+            "customer": "cus_Nlsk1I0SlkcOfb",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N0h5PB9kJ5FDFAy1iimkYJD",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "785640037V",
+                "order_id": "69"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N0h5tB9kJ5FDFAy4TJMHYhj",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_9u1hJU5Vl2EFFj",
+        "idempotency_key": "afdfb75b-b3a4-46cb-a795-584a07fa6c29"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-04-25 10:19:27
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-04-25 10:19:27
+
+```json
+"cus_Nlsk1I0SlkcOfb"
+```
+
+## 2023-04-25 10:19:27
+
+```json
+45000
+```
+
+## 2023-04-25 10:19:27
+
+```json
+{
+    "consumer_nic": "885984237V",
+    "stripe_id": "cus_Nlsk1I0SlkcOfb",
+    "name": "Surani Sooriyaarachchi",
+    "email_address": "suranisooriyaarachchi@gmail.com",
+    "profile_picture": "\/uploads\/885984237Vfc78e89e86c82a056c1faed9d9094541be1c9764fc0606adprofile_picindoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_.jpg",
+    "password": "$2y$10$dpip0sm87ZTRHLMEhqtLQOHlV9w6dzL6ESo96GTw.3o3Sotc1m\/p2",
+    "mobile_number": "0756676768",
+    "address": "No 345A, Saman Perera Mawatha, Horana"
+}
+```
+
+## 2023-04-25 10:19:27
+
+```json
+{
+    "provider_nic": "785640037V",
+    "order_id": "69"
+}
+```
+
+## 2023-04-25 10:19:27
+
+```json
+{
+    "isOrder": true,
+    "isAppointment": false
+}
+```
+
+## 2023-04-25 10:19:27
+
+```json
+"69"
+```
+
+## 2023-04-25 11:12:46
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-25 11:12:46
+
+```json
+{
+    "id": "evt_3N0gzGB9kJ5FDFAy1jAEwaRC",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682410354,
+    "data": {
+        "object": {
+            "id": "pi_3N0gzGB9kJ5FDFAy1HrruEZm",
+            "object": "payment_intent",
+            "amount": 120000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N0gzGB9kJ5FDFAy1HrruEZm_secret_6S7VxpAVYH1bhplZaK0qwTEGQ",
+            "confirmation_method": "automatic",
+            "created": 1682410354,
+            "currency": "lkr",
+            "customer": "cus_Nlsk1I0SlkcOfb",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "887845673V",
+                "order_id": "68"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "suranisooriyaarachchi@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_96QK4rmj9BkEzK",
+        "idempotency_key": "74dca609-1e68-4681-9993-c00c3df6f51f"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-04-25 11:12:46
+
+```json
+"payment_intent.created"
+```
+
+## 2023-04-25 11:14:47
+
+```json
+"Called verify moment"
+```
+
+## 2023-04-25 11:14:47
+
+```json
+{
+    "id": "evt_3N0gzGB9kJ5FDFAy1wOoV6QV",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1682410436,
+    "data": {
+        "object": {
+            "id": "pi_3N0gzGB9kJ5FDFAy1HrruEZm",
+            "object": "payment_intent",
+            "amount": 120000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 120000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N0gzGB9kJ5FDFAy1HrruEZm_secret_6S7VxpAVYH1bhplZaK0qwTEGQ",
+            "confirmation_method": "automatic",
+            "created": 1682410354,
+            "currency": "lkr",
+            "customer": "cus_Nlsk1I0SlkcOfb",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N0gzGB9kJ5FDFAy1wyY6Vo4",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "887845673V",
+                "order_id": "68"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N0h0ZB9kJ5FDFAyjDD6Vqqq",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_iQq5kpQsMkkvq2",
+        "idempotency_key": "8c191b02-6b3e-4d1b-bf5b-abdec653d1ea"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-04-25 11:14:47
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-04-25 11:14:47
+
+```json
+"cus_Nlsk1I0SlkcOfb"
+```
+
+## 2023-04-25 11:14:47
+
+```json
+120000
+```
+
+## 2023-04-25 11:14:47
+
+```json
+{
+    "consumer_nic": "885984237V",
+    "stripe_id": "cus_Nlsk1I0SlkcOfb",
+    "name": "Surani Sooriyaarachchi",
+    "email_address": "suranisooriyaarachchi@gmail.com",
+    "profile_picture": "\/uploads\/885984237Vfc78e89e86c82a056c1faed9d9094541be1c9764fc0606adprofile_picindoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_.jpg",
+    "password": "$2y$10$dpip0sm87ZTRHLMEhqtLQOHlV9w6dzL6ESo96GTw.3o3Sotc1m\/p2",
+    "mobile_number": "0756676768",
+    "address": "No 345A, Saman Perera Mawatha, Horana"
+}
+```
+
+## 2023-04-25 11:14:47
+
+```json
+{
+    "provider_nic": "887845673V",
+    "order_id": "68"
+}
+```
+
+## 2023-04-25 11:14:47
+
+```json
+{
+    "isOrder": true,
+    "isAppointment": false
+}
+```
+
+## 2023-04-25 11:14:47
+
+```json
+"68"
+```
+
