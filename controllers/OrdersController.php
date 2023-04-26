@@ -23,7 +23,8 @@ class OrdersController extends Controller
                    cg.category_name, 
                    p.name,
                    p.quantity,
-                   p.quantity_unit
+                   p.quantity_unit,
+                   o.order_id
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
@@ -50,6 +51,23 @@ class OrdersController extends Controller
             "active_link" => "orders",
             "title" => "Orders"
         ]);
+    }
+
+    public static function markOrderAsPrepared() {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $order_id = $_GET["order_id"] ?? null;
+            $db = new Database();
+            $stmt = $db->connection->prepare("UPDATE product_order SET status = 'prepared' WHERE provider_nic = ? AND status = 'paid' AND order_id = ?");
+            $stmt->bind_param("sd", $nic, $order_id);
+            $stmt->execute();
+            header("location: /product-seller-dashboard/orders");
+            return "";
+        }
     }
 
 

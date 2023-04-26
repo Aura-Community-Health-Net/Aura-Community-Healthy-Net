@@ -164,6 +164,7 @@
 </div>
 
 <script src="/assets/js/components/sidebar.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 </body>
 
 </html>

@@ -6,6 +6,7 @@
     padding: 0.3rem 1rem;
     border-radius: 8px;
     margin-block: 1rem;
+    justify-content: space-between;
 }
 
 .dashboard__top-cards__detail h4{
@@ -21,7 +22,7 @@
 
 .services-count__details{
     background-color: white;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 0.5rem 2rem;
     text-align: center;
     border-radius: 8px;
@@ -31,4 +32,56 @@
 
 .services-count__details h3{
     width: 10rem;
+}
+
+.dashboard__top-cards__contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__top-cards__detail .dashboard__top-cards_email{
+    width: 16rem;
+}
+
+.events-header{
+    padding: 0 2rem;
+}
+
+.past-services{
+    margin: 1rem 5rem;
+}
+
+.events-icon{
+    font-size: 5rem;
+    text-align: center;
+    align-items: center;
+    padding-block: 2rem;
+    color: #666666;
+}
+
+.no-events{
+    color: #666666;
+    font-weight: normal;
+
+}
+
+.events-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 2rem;
+    padding-inline: 3rem;
+}
+
+.events-container__empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.events-container h3{
+    width: 100%;
+    text-align: left;
 }

@@ -11,10 +11,10 @@
 ?>
 <div class="consumer-dashboard-doctor">
     <div class="consumer-dashboard-doctor__top">
-        <form action="/consumer-dashboard/services/doctor-filter" class="form-item--search" method="post">
+        <form action="/consumer-dashboard/services/doctor" class="form-item--search" method="get">
 
             <div class="search-bar">
-                <input type="text" placeholder="Search..." name="search">
+                <input type="text" placeholder="Search..." name="q" id="q">
                 <button type="submit" ><i class="fa fa-search"></i></button>
             </div>
             <select class="form-items--dropdown" name="doctor-categories" id="doctor-categories" onchange="filterDoctor(value)">

@@ -92,7 +92,6 @@ class AdministratorController extends Controller
     {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
-        $provider_nic = $_SESSION["nic"];
 
         $stmt = $db->connection->prepare("SELECT p.provider_nic, sum(p.amount) AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY provider_nic ORDER BY amount DESC");
 //        $stmt->bind_param("s", $provider_nic);
