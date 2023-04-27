@@ -22,7 +22,7 @@
 
         $med_id = $medicine['med_id'];
         $med_name = $medicine['name'];
-        $med_price = $medicine['price'];
+        $med_price = $medicine['price']/100;
         $med_quantity = $medicine['quantity'];
         $med_quantity_unit = $medicine['quantity_unit'];
         $med_stock = $medicine['stock'];

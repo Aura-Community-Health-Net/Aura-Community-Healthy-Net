@@ -39,7 +39,7 @@ $address = $pharmacy['address'];
     </div>
 
     <div class="item-top-right__container">
-        <form action="/consumer-dashboard/services/pharmacy/view?id=<?php echo $provider_id?>" class="form-item--search" method="get">
+        <form action="/consumer-dashboard/services/pharmacy/view?id=<?= $provider_id?>" class="form-item--search" method="get">
            <div class="search-bar">
             <input type="text" placeholder="Search Medicine..." name="query" id="query">
             <button href="" type="submit"><i class="fa fa-search"></i></button>
@@ -54,7 +54,7 @@ $address = $pharmacy['address'];
             $list_med_name = $medicine['name'];
             $list_med_quantity = $medicine['quantity'];
             $list_med_quantity_unit = $medicine['quantity_unit'];
-            $list_med_price = $medicine['price'];
+            $list_med_price = $medicine['price']/100;
 
 
             echo "    <div class='overview-items overview-medicine'>

@@ -208,6 +208,7 @@ $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPaymen
 $app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calculateChargeForDoctorFees']);
 $app->router->post('/payments/fees/verify', [PaymentsController::class, 'verifyFeesPayments']);
 $app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
+$app->router->post('medicine-payments/verify',[PaymentsController::class,'verifyMedicinePayments']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
 //  Run the application
 $app->run();
