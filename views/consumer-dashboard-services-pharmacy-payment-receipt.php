@@ -31,7 +31,12 @@ $request_id = $payment_details['request_id'];
 <?php
 
 if ($medicines === null) {
-    echo "Pharmacy hasn't replied";
+    echo "Pharmacy hasn't replied yet";
+    echo "
+            <div class='pharmacy_request_details'>
+                  <img class='prescription_image' src='$prescription' alt=''>
+                  <div class='customer_remark'>$customer_remark</div>      
+            </div>";
 } else {
 
     $medicines_list_elements = "";

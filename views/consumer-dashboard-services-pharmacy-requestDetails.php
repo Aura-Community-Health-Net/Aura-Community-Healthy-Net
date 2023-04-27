@@ -32,7 +32,7 @@
                         <p>$pharmacy_name</p>
                         <p>$mobile_number</p>
                         $hasReplied
-                        <button class='ok-btn' id='accept-request-btn'><a href='/consumer-dashboard/services/pharmacy/payment-receipt?id=$request_id'>Vieew</a></button>
+                        <button class='ok-btn' id='accept-request-btn'><a href='/consumer-dashboard/services/pharmacy/payment-receipt?id=$request_id'>View</a></button>
                     </div>
             </div>";
           }?>
