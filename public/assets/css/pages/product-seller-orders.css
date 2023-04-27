@@ -19,7 +19,7 @@
 }
 
 .done-btn{
-    background-color: red;
+    background-color: green;
     border: none;
     border-radius: 8px;
     color: white;
@@ -29,9 +29,4 @@
     padding-inline: 0.5rem;
     padding-block: 0.2rem;
     margin-left: 1rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.done-btn:active{
-    background-color: green;
 }

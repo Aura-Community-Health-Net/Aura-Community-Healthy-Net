@@ -53,7 +53,8 @@ class OrdersController extends Controller
         ]);
     }
 
-    public static function markOrderAsPrepared() {
+    public static function markOrderAsPrepared(): string
+    {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
         if(!$nic || $providerType !== "product-seller") {
