@@ -58,7 +58,7 @@
     cursor: pointer;
 }
 
-.care-rider-card button {
+button {
     border: none;
     outline: none;
     background-color: var(--color-primary);
