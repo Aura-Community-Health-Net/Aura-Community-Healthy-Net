@@ -3,83 +3,91 @@
  *@var array $product_seller
  *@var string $active_link
  * @var array $product_lists
+ * @var array $orders_count
+ * @var array $orders_list
+ * @var array $order_preview
  */
 
 if (!$product_seller['is_verified']) {
     echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
 
+$profile_picture = $order_preview["profile_picture"];
+$consumer_name = $order_preview["consumer_name"];
+$mobile_number = $order_preview["mobile_number"];
+$product_name = $order_preview["name"];
+$quantity = $order_preview["quantity"];
+$quantity_unit = $order_preview["quantity_unit"];
+$product_image = $order_preview["image"];
+
 ?>
 
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
         <h3>New Orders</h3>
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
-            <div>
-                <h4>Kamal Deshapriya</h4>
-                <h5>Nil Veralu</h5>
-            </div>
-        </div>
 
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic2.jpg" alt="">
+        <?php
+        foreach ($orders_list as $order_list){
+            $profile_picture = $order_list['profile_picture'];
+            $consumer_name = $order_list['consumer_name'];
+            $product_name = $order_list['name'];
+            echo "
+            <div class='dashboard__top-cards__detail'>
+            <img class='order-consumer-img' src='$profile_picture' alt=''>
             <div>
-                <h4>Semini Peduruarachchi</h4>
-                <h5>Cashews</h5>
+                <h4>$consumer_name</h4>
+                <h5>$product_name</h5>
             </div>
         </div>
-
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic3.jpg" alt="">
-            <div>
-                <h4>Anoj Karunarathna</h4>
-                <h5>Vegetable Porridge</h5>
-            </div>
-        </div>
-
-        <div class="dashboard__top-cards__detail">
-            <img class="order-consumer-img" src="/assets/images/profilepic4.jpg" alt="">
-            <div>
-                <h4>Kamal Disasekara</h4>
-                <h5>Pachchaperumaal</h5>
-            </div>
-        </div>
+            ";
+        }
+        ?>
     </div>
 
     <div class="dashboard__top-cards">
         <h3>Orders</h3>
-        <div class="dashboard__top-cards__info">
-            <div class="dashboard__top-cards__detail">
-                <img class="order-consumer-img" src="/assets/images/profilepic1.jpg" alt="">
+
+        <?php
+        echo "
+        <div class='dashboard__top-cards__info'>
+            <div class='dashboard__top-cards__detail'>
+                <img class='order-consumer-img' src='$profile_picture' alt=''>
                 <div>
-                    <h4>Kamal Deshapriya</h4>
-                    <h5>0726778767</h5>
+                    <h4>$consumer_name</h4>
+                    <h5>$mobile_number</h5>
                 </div>
             </div>
 
-            <div class="product-order-details">
-                <h5>Nil Veralu</h5><br>
-                <h5>500 g</h5>
+            <div class='product-order-details'>
+                <h5>$product_name</h5><br>
+                <h5>$quantity $quantity_unit</h5>
             </div>
-            <img class="order-product-img" src="/assets/images/nil-veralu.jfif" alt="">
+            <img class='order-product-img' src='$product_image' alt=''>
         </div>
-
-
+        ";
+        ?>
 
     </div>
 
-    <div class="dashboard__top-cards">
+    <?php
+    foreach ($orders_count as $order){
+        $order_count = $order["order_count"];
+        echo "
+        <div class='dashboard__top-cards'>
         <h3>Order Count</h3>
-        <div class="order-count__details">
+        <div class='order-count__details'>
             <h3>New Orders</h3>
-            <p class="new-order-count">15</p>
+            <p class='new-order-count'>15</p>
         </div>
-        <div class="order-count__details">
+        <div class='order-count__details'>
             <h3>All Orders</h3>
-            <p class="all-order-count">59</p>
+            <p class='all-order-count'>$order_count</p>
         </div>
     </div>
+        ";
+    }
+    ?>
+
 </div>
 
 <div class="dashboard__bottom-container">

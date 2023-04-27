@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Database;
 use app\core\Controller;
 
+
 class AnalyticsController extends Controller
 {
     public static function getCareRiderAnalyticsPage(): array|bool|string

@@ -1,12 +1,25 @@
 #consumer-dashboard-care-rider-profile__top__right btn{
-    position: absolute;
-font-size: 1rem;
-color: #ffffff;
-background-color: #00005C;
-padding: 15px 32px;
-border: none;
-margin-top: 6rem;
-border-radius: 5px;
-cursor: pointer;
-    left: 240px;
-top: 292px;}
+/*    position: absolute;*/
+/*font-size: 1rem;*/
+/*color: #ffffff;*/
+/*background-color: #00005C;*/
+/*padding: 15px 32px;*/
+/*border: none;*/
+/*margin-top: 6rem;*/
+/*border-radius: 5px;*/
+/*cursor: pointer;*/
+/*    left: 240px;*/
+/*top: 292px;}*/
+
+    position: relative;
+    color: #ffffff;
+    background-color: #008DFF;
+    border: none;
+    padding: 15px 32px;
+    bottom: 94px;
+    left: 391px;
+    border-radius: 3px;
+    font-size: 16px;
+
+
+}

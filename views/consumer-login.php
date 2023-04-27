@@ -27,7 +27,7 @@
                 <img src="/assets/images/products-login.jpg" alt="" class="login-slide__img">
             </div>
             <div class="login-slide">
-                <img src="/assets/images/care_rider-login.jpg" alt="" class="login-slide__img">
+                <img src="/assets/images/care_rider-login.webp" alt="" class="login-slide__img">
             </div>
         </div>
     </div>

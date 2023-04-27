@@ -50,7 +50,7 @@
             <div class="admin-header">
                 <p>
                     <?php echo $admin["name"]; ?>
-                    <img src="/assets/images/admin-profile-pic.jpg" alt="">
+                    <img src="/assets/images/admin-profile-pic.webp" alt="">
                 </p>
             </div>
 
@@ -64,7 +64,7 @@
     </div>
 
     <div class="dashboard-container">
-        <nav class="dashboard-container__side-nav">
+        <nav class="dashboard-container__side-nav active">
             <ul>
                 <li>
                     <a href="/admin-dashboard">
@@ -120,7 +120,7 @@
         </main>
     </div>
 
-    <div class="toggle">
+    <div class="toggle active">
         <i class="fa-solid fa-bars"></i>
     </div>
 

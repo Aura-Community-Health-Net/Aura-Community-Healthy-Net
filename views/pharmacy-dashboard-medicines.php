@@ -15,7 +15,7 @@
         <th>Quantity</th>
         <th>Quantity Unit</th>
         <th>Stock</th>
-        <th>Stock Unit</th>
+
     </tr>
     <?php
     foreach ($medicines as $medicine) {
@@ -41,7 +41,7 @@
                     
                     <td id='action-block'>
                         <button id = 'delete-medicines-$med_id' data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
-                        <button id = 'update-medicines-$med_id'  data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--update medicine-update'><i class='fa-solid fa-pen'></i></button>
+                        <button id = 'update-medicines-$med_id'  data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--update medicine-update'><i class='fa-solid fa-pen' style='color: #FFD700'></i></button>
 
                     </td>
                     
@@ -60,7 +60,7 @@
             <th><label class="products-label">Quantity</label></th>
             <th><label class="products-label">Quantity Unit</label></th>
             <th><label class="products-label">Stock</label></th>
-            <th><label class="products-label">Stock Unit</label></th>
+
         </tr>
         <tr>
             <td><input type="file" id="add_img" name="image" style="display: none; visibility: hidden" accept="image/*"
