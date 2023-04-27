@@ -150,7 +150,8 @@ $app->router->post('/doctor-dashboard/timeslots/add', [DoctorTimeslotsController
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
 $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
-$app->router->post('/doctor-dashboard/appointments-conform-cancel', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+$app->router->get('/doctor-dashboard/appointments-consulted', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+//$app->router->get('/doctor-dashboard/appointments-location', [DoctorAppointmentsController::class, 'DoctorAppointmentsLocationProcess']);
 
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
@@ -206,7 +207,7 @@ $app->router->get('/cart', [CartController::class, 'getCustomerCartPage']);
 $app->router->get('/verify-product-amount', [PaymentsController::class, 'calculateChargeForProduct']);
 $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPayments']);
 $app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calculateChargeForDoctorFees']);
-$app->router->post('/payments/fees/verify', [PaymentsController::class, 'verifyFeesPayments']);
+//$app->router->post('/payments/fees/verify', [PaymentsController::class, 'verifyFeesPayments']);
 $app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
 $app->router->post('medicine-payments/verify',[PaymentsController::class,'verifyMedicinePayments']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
