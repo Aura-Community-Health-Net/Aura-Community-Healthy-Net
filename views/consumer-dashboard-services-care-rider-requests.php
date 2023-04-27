@@ -73,7 +73,8 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                     </div>
 
                                 </div>
-                                <button class="btn" type="submit">Continue to Pay</button>
+                            <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
+                                <button class="btn"> Request</button>
                         </div>
                     </form>
 
