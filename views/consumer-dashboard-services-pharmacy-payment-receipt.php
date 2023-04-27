@@ -14,7 +14,9 @@ $advance_amount = $payment_details['advance_amount'];
 $Total_amount = $payment_details['total_amount'];
 $note = $payment_details['pharmacy_remark'];
 $medicines_list = $payment_details['available_medicines'];
-$medicines = json_decode($medicines_list,true);
+$prescription = $payment_details['prescription'];
+$customer_remark = $payment_details['customer_remark'];
+$medicines = json_decode($medicines_list, true);
 
 
 //$medicines_list = json_decode($payment_details['medicines_list'],true);
@@ -25,16 +27,18 @@ $request_id = $payment_details['request_id'];
 ?>
 
 
+    <div class='consumer-pharmacy-neworders-advanceinfo'>
+<?php
 
-<div class='consumer-pharmacy-neworders-advanceinfo'>
-    <?php
+if ($medicines === null) {
+    echo "Pharmacy hasn't replied";
+} else {
 
-     $medicines_list_elements = "";
+    $medicines_list_elements = "";
 
-     foreach ($medicines as $medicine)
-     {
-         $medicines_list_elements = $medicines_list_elements."<li>$medicine</li>";
-     }
+    foreach ($medicines as $medicine) {
+        $medicines_list_elements = $medicines_list_elements . "<li>$medicine</li>";
+    }
 
 
     echo "
@@ -81,3 +85,4 @@ $request_id = $payment_details['request_id'];
 
 </div>
 ?>";
+}

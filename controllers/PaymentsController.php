@@ -13,7 +13,6 @@ use Exception;
 use JsonException;
 use app\core\Application;
 
-
 class PaymentsController extends Controller
 {
     public static function calculateChargeForProduct(): string
@@ -73,6 +72,7 @@ class PaymentsController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $product = $result->fetch_assoc();
+            $provider_nic = $product['provider_nic'];
 
         } catch (Exception $e) {
             http_response_code(500);
@@ -112,7 +112,10 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["order_id" => $order_id]
+                'metadata' => [
+                    "order_id" => $order_id,
+                    "provider_nic" => $provider_nic
+                ]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -161,20 +164,31 @@ class PaymentsController extends Controller
 
                 $isOrderPayment = isset($metadata["order_id"]);
                 $isAppointment = isset($metadata["appointment_id"]);
+                $isMedOrderPayment = isset($metadata["med_order_id"]);
                 PaymentsController::logPayment([
                     "isOrder" => $isOrderPayment,
-                    "isAppointment" => $isAppointment
+                    "isAppointment" => $isAppointment,
+                    "isMedOrderPayment" => $isMedOrderPayment
                 ]);
 
                 if ($isOrderPayment) {
 
                     $order_id = $metadata["order_id"];
+                    $consumer_nic = $customer["consumer_nic"];
+                    $amount = (float)$body['data']['object']['amount'] / 100;
                     PaymentsController::logPayment($order_id);
                     try {
                         $db->connection->begin_transaction();
                         $stmt = $db->connection->prepare("UPDATE product_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
-                        $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
+                        $stmt->bind_param("ds", $order_id, $consumer_nic);
                         $stmt->execute();
+                        $provider_nic = $metadata['provider_nic'];
+
+                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->execute();
+
 
                         $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
                         $stmt->bind_param("d", $order_id);
@@ -250,6 +264,48 @@ class PaymentsController extends Controller
                         }
                         return "";
                     } catch (Exception $e) {
+                        $db->connection->rollback();
+                        $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
+                        try {
+                            $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
+                            $stripeClient = new StripeClient([
+                                'api_key' => $stripe_secret_key,
+                            ]);
+                            $stripeClient->refunds->create([
+                                'payment_intent' => $paymentIntent->id,
+                                'amount' => $amount,
+                            ]);
+                            return "";
+                        } catch (ApiErrorException $e) {
+                            return "";
+                        }
+                    }
+                }
+                else if ($isMedOrderPayment) {
+
+
+                    $med_order_id = $metadata["med_order_id"];
+                    $consumer_nic = $customer["consumer_nic"];
+                    $amount = (float)$body['data']['object']['amount'] / 100;
+                    PaymentsController::logPayment($med_order_id);
+                    try {
+                        $db->connection->begin_transaction();
+                        $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
+                        $stmt->bind_param("ds", $med_order_id, $consumer_nic);
+                        $stmt->execute();
+                        $provider_nic = $metadata['provider_nic'];
+                        PaymentsController::logPayment("Updated");
+
+                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->execute();
+                        PaymentsController::logPayment("inserted payment record");
+
+                        $db->connection->commit();
+                        return "";
+                    } catch (Exception $e) {
+                        PaymentsController::logPayment("Error happened");
                         $db->connection->rollback();
                         $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
                         try {
@@ -377,118 +433,7 @@ class PaymentsController extends Controller
     }
 
 
-//    public static function verifyFeesPayments()
-//    {
-//        try {
-//            $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
-//        } catch (JsonException $e) {
-//            $body = [];
-//        }
-//        http_response_code(500);
-//        //var_dump($body);exit();
-//        PaymentsController::logPayment($body);
-//        $type = $body['type'];
-//        PaymentsController::logPayment($type);
-//        if ($type === 'payment_intent.succeeded') {
-//            $stripeCustomerId = $body['data']['object']['customer'];
-//            PaymentsController::logPayment($stripeCustomerId);
-//            $amount = $body['data']['object']['amount'];
-//            PaymentsController::logPayment($amount);
-//
-//            $db = new Database();
-//            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE stripe_id = ?");
-//            $stmt->bind_param("s", $stripeCustomerId);
-//            $stmt->execute();
-//            $result = $stmt->get_result();
-//            $customer = $result->fetch_assoc();
-//            PaymentsController::logPayment($customer);
-//
-//            if ($customer) {
-//                $metadata = $body["data"]["object"]["metadata"];
-//                PaymentsController::logPayment($metadata);
-//                $appointment_id = $metadata["appointment_id"];
-//                PaymentsController::logPayment($appointment_id);
-//                try {
-//                    $db->connection->begin_transaction();
-//                    $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
-//                    $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
-//                    $stmt->execute();
-//                    PaymentsController::logPayment("initial step to mark unpaid as paid succeeded");
-//                    $stmt = $db->connection->prepare("SELECT * FROM order_has_product WHERE order_id = ?");
-//                    $stmt->bind_param("d", $order_id);
-//                    $stmt->execute();
-//                    PaymentsController::logPayment("selected order items");
-//                    $result = $stmt->get_result();
-//                    $order_items = $result->fetch_all(MYSQLI_ASSOC);
-//
-//
-//                    /*if ($order_items){
-//                        foreach ($order_items as $order_item){
-//                            $product_quantity = $order_item["num_of_items"];
-//                            $product_id = $order_item["product_id"];
-//
-//                            $stmt = $db->connection->prepare("SELECT * FROM product WHERE product_id = ?");
-//                            $stmt->bind_param("d", $product_id);
-//                            $stmt->execute();
-//                            PaymentsController::logPayment("successfully got a product");
-//                            $result = $stmt->get_result();
-//                            $product = $result->fetch_assoc();
-//
-//                            if (!$product){
-//                                PaymentsController::logPayment("product doesnt exit");
-//                                throw new Exception("Item not found");
-//                            } else {
-//                                $category_id = $product["category_id"];
-//                                if ($category_id !== 5){
-//                                    $stock = $product["stock"];
-//                                    if ($product_quantity > $stock){
-//                                        throw new Exception('Not enough items');
-//                                    } else{
-//                                        $stmt = $db->connection->prepare("UPDATE product SET stock = stock - ? WHERE product_id = ?");
-//                                        $stmt->bind_param("dd", $product_quantity, $product_id);
-//                                        $stmt->execute();
-//                                    }
-//                                }
-//                            }
-//                        }
-//
-//                    }*/
-//                    if ($db->connection->errno) {
-//                        $db->connection->rollback();
-//                        return "";
-//                    } else {
-//                        $db->connection->commit();
-//                    }
-//                    return "";
-//                } catch (Exception $e) {
-//                    PaymentsController::logPayment($e);
-//                    $db->connection->rollback();
-//                    $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
-//                    try {
-//                        $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
-//                        $stripeClient = new StripeClient([
-//                            'api_key' => $stripe_secret_key,
-//                        ]);
-//                        $stripeClient->refunds->create([
-//                            'payment_intent' => $paymentIntent->id,
-//                            'amount' => $amount,
-//                        ]);
-//                        return "";
-//                    } catch (ApiErrorException $e) {
-//                        return "";
-//                    }
-//                }
-//
-//            } else {
-////                We need to still create a payment record
-//            }
-//
-//        }
-//
-//    }
-
-
-    public static function ChargeForMedicine()
+    public static function ChargeForMedicine(): bool|string
     {
         $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
 
@@ -501,6 +446,7 @@ class PaymentsController extends Controller
         $medicines_request_id = $_GET["id"];
 
         if (!$nic || $user_type !== "consumer") {
+            http_response_code(401);
             header("location: /login");
             return "";
         }
@@ -532,7 +478,6 @@ class PaymentsController extends Controller
 
             $StripeCustomerId = $StripeCustomer->id;
 
-
         } catch (\Exception $e) {
             //ApiErrorException class is inherited from Base Exception class(default php class)
             //getstripecode() is a method of  a APIERROREXCEPTION CLASS which is available in stripe...not for normal error classes
@@ -556,16 +501,64 @@ class PaymentsController extends Controller
         }
 
         try {
-            $stmt = $db->connection->prepare("SELECT advance_amount FROM pharmacy_request WHERE request_id = ?");
+            $stmt = $db->connection->prepare("SELECT * FROM pharmacy_request WHERE request_id = ?");
             $stmt->bind_param("i", $medicines_request_id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $advance_amount = $result->fetch_assoc();
+            $pharmacy_request_details = $result->fetch_assoc();
 
         } catch (\Exception $e) {
             http_response_code(500);
             header("Content-Type: application/json");
             return $e->getMessage();
+        }
+
+        $advance_amount = $pharmacy_request_details["advance_amount"];
+        $total_amount = $pharmacy_request_details["total_amount"];
+        $balance = $total_amount - $advance_amount;
+        $provider_nic = $pharmacy_request_details["provider_nic"];
+
+        $stmt1 = $db->connection->prepare("INSERT INTO medicine_order( balance, provider_nic, consumer_nic) VALUES (?,?,?)");
+
+//        $order_id = NULL;
+        try {
+
+            $db->connection->begin_transaction();
+            $stmt1->bind_param("dss", $balance, $provider_nic, $nic);
+            $stmt1->execute();
+
+            $order_id = $stmt1->insert_id;
+
+
+            $medicines = json_decode($pharmacy_request_details['available_medicines']);
+            foreach ($medicines as $medicine) {
+                $stmt = $db->connection->prepare("SELECT * FROM medicine WHERE  name = ? AND provider_nic = ?");
+                $stmt->bind_param("ss", $medicine, $provider_nic);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $medDetails = $result->fetch_assoc();
+                $medId = $medDetails['med_id'];
+
+
+                $stmt2 = $db->connection->prepare("INSERT INTO order_has_med(med_id, order_id) VALUES (?,?)");
+                $stmt2->bind_param("dd", $medId, $order_id);
+                $stmt2->execute();
+
+            }
+
+
+            if ($db->connection->errno) {
+                $db->connection->rollback();
+            } else {
+                $db->connection->commit();
+            }
+        } catch (\Exception $e) {
+
+            $db->connection->rollback();
+            http_response_code(500);
+            header("Content-Type: application/json");
+            return $e->getMessage();
+
         }
 
         try {
@@ -577,7 +570,11 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $StripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["request_id" => $medicines_request_id]
+
+                'metadata' => [
+                    "med_order_id" => $order_id,
+                    "provider_nic" => $provider_nic
+                ]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -597,7 +594,6 @@ class PaymentsController extends Controller
 
     }
 
-
     public static function paymentSuccess(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -616,7 +612,8 @@ class PaymentsController extends Controller
         }
 
         return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer' => $service_consumer], layoutParams: [
-            "service_consumer" => $service_consumer,
+
+            "consumer" => $service_consumer,
             "active_link" => "dashboard-products",
             "title" => "Natural Food Products"
         ]);

@@ -32,12 +32,12 @@ class CareRiderNewRequestsController extends Controller
         $requests = $result->fetch_all(MYSQLI_ASSOC);
 
 
-        $confirmation = 0;
-        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.request_id = ride_request.request_id INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = ?");
-        $stmt->bind_param("si", $nic,$confirmation);
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.provider_nic = ride_request.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = 0 && ride_request.done = 0");
+        $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();
         $request_details = $result->fetch_all(MYSQLI_ASSOC);
+        //print_r($request_details);die();
 
         return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details ] ,layoutParams: array("care_rider" => $careRider,
             "active_link" => "new-requests",
@@ -62,15 +62,20 @@ class CareRiderNewRequestsController extends Controller
         }else{
             $request_id = $_GET['request_id'];
             $id = $_GET['id'];
-
-            if($id==1){
+            //print_r($_GET['id']);die();
+            if($id==2){
                 $stmt = $db->connection->prepare("UPDATE ride_request SET done = 1 WHERE request_id = ?");
+                $stmt->bind_param("i",$request_id );
+                $stmt->execute();
+                $result = $stmt->get_result();
+            }else if($id==1){
+                $stmt = $db->connection->prepare("UPDATE ride_request SET done = 2 WHERE request_id = ?");
                 $stmt->bind_param("i",$request_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
             }
         }
-        var_dump();
+        //var_dump();
         header("location: /care-rider-dashboard/new-requests");
 
         return self::render(view: 'care-rider-dashboard-new-requests', layout: "care-rider-dashboard-layout", params: [

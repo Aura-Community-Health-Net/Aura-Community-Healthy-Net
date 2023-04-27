@@ -24,6 +24,7 @@
             $product = $order['name'];
             $quantity = $order['quantity'];
             $quantity_unit = $order['quantity_unit'];
+            $order_id = $order['order_id'];
 
             echo "
             <tr>
@@ -33,6 +34,10 @@
             <td>$category</td>
             <td>$product</td>
             <td>$quantity $quantity_unit</td>
+            <form action='/product-seller-dashboard/orders/mark-as-done?order_id=$order_id' method='post'>
+                <td><button class='done-btn'>Done</button></td>
+            </form>
+            
         </tr>
             ";
         }

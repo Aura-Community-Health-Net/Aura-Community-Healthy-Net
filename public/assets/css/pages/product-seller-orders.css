@@ -17,3 +17,16 @@
     aspect-ratio: 1;
     border-radius: 50%;
 }
+
+.done-btn{
+    background-color: green;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
+    margin-left: 1rem;
+}

@@ -22,6 +22,7 @@ const productImageFilename = document.querySelector("#image-filename");
 
 const deleteProductButtons = document.querySelectorAll(".product-delete");
 const updateProductButtons = document.querySelectorAll(".product-update");
+
 console.log(updateProductButtons)
 
 addProductModalButton.addEventListener("click", () => {

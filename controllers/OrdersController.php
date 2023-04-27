@@ -23,7 +23,8 @@ class OrdersController extends Controller
                    cg.category_name, 
                    p.name,
                    p.quantity,
-                   p.quantity_unit
+                   p.quantity_unit,
+                   o.order_id
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
@@ -52,6 +53,24 @@ class OrdersController extends Controller
         ]);
     }
 
+    public static function markOrderAsPrepared(): string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $order_id = $_GET["order_id"] ?? null;
+            $db = new Database();
+            $stmt = $db->connection->prepare("UPDATE product_order SET status = 'prepared' WHERE provider_nic = ? AND status = 'paid' AND order_id = ?");
+            $stmt->bind_param("sd", $nic, $order_id);
+            $stmt->execute();
+            header("location: /product-seller-dashboard/orders");
+            return "";
+        }
+    }
+
 
     public static function viewNewOrderPage()
     {
@@ -69,7 +88,7 @@ class OrdersController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ?  ");
+            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? AND Sent_Request='unsent' ");
             $stmt->bind_param("s",$provider_nic);
 //                                                                                                                                                                                                                                                                                         AND pr.Sent_Request!=1
             $stmt->execute();

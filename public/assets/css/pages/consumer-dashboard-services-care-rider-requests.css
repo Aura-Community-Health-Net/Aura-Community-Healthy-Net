@@ -20,6 +20,17 @@
     left: 391px;
     border-radius: 3px;
     font-size: 16px;
+}
 
-
+.care-rider-dashboard-doctor-profile__top__right__timeslot{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 300px;
+    /*width: 700px;*/
+}
+.care-rider-dashboard-doctor-profile__top__right{
+    overflow: auto;
+    height: 400px;
+    width: 700px;
+    overflow-x: hidden;
 }
