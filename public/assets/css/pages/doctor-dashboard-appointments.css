@@ -13,6 +13,8 @@
     padding: 1rem;
     width: 70%;
     border-radius: 8px;
+    height: 500px;
+    overflow: auto;
 }
 .doctor-appointments__left{
     display: flex;
@@ -26,11 +28,11 @@
 .doctor-appointments__left__background{
     /*background-color: #ffffff;*/
 }
-.doctor-appointments__right{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+/*.doctor-appointments__right{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 1rem;*/
+/*}*/
 .doctor-appointments__left__data{
     display: flex;
     gap: 5rem;
@@ -40,16 +42,16 @@
     gap: 5rem;
     margin-bottom: 1rem;
 }
-.doctor-appointments__right__top{
-    display: flex;
-    background-color: #EFEEFD;
-    border-radius: 8px;
-    padding: 2rem;
-}
-.doctor-appointments__right__bottom{
-    display: flex;
-    background-color: #D9D9D9;
-}
+/*.doctor-appointments__right__top{*/
+/*    display: flex;*/
+/*    background-color: #EFEEFD;*/
+/*    border-radius: 8px;*/
+/*    padding: 2rem;*/
+/*}*/
+/*.doctor-appointments__right__bottom{*/
+/*    display: flex;*/
+/*    background-color: #D9D9D9;*/
+/*}*/
 .doctor-appointments__buttons button{
     border: none;
     color: white;
@@ -66,13 +68,13 @@
     margin-top: 5px;
     margin-left: 5px;
 }
-.doctor-appointments__right img{
-    width: 300px;
-    height: 300px;
-    background-color: #D9D9D9;
-    padding: 1rem;
-    margin: 0 auto;
-}
+/*.doctor-appointments__right img{*/
+/*    width: 300px;*/
+/*    height: 300px;*/
+/*    background-color: #D9D9D9;*/
+/*    padding: 1rem;*/
+/*    margin: 0 auto;*/
+/*}*/
 .doctor-appointments__left th{
     height: 30px;
 }

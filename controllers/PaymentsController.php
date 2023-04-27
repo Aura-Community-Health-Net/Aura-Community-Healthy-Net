@@ -433,74 +433,7 @@ class PaymentsController extends Controller
     }
 
 
-    public static function verifyFeesPayments()
-    {
-        try {
-            $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
-            $body = [];
-        }
-        http_response_code(500);
-        //var_dump($body);exit();
-        PaymentsController::logPayment($body);
-        $type = $body['type'];
-        PaymentsController::logPayment($type);
-        if ($type === 'payment_intent.succeeded') {
-            $stripeCustomerId = $body['data']['object']['customer'];
-            PaymentsController::logPayment($stripeCustomerId);
-            $amount = $body['data']['object']['amount'];
-            PaymentsController::logPayment($amount);
-
-//            $customerModel = new Customer();
-//            $customer = $customerModel->getCustomerByPaymentId($stripeCustomerId);
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE stripe_id = ?");
-            $stmt->bind_param("s", $stripeCustomerId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $customer = $result->fetch_assoc();
-            PaymentsController::logPayment($customer);
-
-            if ($customer) {
-                $metadata = $body["data"]["object"]["metadata"];
-                PaymentsController::logPayment($metadata);
-                $appointment_id = $metadata["appointment_id"];
-                PaymentsController::logPayment($appointment_id);
-                try {
-                    $db->connection->begin_transaction();
-                    $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
-                    $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
-                    $stmt->execute();
-                    PaymentsController::logPayment("initial step to mark unpaid as paid succeeded");
-                    return "";
-                } catch (Exception $e) {
-                    PaymentsController::logPayment($e);
-                    $db->connection->rollback();
-                    $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
-                    try {
-                        $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
-                        $stripeClient = new StripeClient([
-                            'api_key' => $stripe_secret_key,
-                        ]);
-                        $stripeClient->refunds->create([
-                            'payment_intent' => $paymentIntent->id,
-                            'amount' => $amount,
-                        ]);
-                        return "";
-                    } catch (ApiErrorException $e) {
-                        return "";
-                    }
-                }
-
-            } else {
-//                We need to still create a payment record
-            }
-
-        }
-    }
-
-
-    public static function ChargeForMedicine()
+    public static function ChargeForMedicine(): bool|string
     {
         $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
 
@@ -544,7 +477,6 @@ class PaymentsController extends Controller
             ]);
 
             $StripeCustomerId = $StripeCustomer->id;
-
 
         } catch (\Exception $e) {
             //ApiErrorException class is inherited from Base Exception class(default php class)
@@ -638,6 +570,7 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $StripeCustomerId,
                 'receipt_email' => $customer_email,
+
                 'metadata' => [
                     "med_order_id" => $order_id,
                     "provider_nic" => $provider_nic
@@ -661,127 +594,6 @@ class PaymentsController extends Controller
 
     }
 
-    public static function verifyMedicinePayments()
-    {
-        try {
-            $body = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
-            $body = [];
-        }
-        PaymentsController::logPayment($body);
-
-        $type = $body['type'];
-
-        PaymentsController::logPayment($type);
-        if ($type === 'payment_intent.succeeded') {
-            $stripeCustomerId = $body['data']['object']['customer'];
-            PaymentsController::logPayment($stripeCustomerId);
-
-            $amount = $body['data']['object']['amount'];
-            PaymentsController::logPayment($amount);
-
-//            $customerModel = new Customer();
-//            $customer = $customerModel->getCustomerByPaymentId($stripeCustomerId);
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE stripe_id = ?");
-            $stmt->bind_param("s", $stripeCustomerId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $customer = $result->fetch_assoc();
-            PaymentsController::logPayment($customer);
-
-            if ($customer) {
-                $metadata = $body["data"]["object"]["metadata"];
-                PaymentsController::logPayment($metadata);
-                $order_id = $metadata["order_id"];
-                PaymentsController::logPayment($order_id);
-
-                try {
-
-                    $db->connection->begin_transaction();
-                    $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
-                    $stmt->bind_param("ds", $order_id, $customer["consumer_nic"]);
-                    $stmt->execute();
-                    PaymentsController::logPayment("initial step to mark unpaid as paid succeeded");
-                    $stmt = $db->connection->prepare("SELECT * FROM order_has_med WHERE order_id = ?");
-                    $stmt->bind_param("d", $order_id);
-                    $stmt->execute();
-                    PaymentsController::logPayment("selected order items");
-                    $result = $stmt->get_result();
-                    $order_items = $result->fetch_all(MYSQLI_ASSOC);
-
-                    $stmt = $db->connection->prepare("SELECT quantity FROM medicine_order WHERE order_id = ?");
-                    $stmt->bind_param("d", $order_id);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $quantity = $result->fetch_assoc();
-
-
-                    if ($order_items) {
-                        foreach ($order_items as $order_item) {
-//                            $product_quantity = $order_item["num_of_items"];
-                            $med_id = $order_item["med_id"];
-
-                            $stmt = $db->connection->prepare("SELECT * FROM medicine WHERE med_id = ?");
-                            $stmt->bind_param("d", $med_id);
-                            $stmt->execute();
-//                            PaymentsController::logPayment("successfully got a product");
-                            $result = $stmt->get_result();
-                            $medicine = $result->fetch_assoc();
-
-                            if (!$medicine) {
-                                PaymentsController::logPayment("product doesnt exit");
-                                throw new Exception("Item not found");
-                            } else {
-
-
-                                $stock = $medicine["stock"];
-                                if ($quantity > $stock) {
-                                    throw new Exception('Not enough items');
-                                } else {
-                                    $stmt = $db->connection->prepare("UPDATE medicine SET stock = stock - ? WHERE med_id = ?");
-                                    $stmt->bind_param("dd", $quantity, $med_id);
-                                    $stmt->execute();
-                                }
-
-                            }
-                        }
-                        if ($db->connection->errno) {
-                            $db->connection->rollback();
-                            return "";
-                        } else {
-                            $db->connection->commit();
-                        }
-                    }
-                    return "";
-                } catch (Exception $e) {
-                    PaymentsController::logPayment($e);
-                    $db->connection->rollback();
-                    $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
-                    try {
-                        $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
-                        $stripeClient = new StripeClient([
-                            'api_key' => $stripe_secret_key,
-                        ]);
-                        $stripeClient->refunds->create([
-                            'payment_intent' => $paymentIntent->id,
-                            'amount' => $amount,
-                        ]);
-                        return "";
-                    } catch (ApiErrorException $e) {
-                        return "";
-                    }
-                }
-
-            } else {
-//                We need to still create a payment record
-            }
-
-
-        }
-    }
-
-
     public static function paymentSuccess(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -800,6 +612,7 @@ class PaymentsController extends Controller
         }
 
         return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer' => $service_consumer], layoutParams: [
+
             "consumer" => $service_consumer,
             "active_link" => "dashboard-products",
             "title" => "Natural Food Products"
