@@ -87,7 +87,7 @@ class OrdersController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ?  ");
+            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? AND Sent_Request='unsent' ");
             $stmt->bind_param("s",$provider_nic);
 //                                                                                                                                                                                                                                                                                         AND pr.Sent_Request!=1
             $stmt->execute();

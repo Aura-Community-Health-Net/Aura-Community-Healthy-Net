@@ -167,7 +167,7 @@ class MedicinesController extends Controller
          $advance_amount= $total_amount*0.3;
          $note = $_POST["note"];
          $request_id = $_GET["id"];
-         $flag = 1;
+
 
 
 
@@ -189,6 +189,14 @@ class MedicinesController extends Controller
         $stmt->bind_param("ssssi", $totalAmountInCents, $advanceAmountInCents, $available_med_list,$note,$request_id);
         $stmt->execute();
         $result = $stmt->get_result();
+
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET Sent_Request = 'sent' WHERE provider_nic = ?");
+        $stmt->bind_param("s",$provider_nic);
+        $stmt->execute();
+
+
+
+
         header("location: /pharmacy-dashboard/new-orders");
         return "";
 
@@ -449,7 +457,7 @@ public static function RequestForPharmacy():bool|array|string
 
 
 
-            $stmt = $db->connection->prepare("SELECT pr.request_id,pr.available_medicines,pr.advance_amount,pr.total_amount,pr.pharmacy_remark,p.pharmacy_name FROM  pharmacy_request pr INNER JOIN pharmacy p ON pr.provider_nic = p.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
+            $stmt = $db->connection->prepare("SELECT pr.request_id,pr.available_medicines,pr.advance_amount,pr.total_amount,pr.pharmacy_remark,p.pharmacy_name,pr.customer_remark,pr.prescription FROM  pharmacy_request pr INNER JOIN pharmacy p ON pr.provider_nic = p.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
             $stmt->bind_param("si",$nic,$id);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -614,7 +622,7 @@ public static function RequestForPharmacy():bool|array|string
 //           $result = $stmt->get_result();
 //           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ");
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();

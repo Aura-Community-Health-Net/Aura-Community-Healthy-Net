@@ -164,16 +164,18 @@ class PaymentsController extends Controller
 
                 $isOrderPayment = isset($metadata["order_id"]);
                 $isAppointment = isset($metadata["appointment_id"]);
+                $isMedOrderPayment = isset($metadata["med_order_id"]);
                 PaymentsController::logPayment([
                     "isOrder" => $isOrderPayment,
-                    "isAppointment" => $isAppointment
+                    "isAppointment" => $isAppointment,
+                    "isMedOrderPayment" => $isMedOrderPayment
                 ]);
 
                 if ($isOrderPayment) {
 
                     $order_id = $metadata["order_id"];
-                    $consumer_nic = $customer["consumer_nic"] ;
-                    $amount = (float)$body['data']['object']['amount']/100;
+                    $consumer_nic = $customer["consumer_nic"];
+                    $amount = (float)$body['data']['object']['amount'] / 100;
                     PaymentsController::logPayment($order_id);
                     try {
                         $db->connection->begin_transaction();
@@ -262,6 +264,48 @@ class PaymentsController extends Controller
                         }
                         return "";
                     } catch (Exception $e) {
+                        $db->connection->rollback();
+                        $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
+                        try {
+                            $paymentIntent = PaymentIntent::retrieve($body['data']['object']['id']);
+                            $stripeClient = new StripeClient([
+                                'api_key' => $stripe_secret_key,
+                            ]);
+                            $stripeClient->refunds->create([
+                                'payment_intent' => $paymentIntent->id,
+                                'amount' => $amount,
+                            ]);
+                            return "";
+                        } catch (ApiErrorException $e) {
+                            return "";
+                        }
+                    }
+                }
+                else if ($isMedOrderPayment) {
+
+
+                    $med_order_id = $metadata["med_order_id"];
+                    $consumer_nic = $customer["consumer_nic"];
+                    $amount = (float)$body['data']['object']['amount'] / 100;
+                    PaymentsController::logPayment($med_order_id);
+                    try {
+                        $db->connection->begin_transaction();
+                        $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'paid' WHERE order_id = ? AND consumer_nic = ?");
+                        $stmt->bind_param("ds", $med_order_id, $consumer_nic);
+                        $stmt->execute();
+                        $provider_nic = $metadata['provider_nic'];
+                        PaymentsController::logPayment("Updated");
+
+                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->execute();
+                        PaymentsController::logPayment("inserted payment record");
+
+                        $db->connection->commit();
+                        return "";
+                    } catch (Exception $e) {
+                        PaymentsController::logPayment("Error happened");
                         $db->connection->rollback();
                         $stripe_secret_key = $_ENV["STRIPE_SECRET_KEY"];
                         try {
@@ -594,7 +638,10 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $StripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["med_order_id" => $order_id]
+                'metadata' => [
+                    "med_order_id" => $order_id,
+                    "provider_nic" => $provider_nic
+                ]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
@@ -752,7 +799,7 @@ class PaymentsController extends Controller
             $service_consumer = $result->fetch_assoc();
         }
 
-        return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer'=>$service_consumer], layoutParams: [
+        return self::render(view: 'consumer-dashboard-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer' => $service_consumer], layoutParams: [
             "consumer" => $service_consumer,
             "active_link" => "dashboard-products",
             "title" => "Natural Food Products"
