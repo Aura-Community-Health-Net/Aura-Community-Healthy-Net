@@ -35,7 +35,7 @@ if ($medicines === null) {
     echo "
             <div class='pharmacy_request_details'>
                   <img class='prescription_image' src='$prescription' alt=''>
-                  <div class='customer_remark'>$customer_remark</div>      
+                  <div class='customer_remark'>Customer_Remark : $customer_remark</div>      
             </div>";
 } else {
 
