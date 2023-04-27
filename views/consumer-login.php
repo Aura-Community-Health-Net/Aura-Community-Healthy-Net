@@ -18,10 +18,10 @@
     <div class="login-form__left">
         <div class="login-slide-container">
             <div class="login-slide login-slide--active">
-                <img src="/assets/images/doctor-login.jpg" alt="" class="login-slide__img">
+                <img src="/assets/images/doctor-login.webp" alt="" class="login-slide__img">
             </div>
             <div class="login-slide">
-                <img src="/assets/images/pharmacy-login.jpg" alt="" class="login-slide__img">
+                <img src="/assets/images/pharmacy-login.webp" alt="" class="login-slide__img">
             </div>
             <div class="login-slide">
                 <img src="/assets/images/products-login.jpg" alt="" class="login-slide__img">
