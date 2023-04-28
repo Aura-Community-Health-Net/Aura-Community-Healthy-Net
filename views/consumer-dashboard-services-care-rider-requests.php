@@ -33,7 +33,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                     </div>
                 </td>
                 <td>
-                    <form action="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo $provider_nic; ?>"
+                    <form action="/consumer-dashboard/services/care-rider/request/location?provider_nic=<?php echo $provider_nic; ?>"
                           method="POST">
                         <div class="care-rider-dashboard-doctor-profile__top__right">
 
@@ -73,8 +73,8 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                     </div>
 
                                 </div>
-                            <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
-                                <button class="btn"> Request</button>
+
+                                <button class="btn" type="submit"> Request</button>
                         </div>
                     </form>
 

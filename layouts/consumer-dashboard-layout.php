@@ -4,6 +4,7 @@
  * @var array $consumer
  * @var string $active_link
  */
+//print_r($consumer);
 ?>
 
 <!doctype html>
