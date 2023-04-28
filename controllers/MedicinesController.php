@@ -143,11 +143,11 @@ class MedicinesController extends Controller
 
 
 
-            return self::render(view: 'pharmacy-dashboard-neworders-advanceinfo', layout: "pharmacy-dashboard-layout",
+            return self::render(view: 'pharmacy-dashboard-newRequests-advanceinfo', layout: "pharmacy-dashboard-layout",
                 params:[
                     "available_med_details" => $available_med_details,
                 ],
-                layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
+                layoutParams: ["pharmacy" => $pharmacy, "title" => "New Requests", "active_link" => "new-requests"]);
 
         }
     }
@@ -182,7 +182,7 @@ class MedicinesController extends Controller
 //        $pharmacy = $result->fetch_assoc();
 
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=?  WHERE request_id = ? ");
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=?  WHERE request_id = ? AND Sent_Request='unsent'");
 
         $totalAmountInCents = $total_amount * 100;
         $advanceAmountInCents = $advance_amount * 100;
@@ -197,7 +197,7 @@ class MedicinesController extends Controller
 
 
 
-        header("location: /pharmacy-dashboard/new-orders");
+        header("location: /pharmacy-dashboard/new-requests");
         return "";
 
 
@@ -506,11 +506,12 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
+//            $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
 
-            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? AND m.name LIKE '%$search_query%'");
+            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? ");
 
-            $stmt->bind_param("ss",$id,$search_query);
+//            AND m.name LIKE '%$search_query%'
+            $stmt->bind_param("s",$id,);
             $stmt->execute();
             $result = $stmt->get_result();
             $medicines = $result->fetch_all(MYSQLI_ASSOC);

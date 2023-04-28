@@ -71,8 +71,25 @@ class OrdersController extends Controller
         }
     }
 
+    public static function markMedOrderAsPrepared(): string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "pharmacy") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $order_id = $_GET["order_id"] ?? null;
+            $db = new Database();
+            $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'prepared' WHERE provider_nic = ? AND status = 'paid' AND order_id = ?");
+            $stmt->bind_param("sd", $nic, $order_id);
+            $stmt->execute();
+            header("location: /pharmacy-dashboard/orders");
+            return "";
+        }
+    }
 
-    public static function viewNewOrderPage()
+    public static function viewNewMedRequestsPage()
     {
         $provider_nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -88,7 +105,7 @@ class OrdersController extends Controller
             $result = $stmt->get_result();
             $pharmacy = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? AND Sent_Request='unsent' ");
+            $stmt = $db->connection->prepare("SELECT c.profile_picture,c.name,c.mobile_number,pr.prescription,pr.request_id FROM pharmacy_request pr INNER JOIN service_consumer c ON c.consumer_nic = pr.consumer_nic INNER JOIN service_provider p ON p.provider_nic = pr.provider_nic WHERE pr.provider_nic = ? AND Sent_Request='unsent'");
             $stmt->bind_param("s",$provider_nic);
 //                                                                                                                                                                                                                                                                                         AND pr.Sent_Request!=1
             $stmt->execute();
@@ -97,14 +114,73 @@ class OrdersController extends Controller
 
 
 
-            return self::render(view: 'pharmacy-dashboard-neworders', layout: "pharmacy-dashboard-layout", params:[
+            return self::render(view: 'pharmacy-dashboard-newRequests', layout: "pharmacy-dashboard-layout", params:[
 
                 "orders" => $orders
             ] ,layoutParams: [
                 "pharmacy" => $pharmacy,
-                "title" => "New Orders",
-                "active_link" => "new-orders"]);
+                "title" => "New Requests",
+                "active_link" => "new-requests"]);
         }
+
+    }
+
+
+    public static function viewMedicineOrders(){
+
+        $provider_nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$provider_nic || $providerType !== "pharmacy" ) {
+            header("/pharmacy-login");
+        } else {
+
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $pharmacy = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("
+            SELECT s.profile_picture, 
+                   s.name AS consumer_name, 
+                   s.mobile_number, 
+                   r.available_medicines,
+                   o.order_id
+            FROM service_consumer s 
+                INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
+                INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
+                INNER JOIN medicine m on ohm.med_id = m.med_id 
+                INNER JOIN pharmacy_request r on r.consumer_nic = o.consumer_nic
+            WHERE o.provider_nic = ? AND o.status = 'paid';
+            ");
+
+            $stmt->bind_param("s",$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $orders = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+
+            return self::render(view: 'pharmacy-dashboard-Orders', layout: "pharmacy-dashboard-layout", params:[
+                "orders" => $orders
+
+            ] ,layoutParams: [
+                "pharmacy" => $pharmacy,
+                "title" => "Orders",
+                "active_link" => "orders"]);
+        }
+
+
+
+
+
+
+
+
 
     }
 

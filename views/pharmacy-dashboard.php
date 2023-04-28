@@ -3,6 +3,7 @@
  * @var array $pharmacy
  * @var array $medicines
  * @var array $orders_counts
+ * @var array $all_orders_count
  * @var array $medicines_orders_list
  * @var array $order_preview
  * @var string $active_link
@@ -68,7 +69,7 @@ if (!$pharmacy['is_verified']) {
             </div>
 
             <div class='product-order-details'>
-                            <img class='order-product-img' src='$med_prescription' alt=''>
+               <img class='order-product-img' src='$med_prescription' alt=''>
 
             </div>
         </div>
@@ -79,25 +80,34 @@ if (!$pharmacy['is_verified']) {
 
     </div>
 
-    <?php foreach ($orders_counts as $count) {
-        $order_count = $count["order_count"];
-        echo "
+
          
 
     <div class='dashboard__top-cards'>
         <h3>Order Count</h3>
         <div class='order-count__details'>
+            <?php foreach ($orders_counts as $count) {
+                $order_count = $count["order_count"];
+                echo "
             <h3>New Orders</h3>
-            <p class='new-order-count'>15</p>
+            <p class='new-order-count'>$order_count</p>
         </div>
+        ";
+            } ?>
+
+            <?php foreach ($all_orders_count as $all_order){
+                $all_orders_count = $all_order["all_order_count"];
+                echo "     
         <div class='order-count__details'>
             <h3>All Orders</h3>
             <p class='all-order-count'>$order_count</p>
-        </div>
+        </div>";
+            }
+            ?>
+
     </div>
 
-";
-    } ?>
+
 </div>
 
 <div class="dashboard__bottom-container">

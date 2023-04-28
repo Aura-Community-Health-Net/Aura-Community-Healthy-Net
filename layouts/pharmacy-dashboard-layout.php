@@ -81,13 +81,24 @@
                 </li>
 
                 <li>
-                    <a href="/pharmacy-dashboard/new-orders">
-                        <button class="navbtn" <?php echo $active_link === 'new-orders' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
-                            <span class="nav-title">New Orders</span>
+                    <a href="/pharmacy-dashboard/new-requests">
+                        <button class="navbtn" <?php echo $active_link === 'new-requests' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-code-pull-request"></i></span>
+                            <span class="nav-title">New Requests</span>
                         </button>
                     </a>
                 </li>
+
+                <li>
+                    <a href="/pharmacy-dashboard/orders">
+                        <button class="navbtn" <?php echo $active_link === 'orders' ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
+                        <span class="nav-title">Orders</span>
+                        </button>
+                    </a>
+                </li>
+
+
 
                 <li>
                     <a href="/pharmacy-dashboard/analytics">

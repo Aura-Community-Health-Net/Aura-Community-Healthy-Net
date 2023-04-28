@@ -47,7 +47,7 @@
       ?>
 
 
-     <form class="neworders-advanceinfo-submit-form" action="<?php  echo "/pharmacy-dashboard/new-orders/view?id=$request_id";?>" method="post">
+     <form class="neworders-advanceinfo-submit-form" action="<?php  echo "/pharmacy-dashboard/new-requests/view?id=$request_id";?>" method="post">
        <div class='pharmacy-neworders-advanceinfo__order-med-details'>
               <div class='pharmacy-neworders-advanceinfo__order-med-details__names'>
                  <div class='pharmacy-neworders-advanceinfo__order-med-details__names__availableMedList'>
