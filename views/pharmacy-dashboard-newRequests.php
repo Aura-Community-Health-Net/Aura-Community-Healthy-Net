@@ -51,7 +51,7 @@
                 
              
                <div class='pharmacy-neworders-blocks__adinfo-btn'>
-                       <button class='adinfo-btn' id='add-info'><a href='/pharmacy-dashboard/new-orders/view?id=$id'>Send Advance Info</a> </button>
+                       <button class='adinfo-btn' id='add-info'><a href='/pharmacy-dashboard/new-requests/view?id=$id'>Send Advance Info</a> </button>
                </div>
            
            

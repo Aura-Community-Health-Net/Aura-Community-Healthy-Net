@@ -130,6 +130,14 @@ class DashboardController extends Controller
             $orders_count = $result->fetch_all(MYSQLI_ASSOC);
 
 
+
+            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS all_order_count FROM medicine_order WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $all_orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
+
             $stmt = $db->connection->prepare("SELECT s.profile_picture, 
                    s.name AS consumer_name,  
                    s.mobile_number
@@ -167,6 +175,7 @@ class DashboardController extends Controller
                 'pharmacy' => $pharmacy,
                 'medicines' => $medicines_lists,
                 'orders_counts' => $orders_count,
+                'all_orders_count' => $all_orders_count,
                 'medicines_orders_list' => $medicines_orders_list,
                 'order_preview' => $order_preview
             ], layoutParams: [

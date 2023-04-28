@@ -1,23 +1,25 @@
 .pharmacy_request__left{
     display: flex;
-    flex-direction: column;
 
     align-items: center;
-    margin-left: 6rem;
-    margin-top: 2rem;
-    background-color:#d9d9d9;
-    border-radius: 5px;
+    justify-content: center;
+    padding: 0.7rem;
+    background-color:#EFEEFD;
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: 60rem;
 }
 
 
 .pharmacy_request__left__background{
-
+background-color: #807878;
 }
 
 
 .pharmacy_request__left__data{
     display: flex;
     gap: 2rem;
+    align-items: center;
 
 }
 
