@@ -47,7 +47,7 @@ html {
             rgba(0, 0, 0, 0.4) 20%,
             rgba(0, 0, 0, 0.7) 100%
     ),
-    url("/assets/images/landing.jpg");
+    url("/assets/images/landing.webp");
     width: 100%;
     height: calc(100vh);
     backdrop-filter: blur(2px);
