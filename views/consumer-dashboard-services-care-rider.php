@@ -37,7 +37,7 @@
                             <p><span>Mobile No </span> <?php echo $value['mobile_number']?></p>
                         </div>
                         <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
-                            <button > Request</button>
+                            <button class="btn"> Request</button>
                         </a>
                     </div>
                 </div>

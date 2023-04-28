@@ -13,7 +13,7 @@ class SiteController extends Controller
         $params = [
             'name' => "Aura Community Health Net"
         ];
-        return self::render(view: 'site-home',params:  $params);
+        return self::render(view: 'site-home',params:  $params, layoutParams: ["title" => "Aura | Home"]);
     }
 
     public static function contact(): array|bool|string

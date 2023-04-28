@@ -13,7 +13,7 @@ $nic = $_SESSION["nic"];
 $userType = $_SESSION["user_type"];
 if (!$nic || $userType !== "consumer")
 {
-header("location: /provider-login");
+header("location: /login");
 return "";
 }
 
@@ -49,35 +49,15 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer")
         {
-            header("location: /provider-login");
+            header("location: /login");
             return "";
         }
 
         else {
 
-//            $provider_nic = $_GET['provider_nic'];
-//            $pickup_lat = $_POST['pickup-lat'];
-//            $pickup_lng = $_POST['pickup-lng'];
-//            $drop_lat = $_POST['drop-lat'];
-//            $drop_lng = $_POST['drop-lng'];
-//            $pickup_time= $_POST['pickup-time'];
-//
-//            $location1 = json_encode([
-//                "lat" => $pickup_lat,
-//                "lng" => $pickup_lng
-//            ]);
-//
-//            $location2 = json_encode([
-//                "lat" => $drop_lat,
-//                "lng" => $drop_lng
-//            ]);
             $db = new Database();
 
-//            $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,done,confirmation,provider_nic,consumer_nic
-//                     )VALUES (?,?,?,?,?,?,?)");
-//            $stmt->bind_param("ssss", $pickup_time,$location1,$location2,$done,$confirmation,$provider_nic,$nic, );
-//            $stmt->execute();
-//            $result = $stmt->get_result();
+//
 
             $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN care_rider_time_slot on care_rider.provider_nic = care_rider_time_slot.provider_nic WHERE service_provider.provider_nic =?");
             $stmt->bind_param("s", $provider_nic);
@@ -123,7 +103,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
         $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer")
         {
-            header("location: /provider-login");
+            header("location: /login");
             return "";
         }
 
@@ -173,30 +153,24 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
 
 
 
-//    public static function getCareRiderPaymentsPage(): bool|array|string
-//    {
-//        $nic = $_SESSION["nic"];
-//        $userType = $_SESSION["user_type"];
-//        if (!$nic || $userType !== "consumer")
-//        {
-//            header("location: /provider-login");
-//            return "";
-//        }
-//
-//        else {
-//            $db = new Database();
-//            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-//            $stmt->bind_param("s", $nic);
-//            $stmt->execute();
-//            $result = $stmt->get_result();
-//            $consumer = $result->fetch_assoc();
-//        }
-//
-//        return self::render(view: 'consumer-dashboard-care-rider-payment', layout: "consumer-dashboard-layout", layoutParams: [
-//            "consumer" => $consumer,
-//            "active_link" => "requests",
-//            "title" => "Care Rider"]);
-//    }
+    public static function getCareRideRequestSentPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        if (!$nic || $userType !== "consumer")
+        {
+            header("location: /provider-login");
+            return "";
+        }
+
+        else {
+
+        }
+
+        return self::render(view: 'consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout", layoutParams: [
+            "active_link" => "requests",
+            "title" => "Care Rider"]);
+    }
 
     public static function addConsumerCareRiderFeedback():bool|array|string {
 
