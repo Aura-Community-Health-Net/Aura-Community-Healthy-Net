@@ -71,13 +71,13 @@ function attachLocationButtonListener(button) {
         const newMarker = new MapMarker({
             map,
             position,
-            draggable: true, title: "destination", icon: {
+            draggable: false, title: "destination", icon: {
                 url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
             }
         })
 
     });
-
 }
+
 
 locationButtons.forEach(attachLocationButtonListener);
