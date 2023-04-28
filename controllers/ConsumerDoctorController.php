@@ -136,6 +136,7 @@ class ConsumerDoctorController extends Controller
             return "";
         } else {
 
+
             $provider_nic = $_GET['provider_nic'];
             $doctorFeedback = $_POST['doctor-feedback'];
 

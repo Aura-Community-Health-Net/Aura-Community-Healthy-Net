@@ -150,7 +150,7 @@ $app->router->post('/doctor-dashboard/timeslots/add', [DoctorTimeslotsController
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
 $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
-$app->router->get('/doctor-dashboard/appointments-consulted', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+$app->router->post('/doctor-dashboard/appointments-consulted', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
 //$app->router->get('/doctor-dashboard/appointments-location', [DoctorAppointmentsController::class, 'DoctorAppointmentsLocationProcess']);
 
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
