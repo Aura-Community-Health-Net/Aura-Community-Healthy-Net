@@ -1,6 +1,6 @@
 .add-cart-items{
     background-color: #D9D9F9;
-    margin: 2rem;
+    margin: 1rem;
     padding: 1rem;
     border-radius: 8px;
 }
@@ -8,7 +8,7 @@
 .cart-item{
     display: flex;
     background-color: white;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
     margin: 1rem;
     padding: 0.5rem 3rem;
     border-radius: 8px;
@@ -25,6 +25,7 @@
 .cart-item-name{
     font-weight: bolder;
     font-size: 1.3rem;
+    width: 20rem;
 }
 
 .cart-item-price{
@@ -48,4 +49,12 @@
     font-weight: bolder;
     color: #00005C;
     margin-bottom: 0.5rem;
+    width: 9rem;
+    margin-right: 2rem;
+}
+
+.empty_cart{
+    text-align: center;
+    padding: 2rem;
+    color: #00005C;
 }

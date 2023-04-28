@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
 
-
+    <link rel="icon" href="/assets/images/logo-lan.png">
     <title>
         <?php echo $title; ?>
     </title>
