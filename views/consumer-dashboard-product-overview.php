@@ -68,13 +68,14 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
             $rest_product_quantity = $other_product['quantity'];
             $rest_product_quantity_unit = $other_product['quantity_unit'];
             $rest_product_price = $other_product['price']/100;
+            $other_product_id = $other_product['product_id'];
             echo "<div class='overview-items'>
                 <img src='$rest_product_image' alt=''>
                 <div>
-                    <p class='overview-items__name'>$rest_product_name </p>
+                    <a class='overview-items__name'  href='/products/view?id=$other_product_id'>$rest_product_name </a>
                     <p>$rest_product_quantity $rest_product_quantity_unit</p>
                     <p class='overview-items__price'>Rs. $rest_product_price</p>
-                    <button class='add-to-cart-btn'><i class='fa-solid fa-cart-plus'></i></button>
+                    <button id='add-to-cart-btn' class='add-to-cart-btn' data-id='$other_product_id'><i class='fa-solid fa-cart-plus'></i></button>
                 </div>
 
                 </div>";
