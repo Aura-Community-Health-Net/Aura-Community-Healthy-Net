@@ -37,30 +37,23 @@
     display: flex;
     gap: 5rem;
 }
-.doctor-appointments__buttons{
+.doctor-appointments__buttons-consulted button{
     display: flex;
     gap: 5rem;
     margin-bottom: 1rem;
-}
-/*.doctor-appointments__right__top{*/
-/*    display: flex;*/
-/*    background-color: #EFEEFD;*/
-/*    border-radius: 8px;*/
-/*    padding: 2rem;*/
-/*}*/
-/*.doctor-appointments__right__bottom{*/
-/*    display: flex;*/
-/*    background-color: #D9D9D9;*/
-/*}*/
-.doctor-appointments__buttons button{
+    /*justify-content: center;*/
     border: none;
     color: white;
     padding: 5px 32px;
     text-align: center;
-    text-decoration: none;
+    /*text-decoration: none;*/
     font-size: 1rem;
-    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 200px;
 }
+
 .doctor-appointments__left__data img{
     width: 35px;
     height: 35px;
@@ -68,29 +61,8 @@
     margin-top: 5px;
     margin-left: 5px;
 }
-/*.doctor-appointments__right img{*/
-/*    width: 300px;*/
-/*    height: 300px;*/
-/*    background-color: #D9D9D9;*/
-/*    padding: 1rem;*/
-/*    margin: 0 auto;*/
-/*}*/
 .doctor-appointments__left th{
     height: 30px;
-}
-.doctor-appointments__buttons button{
-    cursor: pointer;
-    border-color: white;
-    color: white;
-    /*height: 30px;*/
-    border-radius: 8px;
-    margin-top: 10px;
-    margin-left: 40px;
-    font-size: 1rem;
-}
-.doctor-appointments__buttons-consulted{
-    align-items: center;
-    justify-content: center;
 }
 
 

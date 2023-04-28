@@ -56,7 +56,7 @@ class DoctorAppointmentsController extends Controller
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
 
-        //print_r($_GET);
+//        print_r($_GET);
         if (!$nic || $providerType != "doctor") {
             header("location: /provider-login");
             return "";
