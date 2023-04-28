@@ -65,13 +65,13 @@
 {
     display: flex;
     flex-direction: row;
-    margin-left: 250px;
     padding: 0.7rem;
     background-color: #EFEEFD;
-    border-radius: 0.6rem;
-    width:850px;
+    border-radius: 0.8rem;
     align-items: center;
     align-content: center;
+    justify-content: center;
+    margin: 0.1rem 5rem;
 
 }
 

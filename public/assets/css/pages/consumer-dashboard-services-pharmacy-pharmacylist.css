@@ -15,7 +15,7 @@
 #services-pharmacy-pharmacyName
 {
     font-weight: bold;
-    width: 12rem;
+    width: 20rem;
 }
 
 #services-pharmacy-MedicineImage img
@@ -34,8 +34,6 @@
 .pharmacy-view-btn
 {
     background-color: #00005C;
-    width: 3.2cm;
-    height: 0.7cm;
     border: none;
     border-radius: 0.6rem;
     cursor: pointer;
@@ -45,7 +43,6 @@
 
 .pharmacy-request{
     background-color: #00005C;
-    height: 0.7cm;
     border: none;
     border-radius: 0.6rem;
     cursor: pointer;
@@ -101,6 +98,6 @@
 }
 
 .sent-request__container{
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-right: 4rem;
 }
