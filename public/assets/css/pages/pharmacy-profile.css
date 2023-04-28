@@ -1,6 +1,6 @@
 .pharmacy-profile
 {
-    background-color:#d9d9d9;
+    background-color:#EFEEFD;
     width: 900px;
     height: 500px;
     margin-left: 150px;
@@ -65,13 +65,13 @@
 {
     display: flex;
     flex-direction: row;
-    margin-left: 250px;
     padding: 0.7rem;
-    background-color: #D9D9D9;
-    border-radius: 0.6rem;
-    width:850px;
+    background-color: #EFEEFD;
+    border-radius: 0.8rem;
     align-items: center;
     align-content: center;
+    justify-content: center;
+    margin: 0.1rem 5rem;
 
 }
 

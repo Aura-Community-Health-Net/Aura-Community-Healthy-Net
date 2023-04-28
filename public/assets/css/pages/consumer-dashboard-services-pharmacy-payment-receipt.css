@@ -174,3 +174,13 @@
 .advance-info-submit-button a:visited {
     color: #fff;
 }
+
+.prescription_image{
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+.customer_remark{
+    font-weight: bold;
+}

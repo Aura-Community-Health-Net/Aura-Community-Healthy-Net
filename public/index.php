@@ -101,9 +101,11 @@ $app->router->post('/pharmacy-dashboard/medicines/update',[MedicinesController::
 //$app->router->post('/pharmacy-dashboard/medicines/update-medicines',[MedicinesController::class,'editMedicines']);
 
 
-$app->router->get('/pharmacy-dashboard/new-orders', [OrdersController::class, 'viewNewOrderPage']);
-$app->router->get('/pharmacy-dashboard/new-orders/view', [MedicinesController::class, 'getSendMedicineAdvanceInfoForm']);
-$app->router->post('/pharmacy-dashboard/new-orders/view',[MedicinesController::class,'sendMedicineAdvanceInfo']);
+$app->router->get('/pharmacy-dashboard/new-requests', [OrdersController::class, 'viewNewMedRequestsPage']);
+$app->router->get('/pharmacy-dashboard/new-requests/view', [MedicinesController::class, 'getSendMedicineAdvanceInfoForm']);
+$app->router->post('/pharmacy-dashboard/new-requests/view',[MedicinesController::class,'sendMedicineAdvanceInfo']);
+$app->router->get('/pharmacy-dashboard/orders',[OrdersController::class,'viewMedicineOrders']);
+$app->router->post('/pharmacy-dashboard/orders/mark-as-done', [OrdersController::class, 'markMedOrderAsPrepared']);
 
 
 
@@ -150,7 +152,7 @@ $app->router->post('/doctor-dashboard/timeslots/add', [DoctorTimeslotsController
 $app->router->post('/doctor-dashboard/timeslots/delete', [DoctorTimeslotsController::class, 'deleteTimeslot']);
 $app->router->post('/doctor-dashboard/timeslots/edit', [DoctorTimeslotsController::class, 'editTimeslot']);
 $app->router->get('/doctor-dashboard/appointments', [DoctorAppointmentsController::class, 'getDoctorAppointmentsPage']);
-$app->router->get('/doctor-dashboard/appointments-consulted', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
+$app->router->post('/doctor-dashboard/appointments-consulted', [DoctorAppointmentsController::class, 'DoctorAppointmentsProcess']);
 //$app->router->get('/doctor-dashboard/appointments-location', [DoctorAppointmentsController::class, 'DoctorAppointmentsLocationProcess']);
 
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
@@ -209,6 +211,7 @@ $app->router->post('/payments/verify', [PaymentsController::class, 'verifyPaymen
 $app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calculateChargeForDoctorFees']);
 $app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
+$app->router->get('/medicines-checkout/success',[PaymentsController::class,'medicinePaymentSuccess']);
 //  Run the application
 $app->run();
 
