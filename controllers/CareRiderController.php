@@ -142,10 +142,10 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $stmt->execute();
             $result = $stmt->get_result();
 
+            header("location: /consumer-dashboard/services/care-rider/request/sent");
 
-            header("location: /consumer-dashboard/services/care-rider/request?provider_nic=$provider_nic");
         }
-        return self::render(view: 'consumer-dashboard-services-care-rider-requests', layout: "consumer-dashboard-layout", params:[], layoutParams: [
+        return self::render(view: 'consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout", params:[], layoutParams: [
             "active_link" => "requests",
             "title" => "Care Rider"]);
     }
@@ -154,21 +154,31 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
 
 
     public static function getCareRideRequestSentPage(): bool|array|string
+
     {
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
+//        $provider_nic = $_GET["provider_nic"];
+//        $userType = $_SESSION["user_type"];
         if (!$nic || $userType !== "consumer")
         {
-            header("location: /provider-login");
+            header("location: /login");
             return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $service_consumer = $result->fetch_assoc();
+
         }
+//        header("location: /consumer-dashboard/services/care-rider/request/sent");
 
-        else {
 
-        }
-
-        return self::render(view: 'consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout", layoutParams: [
-            "active_link" => "requests",
+        return self::render(view: '/consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout",params: ["consumer"=>$service_consumer], layoutParams: [
+            "consumer" => $service_consumer,
+            "active_link" => "consumer",
             "title" => "Care Rider"]);
     }
 
