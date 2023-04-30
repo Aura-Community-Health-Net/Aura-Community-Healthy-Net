@@ -23,17 +23,30 @@ const locationButtons = document.querySelectorAll(".location-btn");
 
 let map;
 let MapMarker;
+let newMarker;
+let directionsService;
+let directionsRenderer;
+let polyline;
+let doctorPosition;
 
 async function initMap(lat, lng) {
     //@ts-ignore
+    doctorPosition = {lat, lng}
     const {Map: GoogleMap} = await google.maps.importLibrary("maps");
     const {Marker} = await google.maps.importLibrary("marker");
 
-    MapMarker= Marker;
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+
+    MapMarker = Marker;
     map = new GoogleMap(document.getElementById("map"), {
         center: {lat: lat, lng: lng},
         zoom: 17,
     });
+
+    directionsRenderer.setMap(map);
+
+
     const marker1 = new Marker({
         map: map,
         position: {lat: lat, lng: lng},
@@ -63,20 +76,69 @@ function attachLocationButtonListener(button) {
     button.addEventListener("click", function () {
 
         const position = {
-            lat:Number(button.dataset.lat),
+            lat: Number(button.dataset.lat),
             lng: Number(button.dataset.lng)
         }
 
         map.panTo(position)
-        const newMarker = new MapMarker({
-            map,
-            position,
-            draggable: false, title: "destination", icon: {
-                url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-            }
-        })
-
+        if (newMarker) {
+            newMarker.setPosition(position);
+        } else {
+            newMarker = new MapMarker({
+                map,
+                position,
+                draggable: false, title: "destination", icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                }
+            })
+        }
+        clearPolyline()
+        drawPolyline(doctorPosition, position)
     });
+}
+
+function drawPolyline(origin, destination) {
+    // Calculate the route using the DirectionsService
+    // const directionsService = new google.maps.DirectionsService();
+    const request = {
+        origin,
+        destination,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+            const distance = result.routes[0].legs[0].distance.value; // Get the driving distance in meters
+            console.log(`Driving distance: ${distance} meters`);
+            const points = [];
+            const legs = result.routes[0].legs;
+            for (let i = 0; i < legs.length; i++) {
+                const steps = legs[i].steps;
+                for (let j = 0; j < steps.length; j++) {
+                    const nextSegment = steps[j].path;
+                    for (let k = 0; k < nextSegment.length; k++) {
+                        points.push(nextSegment[k]);
+                    }
+                }
+            }
+            // Create the Polyline object
+            polyline = new google.maps.Polyline({
+                path: points,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+            // Set the Polyline object on the map
+            polyline.setMap(map);
+        }
+    });
+}
+
+function clearPolyline() {
+    // Check if the Polyline object exists and remove it from the map
+    if (polyline) {
+        polyline.setMap(null);
+    }
 }
 
 
