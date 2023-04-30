@@ -12,6 +12,7 @@
 @import "components/tables.css";
 @import "components/notifier.css";
 @import "components/calender.css";
+@import "components/pagination.css";
 
 /* Importing Pages */
 @import "pages/product-seller-choose-category.css";

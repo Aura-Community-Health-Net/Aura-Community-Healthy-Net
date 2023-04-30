@@ -89,7 +89,7 @@ $app->router->post('/product-seller-dashboard/orders/mark-as-done', [OrdersContr
 $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::class, 'getProductSellerFeedbackPage']);
 $app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
 $app->router->get('/product-seller-dashboard/analytics', [AnalyticsController::class, 'getProductSellerAnalyticsPage']);
-
+$app->router->get('/product-seller-dashboard/analytics/revenue-chart', [AnalyticsController::class, 'getProductSellerAnalyticsRevenueChart']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
