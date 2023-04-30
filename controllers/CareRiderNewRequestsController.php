@@ -32,12 +32,12 @@ class CareRiderNewRequestsController extends Controller
         $requests = $result->fetch_all(MYSQLI_ASSOC);
 
 
-        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.provider_nic = ride_request.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = 0 && ride_request.done = 0");
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.request_id = ride_request.request_id INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = 0 && ride_request.done = 0");
         $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();
         $request_details = $result->fetch_all(MYSQLI_ASSOC);
-        //print_r($request_details);die();
+//        print_r($request_details);die();
 
         return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details ] ,layoutParams: array("care_rider" => $careRider,
             "active_link" => "new-requests",
