@@ -1,7 +1,6 @@
 .consumer-product__grid-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: 80%;
     margin: 3rem;
     gap: 2rem;
 }
