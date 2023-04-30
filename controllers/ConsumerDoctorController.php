@@ -103,13 +103,20 @@ class ConsumerDoctorController extends Controller
             $result = $stmt->get_result();
             $doctor_qualifications = $result->fetch_all(MYSQLI_ASSOC);
 
-            //print_r($doctor_qualifications[0]['qualifications']);
-
             $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ? && appointment_id IS NULL");
             $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
-            $time_slot = $result->fetch_all(MYSQLI_ASSOC);
+            $time_slot1 = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot JOIN appointment on doctor_time_slot.appointment_id = appointment.appointment_id WHERE doctor_time_slot.provider_nic = ? && appointment.status = 'unpaid'");
+            $stmt->bind_param("s", $provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $time_slot2 = $result->fetch_all(MYSQLI_ASSOC);
+
+            $time_slot = array_merge($time_slot1,$time_slot2);
+//            print_r($time_slot);die();
 
             $stmt = $db->connection->prepare("SELECT * FROM feedback INNER JOIN service_consumer on feedback.consumer_nic = service_consumer.consumer_nic WHERE feedback.provider_nic = ?");
             $stmt->bind_param("s", $provider_nic);
@@ -181,22 +188,35 @@ class ConsumerDoctorController extends Controller
             //print_r($_POST);
             $done = 0;
 
+
             $db = new Database();
-            $stmt = $db->connection->prepare("INSERT INTO appointment (
+
+
+//            $stmt = $db->connection->prepare("SELECT appointment_id FROM doctor_time_slot WHERE slot_number = ?");
+//            $stmt->bind_param("i", $slot_number);
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//            $appoint_id = $result->fetch_assoc();
+
+
+//            if(empty($appoint_id)){
+                $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
                       provider_nic,
                       consumer_nic, location)VALUES (?,?,?,?)");
-            $stmt->bind_param("isss", $done,$provider_nic,$nic, $location);
-            $stmt->execute();
-            $result = $stmt->get_result();
+                $stmt->bind_param("isss",$done,$provider_nic, $nic, $location);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            $result2 = $stmt->insert_id;
-            $appointment_id = $result2;
-            $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
+                $result2 = $stmt->insert_id;
+                $appointment_id = $result2;
+                $stmt = $db->connection->prepare("UPDATE doctor_time_slot SET appointment_id = ?
                                WHERE slot_number = $slot_number");
-            $stmt->bind_param("s",$appointment_id );
-            $stmt->execute();
-            $result = $stmt->get_result();
+                $stmt->bind_param("s",$appointment_id );
+                $stmt->execute();
+                $result = $stmt->get_result();
+//            }
+
 
             header("location: /consumer-dashboard/services/doctor/profile/payment?appointment_id=$appointment_id");
         }
