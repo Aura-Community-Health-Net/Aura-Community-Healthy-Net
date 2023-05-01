@@ -45,14 +45,17 @@ $products = is_null($products) ? [] : $products;
             <h3>$business_name</h3>
             <a href='/products/view?id=$product_id' class='product-select-btn'>Select</a>
         </div>
-        
     </div>";
     }
     ?>
-
-    
-<!--
--->
-
-
 </div>
+
+<div class='pagination-numbers'>
+    <a class="pagination-button">1</a>
+    <a class="pagination-button pagination-button--active">2</a>
+    <a class="pagination-button">3</a>
+</div>
+
+
+
+

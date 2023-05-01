@@ -1,3 +1,62 @@
 .product-seller-analytics__container{
-    text-align: center;
+    background-color: #EFEEFD;
+    margin: 2rem;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 100vh;
+    position: relative;
+}
+
+.revenue-chart{
+    background-color: white;
+    border-radius: 8px;
+    max-height: 300px;
+}
+
+.order-count-chart{
+    background-color: white;
+    border-radius: 8px;
+    max-height: 250px;
+    max-width: 50%;
+
+}
+
+.products-seller-analytics-dropdown{
+    width: 10rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.product-seller-analytics__top-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 2rem;
+    padding-inline: 1rem;
+    margin-top: 1.5rem;
+}
+
+.product-vs-revenue-chart{
+    background-color: white;
+    border-radius: 8px;
+    max-height: 250px;
+    max-width: 50%;
+}
+
+.product-seller-analytics-chart__title{
+    display: flex;
+    position: absolute;
+    top: 2.6rem;
+}
+
+.product-seller-analytics-chart__title h3{
+    gap: 5rem;
+}
+
+h3{
+    margin: 1rem;
 }

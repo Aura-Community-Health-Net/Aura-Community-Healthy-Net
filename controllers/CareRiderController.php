@@ -59,7 +59,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
 
 //
 
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN care_rider_time_slot on care_rider.provider_nic = care_rider_time_slot.provider_nic WHERE service_provider.provider_nic =?");
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN care_rider_time_slot on care_rider.provider_nic = care_rider_time_slot.provider_nic WHERE service_provider.provider_nic =? && care_rider_time_slot.request_id IS NULL ");
             $stmt->bind_param("s", $provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -116,7 +116,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $drop_lng = $_POST['drop-lng'];
             $pickup_time= $_POST['pickup-time'];
             $distance= $_POST['distance'];
-
+            $slot_number = $_POST['available-time-slot'];
             $location1 = json_encode([
                 "lat" => $pickup_lat,
                 "lng" => $pickup_lng
@@ -136,6 +136,14 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $stmt->bind_param("ssssssss", $pickup_time,$location1,$location2,$distance,$done,$confirmation,$provider_nic,$nic, );
             $stmt->execute();
             $result = $stmt->get_result();
+
+            $req_id = $stmt->insert_id;
+            $stmt = $db->connection->prepare("UPDATE care_rider_time_slot SET request_id = ?
+                               WHERE slot_number = $slot_number");
+            $stmt->bind_param("s",$req_id );
+            $stmt->execute();
+            $result = $stmt->get_result();
+
             $stmt = $db->connection->prepare("INSERT INTO ride (cost, distance, provider_nic, consumer_nic)
                                VALUES (?,?,?,?)");
             $stmt->bind_param("ssss", $cost,$distance,$provider_nic,$nic);
