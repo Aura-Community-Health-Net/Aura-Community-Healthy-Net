@@ -1,15 +1,22 @@
 <div class="product-seller-analytics__container">
-    <select class="products-seller-analytics-dropdown" name="" id="">
+    <select class="products-seller-analytics-dropdown" name="" id="product-analytics-dropdown">
         <option value="this_week">This Week</option>
         <option value="this_month">This Month</option>
         <option value="past_six_months">Past six months</option>
         <option value="all_time">All</option>
     </select>
 
-    <div class="product-seller-analytics__top-container">
+<!--    <div class="product-seller-analytics-chart__title">-->
+<!--        <h3>Order Count Chart</h3>-->
+<!--        <h3>Product Vs Revenue</h3>-->
+<!--    </div>-->
 
+    <div class="product-seller-analytics__top-container">
+        <canvas id="order-count-chart" class="order-count-chart"></canvas>
+        <canvas id="product-vs-revenue-chart" class="product-vs-revenue-chart"></canvas>
     </div>
-    <canvas id="order-count-chart" class="order-count-chart"></canvas>
+
+    <h3>Revenue</h3>
     <canvas id="revenue-chart" class="revenue-chart"></canvas>
 
 
