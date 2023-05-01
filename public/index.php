@@ -91,6 +91,7 @@ $app->router->get('/product-seller-dashboard/profile', [ProfileController::class
 $app->router->get('/product-seller-dashboard/analytics', [AnalyticsController::class, 'getProductSellerAnalyticsPage']);
 $app->router->get('/product-seller-dashboard/analytics/revenue-chart', [AnalyticsController::class, 'getProductSellerAnalyticsRevenueChart']);
 $app->router->get('/product-seller-dashboard/analytics/order-count-chart', [AnalyticsController::class, 'getProductSellerAnalyticsOrderCount']);
+$app->router->get('/product-seller-dashboard/analytics/product-vs-revenue-chart', [AnalyticsController::class, 'getProductSellerRevenueVsProductPercentage']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
