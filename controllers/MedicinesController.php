@@ -363,7 +363,7 @@ public static function RequestForPharmacy():bool|array|string
 //add provider nic for bind param
 
         $stmt->execute();
-               header("location: /consumer-dashboard/services/pharmacy");
+               header("location: /consumer-dashboard/services/pharmacy/request-details");
         return "";
 
 
@@ -623,7 +623,7 @@ public static function RequestForPharmacy():bool|array|string
 //           $result = $stmt->get_result();
 //           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ");
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();

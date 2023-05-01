@@ -1,13 +1,14 @@
 .consumer-pharmacy-neworders-advanceinfo
 {
-    background-color: #D9D9D9;
-    height: 550px;
+    background-color:#D9D9F9;
+    height: 400px;
     width:800px;
     /*    width:1150px;*/
     margin-left: 300px;
     margin-top: 40px;
     border-radius: 1rem;
     padding-top: 3rem;
+    padding-bottom: 1rem;
 }
 
 
@@ -177,10 +178,39 @@
 
 .prescription_image{
     width: 300px;
-    align-items: center;
     justify-content: center;
+    display: flex;
+    margin: 0 auto;
+
 }
 
 .customer_remark{
     font-weight: bold;
+    padding-block: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    padding-left: 1rem;
+    /*justify-content: center;*/
+}
+
+.pharmacy_request_details
+{
+    background-color: #D9D9F9;
+    /*padding-left:9rem;*/
+    /*padding-bottom: 1rem;*/
+    /*margin-bottom: 1rem;*/
+
+    margin: 0 auto;
+}
+
+
+.pharmacy_reply{
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-left: 8rem;
+}
+
+.customer_remark_data{
+    font-weight: normal;
 }

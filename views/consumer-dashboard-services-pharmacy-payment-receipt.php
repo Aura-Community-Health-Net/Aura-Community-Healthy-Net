@@ -31,11 +31,11 @@ $request_id = $payment_details['request_id'];
 <?php
 
 if ($medicines === null) {
-    echo "Pharmacy hasn't replied yet";
+    echo "<div class='pharmacy_reply'>Pharmacy has not replied yet</div>";
     echo "
             <div class='pharmacy_request_details'>
                   <img class='prescription_image' src='$prescription' alt=''>
-                  <div class='customer_remark'>Customer_Remark : $customer_remark</div>      
+                  <div class='customer_remark'>Customer Remark : <p class='customer_remark_data'>$customer_remark</p></div>      
             </div>";
 } else {
 
@@ -91,3 +91,4 @@ if ($medicines === null) {
 </div>
 ?>";
 }
+
