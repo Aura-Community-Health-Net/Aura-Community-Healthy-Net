@@ -191,7 +191,59 @@ class AnalyticsController extends Controller
             return json_encode($records);
         }
 
+    }
 
+    public static function getProductSellerAnalyticsOrderCount(): bool|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
+            return "";
+        } else{
+            $db = new Database();
+            $chart_time = $_GET["period"] ?? "all_time";
+
+            $stmt = "";
+            switch ($chart_time){
+                case "this_week";
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE provider_nic = ? 
+                AND YEAR(created_at) = YEAR(NOW()) 
+                AND WEEK(created_at, 1) = WEEK(NOW(), 1)
+                GROUP BY DATE(created_at)");
+                break;
+
+                case ("this_month");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE provider_nic = ? 
+                AND YEAR(created_at) = YEAR(NOW()) 
+                AND MONTH(created_at) = MONTH(NOW())
+                GROUP BY DATE(created_at)");
+                break;
+
+                case ("past_six_months");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE provider_nic = ? 
+                AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                GROUP BY DATE(created_at)");
+                break;
+
+                case ("all_time");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE provider_nic = ? 
+                GROUP BY DATE(created_at)");
+                break;
+            }
+
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $order_records = $result->fetch_all(MYSQLI_ASSOC);
+            header("Content-Type: application/json");
+            return json_encode($order_records);
+
+        }
     }
 
 

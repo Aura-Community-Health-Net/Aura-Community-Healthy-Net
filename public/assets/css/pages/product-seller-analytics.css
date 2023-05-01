@@ -1,3 +1,30 @@
 .product-seller-analytics__container{
-    text-align: center;
+    background-color: #EFEEFD;
+    margin: 2rem;
+    border-radius: 8px;
+    padding: 2rem;
+    max-height: 100vh;
+}
+
+.revenue-chart{
+    background-color: white;
+    margin: 2rem;
+    border-radius: 8px;
+    max-height: 40%;
+}
+
+.order-count-chart{
+    background-color: white;
+    margin: 2rem;
+    border-radius: 8px;
+    max-height: 40%;
+
+}
+
+.products-seller-analytics-dropdown{
+    width: 10rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-left: 59rem;
 }
