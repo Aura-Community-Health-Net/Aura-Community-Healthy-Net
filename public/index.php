@@ -90,6 +90,7 @@ $app->router->get('/product-seller-dashboard/feedback', [FeedbacksController::cl
 $app->router->get('/product-seller-dashboard/profile', [ProfileController::class, 'getProductSellerProfilePage']);
 $app->router->get('/product-seller-dashboard/analytics', [AnalyticsController::class, 'getProductSellerAnalyticsPage']);
 $app->router->get('/product-seller-dashboard/analytics/revenue-chart', [AnalyticsController::class, 'getProductSellerAnalyticsRevenueChart']);
+$app->router->get('/product-seller-dashboard/analytics/order-count-chart', [AnalyticsController::class, 'getProductSellerAnalyticsOrderCount']);
 
 // For pharmacy
 $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharmacyDashboard']);
