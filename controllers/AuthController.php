@@ -120,7 +120,7 @@ class AuthController extends Controller
 
                     $profilePic = "/uploads/$new_file_name2";
                     $type = "doctor";
-                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
+                    $stmt->bind_param("sssssssssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
