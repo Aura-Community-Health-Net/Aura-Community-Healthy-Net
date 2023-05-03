@@ -12,14 +12,16 @@
 if (!$product_seller['is_verified']) {
     echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
+if ($order_preview){
+    $profile_picture = $order_preview["profile_picture"];
+    $consumer_name = $order_preview["consumer_name"];
+    $mobile_number = $order_preview["mobile_number"];
+    $product_name = $order_preview["name"];
+    $quantity = $order_preview["quantity"];
+    $quantity_unit = $order_preview["quantity_unit"];
+    $product_image = $order_preview["image"];
+}
 
-$profile_picture = $order_preview["profile_picture"];
-$consumer_name = $order_preview["consumer_name"];
-$mobile_number = $order_preview["mobile_number"];
-$product_name = $order_preview["name"];
-$quantity = $order_preview["quantity"];
-$quantity_unit = $order_preview["quantity_unit"];
-$product_image = $order_preview["image"];
 
 ?>
 
@@ -28,11 +30,13 @@ $product_image = $order_preview["image"];
         <h3>New Orders</h3>
 
         <?php
-        foreach ($orders_list as $order_list){
-            $profile_picture = $order_list['profile_picture'];
-            $consumer_name = $order_list['consumer_name'];
-            $product_name = $order_list['name'];
-            echo "
+        if ($orders_list){
+            foreach ($orders_list as $order_list){
+                $profile_picture = $order_list['profile_picture'];
+                $consumer_name = $order_list['consumer_name'];
+                $product_name = $order_list['name'];
+
+                echo "
             <div class='dashboard__top-cards__detail'>
             <img class='order-consumer-img' src='$profile_picture' alt=''>
             <div>
@@ -41,7 +45,15 @@ $product_image = $order_preview["image"];
             </div>
         </div>
             ";
+
+
+            }
+        } else {
+            echo "
+                <h2 class='empty-product-orders'>No orders yet</h2>
+                ";
         }
+
         ?>
     </div>
 
@@ -49,7 +61,8 @@ $product_image = $order_preview["image"];
         <h3>Orders</h3>
 
         <?php
-        echo "
+        if ($order_preview){
+            echo "
         <div class='dashboard__top-cards__info'>
             <div class='dashboard__top-cards__detail'>
                 <img class='order-consumer-img' src='$profile_picture' alt=''>
@@ -66,6 +79,12 @@ $product_image = $order_preview["image"];
             <img class='order-product-img' src='$product_image' alt=''>
         </div>
         ";
+        } else{
+            echo "
+                <h2 class='empty-product-orders'>No orders yet</h2>
+                ";
+        }
+
         ?>
 
     </div>
@@ -106,37 +125,92 @@ $product_image = $order_preview["image"];
         <h3>Products List</h3>
 
             <?php
-            foreach ($product_lists as $product_list){
-                $product_image = $product_list['image'];
-                $product_name = $product_list['name'];
-                $category_name = $product_list['category_name'];
-                $product_quantity = $product_list['quantity'];
-                $product_quantity_unit = $product_list['quantity_unit'];
-                $product_price = $product_list['price']/100;
+            if ($product_lists){
+                foreach ($product_lists as $product_list){
+                    $product_image = $product_list['image'];
+                    $product_name = $product_list['name'];
+                    $category_name = $product_list['category_name'];
+                    $product_quantity = $product_list['quantity'];
+                    $product_quantity_unit = $product_list['quantity_unit'];
+                    $product_price = $product_list['price']/100;
 
-                echo "
+                    echo "
                 <div class='dashboard__bottom-cards__detail'>
                 <img class='dashboard__bottom-product-img' src='$product_image' alt=''>
-            <h4>$product_name</h4>
-            <h4>$category_name</h4>
-            <h4>$product_quantity $product_quantity_unit</h4>
-            <h4>Rs. $product_price</h4>
-            </div>
+                <h4 class='dashboard__top-cards__data2'>$product_name</h4>
+                <h4 class='dashboard__top-cards__data2'>$category_name</h4>
+                <h4 class='dashboard__top-cards__data1'>$product_quantity $product_quantity_unit</h4>
+                <h4 class='dashboard__top-cards__data1'>Rs. $product_price</h4>
+                </div>
            
                 ";
+                }
+            } else{
+                echo "
+                <h2 class='empty-product-orders'>No products yet</h2>
+                ";
             }
+
             ?>
         <a href='/product-seller-dashboard/categories'>
             <button class="all-products-btn">All Products</button>
         </a>
 
     </div>
-    <div class="dashboard__bottom-cards">
+
+    <div class="dashboard__bottom-cards" style="width: 450px">
         <h3>Analytics</h3>
-        <img class="dashboard-analytics-img" src="/assets/images/dashboard-analytics.jpg" alt="">
-        <div class="dashboard-analytics-description">
-            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the </p>
-        </div>
+        <canvas id="revenue-chart" class="revenue-chart"></canvas>
+        <p class="dashboard__top-cards-analytics">Daily Revenue Chart of current week</p>
     </div>
 </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <script>
+        const revenueChartCanvas = document.querySelector("#revenue-chart");
+
+        async function getRevenueData(){
+            try{
+                const result = await fetch(`/product-seller-dashboard/analytics/revenue-chart?period=this_week`);
+                const data = await result.json();
+                console.log(data)
+                const dates = data.map((d) => {
+                    return d.date;
+                })
+                const revenues = data.map((d) => {
+                    return Number(d.revenue)/100;
+                })
+                console.log(dates)
+                console.log(revenues)
+                console.log(Chart)
+
+                revenueChart = new Chart(revenueChartCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Revenue',
+                            data: revenues,
+                            borderColor: '#B71375',
+                            backgroundColor: 'rgba(225, 18, 153, 0.5)',
+                            fill: 'origin'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (e){
+                console.log(e)
+            }
+
+        }
+
+        window.addEventListener("load", async () => {
+            await getRevenueData();
+        })
+    </script>

@@ -71,7 +71,6 @@
 
 .dashboard__bottom-container{
     display: flex;
-    gap: 3rem;
     margin: 2rem;
     justify-content: center;
 }
@@ -98,7 +97,11 @@
     margin-block: 1rem;
 }
 
-.dashboard__bottom-cards__detail h4{
+.dashboard__top-cards__data1{
+    width: 4rem;
+}
+
+.dashboard__top-cards__data2{
     width: 9rem;
 }
 
@@ -130,3 +133,15 @@
     right: 1rem;
     cursor: pointer;
 }
+
+.dashboard__top-cards-analytics{
+    padding-block: 2rem;
+    text-align: center;
+}
+
+.empty-product-orders{
+    color: #00005C;
+    margin-top: 6rem;
+    padding-inline: 4rem;
+}
+
