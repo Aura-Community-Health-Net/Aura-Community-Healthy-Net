@@ -17,7 +17,7 @@
     </div>
 
     <h3>Revenue</h3>
-    <canvas id="revenue-chart" class="revenue-chart"></canvas>
+    <canvas id="product-revenue-chart" class="revenue-chart"></canvas>
 
 
 </div>
