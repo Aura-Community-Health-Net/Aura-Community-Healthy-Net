@@ -17,6 +17,7 @@
         </tr>
 
         <?php
+//        var_dump($orders);
         foreach ($orders as $order){
             $profile_picture = $order['profile_picture'];
             $consumer_name = $order['consumer_name'];
@@ -25,12 +26,25 @@
             $medicines = json_decode($medicines_list,true);
             $order_id = $order['order_id'];
 
+//
+//            foreach ($medicines as $medicine) {
+//                $medicineList = implode(", ", $medicine);
+//
+//            }
+//
+//            var_dump($medicineList);
+//            exit();
+
+
+
             echo "
             <tr>
             <td><img class='product-seller-orders-profile-pic' src='$profile_picture' alt=''></td>
             <td>$consumer_name</td>
             <td>$mobile_number</td>
+            
             <td>$medicines</td>
+
           
             
             <form action='/pharmacy-dashboard/orders/mark-as-done?order_id=$order_id' method='post'>

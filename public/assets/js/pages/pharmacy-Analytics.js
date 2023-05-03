@@ -6,7 +6,61 @@ const medicineAnalyticsDropdown = document.querySelector("#pharmacy-analytics-dr
 let medRevenueChart,medOrderCountChart,medicineVsRevenueChart;
 
 
-async function getMedOrderCountData(){
+async function getMedOrderCountData(period="this_month"){
+
+    try{
+        const result = await fetch(`/pharmacy-dashboard/analytics/order-count-chart?period=${period}`);
+        const data = await result.json();
+        console.log(data);
+        const dates = data.map((d) => {
+            return d.date;
+        })
+        const orders = data.map((d) => {
+            return Number(d.order_count);
+        })
+        console.log(dates)
+        console.log(orders)
+        console.log(Chart)
+        orderCountChart = new Chart(medOrderCountCanvas, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Orders',
+                    data: orders,
+                    backgroundColor: '#F7D716',
+                    borderColor: 'rgb(30, 40, 200)',
+                    fill: 'origin'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    } catch (e){
+        console.log(e)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
