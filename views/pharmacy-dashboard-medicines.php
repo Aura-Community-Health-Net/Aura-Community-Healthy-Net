@@ -34,7 +34,7 @@
                     <td id='image-block'><img class='products-img' src='{$medicine['image']}' alt=''></td>
                     <td>{$med_id}</td>
                     <td>{$med_name}</td>
-                    <td>{$medicine['price']}</td>
+                    <td>$med_price</td>
                     <td>{$medicine['quantity']}</td>
                     <td>{$medicine['quantity_unit']}</td>
                     <td>{$medicine['stock']}</td>
@@ -85,7 +85,7 @@
 </form>
 <div class="overlay" id="add-medicine-overlay">
     <div class="modal" id="add-medicine-modal">
-        <h3>Do you really want to add this product?</h3>
+        <h3>Do you really want to add this medicine?</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg">
         <div class="modal-actions">
             <button class="cancel-btn" id="add-medicine-cancel-btn">Cancel</button>

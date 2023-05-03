@@ -10,8 +10,8 @@
 //var_dump($payment_details);
 //var_dump($pharmacy);
 $pharmacy_name = $payment_details['pharmacy_name'];
-$advance_amount = $payment_details['advance_amount'];
-$Total_amount = $payment_details['total_amount'];
+$advance_amount = $payment_details['advance_amount']/100;
+$Total_amount = $payment_details['total_amount']/100;
 $note = $payment_details['pharmacy_remark'];
 $medicines_list = $payment_details['available_medicines'];
 $prescription = $payment_details['prescription'];
@@ -74,10 +74,10 @@ if ($medicines === null) {
                 </ul>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount'>
-                <p>$Total_amount</p>
+                <p>Rs. $Total_amount</p>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__AdvanceAmount'>
-                <p>$advance_amount</p>
+                <p>Rs. $advance_amount</p>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__Note'>
                 <p>$note</p>
