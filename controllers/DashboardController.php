@@ -206,7 +206,13 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $care_rider = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? &&  ride_request.done = 0");
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request WHERE provider_nic =?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $date= $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic  WHERE ride_request.provider_nic = ? &&  ride_request.done = 0 LIMIT 4 ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -237,7 +243,7 @@ class DashboardController extends Controller
             $count_request = $result->fetch_assoc();
             //print_r($count_timeSlots);
 
-            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic");
+            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic  ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -246,7 +252,7 @@ class DashboardController extends Controller
 
             //print_r($patient_details);
 
-            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request], layoutParams: [
+            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request,"date"=>$date], layoutParams: [
                 "care_rider" => $care_rider,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
