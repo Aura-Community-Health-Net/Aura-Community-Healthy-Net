@@ -46,16 +46,6 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
             </div>
         </div>
 
-<!--    <div class="doctor-dashboard__right__top">-->
-<!--        <h3>Notes</h3>-->
-<!--        <div class="doctor-dashboard__notes">-->
-<!--            <img src="/assets/images/notes.png">-->
-<!--            <h4><b>Keep your Doctor Informed-->
-<!--                    about</b></h4>-->
-<!--            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <div class="doctor-dashboard__left__bottom">
         <h3>Past Patients List</h3>
         <div class="doctor-dashboard__patients__list__scroll">
@@ -86,7 +76,9 @@ echo "<div class='empty-registrations'> <p>You're not verified yet. Please check
                    <p><b>Mobile Number</b><?php echo " ". $patient_details['mobile_number'] ;?></p>
                </div>
             </div>
-            <?php } ?>
+            <?php } else {?>
+                <h4>No past patients</h4>
+                <?php } ?>
         </div>
 
         <div class="doctor-dashboard__right__bottom">
