@@ -20,6 +20,7 @@ if ($order_preview){
     $quantity = $order_preview["quantity"];
     $quantity_unit = $order_preview["quantity_unit"];
     $product_image = $order_preview["image"];
+    $order_date = $order_preview["created_at"];
 }
 
 
@@ -35,14 +36,17 @@ if ($order_preview){
                 $profile_picture = $order_list['profile_picture'];
                 $consumer_name = $order_list['consumer_name'];
                 $product_name = $order_list['name'];
+                $order_date = $order_list['created_at'];
 
                 echo "
             <div class='dashboard__top-cards__detail'>
             <img class='order-consumer-img' src='$profile_picture' alt=''>
+            
             <div>
                 <h4>$consumer_name</h4>
                 <h5>$product_name</h5>
             </div>
+             <h5>$order_date</h5>
         </div>
             ";
 
@@ -55,10 +59,14 @@ if ($order_preview){
         }
 
         ?>
+
+        <a href='/product-seller-dashboard/orders'>
+            <button class="all-orders-btn">All Orders</button>
+        </a>
     </div>
 
     <div class="dashboard__top-cards">
-        <h3>Orders</h3>
+        <h3>Newest order preview</h3>
 
         <?php
         if ($order_preview){
@@ -70,12 +78,15 @@ if ($order_preview){
                     <h4>$consumer_name</h4>
                     <h5>$mobile_number</h5>
                 </div>
+                
             </div>
 
             <div class='product-order-details'>
                 <h5>$product_name</h5><br>
                 <h5>$quantity $quantity_unit</h5>
+                <h5>$order_date</h5>
             </div>
+            
             <img class='order-product-img' src='$product_image' alt=''>
         </div>
         ";
@@ -90,7 +101,7 @@ if ($order_preview){
     </div>
 
     <div class='dashboard__top-cards'>
-        <h3>Order Count</h3>
+        <h3>Orders Count</h3>
         <div class='order-count__details'>
             <?php
         foreach ($new_orders_count as $order){
@@ -158,9 +169,9 @@ if ($order_preview){
 
     </div>
 
-    <div class="dashboard__bottom-cards" style="width: 450px">
+    <div class="dashboard__bottom-cards" style="width: 500px">
         <h3>Analytics</h3>
-        <canvas id="revenue-chart" class="revenue-chart"></canvas>
+        <canvas id="revenue-chart" class="revenue-chart" style="margin-top: 1rem"></canvas>
         <p class="dashboard__top-cards-analytics">Daily Revenue Chart of current week</p>
     </div>
 </div>

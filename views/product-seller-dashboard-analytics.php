@@ -12,7 +12,7 @@
 <!--    </div>-->
 
     <div class="product-seller-analytics__top-container">
-        <canvas id="order-count-chart" class="order-count-chart"></canvas>
+        <canvas id="product-order-count-chart" class="order-count-chart"></canvas>
         <canvas id="product-vs-revenue-chart" class="product-vs-revenue-chart"></canvas>
     </div>
 

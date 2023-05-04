@@ -73,7 +73,7 @@ $stock = $_POST["stock"] ?? "";
                     required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
+                        <i class="fa-solid fa-circle-plus add-icon"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>
@@ -92,7 +92,7 @@ $stock = $_POST["stock"] ?? "";
         </tr>
     </table>
 
-    <button class="add-btn" id="add-product-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+    <button class="add-btn" id="add-product-btn" type="button"><i class="fa-regular fa-plus"></i></button>
 </form>
 
 <div class="overlay" id="add-product-overlay">

@@ -67,7 +67,7 @@
                        required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
+                        <i class="fa-regular fa-plus"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>
@@ -80,7 +80,7 @@
         </tr>
     </table>
     <button type="button" id="add-med-btn" class="add-btn">
-        <i class="fa-solid fa-plus"></i>
+        <i class="fa-regular fa-plus"></i>
     </button>
 </form>
 <div class="overlay" id="add-medicine-overlay">
