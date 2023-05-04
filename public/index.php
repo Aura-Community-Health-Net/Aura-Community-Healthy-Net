@@ -47,6 +47,7 @@ $app = new Application(dirname(__DIR__));
 
 // Common site routes
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/contact-us', [SiteController::class, 'contactUs']);
 
 //Authentication Routes
 $app->router->get('/provider-register', [AuthController::class, 'getProviderSignupPage']);

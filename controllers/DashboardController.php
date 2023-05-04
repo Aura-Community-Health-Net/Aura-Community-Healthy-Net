@@ -43,7 +43,8 @@ class DashboardController extends Controller
 
             $stmt = $db->connection->prepare("SELECT s.profile_picture, 
                    s.name AS consumer_name,  
-                   p.name
+                   p.name,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
@@ -61,7 +62,8 @@ class DashboardController extends Controller
                    p.name,
                    p.quantity,
                    p.quantity_unit,
-                   p.image
+                   p.image,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 

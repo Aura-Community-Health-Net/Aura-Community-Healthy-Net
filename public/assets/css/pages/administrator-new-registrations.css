@@ -94,6 +94,7 @@
 
 .empty-registrations p{
     text-align: center;
+    color: red;
 }
 
 .verification-button-section{

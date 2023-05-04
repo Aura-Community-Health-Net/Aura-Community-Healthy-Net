@@ -47,7 +47,7 @@
                            value="<?php echo $_POST['to-time'] ?? ''; ?>" required></td>
             </tr>
         </table>
-        <button class="add-btn" id="add-timeslot-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+        <button class="add-btn" id="add-timeslot-btn" type="button"><i class="fa-regular fa-plus"></i></i></button>
     </form>
 
     <div class="overlay" id="add-timeslot-overlay">

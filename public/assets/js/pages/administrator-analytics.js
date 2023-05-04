@@ -1,9 +1,9 @@
 const adminProductSellersRevenueChartCanvas = document.querySelector("#admin-product-seller-revenue-chart");
 const administratorAnalyticsDropdown = document.querySelector("#administrator-analytics-dropdown");
 let adminProductSellersRevenueChart;
-async function getRevenueData(period = "this_month"){
+async function getProductSellerRevenueData(period = "this_month"){
     try{
-        const result = await fetch(`/admin-dashboard/analytics/revenue-chart?period=${period}`);
+        const result = await fetch(`/admin-dashboard/analytics?period=${period}`);
         const data = await result.json();
         console.log(data)
         const dates = data.map((d) => {
@@ -43,11 +43,11 @@ async function getRevenueData(period = "this_month"){
 }
 
 window.addEventListener("load", async () => {
-    await getRevenueData();
+    await getProductSellerRevenueData();
 })
 administratorAnalyticsDropdown.addEventListener("change", async () => {
     if (adminProductSellersRevenueChart){
         adminProductSellersRevenueChart.destroy();
     }
-    await getRevenueData(administratorAnalyticsDropdown.value);
+    await getProductSellerRevenueData(administratorAnalyticsDropdown.value);
 })

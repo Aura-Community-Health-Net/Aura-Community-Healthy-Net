@@ -115,7 +115,7 @@
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-regular fa-plus"></i>
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>

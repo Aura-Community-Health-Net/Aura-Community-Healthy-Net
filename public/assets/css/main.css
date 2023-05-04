@@ -59,6 +59,7 @@
 @import "pages/consumer-dashboard-services-care-rider-requests.css";
 @import "pages/consumer-cart.css";
 @import "pages/administrator-analytics.css";
+@import "pages/contact-us.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";

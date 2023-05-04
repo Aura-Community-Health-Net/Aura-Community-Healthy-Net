@@ -45,7 +45,7 @@
 
             <div class="header-link__container">
                 <a class="header-link" href="/">Home</a>
-                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
             </div>
             <div class="admin-header">

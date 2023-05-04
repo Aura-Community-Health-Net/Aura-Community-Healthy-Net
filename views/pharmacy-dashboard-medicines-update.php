@@ -22,7 +22,7 @@
                        required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
+                        <i class="fa-regular fa-plus"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>

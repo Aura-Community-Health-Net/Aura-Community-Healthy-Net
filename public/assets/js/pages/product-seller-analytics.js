@@ -1,5 +1,5 @@
-const revenueChartCanvas = document.querySelector("#product-revenue-chart");
-const orderCountCanvas = document.querySelector("#order-count-chart");
+const productRevenueChartCanvas = document.querySelector("#product-revenue-chart");
+const orderCountCanvas = document.querySelector("#product-order-count-chart");
 const productVsRevenueCanvas = document.querySelector("#product-vs-revenue-chart");
 const productAnalyticsDropdown = document.querySelector("#product-analytics-dropdown");
 let productRevenueChart, productOrderCountChart, productVsRevenueChart;
