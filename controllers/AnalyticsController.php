@@ -129,7 +129,7 @@ class AnalyticsController extends Controller
             "title" => "Analytics"]);
     }
 
-    public static function getProductSellerAnalyticsRevenueChart()
+    public static function getProductSellerAnalyticsRevenueChart(): bool|string
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -325,6 +325,186 @@ class AnalyticsController extends Controller
             return json_encode($product_records);
         }
     }
+
+
+
+
+    public static function getPharmacyAnalyticsRevenueChart(): bool|string
+    {
+
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "pharmacy") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $chart_time = $_GET["period"] ?? "all_time";
+
+
+            $stmt = "";
+            switch ($chart_time) {
+                case "this_week";
+                    $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
+                                                    FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic = r.provider_nic 
+                                                    WHERE p.provider_nic = ?  
+                                                    AND YEAR(p.date_time) = YEAR(NOW()) 
+                                                    AND WEEK(p.date_time, 1) = WEEK(NOW(), 1)
+                                                    GROUP BY DATE(p.date_time)");
+                    break;
+
+                case "this_month";
+                    $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue 
+                                                    FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
+                                                    WHERE p.provider_nic = ?    
+                                                    AND YEAR(p.date_time) = YEAR(NOW()) 
+                                                    AND MONTH(p.date_time) = MONTH(NOW())
+                                                    GROUP BY DATE(p.date_time)");
+                    break;
+
+                case "past_six_months";
+                    $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
+                                                    FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic  
+                                                    WHERE p.provider_nic = ?  
+                                                    AND p.date_time BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                                                    GROUP BY DATE(p.date_time)");
+                    break;
+
+                case "this_year";
+                    $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
+                                                    FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic 
+                                                    WHERE p.provider_nic = ?
+                                                    AND YEAR(p.date_time) = YEAR(NOW()) 
+                                                    GROUP BY DATE(p.date_time)");
+                    break;
+
+                case "all_time";
+                    $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
+                                                    FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
+                                                    WHERE p.provider_nic = ? 
+                                                    GROUP BY DATE(p.date_time)");
+                    break;
+            }
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $records = $result->fetch_all(MYSQLI_ASSOC);
+            header("Content-Type: application/json");
+            return json_encode($records);
+        }
+
+
+
+
+
+    }
+
+
+
+public  static function getPharmacyAnalyticsOrderCount(): bool|string
+{
+
+    $nic = $_SESSION["nic"];
+    $providerType = $_SESSION["user_type"];
+    if (!$nic || $providerType !== "pharmacy") {
+        header("location: /provider-login");
+        return "";
+    } else{
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        switch ($chart_time){
+            case "this_week";
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM medicine_order WHERE provider_nic = ? 
+                AND YEAR(created_at) = YEAR(NOW()) 
+                AND WEEK(created_at, 1) = WEEK(NOW(), 1)
+                AND status != 'unpaid' 
+                GROUP BY DATE(created_at)");
+                break;
+
+            case ("this_month");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM medicine_order WHERE provider_nic = ? 
+                AND YEAR(created_at) = YEAR(NOW()) 
+                AND MONTH(created_at) = MONTH(NOW())
+                AND status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                break;
+
+            case ("past_six_months");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM medicine_order WHERE provider_nic = ? 
+                AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                AND status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                break;
+
+            case ("all_time");
+                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM medicine_order WHERE provider_nic = ? 
+                AND status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                break;
+        }
+
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $order_records = $result->fetch_all(MYSQLI_ASSOC);
+        header("Content-Type: application/json");
+        return json_encode($order_records);
+
+    }
+}
+
+
+public static function getPharmacyRevenueVsMedicinePercentage(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

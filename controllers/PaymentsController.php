@@ -288,6 +288,7 @@ class PaymentsController extends Controller
                     $med_order_id = $metadata["med_order_id"];
                     $consumer_nic = $customer["consumer_nic"];
                     $amount = (float)$body['data']['object']['amount'] / 100;
+                    $original_amount = (float)$body['data']['object']['amount'];
                     PaymentsController::logPayment($med_order_id);
                     try {
                         $db->connection->begin_transaction();
@@ -299,7 +300,7 @@ class PaymentsController extends Controller
 
                         $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
                         $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
-                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->bind_param("sdss", $purpose, $original_amount, $provider_nic, $consumer_nic);
                         $stmt->execute();
                         PaymentsController::logPayment("inserted payment record");
 

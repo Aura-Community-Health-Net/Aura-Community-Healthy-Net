@@ -100,23 +100,24 @@ $app->router->get('/pharmacy-dashboard', [DashboardController::class, 'getPharma
 $app->router->get('/pharmacy-dashboard/medicines', [MedicinesController::class, 'viewMedPage']);
 $app->router->post('/pharmacy-dashboard/medicines', [MedicinesController::class, 'addMed']);
 $app->router->post('/pharmacy-dashboard/medicines/delete',[MedicinesController::class,'deleteMedicines']);
-//$app->router->get('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'getupdateMedicinesForm']);
 $app->router->post('/pharmacy-dashboard/medicines/update',[MedicinesController::class,'updateMedicines']);
-//$app->router->post('/pharmacy-dashboard/medicines/update-medicines',[MedicinesController::class,'editMedicines']);
-
-
 $app->router->get('/pharmacy-dashboard/new-requests', [OrdersController::class, 'viewNewMedRequestsPage']);
 $app->router->get('/pharmacy-dashboard/new-requests/view', [MedicinesController::class, 'getSendMedicineAdvanceInfoForm']);
 $app->router->post('/pharmacy-dashboard/new-requests/view',[MedicinesController::class,'sendMedicineAdvanceInfo']);
 $app->router->get('/pharmacy-dashboard/orders',[OrdersController::class,'viewMedicineOrders']);
 $app->router->post('/pharmacy-dashboard/orders/mark-as-done', [OrdersController::class, 'markMedOrderAsPrepared']);
-
-
-
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'getPharmacyFeedbackPage']);
 $app->router->get('/pharmacy-dashboard/feedback',[FeedbacksController::class,'PharmacyFeedback']);
 $app->router->get('/pharmacy-dashboard/analytics',[AnalyticsController::class,'getPharmacyAnalyticsPage']);
 $app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPharmacyProfilePage']);
+$app->router->get('/pharmacy-dashboard/analytics/revenue-chart',[AnalyticsController::class,'getPharmacyAnalyticsRevenueChart']);
+$app->router->get('/pharmacy-dashboard/analytics/order-count-chart',[AnalyticsController::class,'getPharmacyAnalyticsOrderCount']);
+$app->router->get('/pharmacy-dashboard/analytics/medicine-vs-revenue-chart',[AnalyticsController::class,'getPharmacyRevenueVsMedicinePercentage']);
+
+
+
+
+
 
 
 // For Care Rider

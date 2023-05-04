@@ -54,7 +54,7 @@ $address = $pharmacy['address'];
             $list_med_name = $medicine['name'];
             $list_med_quantity = $medicine['quantity'];
             $list_med_quantity_unit = $medicine['quantity_unit'];
-            $list_med_price = $medicine['price']/100;
+            $list_med_price = $medicine['price'];
 
 
             echo "    <div class='overview-items overview-medicine'>
