@@ -461,6 +461,31 @@ public  static function getPharmacyAnalyticsOrderCount(): bool|string
 }
 
 
+public static function getPharmacyRevenueVsMedicinePercentage(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
 
 
 

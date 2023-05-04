@@ -190,8 +190,8 @@ class MedicinesController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET Sent_Request = 'sent' WHERE provider_nic = ? ");
-        $stmt->bind_param("s",$provider_nic);
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET Sent_Request = 'sent' WHERE provider_nic = ? AND request_id=?");
+        $stmt->bind_param("si",$provider_nic,$request_id);
         $stmt->execute();
 
 

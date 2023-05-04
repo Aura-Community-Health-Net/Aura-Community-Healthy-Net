@@ -24,6 +24,9 @@
             $mobile_number = $order['mobile_number'];
             $medicines_list = $order['available_medicines'];
             $medicines = json_decode($medicines_list,true);
+            echo "<pre>";
+            var_dump($medicines);
+            echo "</pre>";
             $order_id = $order['order_id'];
 
 //
@@ -34,6 +37,13 @@
 //
 //            var_dump($medicineList);
 //            exit();
+            $medicines_element = "";
+            foreach ($medicines as $medicine){
+                var_dump($medicine);
+                $medicines_element = $medicines_element."<li>$medicine</li>";
+            }
+
+            var_dump($medicines_element);
 
 
 
@@ -43,7 +53,9 @@
             <td>$consumer_name</td>
             <td>$mobile_number</td>
             
-            <td>$medicines</td>
+            <td>
+            <ul style='list-style: none'>$medicines_element</ul>
+</td>
 
           
             
