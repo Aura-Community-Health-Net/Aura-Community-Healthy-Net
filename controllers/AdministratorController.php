@@ -110,6 +110,63 @@ class AdministratorController extends Controller
         ]);
     }
 
+    public static function getAdministratorAnalyticsPage(): bool|array|string
+    {
+        $is_admin = $_SESSION["is_admin"];
+        if (!$is_admin){
+            header("location: /administrator-login");
+            return "";
+        } else{
+            $db = new Database();
+            $chart_time = $_GET["period"] ?? "all_time";
+
+            $stmt = "";
+            switch ($chart_time){
+                case "this_week";
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE
+                YEAR(created_at) = YEAR(NOW()) 
+                AND WEEK(created_at, 1) = WEEK(NOW(), 1)
+                AND status != 'unpaid' 
+                GROUP BY DATE(created_at)");
+                    break;
+
+                case ("this_month");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE
+                YEAR(created_at) = YEAR(NOW()) 
+                AND MONTH(created_at) = MONTH(NOW())
+                AND status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                    break;
+
+                case ("past_six_months");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE
+                created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                AND status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                    break;
+
+                case ("all_time");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                FROM product_order WHERE
+                status != 'unpaid'
+                GROUP BY DATE(created_at)");
+                    break;
+            }
+
+        }
+
+        return self::render(view: 'administrator-dashboard-analytics', layout: "admin-dashboard-layout", params: [],
+        layoutParams: [
+            "title" => "Analytics",
+                "admin" => [
+                    "name" => "Randima Dias"
+            ], "active_link" => "feedback"
+        ]);
+    }
+
     public static function getAdministratorFeedbackPage(): bool|array|string
     {
         $is_admin = $_SESSION["is_admin"];

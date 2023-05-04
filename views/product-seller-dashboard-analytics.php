@@ -12,12 +12,12 @@
 <!--    </div>-->
 
     <div class="product-seller-analytics__top-container">
-        <canvas id="order-count-chart" class="order-count-chart"></canvas>
+        <canvas id="product-order-count-chart" class="order-count-chart"></canvas>
         <canvas id="product-vs-revenue-chart" class="product-vs-revenue-chart"></canvas>
     </div>
 
     <h3>Revenue</h3>
-    <canvas id="revenue-chart" class="revenue-chart"></canvas>
+    <canvas id="product-revenue-chart" class="revenue-chart"></canvas>
 
 
 </div>

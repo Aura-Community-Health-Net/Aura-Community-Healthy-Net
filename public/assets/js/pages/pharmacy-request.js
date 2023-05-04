@@ -35,7 +35,7 @@ uploadPresButtons.forEach(function (attach_prescription_Button){
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="prescription-upload-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-regular fa-plus"></i>
                     </button>
                     <div id="prescription-filename"></div>
                 </div>

@@ -1,8 +1,9 @@
 <?php
 /**
- *@var array $orders
+ * @var array $orders
  **/
 ?>
+
 <table class="items-table">
 
     <table class="items-table">
@@ -16,7 +17,7 @@
         </tr>
 
         <?php
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             $profile_picture = $order['profile_picture'];
             $consumer_name = $order['consumer_name'];
             $mobile_number = $order['mobile_number'];
@@ -46,3 +47,15 @@
     </table>
 
 </table>
+
+<?php
+if (empty($orders)) {
+    echo "
+        <div class='no-feedback'>
+            No orders yet
+        </div>
+        ";
+}
+?>
+
+

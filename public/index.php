@@ -47,6 +47,7 @@ $app = new Application(dirname(__DIR__));
 
 // Common site routes
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/contact-us', [SiteController::class, 'contactUs']);
 
 //Authentication Routes
 $app->router->get('/provider-register', [AuthController::class, 'getProviderSignupPage']);
@@ -75,6 +76,7 @@ $app->router->get('/admin-dashboard/new-registrations', [AdministratorController
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
 $app->router->get('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
+$app->router->get('/admin-dashboard/analytics', [AdministratorController::class, 'getAdministratorAnalyticsPage']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller

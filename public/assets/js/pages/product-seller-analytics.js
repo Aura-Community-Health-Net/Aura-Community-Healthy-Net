@@ -1,8 +1,8 @@
-const revenueChartCanvas = document.querySelector("#revenue-chart");
-const orderCountCanvas = document.querySelector("#order-count-chart");
+const productRevenueChartCanvas = document.querySelector("#product-revenue-chart");
+const orderCountCanvas = document.querySelector("#product-order-count-chart");
 const productVsRevenueCanvas = document.querySelector("#product-vs-revenue-chart");
 const productAnalyticsDropdown = document.querySelector("#product-analytics-dropdown");
-let revenueChart, orderCountChart, productVsRevenueChart;
+let productRevenueChart, productOrderCountChart, productVsRevenueChart;
 async function getRevenueData(period = "this_month"){
     try{
         const result = await fetch(`/product-seller-dashboard/analytics/revenue-chart?period=${period}`);
@@ -18,7 +18,7 @@ async function getRevenueData(period = "this_month"){
         console.log(revenues)
         console.log(Chart)
 
-        revenueChart = new Chart(revenueChartCanvas, {
+        productRevenueChart = new Chart(productRevenueChartCanvas, {
             type: 'line',
             data: {
                 labels: dates,
@@ -58,7 +58,7 @@ async function getOrderCountData(period = "this_month"){
         console.log(dates)
         console.log(orders)
         console.log(Chart)
-        orderCountChart = new Chart(orderCountCanvas, {
+        productOrderCountChart = new Chart(orderCountCanvas, {
             type: 'bar',
             data: {
                 labels: dates,
@@ -126,11 +126,11 @@ window.addEventListener("load", async () => {
     await getProductVsRevenueData();
 })
 productAnalyticsDropdown.addEventListener("change", async () => {
-    if (revenueChart){
-        revenueChart.destroy();
+    if (productRevenueChart){
+        productRevenueChart.destroy();
     }
-    if (orderCountChart){
-        orderCountChart.destroy();
+    if (productOrderCountChart){
+        productOrderCountChart.destroy();
     }
     if (productVsRevenueChart){
         productVsRevenueChart.destroy();
