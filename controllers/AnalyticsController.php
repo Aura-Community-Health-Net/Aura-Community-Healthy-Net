@@ -461,29 +461,104 @@ public  static function getPharmacyAnalyticsOrderCount(): bool|string
 }
 
 
-public static function getPharmacyRevenueVsMedicinePercentage(){
+public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
+{
+//    $nic = $_SESSION["nic"];
+//    $providerType = $_SESSION["user_type"];
+//    if (!$nic || $providerType !== "pharmacy") {
+//        header("location: /provider-login");
+//        return "";
+//    } else{
+//        $db = new Database();
+//        $chart_time = $_GET["period"] ?? "all_time";
+//
+//        $stmt = "";
+//        switch ($chart_time){
+//            case "this_week";
+//                $stmt = $db->connection->prepare("SELECT m.name AS medicine_name, SUM(r.total_amount) AS revenue
+//                    FROM order_has_med om
+//                    JOIN medicine_order o ON om.order_id = o.order_id
+//                    JOIN medicine m ON m.med_id = om.med_id
+//                    JOIN pharmacy_request r ON
+//                    WHERE o.status != 'unpaid'
+//                      AND o.provider_nic = ?
+//                    AND YEAR(created_at) = YEAR(NOW())
+//                    AND WEEK(created_at, 1) = WEEK(NOW(), 1)
+//                    GROUP BY op.product_id
+//                    ORDER BY revenue DESC
+//                    LIMIT 10;");
+//                break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//            case "this_month";
+//                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+//                    FROM order_has_product op
+//                    JOIN product_order o ON op.order_id = o.order_id
+//                    JOIN product p ON op.product_id = p.product_id
+//                    WHERE o.status != 'unpaid'
+//                      AND o.provider_nic = ?
+//                    AND YEAR(created_at) = YEAR(NOW())
+//                    AND MONTH(created_at) = MONTH(NOW())
+//                    GROUP BY op.product_id
+//                    ORDER BY revenue DESC
+//                    LIMIT 10;");
+//                break;
+//
+//            case "past_six_months";
+//                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+//                    FROM order_has_product op
+//                    JOIN product_order o ON op.order_id = o.order_id
+//                    JOIN product p ON op.product_id = p.product_id
+//                    WHERE o.status != 'unpaid'
+//                      AND o.provider_nic = ?
+//                    AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+//                    GROUP BY op.product_id
+//                    ORDER BY revenue DESC
+//                    LIMIT 10;");
+//                break;
+//
+//            case "all_time";
+//                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+//                    FROM order_has_product op
+//                    JOIN product_order o ON op.order_id = o.order_id
+//                    JOIN product p ON op.product_id = p.product_id
+//                    WHERE o.status != 'unpaid'
+//                    AND o.provider_nic = ?
+//                    GROUP BY op.product_id
+//                    ORDER BY revenue DESC
+//                    LIMIT 10;");
+//                break;
+//        }
+//
+//        $stmt->bind_param("s", $nic);
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//        $product_records = $result->fetch_all(MYSQLI_ASSOC);
+//        header("Content-Type: application/json");
+//        return json_encode($product_records);
+//    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

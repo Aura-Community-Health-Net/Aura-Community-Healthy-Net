@@ -86,19 +86,19 @@ class MedicinesController extends Controller
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
+        $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
 
         if (!$nic || $providerType !== "pharmacy") {
             header("/pharmacy-login");
             return "";
         } else {
             $db = new Database();
-            $sql = "SELECT * FROM medicine WHERE provider_nic='$nic'";
 
-            $result = $db->connection->query($sql);
-            $medicines = [];
-            while ($row = $result->fetch_assoc()) {
-                $medicines[] = $row;
-            }
+            $stmt = $db->connection->prepare("SELECT * FROM medicine m WHERE m.provider_nic = ? AND m.name LIKE '%$search_query%'");
+            $stmt->bind_param("s",$nic,);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            $medicines = $result->fetch_all(MYSQLI_ASSOC);
 
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
