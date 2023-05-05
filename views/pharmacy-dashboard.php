@@ -21,11 +21,18 @@ if (!$pharmacy['is_verified']) {
     <div class="dashboard__top-cards">
         <h3>New Orders</h3>
         <?php
+
+        if ($order_preview === null) {
+            echo "<div class= 'No_med_orders'>NO ORDERS YET</div>";
+        }
+
+        else{
         foreach ($medicines_orders_list as $new_order) {
 
             $consumer_profile = $new_order["profile_picture"];
             $consumer_name = $new_order["consumer_name"];
             $mobile_number = $new_order["mobile_number"];
+            $date = $new_order["created_at"];
 
 
             echo "
@@ -34,28 +41,30 @@ if (!$pharmacy['is_verified']) {
             <div>
                 <h4>$consumer_name</h4>
                 <h5>$mobile_number</h5>
+                <h5>$date</h5>
             </div>
         </div>
 ";
-        } ?>
+        } }?>
 
     </div>
 
 
     <div class="dashboard__top-cards">
-        <h3>Orders</h3>
+        <h3>Newest Order Preview</h3>
 
 
         <?php
 
         if ($order_preview === null) {
-            echo "NO ORDERS YET";
+            echo "<div class= 'No_med_orders'>NO ORDERS YET</div>";
         } else {
 
             $consumer_name = $order_preview["consumer_name"];
             $consumer_profile = $order_preview["profile_picture"];
             $consumer_mobile = $order_preview["mobile_number"];
             $med_prescription = $order_preview["prescription"];
+            $date = $order_preview["created_at"];
 
 
             echo "
@@ -66,6 +75,7 @@ if (!$pharmacy['is_verified']) {
                     <h4>$consumer_name</h4>
                     <h5>$consumer_mobile</h5>
                 </div>
+                <h4>$date</h4>
             </div>
 
             <div class='product-order-details'>
@@ -84,7 +94,7 @@ if (!$pharmacy['is_verified']) {
          
 
     <div class='dashboard__top-cards'>
-        <h3>Order Count</h3>
+        <h3>Orders Count</h3>
         <div class='order-count__details'>
             <?php foreach ($orders_counts as $count) {
                 $order_count = $count["order_count"];

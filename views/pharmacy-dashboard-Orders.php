@@ -75,3 +75,12 @@
 <!--<td>--><?php //foreach($medicines as $medicine){
 //        $medicines_list_elements = $medicines_list_elements.'<li>$medicine</li>';
 //    } ?><!--</td>-->
+<?php
+if (empty($orders)) {
+    echo "
+        <div class='no-feedback'>
+            No orders yet
+        </div>
+        ";
+}
+?>

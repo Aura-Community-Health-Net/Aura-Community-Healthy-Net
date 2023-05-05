@@ -21,7 +21,7 @@ async function getMedOrderCountData(period="this_month"){
         console.log(dates)
         console.log(orders)
         console.log(Chart)
-        orderCountChart = new Chart(medOrderCountCanvas, {
+        medOrderCountChart = new Chart(medOrderCountCanvas, {
             type: 'bar',
             data: {
                 labels: dates,
@@ -44,23 +44,6 @@ async function getMedOrderCountData(period="this_month"){
     } catch (e){
         console.log(e)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
