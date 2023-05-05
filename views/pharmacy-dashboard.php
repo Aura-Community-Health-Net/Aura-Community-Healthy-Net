@@ -22,7 +22,7 @@ if (!$pharmacy['is_verified']) {
         <h3>New Orders</h3>
         <?php
 
-        if ($order_preview === null) {
+        if ($medicines_orders_list === null) {
             echo "<div class= 'No_med_orders'>NO ORDERS YET</div>";
         }
 
@@ -41,11 +41,18 @@ if (!$pharmacy['is_verified']) {
             <div>
                 <h4>$consumer_name</h4>
                 <h5>$mobile_number</h5>
-                <h5>$date</h5>
+            </div>
+            <div>
+               <h5>$date</h5>
             </div>
         </div>
 ";
+
         } }?>
+
+        <a href='/pharmacy-dashboard/orders'>
+            <button class="all-orders-btn">All Orders</button>
+        </a>
 
     </div>
 
@@ -128,7 +135,7 @@ if (!$pharmacy['is_verified']) {
 
             $med_image = $medicine['image'];
             $med_name = $medicine['name'];
-            $med_price = $medicine['price'];
+            $med_price = $medicine['price']/100;
             $med_quantity = $medicine['quantity'];
             $med_quantity_unit = $medicine['quantity_unit'];
 
@@ -142,15 +149,81 @@ if (!$pharmacy['is_verified']) {
 
         } ?>
 
+        <a href='/pharmacy-dashboard/medicines'>
+            <button class="all-products-btn">All Medicines</button>
+        </a>
+
 
     </div>
 
     <div class="dashboard__bottom-cards">
         <h3>Analytics</h3>
-        <img class="dashboard-analytics-img" src="/assets/images/dashboard-analytics.jpg" alt="">
-        <div class="dashboard-analytics-description">
-            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the </p>
-        </div>
+        <canvas id="revenue-chart" class="revenue-chart" style="margin-top: 1rem"></canvas>
+        <p class="dashboard__top-cards-analytics">Daily Revenue Chart of current week</p>
+
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+<script>
+
+    const medRevenueChartCanvas = document.querySelector("#revenue-chart");
+
+    async  function getMedRevenueData(period="this_month"){
+        try{
+
+            const result = await fetch(`/pharmacy-dashboard/analytics/revenue-chart?period=this_week`);
+            const data = await result.json();
+            console.log(data)
+            const dates = data.map((d)=> {
+                return d.date;
+            })
+
+            const revenues = data.map((d)=>{
+                return Number(d.revenue)/100;
+            })
+            console.log(dates)
+            console.log(revenues)
+            console.log(Chart)
+
+            medRevenueChart = new Chart(medRevenueChartCanvas, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Revenue',
+                        data: revenues,
+                        borderColor: 'rgb(20, 240, 60)',
+                        backgroundColor: 'rgba(20, 240, 60, 0.5)',
+                        fill: 'origin'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }catch (e){
+            console.log(e)
+        }
+    }
+
+
+    window.addEventListener("load", async () => {
+        await getMedRevenueData();
+    })
+
+
+
+
+
+
+
+
+
+
+</script>
