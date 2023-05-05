@@ -6,6 +6,18 @@
  * @var string $active_link
  */
 ?>
+<?php
+foreach ($medicines as $medicine) {
+    $med_id = $medicine['med_id'];
+}
+?>
+<form action="/pharmacy-dashboard/medicines" class="form-item--search" method="get">
+    <div class="search-bar">
+        <input type="text" placeholder="Search Medicine..." name="query" id="query">
+        <button href="" type="submit"><i class="fa fa-search"></i></button>
+
+    </div>
+</form>
 <table class="items-table">
     <tr>
         <th>Medicine Image</th>
