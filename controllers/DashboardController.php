@@ -140,13 +140,14 @@ class DashboardController extends Controller
             $all_orders_count = $result->fetch_all(MYSQLI_ASSOC);
 
 
-            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+            $stmt = $db->connection->prepare("SELECT distinct(o.order_id), s.profile_picture, 
                    s.name AS consumer_name,  
-                   s.mobile_number
+                   s.mobile_number,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY created_at DESC LIMIT 4");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -158,12 +159,13 @@ class DashboardController extends Controller
             $stmt = $db->connection->prepare("SELECT s.profile_picture, 
                    s.name AS consumer_name, 
                    s.mobile_number,  
-                   r.prescription
+                   r.prescription,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
                 INNER JOIN pharmacy_request r on s.consumer_nic = r.consumer_nic
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY created_at DESC LIMIT 1");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
