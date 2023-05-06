@@ -12,6 +12,17 @@
    <div class="pharmacy-neworders-main-block">
 
        <?php
+       if (empty($orders)) {
+           echo "
+        <div class='no-feedback'>
+            No New Requests yet
+        </div>
+        ";
+       }
+       ?>
+
+
+       <?php
        foreach ($orders as $order) {
 
 
@@ -73,6 +84,7 @@
            } ?>
    </div>
 </div>
+
 
 
 <script src="/assets/js/pages/prescription.js"></script>

@@ -34,7 +34,7 @@
         </div>
         <div class="provider-signup-header__title">
             <h2>Aura</h2>
-            <h3>Community Health Net</h3>
+            <h5>Community Health Net</h5>
         </div>
         </div>
         <div class="header-link__container">

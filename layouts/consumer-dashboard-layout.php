@@ -45,7 +45,7 @@
     <div class="dashboard-header__profile">
         <div class="header-link__container">
             <a class="header-link" href="/">Home</a>
-            <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+            <a class="header-link" href="/contact-us">Contact Us</a>
             <a class="header-link" href="/about-us">About Us</a>
             <a class="header-link" href="/cart"><i class='fa-solid fa-cart-plus'></i></a>
         </div>

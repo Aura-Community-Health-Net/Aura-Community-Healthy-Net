@@ -101,3 +101,10 @@
     padding-top: 2rem;
     padding-right: 4rem;
 }
+
+
+.prescription_buttons_container{
+    display: flex;
+     justify-content: space-between;
+    margin-top: 1rem;
+}

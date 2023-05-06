@@ -35,19 +35,21 @@ uploadPresButtons.forEach(function (attach_prescription_Button){
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="prescription-upload-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-regular fa-plus"></i>
                     </button>
                     <div id="prescription-filename"></div>
                 </div>
               </div>
             
 
-            <label class="form-input__label" for="">Remark</label>
+            <label class="form-input__label" for="">Note to the Pharmacy</label>
             <input  class="form-input__input" type="text" name="customer_remark">
             
-            <button class="ok-btn" id="attach-prescription-ok-btn" type="submit">ok</button>
-            <button class="cancel-btn" id="attach-prescription-cancel-btn">cancel</button>
-        
+            <div class="prescription_buttons_container">
+                 <button class="ok-btn" id="attach-prescription-ok-btn" type="submit">Ok</button>
+                 <button class="cancel-btn" id="attach-prescription-cancel-btn">Cancel</button>
+            </div>
+          
         
         </form>
       </div>

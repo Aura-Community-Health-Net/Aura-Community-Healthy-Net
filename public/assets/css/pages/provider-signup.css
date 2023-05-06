@@ -47,23 +47,30 @@
 
 .provider-signup-header {
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: space-between;
-    gap: 1rem;
     padding-inline: 2rem;
-    padding-block: 0.25rem;
+    align-items: center;
 }
 
 .provider-signup-header__brand {
     display: flex;
-    gap: 1rem;
     align-items: center;
 }
 
 .provider-signup-header__logo img {
-    height: 60px;
-    width: 60px;
-    object-fit: cover;
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.provider-signup-header__title{
+    color: #00005C;
+    font-weight: lighter;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .provider-signup-header__title h3 {
@@ -83,7 +90,7 @@
 }
 
 .provider-signup-header a {
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
