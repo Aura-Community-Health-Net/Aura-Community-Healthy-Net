@@ -169,7 +169,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_year";
-                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                    $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
                                                     AND YEAR(date_time) = YEAR(NOW()) 
@@ -177,7 +177,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "all_time";
-                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                    $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
                                                     GROUP BY DATE(date_time)");
@@ -200,44 +200,44 @@ class AnalyticsController extends Controller
         if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
-        } else{
+        } else {
             $db = new Database();
             $chart_time = $_GET["period"] ?? "all_time";
 
             $stmt = "";
-            switch ($chart_time){
+            switch ($chart_time) {
                 case "this_week";
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
                 AND WEEK(created_at, 1) = WEEK(NOW(), 1)
                 AND status != 'unpaid' 
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
                 case ("this_month");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
                 AND MONTH(created_at) = MONTH(NOW())
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
                 case ("past_six_months");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
                 case ("all_time");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
             }
 
             $stmt->bind_param("s", $nic);
@@ -257,14 +257,14 @@ class AnalyticsController extends Controller
         if (!$nic || $providerType !== "product-seller") {
             header("location: /provider-login");
             return "";
-        } else{
+        } else {
             $db = new Database();
             $chart_time = $_GET["period"] ?? "all_time";
 
             $stmt = "";
-            switch ($chart_time){
+            switch ($chart_time) {
                 case "this_week";
-                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+                    $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
                     JOIN product p ON op.product_id = p.product_id
@@ -275,10 +275,10 @@ class AnalyticsController extends Controller
                     GROUP BY op.product_id
                     ORDER BY revenue DESC
                     LIMIT 10;");
-                break;
+                    break;
 
                 case "this_month";
-                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+                    $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
                     JOIN product p ON op.product_id = p.product_id
@@ -289,10 +289,10 @@ class AnalyticsController extends Controller
                     GROUP BY op.product_id
                     ORDER BY revenue DESC
                     LIMIT 10;");
-                break;
+                    break;
 
                 case "past_six_months";
-                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+                    $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
                     JOIN product p ON op.product_id = p.product_id
@@ -302,10 +302,10 @@ class AnalyticsController extends Controller
                     GROUP BY op.product_id
                     ORDER BY revenue DESC
                     LIMIT 10;");
-                break;
+                    break;
 
                 case "all_time";
-                $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
+                    $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
                     JOIN product p ON op.product_id = p.product_id
@@ -314,7 +314,7 @@ class AnalyticsController extends Controller
                     GROUP BY op.product_id
                     ORDER BY revenue DESC
                     LIMIT 10;");
-                break;
+                    break;
             }
 
             $stmt->bind_param("s", $nic);
@@ -325,7 +325,6 @@ class AnalyticsController extends Controller
             return json_encode($product_records);
         }
     }
-
 
 
 
@@ -541,7 +540,31 @@ public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 }
 
 
+    public static function getCareRiderAnalyticsRevenueChart()
+    {
+        $db = new Database();
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "care-rider") {
+            header("location: /provider-login");
+            return "";
+        }
+        else
+        {
+            $stmt = $db->connection->prepare("SELECT care_rider_time_slot.date, SUM(ride.cost) FROM ride INNER JOIN care_rider_time_slot on ride.request_id = care_rider_time_slot.request_id WHERE ride.provider_nic = ? GROUP BY care_rider_time_slot.date  ");
+            $stmt->bind_param("s",$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $records = $result->fetch_all(MYSQLI_ASSOC);
+            echo '<pre>';
+            var_dump($records);
+            echo '</pre>';
+            return "";
+        }
 
+
+    }
+}
 
 
 
@@ -583,3 +606,4 @@ public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
 }
+

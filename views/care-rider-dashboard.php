@@ -22,14 +22,13 @@ if (!$care_rider['is_verified']) {
 <!DOCTYPE html>
 <head>
     <title>Page Title</title>
-
 </head>
 <body>
 <div style="margin: 2rem;">
 <div class="care-rider-top-container">
     <div class="care-rider-top-left">
-        <h3 style="text-align: center;margin-top: 1rem">New Requests List</h3>
-        <table class="appointment-list__item__scroll">
+        <h3 >New Requests List</h3>
+        <table class="care-rider-appointment-list__item__scroll">
             <?php foreach ($request_confirm as $value) { ?>
                 <tr class="care-rider-request-list__item">
                     <td><img src="<?php echo $value['profile_picture'] ?>" alt=""></td>
@@ -43,7 +42,7 @@ if (!$care_rider['is_verified']) {
         </table>
     </div>
     <div class="care-rider-top-center">
-        <h3 style="text-align: center;margin-top: 1rem">Request</h3>
+        <h3>Request</h3>
         <?php if ($count_request['COUNT(done)'] > 0) { ?>
             <div class="care-rider-dashboard__request">
                 <div class="care-rider-dashboard__request__profile">
@@ -71,7 +70,7 @@ if (!$care_rider['is_verified']) {
 </div>
 <div class="care-rider-bottom-container">
     <div class="care-rider-dashboard-bottom-left">
-        <h3 style="text-align: center;margin-top: 1rem">Request Count</h3>
+        <h3>Request Count</h3>
         <div class="care-rider-request-details">
             <h3>New Requests</h3>
             <h1 style="color: #5BC849"><?php echo $new_request['COUNT(done)']; ?></h1>
@@ -83,9 +82,9 @@ if (!$care_rider['is_verified']) {
 
     </div>
     <div class="care-rider-dashboard-bottom-right">
-        <h3 style="text-align: center;margin-top: 1rem" >Analytics</h3>
+        <h3>Analytics</h3>
         <img src="/assets/images/analytics_graph.png">
-        <div class="doctor-dashboard__analytics">
+        <div class="care-rider-dashboard__analytics">
             <p style="text-align: center;"> Lor Lorem Ipsum is simply dummy text<br> of the printing and text of the printing<br> and type setting
                 industry.</p>
         </div>

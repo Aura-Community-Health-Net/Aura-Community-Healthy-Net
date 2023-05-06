@@ -12,7 +12,7 @@
 <div class="consumer-dashboard-care-rider">
     <div class="consumer-dashboard-care-rider__top">
         <form action="/consumer-dashboard/services/care-rider" class="form-item--search" method="get">
-            <div class="search-bar">
+            <div class="care-rider-search-bar">
                 <input type="text" placeholder="Search ..." name="q" id="q">
                 <button href="" type="submit"><i class="fa fa-search"></i></button>
             </div>
