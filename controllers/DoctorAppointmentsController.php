@@ -43,7 +43,7 @@ class DoctorAppointmentsController extends Controller
 
 
         return self::render(view: 'doctor-dashboard-appointments', layout: "doctor-dashboard-layout", params: [
-            "appointments" => $appointments,"appointments_details"=>$appointment_details
+            "appointments" => $appointments,"appointments_details"=>$appointment_details,"doctor" => $doctor
         ], layoutParams: [
             "title" => "Appointments",
             "active_link" => "appointments",

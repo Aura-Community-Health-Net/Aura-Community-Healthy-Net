@@ -10,7 +10,8 @@
 //print_r($appointments_details[0]);die();
 $done = 1;
 ?>
-
+<?php if(!$doctor['is_verified']) {?>
+    <div class="not-verified-doctor-timeslot"><h2>No Appointments yet</h2></div><?php } else {?>
 <div class="doctor-appointments_container" xmlns="http://www.w3.org/1999/html">
     <div class="doctor-appointments__left__container">
         <form method="post">
@@ -67,11 +68,12 @@ $done = 1;
 <!--                </div>-->
                 </table>
         </form>
+
     </div>
 
 
-            <input name="destination-lat" id="destination-lat" type="hidden" style="opacity: 0">
-            <input name="destination-lng" id="destination-lng" type="hidden" style="opacity: 0">
+<!--            <input name="destination-lat" id="destination-lat" type="hidden" style="opacity: 0">-->
+<!--            <input name="destination-lng" id="destination-lng" type="hidden" style="opacity: 0">-->
 
                     <div class="doctor-appointments__right">
                         <div class="map" id="map" style="height:500px;width: 400px;margin-inline: auto"></div>
@@ -79,3 +81,4 @@ $done = 1;
 
             <script src="/assets/js/pages/doctor-location.js"></script>
 </div>
+<?php } ?>

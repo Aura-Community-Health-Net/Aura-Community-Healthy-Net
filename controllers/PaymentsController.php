@@ -247,7 +247,7 @@ class PaymentsController extends Controller
                     }
                 } else if ($isAppointment) {
 
-
+                    $consumer_nic = $customer["consumer_nic"];
                     $appointment_id = (int)$metadata["appointment_id"];
                     PaymentsController::logPayment($appointment_id);
                     try {
@@ -255,6 +255,14 @@ class PaymentsController extends Controller
                         $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
                         $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
                         $stmt->execute();
+//                        $provider_nic = $metadata['provider_nic'];
+//
+//                        $amount = 1500;
+//                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+//                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+//                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+//                        $stmt->execute();
+//                        PaymentsController::logPayment("inserted payment record");
 
                         if ($db->connection->errno) {
                             $db->connection->rollback();
@@ -593,6 +601,7 @@ class PaymentsController extends Controller
 
 
     }
+
 
     public static function paymentSuccess(): bool|array|string
     {

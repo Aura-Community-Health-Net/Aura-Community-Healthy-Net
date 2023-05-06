@@ -2,6 +2,7 @@
 /**
  * @var array $patients
  * @var $patient_details
+ * @var $doctor
  */
 
 //print_r($patient_details);die();
@@ -12,6 +13,8 @@
     <title>Past-Patients</title>
 </head>
 
+<?php if(!$doctor['is_verified']) {?>
+    <div class="not-verified-doctor-timeslot"><h2>No Patients yet</h2></div><?php } else {?>
 <div class="doctor-patients">
         <table>
             <tr>
@@ -21,6 +24,7 @@
                 <th class="doctor-patients__head">Observation</th>
             </tr>
         </table>
+
                 <?php foreach ($patient_details as $value) {?>
                             <div class="doctor-patients__data">
                                 <img src="<?php echo $value['profile_picture'];?>">
@@ -31,3 +35,4 @@
                             </div>
                 <?php }?>
 </div>
+<?php } ?>
