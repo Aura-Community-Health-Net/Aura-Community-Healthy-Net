@@ -24,7 +24,7 @@
             $request_id = $detail['request_id'];
             $date_time = $detail['date_time'];
             $date = explode(" ",$date_time)[0];
-            $hasReplied = $detail['advance_amount'] !== null ? "<p class='pharmacy-replied'>Pharmacy replied</p>" : "";
+            $hasReplied = $detail['advance_amount'] !== null ? "<p class='pharmacy-replied'>Pharmacy replied</p>" : "<p>Request In Progress</p>";
 
 
             echo "
