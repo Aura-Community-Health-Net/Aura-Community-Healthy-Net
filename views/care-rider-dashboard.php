@@ -22,7 +22,6 @@ if (!$care_rider['is_verified']) {
 <!DOCTYPE html>
 <head>
     <title>Page Title</title>
-
 </head>
 <body>
 <div style="margin: 2rem;">
