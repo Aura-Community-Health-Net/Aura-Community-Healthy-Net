@@ -104,7 +104,7 @@ class AdministratorController extends Controller
         ], layoutParams: [
             "title" => "Due Payments",
             "admin" => [
-                "name" => "Randima Dias"
+                "name" => "MGRM Dias"
             ],
             "active_link" => "payments"
         ]);
