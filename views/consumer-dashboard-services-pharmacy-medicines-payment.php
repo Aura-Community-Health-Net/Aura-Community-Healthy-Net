@@ -119,7 +119,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "https://a8ec-2407-c00-c003-9349-b8b2-fa96-85a4-a5ef.ngrok-free.app/medicines-checkout/success",
+                    return_url: "https://0751-212-104-237-38.ngrok-free.app/medicines-checkout/success",
                     receipt_email: emailAddress,
                 },
             });

@@ -81,9 +81,12 @@ if (!$pharmacy['is_verified']) {
                 <div>
                     <h4>$consumer_name</h4>
                     <h5>$consumer_mobile</h5>
+                   <h4>$date</h4>
+
                 </div>
-                <h4>$date</h4>
+                
             </div>
+            
 
             <div class='product-order-details'>
                <img class='order-product-img' src='$med_prescription' alt=''>
