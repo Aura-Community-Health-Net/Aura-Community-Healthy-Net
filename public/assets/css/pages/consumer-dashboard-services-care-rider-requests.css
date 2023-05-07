@@ -34,3 +34,28 @@
     width: 700px;
     overflow-x: hidden;
 }
+.location-time{
+    width: 50%;
+    margin: 3rem;
+}
+.location-date{
+    width: 50%;
+    margin: 3rem;
+}
+.dat-time-container{
+    display: flex;
+    background-color:#EFEEFD;
+    border-radius: 1rem;
+}
+.care-rider-dashboard-timeslots-display{
+    background-color:#EFEEFD;
+    margin: 1rem;
+    border-radius: 1rem;
+
+}
+.care-rider-timeslots-display{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 300px;
+    /* width: 700px; */
+}

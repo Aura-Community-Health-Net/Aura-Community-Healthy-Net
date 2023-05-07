@@ -69,6 +69,28 @@ class CareRiderNewRequestsController extends Controller
                 $stmt->bind_param("i",$request_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
+
+                $stmt = $db->connection->prepare("SELECT distance,consumer_nic,request_id FROM ride_request WHERE provider_nic = ? AND request_id = ?");
+                $stmt->bind_param("si", $nic,$request_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $record = $result->fetch_assoc();
+
+                $cost = $record['distance'] * 70;
+                $consumer_nic = $record['consumer_nic'];
+                $distance = $record['distance'];
+                $request_id = $record['request_id'];
+//                print_r($distance);
+//                print_r($consumer_nic);
+//                print_r($cost);
+
+                $stmt = $db->connection->prepare("INSERT INTO ride (cost, distance, provider_nic, consumer_nic,request_id)
+                               VALUES (?,?,?,?,?)");
+                $stmt->bind_param("dissi", $cost,$distance,$nic,$consumer_nic,$request_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+
             }else if($id==1){
                 $stmt = $db->connection->prepare("UPDATE ride_request SET done = 2 WHERE request_id = ?");
                 $stmt->bind_param("i",$request_id );

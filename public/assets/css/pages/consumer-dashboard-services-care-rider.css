@@ -1,3 +1,6 @@
+.consumer-dashboard-care-rider{
+    overflow-x: hidden;
+}
 .consumer-dashboard-care-rider__top{
     width: 50px;
     margin-inline: 4rem;
@@ -37,7 +40,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #EFEEFD    ;
+    background-color: #EFEEFD ;
+    border-radius: 1rem;
 }
 
 .care-rider-card > div {
@@ -61,9 +65,9 @@
 button {
     border: none;
     outline: none;
-    background-color: var(--color-primary);
+    /*background-color: var(--color-primary);*/
     padding: 0.5rem 1rem;
-    color: #fff;
+    color: black;
     cursor: pointer;
     border-radius: 9%;
 }
@@ -88,6 +92,7 @@ button {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    margin: 1rem;
 }
 .form-items-dropdown {
     width: 18rem;
@@ -96,3 +101,17 @@ button {
     border-radius: 5px;
     margin-left: 500px;
 }
+.care-rider-search-bar{
+    border: none;
+    outline: none;
+    /*background-color:red;*/
+    display: flex;
+    color: black;
+
+}
+
+/*.care-rider-search{*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    background-color: transparent;*/
+/*}*/

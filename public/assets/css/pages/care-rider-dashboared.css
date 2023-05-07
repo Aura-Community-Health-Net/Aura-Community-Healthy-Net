@@ -14,7 +14,18 @@
     display: flex;
 
 }
+ h3{
+    text-align: center;
+    margin-top: 1rem;
+}
+.care-rider-appointment-list__item__scroll{
+    margin-top: 0.75rem;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 330px;
+    height: 200px;
 
+}
 /*New request eke table tr eka*/
 .care-rider-request-list__item{
     display: flex;
@@ -43,7 +54,7 @@
     /*overflow-x: hidden;*/
     height: 400px;
     width: 50%;
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -57,7 +68,7 @@
 .care-rider-top-center{
     height: 400px;
     width: 50%;
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -65,7 +76,7 @@
 .care-rider-top-right{
     height: 400px;
     width: 500px;
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -97,7 +108,7 @@
 
 /* set the background color of the partitions */
 .partition-1 {
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -105,7 +116,7 @@
 }
 .care-rider-request-details{
     background-color: white;
-    margin-top: 3.5rem;
+    margin-top: 1rem;
     text-align: center;
     border-radius: 8px;
     margin-inline: 8rem;
@@ -117,7 +128,7 @@
 }
 .care-rider-dashboard-bottom-left{
     width: 50%;
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -126,7 +137,7 @@
 }
 .care-rider-dashboard-bottom-right{
     width: 50%;
-    background-color:#D9D9D9;
+    background-color:#EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -136,4 +147,9 @@
     margin-inline:10rem ;
     margin-top: 1rem;
 
+}
+.care-rider-dashboard__analytics{
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 5px;
 }

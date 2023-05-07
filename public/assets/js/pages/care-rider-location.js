@@ -76,8 +76,8 @@ function attachLocationButtonListener(button) {
     button.addEventListener("click", function () {
 
         const position = {
-            from_lat: Number(button.dataset.from_lat),
-            from_lng: Number(button.dataset.from_lng)
+            lat: Number(button.dataset.from_lat),
+            lng: Number(button.dataset.from_lng)
         }
         // const position2 = {
         //     to_lat: Number(button.dataset.to_lat),

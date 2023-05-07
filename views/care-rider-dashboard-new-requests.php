@@ -48,7 +48,8 @@ $confirm = 2;
                                         $to_location = json_decode($value['to_location']);
                                         $to_lat = $to_location->lat;
                                         $to_lng = $to_location->lng;
-
+//                                        var_dump($from_lat, $from_lng);
+//                                        var_dump($to_lat, $to_lng);
                                         echo "
                                             <tbody class='care_rider-request__left'>
                                                     <tr class='care_rider-request__left__data'>
@@ -98,9 +99,9 @@ $confirm = 2;
 
 
 
-
-    <input name="destination-lat" id="destination-lat" type="hidden" style="opacity: 0">
-    <input name="destination-lng" id="destination-lng" type="hidden" style="opacity: 0">
+<!---->
+<!--    <input name="destination-lat" id="destination-lat" type="hidden" style="opacity: 0">-->
+<!--    <input name="destination-lng" id="destination-lng" type="hidden" style="opacity: 0">-->
     <div class="care_rider-request__right">
         <div class="map" id="map" style="height:500px;width: 400px;margin-inline: auto"></div>
     </div>
