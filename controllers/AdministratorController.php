@@ -79,7 +79,44 @@ class AdministratorController extends Controller
 
     public static function getAdministratorDashboardPage(): bool|array|string
     {
-        return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [], layoutParams: [
+
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("SELECT COUNT(provider_nic)AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='pharmacy'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $pharmacist_count = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='product-seller'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product_seller_count = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='doctor'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $doctor_count = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='care-rider'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $care_rider_count = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS consumer_count FROM service_consumer");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $consumer_count = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+        return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [
+            "pharmacies" => $pharmacist_count,
+            "product_sellers" => $product_seller_count,
+            "doctors" => $doctor_count,
+            "care_riders"=>$care_rider_count,
+            "consumers" => $consumer_count
+        ], layoutParams: [
             "title" => "Dashboard",
             "admin" => [
                 "name" => "Randima Dias"
