@@ -110,7 +110,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "https://24dc-2407-c00-4004-2f83-20dc-d1a-ff8e-5002.ngrok-free.app/checkout/success",
+                    return_url: "https://0b07-2401-dd00-1e-00-fffe.ngrok-free.app/checkout/success",
                     receipt_email: emailAddress,
                 },
             });
