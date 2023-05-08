@@ -215,24 +215,20 @@ class AdministratorController extends Controller
 
     {
 
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
 
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if (!$nic || $providerType !== "pharmacy") {
-            header("location: /provider-login");
-            return "";
-        } else {
-            $db = new Database();
-            $chart_time = $_GET["period"] ?? "all_time";
+        $stmt = "";
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
 
-
-            $stmt = "";
+        $stmt = "";
             switch ($chart_time) {
                 case "this_week";
                     $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
                                                     FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic = r.provider_nic
                                                     INNER JOIN service_provider s ON s.provider_nic = p.provider_nic                                                   
-                                                    WHERE s.provider_type = 'pharmacy' AND p.provider_nic = ?  
+                                                    WHERE s.provider_type = 'pharmacy'  
                                                     AND YEAR(p.date_time) = YEAR(NOW()) 
                                                     AND WEEK(p.date_time, 1) = WEEK(NOW(), 1)
                                                     GROUP BY DATE(p.date_time)");
@@ -242,7 +238,7 @@ class AdministratorController extends Controller
                     $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue 
                                                     FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
                                                     INNER JOIN service_provider s ON s.provider_nic = p.provider_nic                                                   
-                                                    WHERE s.provider_type = 'pharmacy' AND p.provider_nic = ?   
+                                                    WHERE s.provider_type = 'pharmacy'   
                                                     AND YEAR(p.date_time) = YEAR(NOW()) 
                                                     AND MONTH(p.date_time) = MONTH(NOW())
                                                     GROUP BY DATE(p.date_time)");
@@ -252,7 +248,7 @@ class AdministratorController extends Controller
                     $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
                                                     FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
                                                     INNER JOIN service_provider s ON s.provider_nic = p.provider_nic                                                   
-                                                    WHERE s.provider_type = 'pharmacy' AND p.provider_nic = ? 
+                                                    WHERE s.provider_type = 'pharmacy' 
                                                     AND p.date_time BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
                                                     GROUP BY DATE(p.date_time)");
                     break;
@@ -261,7 +257,7 @@ class AdministratorController extends Controller
                     $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
                                                     FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
                                                     INNER JOIN service_provider s ON s.provider_nic = p.provider_nic                                                   
-                                                    WHERE s.provider_type = 'pharmacy' AND p.provider_nic = ? 
+                                                    WHERE s.provider_type = 'pharmacy' 
                                                     AND YEAR(p.date_time) = YEAR(NOW()) 
                                                     GROUP BY DATE(p.date_time)");
                     break;
@@ -270,25 +266,21 @@ class AdministratorController extends Controller
                     $stmt = $db->connection->prepare("SELECT DATE(p.date_time) as date, SUM(r.total_amount) as revenue
                                                     FROM payment_record p INNER JOIN pharmacy_request r ON p.provider_nic=r.provider_nic
                                                     INNER JOIN service_provider s ON s.provider_nic = p.provider_nic                                                   
-                                                    WHERE s.provider_type = 'pharmacy' AND p.provider_nic = ? 
+                                                    WHERE s.provider_type = 'pharmacy' 
                                                     GROUP BY DATE(p.date_time)");
                     break;
             }
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $records = $result->fetch_all(MYSQLI_ASSOC);
-
-
-            header("Content-Type: application/json");
-            return json_encode($records);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        header("Content-Type: application/json");
+        return json_encode($data);
         }
 
 
 
 
 
-    }
 
 
 
