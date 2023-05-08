@@ -78,8 +78,12 @@ class AdministratorController extends Controller
 
     public static function getAdministratorDashboardPage(): bool|array|string
     {
-
         $db = new Database();
+        $is_admin = $_SESSION["is_admin"];
+        if (!$is_admin) {
+            header("location: /administrator-login");
+            return "";
+        }
 
         $stmt = $db->connection->prepare("SELECT COUNT(provider_nic)AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='pharmacy'");
         $stmt->execute();
@@ -101,20 +105,17 @@ class AdministratorController extends Controller
         $result = $stmt->get_result();
         $care_rider_count = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS consumer_count FROM service_consumer");
+        $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, pr.amount, s.bank_account_number FROM service_provider s INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic LIMIT 4");
         $stmt->execute();
         $result = $stmt->get_result();
-        $consumer_count = $result->fetch_all(MYSQLI_ASSOC);
-
-
-
+        $due_payments = $result->fetch_all(MYSQLI_ASSOC);
 
         return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [
             "pharmacies" => $pharmacist_count,
             "product_sellers" => $product_seller_count,
             "doctors" => $doctor_count,
             "care_riders"=>$care_rider_count,
-            "consumers" => $consumer_count
+            "due_payments"=>$due_payments
         ], layoutParams: [
             "title" => "Dashboard",
             "admin" => [

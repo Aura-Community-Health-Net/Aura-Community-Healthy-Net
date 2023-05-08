@@ -5,6 +5,7 @@
  * @var array $doctors
  * @var array $care_riders
  * @var array $consumers
+ * @var array $due_payments
  * */
 ?>
 
@@ -21,8 +22,27 @@
 
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
-        <h3>Payment</h3>
-        <img class="admin-payment" src="/assets/images/admin-payment.png" alt="">
+        <h3>Payment Details</h3>
+
+        <?php
+        foreach ($due_payments as $due_payment){
+            $profile_picture = $due_payment["profile_picture"];
+            $provider_name = $due_payment["name"];
+            $amount = $due_payment["amount"];
+            $bank_acc_number = $due_payment["bank_account_number"];
+
+            echo "
+             <div class='admin-dashboard__due-payments'>
+                <img src='$profile_picture' class = 'due-payment__provider-img admin__due-payments' alt=''>
+                <p>$provider_name</p>
+                <p>$amount</p>
+                <p>$bank_acc_number</p>
+            </div>
+            ";
+        }
+        ?>
+
+
     </div>
     
     <div class="dashboard__bottom-cards">
@@ -62,18 +82,6 @@
             <p class='services-count'>$riders_count</p>
             ";}?>
         </div>
-
-        <div class='services-count__details'>
-            <?php foreach ($consumers as $consumer){
-                $consumers_count = $consumer["consumer_count"];
-                echo"
-            
-            <h3>Service Consumers</h3>
-            <p class='services-count'>$consumers_count</p>
-            ";}?>
-        </div>
-
-
 
     </div>
 </div>
