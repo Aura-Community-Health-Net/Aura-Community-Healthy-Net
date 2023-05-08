@@ -165,6 +165,8 @@ $app->router->post('/doctor-dashboard/appointments-consulted', [DoctorAppointmen
 
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
+$app->router->get('/doctor-dashboard/analyticsRevenueChart',[AnalyticsController::class,'getDoctorAnalyticsRevenueChart']);
+$app->router->get('/doctor-dashboard/analyticsAppointmentCountChart',[AnalyticsController::class,'getDoctorAnalyticsAppointmentCount']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
 

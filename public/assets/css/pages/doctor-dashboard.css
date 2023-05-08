@@ -17,12 +17,23 @@
     justify-content: center;
     border-radius: 10px;
 }
-.appointment-list__item__scroll,.doctor-dashboard__patients__list__scroll{
+.doctor-dashboard__patients__list__scroll{
     margin-top: 0.75rem;
     overflow: auto;
     overflow-x: hidden;
     width: 330px;
     height: 200px;
+}
+.appointment-list__item__scroll{
+    margin-top: 0.75rem;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 750px;
+    height: 200px;
+}
+.doctor-dashboard__left__top{
+    grid-row: 2/1;
+    grid-column: 2/4;
 }
 .doctor-dashboard__left__top__data{
     background-color: #ffffff;
@@ -36,13 +47,23 @@
     height: 36px;
     border-radius: 21px;
 }
+.doctor-dashboard__left__top button{
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    width: 150px;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    height: 2rem;
+    margin-left: 30rem;
+}
 .doctor-dashboard__right__bottom{
     grid-row: 2/3;
     grid-column: 3/4;
-}
-.doctor-dashboard__left__top{
-    grid-row: 2/1;
-    grid-column: 2/4;
 }
 .doctor-dashboard__center__bottom{
     display: flex;
@@ -184,4 +205,7 @@
     background-color: #ffffff;
     padding: 0.5rem;
     border-radius: 5px;
+}
+.not-verified-doctor{
+    color: #00005C;
 }

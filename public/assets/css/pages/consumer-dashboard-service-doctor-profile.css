@@ -12,23 +12,19 @@
     border-radius: 10px;
 }
 .consumer-dashboard-doctor-profile__top__right__timeslot{
-    /*position: absolute;*/
     top: 64px;
     overflow: auto;
     height: 270px;
     width: 600px;
 }
 .consumer-dashboard-doctor-profile__top__left img{
-    /*position: relative;*/
     left: 2px;
-    /*top: 20px;*/
     width: 189px;
     height: 188px;
     border-radius: 82px;
 }
 .consumer-dashboard-doctor-profile__top__left__data{
     background-color: #EFEEFD ;
-    /*position: relative;*/
     width: 410px;
     height: auto;
     border-radius: 8px;
@@ -56,8 +52,6 @@
     position: relative;
     border-radius: 8px;
     overflow: auto;
-    /*height: 270px;
-    width: 600px;*/
 }
 .consumer-dashboard-doctor-profile__top__right h4{
     position: relative;
@@ -77,27 +71,9 @@
     text-align: center;
     margin-bottom: 9px;
 }
-/*.consumer-dashboard-doctor-profile__top__right__location{
-    width: 400px;
-}*/
 .consumer-dashboard-doctor-profile__top__right__location p{
     margin-right: 400px;
 }
-/*.consumer-dashboard-doctor-profile__top__right__location__search{
-    position: absolute;
-    background-color: #ffffff;
-    width: 245px;
-    height: 21px;
-    left: 305px;
-    top: 352px;
-}
-.consumer-dashboard-doctor-profile__top__right__location__search i{
-    width: 15px;
-    height: 16px;
-    position: relative;
-    left: 210px;
-    top: 3px;
-}*/
 .consumer-dashboard-doctor-profile__top__right_p{
     text-align: left;
     padding: 10px;
@@ -129,9 +105,6 @@
     background-color: #ffffff;
     width: auto;
     height: auto;
-    /*position: relative;
-    left: 0;
-    bottom: 0;*/
     border-radius: 5px;
     padding-left: 17px;
     padding-right: 17px;
@@ -161,24 +134,17 @@
     top: -24px;
     text-align: justify;
 }
-.consumer-dashboard-doctor-profile__bottom__right button{
+.doctor-payment-btn{
     background-color: #00005C;
     color: #ffff;
     font-size: 1rem;
-    /*position: relative;
-    top: 20px;
-    left: 10px;*/
     alignment: center;
     border: none;
     padding: 10px 56px;
     border-radius: 5px;
     cursor: pointer;
 }
-.consumer-dashboard-doctor-profile__bottom__right{
-    /*position: absolute;
-    top: 50px;
-    left: 525px;*/
-}
+
 .doctor-feedback{
     margin-top: 10px;
     padding: 10px;
@@ -195,4 +161,31 @@
     overflow-x: hidden;
     height: 370px;
     width: 500px;
+}
+.doctor-input-location{
+    padding: 0.5rem;
+    margin-right: 105px;
+    margin-top: 16px;
+    width: 279px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
+#doctor-location-search{
+    position: relative;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #00005C;
+    padding: 8px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    bottom: 34px;
+}
+.location_results{
+    position: relative;
+    width: 60%;
+    height: 1.5rem;
+    bottom: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
 }

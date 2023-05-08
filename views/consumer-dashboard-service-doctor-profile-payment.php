@@ -33,24 +33,6 @@
         </button>
         <div id="payment-message" class="hidden"></div>
     </form>
-
-    <!--    <div class="overlay" id="consumer-payment-overlay">-->
-    <!--        <div class="modal" id="consumer-payment-modal">-->
-    <!--            <h3>Your Payment is successful</h3>-->
-    <!--            <img class="modal-img" src="/assets/images/sucessful.png" alt="">-->
-    <!--            <div class="modal-actions">-->
-    <!--                <button class="pay-btn" id="consumer-payment-ok-btn"><a href="/consumer-dashboard">Ok</a></button>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    <div class="overlay" id="delete-consumer-payment-overlay">-->
-    <!--        <div class="modal" id="delete-consumer-payment-modal">-->
-    <!---->
-    <!--        </div>-->
-    <!--    </div>-->
-
-
-    <!--<script src="/assets/js/pages/consumer-payment.js"></script>-->
 </div>
 
 <script>
@@ -128,7 +110,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: " https://9884-2402-4000-b192-1b80-1c06-8972-caa4-1a9.ngrok-free.app/checkout/success",
+                    return_url: "https://0b07-2401-dd00-1e-00-fffe.ngrok-free.app/checkout/success",
                     receipt_email: emailAddress,
                 },
             });
