@@ -86,19 +86,19 @@ class MedicinesController extends Controller
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
+        $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
 
         if (!$nic || $providerType !== "pharmacy") {
             header("/pharmacy-login");
             return "";
         } else {
             $db = new Database();
-            $sql = "SELECT * FROM medicine WHERE provider_nic='$nic'";
 
-            $result = $db->connection->query($sql);
-            $medicines = [];
-            while ($row = $result->fetch_assoc()) {
-                $medicines[] = $row;
-            }
+            $stmt = $db->connection->prepare("SELECT * FROM medicine m WHERE m.provider_nic = ? AND m.name LIKE '%$search_query%'");
+            $stmt->bind_param("s",$nic,);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            $medicines = $result->fetch_all(MYSQLI_ASSOC);
 
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
@@ -143,11 +143,11 @@ class MedicinesController extends Controller
 
 
 
-            return self::render(view: 'pharmacy-dashboard-neworders-advanceinfo', layout: "pharmacy-dashboard-layout",
+            return self::render(view: 'pharmacy-dashboard-newRequests-advanceinfo', layout: "pharmacy-dashboard-layout",
                 params:[
                     "available_med_details" => $available_med_details,
                 ],
-                layoutParams: ["pharmacy" => $pharmacy, "title" => "New Orders", "active_link" => "new-orders"]);
+                layoutParams: ["pharmacy" => $pharmacy, "title" => "New Requests", "active_link" => "new-requests"]);
 
         }
     }
@@ -182,7 +182,7 @@ class MedicinesController extends Controller
 //        $pharmacy = $result->fetch_assoc();
 
         $db = new Database();
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=?  WHERE request_id = ? ");
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET total_amount=?, advance_amount=?,available_medicines=?,pharmacy_remark=?  WHERE request_id = ? AND Sent_Request='unsent'");
 
         $totalAmountInCents = $total_amount * 100;
         $advanceAmountInCents = $advance_amount * 100;
@@ -190,14 +190,14 @@ class MedicinesController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET Sent_Request = 'sent' WHERE provider_nic = ?");
-        $stmt->bind_param("s",$provider_nic);
+        $stmt = $db->connection->prepare("UPDATE pharmacy_request SET Sent_Request = 'sent' WHERE provider_nic = ? AND request_id=?");
+        $stmt->bind_param("si",$provider_nic,$request_id);
         $stmt->execute();
 
 
 
 
-        header("location: /pharmacy-dashboard/new-orders");
+        header("location: /pharmacy-dashboard/new-requests");
         return "";
 
 
@@ -363,7 +363,7 @@ public static function RequestForPharmacy():bool|array|string
 //add provider nic for bind param
 
         $stmt->execute();
-               header("location: /consumer-dashboard/services/pharmacy");
+               header("location: /consumer-dashboard/services/pharmacy/request-details");
         return "";
 
 
@@ -413,7 +413,7 @@ public static function RequestForPharmacy():bool|array|string
 
             $db = new Database();
 
-            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic");
+            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1");
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacies = $result->fetch_all(MYSQLI_ASSOC);
@@ -506,11 +506,12 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
+//            $search_query = isset($_GET["query"]) ? $_GET["query"]: "";
 
-            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? AND m.name LIKE '%$search_query%'");
+            $stmt = $db->connection->prepare("SELECT  m.name, round(m.price/100,2) as price, m.image , m.quantity,m.quantity_unit  FROM  medicine m INNER  JOIN pharmacy p ON m.provider_nic = p.provider_nic INNER  JOIN service_provider s ON s.provider_nic = p.provider_nic WHERE s.id = ? ");
 
-            $stmt->bind_param("ss",$id,$search_query);
+//            AND m.name LIKE '%$search_query%'
+            $stmt->bind_param("s",$id,);
             $stmt->execute();
             $result = $stmt->get_result();
             $medicines = $result->fetch_all(MYSQLI_ASSOC);
@@ -622,7 +623,7 @@ public static function RequestForPharmacy():bool|array|string
 //           $result = $stmt->get_result();
 //           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ");
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();

@@ -5,7 +5,7 @@
     margin-left: 500px;
     margin-top: -250px;
     padding: 0.7rem;
-    background-color: white;
+    background-color:#EFEEFD;
     border-radius: 0.6rem;
     width:850px;
     align-items: center;
@@ -15,7 +15,7 @@
 #services-pharmacy-pharmacyName
 {
     font-weight: bold;
-    width: 12rem;
+    width: 20rem;
 }
 
 #services-pharmacy-MedicineImage img
@@ -33,13 +33,21 @@
 
 .pharmacy-view-btn
 {
-    background-color: #008DFF;
-    width: 3.2cm;
-    height: 0.7cm;
+    background-color: #00005C;
     border: none;
     border-radius: 0.6rem;
     cursor: pointer;
     color: white;
+    font-size: 1rem;
+}
+
+.pharmacy-request{
+    background-color: #00005C;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
 }
 
 .pharmacy-pres-upload-btn
@@ -66,7 +74,7 @@
 
 .consumer-services-pharmacy-pharmacyRequest-button
 {
-    background-color: #008DFF;
+    background-color: #00005C;
     width: 3.8cm;
     height: 0.8cm;
     border: none;
@@ -75,14 +83,28 @@
     margin-left: 1100px ;
     margin-top:-700px;
     color: white;
+
 }
 
 .consumer-services-pharmacy-pharmacyRequest-button a
 {
     color: white;
+    font-size: 1rem;
 }
 
 .pharmacy-view-btn a
 {
     color: white;
+}
+
+.sent-request__container{
+    padding-top: 2rem;
+    padding-right: 4rem;
+}
+
+
+.prescription_buttons_container{
+    display: flex;
+     justify-content: space-between;
+    margin-top: 1rem;
 }

@@ -43,12 +43,13 @@ class DashboardController extends Controller
 
             $stmt = $db->connection->prepare("SELECT s.profile_picture, 
                    s.name AS consumer_name,  
-                   p.name
+                   p.name,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
                 INNER JOIN product p on ohp.product_id = p.product_id 
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            WHERE o.provider_nic = ? AND  o.status = 'paid' ORDER BY created_at DESC LIMIT 4");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -61,13 +62,14 @@ class DashboardController extends Controller
                    p.name,
                    p.quantity,
                    p.quantity_unit,
-                   p.image
+                   p.image,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
                 INNER JOIN product p on ohp.product_id = p.product_id 
                 INNER JOIN product_category cg on p.category_id = cg.category_id 
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY created_at DESC LIMIT 1");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -130,13 +132,22 @@ class DashboardController extends Controller
             $orders_count = $result->fetch_all(MYSQLI_ASSOC);
 
 
-            $stmt = $db->connection->prepare("SELECT s.profile_picture, 
+
+            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS all_order_count FROM medicine_order WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $all_orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
+
+            $stmt = $db->connection->prepare("SELECT distinct(o.order_id), s.profile_picture, 
                    s.name AS consumer_name,  
-                   s.mobile_number
+                   s.mobile_number,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 4");
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY created_at DESC LIMIT 4");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -148,12 +159,13 @@ class DashboardController extends Controller
             $stmt = $db->connection->prepare("SELECT s.profile_picture, 
                    s.name AS consumer_name, 
                    s.mobile_number,  
-                   r.prescription
+                   r.prescription,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  medicine_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_med ohm ON o.order_id = ohm.order_id 
                 INNER JOIN pharmacy_request r on s.consumer_nic = r.consumer_nic
-            WHERE o.provider_nic = ? AND o.status = 'paid' LIMIT 1");
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY created_at DESC LIMIT 1");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -167,6 +179,7 @@ class DashboardController extends Controller
                 'pharmacy' => $pharmacy,
                 'medicines' => $medicines_lists,
                 'orders_counts' => $orders_count,
+                'all_orders_count' => $all_orders_count,
                 'medicines_orders_list' => $medicines_orders_list,
                 'order_preview' => $order_preview
             ], layoutParams: [
@@ -197,7 +210,13 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $care_rider = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? &&  ride_request.done = 0");
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request WHERE provider_nic =?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $date= $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic  WHERE ride_request.provider_nic = ? &&  ride_request.done = 0 LIMIT 4 ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -228,7 +247,7 @@ class DashboardController extends Controller
             $count_request = $result->fetch_assoc();
             //print_r($count_timeSlots);
 
-            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic");
+            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic  ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -237,7 +256,7 @@ class DashboardController extends Controller
 
             //print_r($patient_details);
 
-            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request], layoutParams: [
+            return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request,"date"=>$date], layoutParams: [
                 "care_rider" => $care_rider,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"

@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
-
+    <link rel="icon" href="/assets/images/logo-lan.png">
     <title>
         <?php echo $title ?>
     </title>
@@ -43,7 +43,7 @@
         <div class="dashboard-header__profile">
             <div class="header-link__container">
                 <a class="header-link" href="/">Home</a>
-                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
             </div>
             <p>

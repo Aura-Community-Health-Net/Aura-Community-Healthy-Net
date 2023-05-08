@@ -18,11 +18,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
-
+    <link rel="icon" href="/assets/images/logo-lan.png">
 
     <title>
         <?php echo $title; ?>
     </title>
+
 </head>
 
 <body>
@@ -33,7 +34,7 @@
         </div>
         <div class="provider-signup-header__title">
             <h2>Aura</h2>
-            <h3>Community Health Net</h3>
+            <h5>Community Health Net</h5>
         </div>
         </div>
         <div class="header-link__container">

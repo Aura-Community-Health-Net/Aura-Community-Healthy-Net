@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
-
+    <link rel="icon" href="/assets/images/logo-lan.png">
     <title>
         <?php echo $title ?>
     </title>
@@ -43,7 +43,7 @@
         <div class="dashboard-header__profile">
             <div class="header-link__container">
                 <a class="header-link" href="/">Home</a>
-                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
             </div>
             <p>
@@ -81,13 +81,24 @@
                 </li>
 
                 <li>
-                    <a href="/pharmacy-dashboard/new-orders">
-                        <button class="navbtn" <?php echo $active_link === 'new-orders' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
-                            <span class="nav-title">New Orders</span>
+                    <a href="/pharmacy-dashboard/new-requests">
+                        <button class="navbtn" <?php echo $active_link === 'new-requests' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-code-pull-request"></i></span>
+                            <span class="nav-title">New Requests</span>
                         </button>
                     </a>
                 </li>
+
+                <li>
+                    <a href="/pharmacy-dashboard/orders">
+                        <button class="navbtn" <?php echo $active_link === 'orders' ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
+                        <span class="nav-title">Orders</span>
+                        </button>
+                    </a>
+                </li>
+
+
 
                 <li>
                     <a href="/pharmacy-dashboard/analytics">

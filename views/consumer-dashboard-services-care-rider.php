@@ -12,7 +12,7 @@
 <div class="consumer-dashboard-care-rider">
     <div class="consumer-dashboard-care-rider__top">
         <form action="/consumer-dashboard/services/care-rider" class="form-item--search" method="get">
-            <div class="search-bar">
+            <div class="care-rider-search-bar">
                 <input type="text" placeholder="Search ..." name="q" id="q">
                 <button href="" type="submit"><i class="fa fa-search"></i></button>
             </div>
@@ -37,7 +37,7 @@
                             <p><span>Mobile No </span> <?php echo $value['mobile_number']?></p>
                         </div>
                         <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
-                            <button > Request</button>
+                            <button class="btn"> Request</button>
                         </a>
                     </div>
                 </div>

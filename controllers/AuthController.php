@@ -560,7 +560,7 @@ class AuthController extends Controller
 
     public static function getProviderLoginPage(): array|bool|string
     {
-        return self::render(view: 'provider-login');
+        return self::render(view: 'provider-login', layoutParams: ["title"=>"Login as a Service Provider"]);
     }
 
     public static function loginProvider(): bool|array|string
@@ -599,22 +599,24 @@ class AuthController extends Controller
                         break;
                     default:
                         $errors["system"] = "Internal Server Error";
-                        return self::render(view: 'provider-login', params: ['errors' => $errors]);
+                        return self::render(view: 'provider-login', params: ['errors' => $errors], layoutParams: ["title"=>"Login as a Service Provider"]);
                 }
                 return "";
             } else {
                 $errors["password"] = "Incorrect Password";
-                return self::render(view: 'provider-login', params: ['errors' => $errors]);
+                return self::render(view: 'provider-login', params: ['errors' => $errors], layoutParams: ["title"=>"Login as a Service Provider"]);
             }
         } else {
             $errors["email"] = "Incorrect Email";
-            return self::render(view: 'provider-login', params: ['errors' => $errors]);
+            return self::render(view: 'provider-login', params: ['errors' => $errors], layoutParams: ["title"=>"Login as a Service Provider"]);
         }
     }
 
     public static function getAdministratorLoginPage(): array|bool|string
     {
-        return self::render(view: 'administrator-login');
+        return self::render(view: 'administrator-login', layoutParams: [
+            "title" => "Login to Admin Dashboard"
+        ]);
     }
 
     public static function loginAdministrator(): array|bool|string

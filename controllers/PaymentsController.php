@@ -176,6 +176,7 @@ class PaymentsController extends Controller
                     $order_id = $metadata["order_id"];
                     $consumer_nic = $customer["consumer_nic"];
                     $amount = (float)$body['data']['object']['amount'] / 100;
+                    $original_amount = (float)$body['data']['object']['amount'];
                     PaymentsController::logPayment($order_id);
                     try {
                         $db->connection->begin_transaction();
@@ -186,7 +187,7 @@ class PaymentsController extends Controller
 
                         $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
                         $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
-                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->bind_param("sdss", $purpose, $original_amount, $provider_nic, $consumer_nic);
                         $stmt->execute();
 
 
@@ -295,6 +296,7 @@ class PaymentsController extends Controller
                     $med_order_id = $metadata["med_order_id"];
                     $consumer_nic = $customer["consumer_nic"];
                     $amount = (float)$body['data']['object']['amount'] / 100;
+                    $original_amount = (float)$body['data']['object']['amount'];
                     PaymentsController::logPayment($med_order_id);
                     try {
                         $db->connection->begin_transaction();
@@ -306,7 +308,7 @@ class PaymentsController extends Controller
 
                         $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
                         $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
-                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->bind_param("sdss", $purpose, $original_amount, $provider_nic, $consumer_nic);
                         $stmt->execute();
                         PaymentsController::logPayment("inserted payment record");
 
@@ -625,6 +627,32 @@ class PaymentsController extends Controller
             "consumer" => $service_consumer,
             "active_link" => "dashboard-products",
             "title" => "Natural Food Products"
+        ]);
+    }
+
+
+    public static function medicinePaymentSuccess(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $usertype = $_SESSION["user_type"];
+        if (!$nic || $usertype !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $service_consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-medicine-payment-successful', layout: "consumer-dashboard-layout", params: ['consumer' => $service_consumer], layoutParams: [
+
+            "consumer" => $service_consumer,
+            "active_link" => "dashboard-medicines",
+            "title" => "Medicines"
         ]);
     }
 }

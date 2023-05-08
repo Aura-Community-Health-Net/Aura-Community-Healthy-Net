@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="/assets/images/logo-lan.png">
 
     <title>
         <?php echo $title ?>
@@ -44,7 +45,7 @@
 
             <div class="header-link__container">
                 <a class="header-link" href="/">Home</a>
-                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
             </div>
             <div class="admin-header">
@@ -94,9 +95,19 @@
                 </li>
 
                 <li>
+                    <a href="/admin-dashboard/analytics">
+                        <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+                        <span class="nav-title">Analytics</span>
+                        </button>
+                    </a>
+
+                </li>
+
+                <li>
                     <a href="/admin-dashboard/feedback">
                         <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+                            <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                             <span class="nav-title">Feedback</span>
                         </button>
                     </a>

@@ -32,12 +32,13 @@ class CareRiderNewRequestsController extends Controller
         $requests = $result->fetch_all(MYSQLI_ASSOC);
 
 
-        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.provider_nic = ride_request.provider_nic INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = 0 && ride_request.done = 0");
+        //display new requests query
+        $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot INNER JOIN ride_request ON care_rider_time_slot.request_id = ride_request.request_id INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.confirmation = 0 && ride_request.done = 0");
         $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();
         $request_details = $result->fetch_all(MYSQLI_ASSOC);
-        //print_r($request_details);die();
+//        print_r($request_details);die();
 
         return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details ] ,layoutParams: array("care_rider" => $careRider,
             "active_link" => "new-requests",
@@ -68,6 +69,28 @@ class CareRiderNewRequestsController extends Controller
                 $stmt->bind_param("i",$request_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
+
+                $stmt = $db->connection->prepare("SELECT distance,consumer_nic,request_id FROM ride_request WHERE provider_nic = ? AND request_id = ?");
+                $stmt->bind_param("si", $nic,$request_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $record = $result->fetch_assoc();
+
+                $cost = $record['distance'] * 70;
+                $consumer_nic = $record['consumer_nic'];
+                $distance = $record['distance'];
+                $request_id = $record['request_id'];
+//                print_r($distance);
+//                print_r($consumer_nic);
+//                print_r($cost);
+
+                $stmt = $db->connection->prepare("INSERT INTO ride (cost, distance, provider_nic, consumer_nic,request_id)
+                               VALUES (?,?,?,?,?)");
+                $stmt->bind_param("dissi", $cost,$distance,$nic,$consumer_nic,$request_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+
             }else if($id==1){
                 $stmt = $db->connection->prepare("UPDATE ride_request SET done = 2 WHERE request_id = ?");
                 $stmt->bind_param("i",$request_id );

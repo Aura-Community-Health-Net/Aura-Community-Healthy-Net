@@ -3,7 +3,7 @@
  * @var $care_rider ;
  * @var $time_slot ;
  * @var $feedback ;
- * @var $location;
+ * @var $location ;
  */
 if (!isset($_GET['care-rider-feedback-btn'])) {
     $provider_nic = $_GET['provider_nic'];
@@ -33,54 +33,65 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                     </div>
                 </td>
                 <td>
-                    <form action="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo $provider_nic; ?>"
+                    <form action="/consumer-dashboard/services/care-rider/request/location?provider_nic=<?php echo $provider_nic; ?>"
                           method="POST">
                         <div class="care-rider-dashboard-doctor-profile__top__right">
 
-                            <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
-                                <h4>Available Time-Slots</h4>
-                                <div class="care-rider-dashboard-doctor-profile__top__right__timeslot">
-                                <table id="care-rider-available-slot">
-                                    <?php foreach ($time_slot as $value) { ?>
-                                        <tr>
-                                            <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
-                                            <td><?php echo $value['date']; ?></td>
-                                            <td><?php echo $value['from_time'] ?></td>
-                                            <td><?php echo $value['to_time'] ?></td>
-                                            <td><?php echo " "; ?></td>
-                                            <td><input type="radio" value="
-                                            <?php echo $value['slot_number'];?>" name="available-time-slot">
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </table>
+                            <div class="care-rider-dashboard-timeslots-display" >
+                                <h4 style="padding: 1rem;">Available Time-Slots</h4>
+                                <div class="care-rider-timeslots-display">
+                                    <table id="care-rider-available-slot">
+                                        <?php foreach ($time_slot as $value) { ?>
+                                            <tr>
+                                                <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
+                                                <td><?php echo $value['date']; ?></td>
+                                                <td><?php echo $value['from_time'] ?></td>
+                                                <td><?php echo $value['to_time'] ?></td>
+                                                <td><?php echo " "; ?></td>
+                                                <td><input type="radio" value="
+                                            <?php echo $value['slot_number']; ?>" name="available-time-slot">
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
                                 </div>
                             </div>
+                            <div class="dat-time-container ">
+<!--                                <div class="location-time" >-->
+<!--                                    <label for=""> Date </label>-->
+<!--                                    <input type="date" name="date" id="date">-->
+<!--                                </div>-->
+
+                                <div class="location-time">
                                     <label for="">Pick up time</label>
                                     <input type="time" name="pickup-time" id="pickup-time">
-                                    <input type="text" name="pickup-lat" id="pickup-lat" style="opacity: 0">
-                                    <input type="text" name="pickup-lng" id="pickup-lng" style="opacity: 0">
-                                    <input type="text" name="drop-lat" id="drop-lat" style="opacity: 0">
-                                    <input type="text" name="drop-lng" id="drop-lng" style="opacity: 0">
-                                     <input type="text" name="distance" id="distance" style="opacity: 0">
+                                </div>
+                            </div>
+
+                            <input type="text" name="pickup-lat" id="pickup-lat" style="opacity: 0">
+                            <input type="text" name="pickup-lng" id="pickup-lng" style="opacity: 0">
+                            <input type="text" name="drop-lat" id="drop-lat" style="opacity: 0">
+                            <input type="text" name="drop-lng" id="drop-lng" style="opacity: 0">
+                            <input type="text" name="distance" id="distance" style="opacity: 0">
 
 
-                                <!--                    <div class="consumer-dashboard-care-rider-profile__top__right">-->
+                            <!--                    <div class="consumer-dashboard-care-rider-profile__top__right">-->
 
-                                <div class="item-top-right__container">
-                                    <div class="map" id="map" style="height:100%;width: 80%;margin-inline: auto">
-
-                                    </div>
+                            <div class="item-top-right__container">
+                                <div class="map" id="map" style="height:100%;width: 80%;margin-inline: auto">
 
                                 </div>
-                                <button class="btn" type="submit">Continue to Pay</button>
+
+                            </div>
+
+                            <button class="btn" type="submit"> Request</button>
                         </div>
                     </form>
 
-                            </div>
-
-
     </div>
+
+
+</div>
 </div>
 </td>
 </tr>
@@ -104,9 +115,9 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
             <td>
                 <div class="consumer-dashboard-doctor-profile__bottom__right">
                     <h3>Give your Feedback</h3>
-                    <form action= "/consumer-dashboard/services/care-rider/request/feedback?provider_nic= <?php echo $_GET['provider_nic']; ?>"
+                    <form action="/consumer-dashboard/services/care-rider/request/feedback?provider_nic= <?php echo $_GET['provider_nic']; ?>"
                           method="post">
-<!--                        <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">-->
+                        <!--                        <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">-->
                         <input type="text" name="feedback-msg" class="doctor-feedback">
                         <input name="provider_nic" value="<?php echo $provider_nic ?>" type="text" hidden>
                         <button name="care-rider-feedback-btn">Submit</button>
@@ -254,26 +265,26 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             console.log("Latitude: " + lat + ", Longitude: " + lng);
-            pickupLatInput.value=lat
-            pickupLngInput.value=lng
-            dropLatInput.value=lat
-            dropLngInput.value=lng
+            pickupLatInput.value = lat
+            pickupLngInput.value = lng
+            dropLatInput.value = lat
+            dropLngInput.value = lng
             initMap(lat, lng);
         }, function (error) {
             console.error("Error getting location:", error);
             initMap(6.9271, 79.8612);
-            pickupLatInput.value=6.9271
-            pickupLngInput.value=79.8612
-            dropLatInput.value=6.9271
-            dropLngInput.value=79.8612
+            pickupLatInput.value = 6.9271
+            pickupLngInput.value = 79.8612
+            dropLatInput.value = 6.9271
+            dropLngInput.value = 79.8612
         });
     } else {
         console.error("Geolocation is not supported by this browser.");
         initMap(6.9271, 79.8612);
-        pickupLatInput.value=6.9271
-        pickupLngInput.value=79.8612
-        dropLatInput.value=6.9271
-        dropLngInput.value=79.8612
+        pickupLatInput.value = 6.9271
+        pickupLngInput.value = 79.8612
+        dropLatInput.value = 6.9271
+        dropLngInput.value = 79.8612
     }
 
 </script>

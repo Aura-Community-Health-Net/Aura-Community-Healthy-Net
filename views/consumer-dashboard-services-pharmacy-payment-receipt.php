@@ -10,8 +10,8 @@
 //var_dump($payment_details);
 //var_dump($pharmacy);
 $pharmacy_name = $payment_details['pharmacy_name'];
-$advance_amount = $payment_details['advance_amount'];
-$Total_amount = $payment_details['total_amount'];
+$advance_amount = $payment_details['advance_amount']/100;
+$Total_amount = $payment_details['total_amount']/100;
 $note = $payment_details['pharmacy_remark'];
 $medicines_list = $payment_details['available_medicines'];
 $prescription = $payment_details['prescription'];
@@ -31,7 +31,12 @@ $request_id = $payment_details['request_id'];
 <?php
 
 if ($medicines === null) {
-    echo "Pharmacy hasn't replied";
+    echo "<div class='pharmacy_reply'>Pharmacy has not replied yet</div>";
+    echo "
+            <div class='pharmacy_request_details'>
+                  <img class='prescription_image' src='$prescription' alt=''>
+                  <div class='customer_remark'>Customer Remark : <p class='customer_remark_data'>$customer_remark</p></div>      
+            </div>";
 } else {
 
     $medicines_list_elements = "";
@@ -69,10 +74,10 @@ if ($medicines === null) {
                 </ul>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount'>
-                <p>$Total_amount</p>
+                <p>Rs. $Total_amount</p>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__AdvanceAmount'>
-                <p>$advance_amount</p>
+                <p>Rs. $advance_amount</p>
             </div>
             <div class='consumer-pharmacy-neworders-advanceinfo__order-med-details__description__Note'>
                 <p>$note</p>
@@ -86,3 +91,4 @@ if ($medicines === null) {
 </div>
 ?>";
 }
+

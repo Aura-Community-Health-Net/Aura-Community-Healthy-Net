@@ -54,6 +54,7 @@
                 <button class="add-btn" id="add-timeslot-btn" type="button"><i class="fa-solid fa-plus"></i></button>
             </form>
 
+
             <div class="overlay" id="add-timeslot-overlay">
                 <div class="modal" id="add-timeslot-modal">
                     <h3>Do you really want to add this Timeslot?</h3>

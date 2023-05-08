@@ -4,6 +4,7 @@
  * @var array $consumer
  * @var string $active_link
  */
+//print_r($consumer);
 ?>
 
 <!doctype html>
@@ -20,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
           rel="stylesheet">
+    <link rel="icon" href="/assets/images/logo-lan.png">
     <script src="https://js.stripe.com/v3/"></script>
     <title>
         <?php echo $title ?>
@@ -43,9 +45,9 @@
     <div class="dashboard-header__profile">
         <div class="header-link__container">
             <a class="header-link" href="/">Home</a>
-            <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+            <a class="header-link" href="/contact-us">Contact Us</a>
             <a class="header-link" href="/about-us">About Us</a>
-            <a class="header-link"><i class='fa-solid fa-cart-plus'></i></a>
+            <a class="header-link" href="/cart"><i class='fa-solid fa-cart-plus'></i></a>
         </div>
 
         <p>

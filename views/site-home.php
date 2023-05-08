@@ -1,17 +1,18 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <script src="https://kit.fontawesome.com/6fcf003f29.js" crossorigin="anonymous"></script>
-    <title>Aura</title>
-</head>
-
-<body>
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!---->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="/assets/css/main.css">-->
+<!--    <link rel="icon" href="/assets/images/logo-lan.png">-->
+<!--    <script src="https://kit.fontawesome.com/6fcf003f29.js" crossorigin="anonymous"></script>-->
+<!--    <title>Aura</title>-->
+<!--</head>-->
+<!---->
+<!--<body>-->
     <div class="background-img">
         <header class="landing-header">
             <div class="landing-header-brand">
@@ -27,7 +28,7 @@
 
             <div class="header-link__container">
                 <a class="header-link" href="#our-services">Our Services</a>
-                <a class="header-link" href="/contactcdcd-us">Contact Us</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
                 <a class="header-link" href="/about-us">About Us</a>
                 <?php
                 $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
@@ -170,6 +171,6 @@
 
 
 
-</body>
-
-</html>
+<!--</body>-->
+<!---->
+<!--</html>-->
