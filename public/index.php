@@ -79,7 +79,7 @@ $app->router->get('/admin-dashboard/due-payments', [AdministratorController::cla
 $app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->get('/admin-dashboard/analytics', [AdministratorController::class, 'getAdministratorAnalyticsPage']);
 $app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart', [AdministratorController::class, 'getAdministratorProductSellersRevenueChart']);
-$app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart',[AdministratorController::class,'getAdministratorPharmacyRevenueChart']);
+$app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[AdministratorController::class,'getAdministratorPharmacyRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller
