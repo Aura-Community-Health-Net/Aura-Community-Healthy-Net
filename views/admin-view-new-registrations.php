@@ -56,9 +56,6 @@ if (empty($new_registrations)) {
         echo "<div class='registration-card'>";
 
         if ($provider_type == "doctor") {
-//            echo '<pre>';
-//            var_dump($registration);
-//            echo '</pre>';
 
             $personal = $registration["personal"];
             $qualifications = $registration["qualifications"];

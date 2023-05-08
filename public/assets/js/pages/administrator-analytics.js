@@ -3,7 +3,7 @@ const administratorAnalyticsDropdown = document.querySelector("#administrator-an
 let adminProductSellersRevenueChart;
 async function getProductSellerRevenueData(period = "this_month"){
     try{
-        const result = await fetch(`/admin-dashboard/analytics?period=${period}`);
+        const result = await fetch(`/admin-dashboard/analytics/product-sellers-revenue-chart?period=${period}`);
         const data = await result.json();
         console.log(data)
         const dates = data.map((d) => {

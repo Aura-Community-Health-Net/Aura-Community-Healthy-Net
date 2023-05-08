@@ -13,7 +13,6 @@ class AdministratorController extends Controller
         $is_admin = $_SESSION["is_admin"];
         if ($is_admin) {
             $provider_type = $_GET["provider_type"] ?? "doctor";
-
             if ($provider_type == "doctor") {
                 $sql = "SELECT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic WHERE is_verified = 0";
                 $result = $db->connection->query(query: $sql);
@@ -104,7 +103,7 @@ class AdministratorController extends Controller
         ], layoutParams: [
             "title" => "Due Payments",
             "admin" => [
-                "name" => "MGRM Dias"
+                "name" => "Randima Dias"
             ],
             "active_link" => "payments"
         ]);
@@ -113,49 +112,9 @@ class AdministratorController extends Controller
     public static function getAdministratorAnalyticsPage(): bool|array|string
     {
         $is_admin = $_SESSION["is_admin"];
-        if (!$is_admin){
+        if (!$is_admin) {
             header("location: /administrator-login");
             return "";
-        } else{
-            $db = new Database();
-            $chart_time = $_GET["period"] ?? "all_time";
-
-            $stmt = "";
-            switch ($chart_time){
-                case "this_week";
-                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
-                FROM product_order WHERE
-                YEAR(created_at) = YEAR(NOW()) 
-                AND WEEK(created_at, 1) = WEEK(NOW(), 1)
-                AND status != 'unpaid' 
-                GROUP BY DATE(created_at)");
-                    break;
-
-                case ("this_month");
-                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
-                FROM product_order WHERE
-                YEAR(created_at) = YEAR(NOW()) 
-                AND MONTH(created_at) = MONTH(NOW())
-                AND status != 'unpaid'
-                GROUP BY DATE(created_at)");
-                    break;
-
-                case ("past_six_months");
-                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
-                FROM product_order WHERE
-                created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
-                AND status != 'unpaid'
-                GROUP BY DATE(created_at)");
-                    break;
-
-                case ("all_time");
-                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
-                FROM product_order WHERE
-                status != 'unpaid'
-                GROUP BY DATE(created_at)");
-                    break;
-            }
-
         }
 
         return self::render(view: 'administrator-dashboard-analytics', layout: "admin-dashboard-layout", params: [],
@@ -165,6 +124,53 @@ class AdministratorController extends Controller
                     "name" => "Randima Dias"
             ], "active_link" => "feedback"
         ]);
+    }
+
+    public static function getAdministratorProductSellersRevenueChart(){
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        switch ($chart_time) {
+            case "this_week";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    AND WEEK(date_time, 1) = WEEK(NOW(), 1)
+                                                    GROUP BY DATE(date_time)");
+                break;
+
+            case "this_month";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue 
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic
+                                                    WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    AND MONTH(date_time) = MONTH(NOW())
+                                                    GROUP BY DATE(date_time)");
+                break;
+
+            case "past_six_months";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    GROUP BY DATE(date_time)");
+                break;
+
+            case "all_time";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record  INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'product-seller'
+                                                    GROUP BY DATE(date_time)");
+                break;
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        header("Content-Type: application/json");
+        return json_encode($data);
     }
 
     public static function getAdministratorFeedbackPage(): bool|array|string
