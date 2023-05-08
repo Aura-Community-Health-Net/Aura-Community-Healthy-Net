@@ -13,11 +13,9 @@
     left: 170px;
     bottom: 10px;
 }
-
-
 .doctor-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     padding: 2rem;
 }
@@ -35,7 +33,9 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding-top: 1.5rem;padding-bottom: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    width: 90%;
 }
 
 .doctor-card button {
@@ -54,7 +54,7 @@
 .doctor-card > div > div > p {
     /*align-items: center;*/
     text-align: center;
-    width: 90%;
+    /*width: 90%;*/
     margin: 0 auto;
     font-size: 1.25rem;
 }
