@@ -74,9 +74,11 @@ $app->router->post('/administrator-login', [AuthController::class, 'loginAdminis
 $app->router->get('/admin-dashboard', [AdministratorController::class, 'getAdministratorDashboardPage']);
 $app->router->get('/admin-dashboard/new-registrations', [AdministratorController::class, 'getNewRegistrationPage']);
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
+$app->router->post('/service-providers/deny', [ServiceProvidersController::class, 'denyServiceProvider']);
 $app->router->get('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->get('/admin-dashboard/analytics', [AdministratorController::class, 'getAdministratorAnalyticsPage']);
+$app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart', [AdministratorController::class, 'getAdministratorProductSellersRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller
