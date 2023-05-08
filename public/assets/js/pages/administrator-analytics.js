@@ -23,8 +23,8 @@ async function getProductSellerRevenueData(period = "this_month"){
                 datasets: [{
                     label: 'Revenue',
                     data: revenues,
-                    borderColor: 'rgb(20, 240, 60)',
-                    backgroundColor: 'rgba(20, 240, 60, 0.5)',
+                    borderColor: 'rgb(252, 79, 0)',
+                    backgroundColor: 'rgba(252, 79, 0, 0.5)',
                     fill: 'origin'
                 }]
             },

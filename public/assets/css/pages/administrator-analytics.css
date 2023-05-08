@@ -17,3 +17,8 @@
     right: 1rem;
 }
 
+.admin-product-seller-revenue-chart{
+    background-color: white;
+    border-radius: 8px;
+    margin: 3rem;
+}
