@@ -3,6 +3,7 @@
  * @var string $title
  * @var array $product_seller
  * @var array $products
+ * @var string $active_link
  */
 ?>
 

@@ -22,7 +22,8 @@ class CareRiderNewRequestsController extends Controller
         $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        $careRider = $result->fetch_assoc();
+        $care_rider = $result->fetch_assoc();
+        //print_r($careRider);die();
 
 
         $stmt = $db->connection->prepare("SELECT * FROM care_rider_time_slot WHERE provider_nic = ?");
@@ -40,10 +41,11 @@ class CareRiderNewRequestsController extends Controller
         $request_details = $result->fetch_all(MYSQLI_ASSOC);
 //        print_r($request_details);die();
 
-        return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details ] ,layoutParams: array("care_rider" => $careRider,
+        return self::render(view: "care-rider-dashboard-new-requests",layout: "care-rider-dashboard-layout",params:  ["requests" => $requests,"request_details"=>$request_details,"care_rider" => $care_rider ] ,
+            layoutParams: array(
+                "care_rider" => $care_rider,
             "active_link" => "new-requests",
-            "title" => "New Requests",
-            "care_rider"=>$careRider
+            "title" => "New Requests"
         ));
     }
 
@@ -64,6 +66,12 @@ class CareRiderNewRequestsController extends Controller
             $request_id = $_GET['request_id'];
             $id = $_GET['id'];
             //print_r($_GET['id']);die();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $care_rider = $result->fetch_all(MYSQLI_ASSOC);
+
             if($id==2){
                 $stmt = $db->connection->prepare("UPDATE ride_request SET done = 1 WHERE request_id = ?");
                 $stmt->bind_param("i",$request_id );
@@ -101,10 +109,11 @@ class CareRiderNewRequestsController extends Controller
         //var_dump();
         header("location: /care-rider-dashboard/new-requests");
 
-        return self::render(view: 'care-rider-dashboard-new-requests', layout: "care-rider-dashboard-layout", params: [
+        return self::render(view: 'care-rider-dashboard-new-requests', layout: "care-rider-dashboard-layout", params: ["care_rider" => $care_rider
         ], layoutParams: [
             "active_link" => "new-requests",
             "title" => "New Requests",
+            "care-rider" => $care_rider
         ]);
 
     }

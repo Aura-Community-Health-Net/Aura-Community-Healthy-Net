@@ -129,7 +129,7 @@ return self::render(view: 'consumer-dashboard-services-care-rider', layout: "con
             $db = new Database();
             $done=0;
             $confirmation=0;
-            $cost=$distance*70;
+            $cost=$distance*70*100;
 //Input to rider-request-data
             $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,distance,done,confirmation,provider_nic,consumer_nic
                      )VALUES (?,?,?,?,?,?,?,?)");

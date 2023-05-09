@@ -68,21 +68,20 @@
                 <input class="form-input__input" id="colour" type="text" name="colour"
                     value="<?php echo $_POST['colour'] ?? ''; ?>" required>
             </div>
-        </div>
-        <div class="provider-signup-form__right">
 
             <div class="form-input">
                 <label class="form-input__label" for="driving_license_number">Driving License Number <sup>*</sup></label>
                 <input class="form-input__input" id="driving_license_number" type="text" name="driving_license_number"
-                    value="<?php echo $_POST['driving_license_number'] ?? ''; ?>" required>
+                       value="<?php echo $_POST['driving_license_number'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["driving_license_number"])) {
                     echo "<p class = 'errors'> {$errors["driving_license_number"]}</p>";
                 }
                 ?>
             </div>
+        </div>
 
-
+        <div class="provider-signup-form__right">
             <div class="form-input">
                 <label class="form-input__label" for="bank_no">Bank Account Number <sup>*</sup></label>
                 <input class="form-input__input" id="bank_no" type="text" name="bank_no"
@@ -107,6 +106,12 @@
             </div>
 
             <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <input class="form-input__map" id="location" type="text" name="location"
+                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
+            </div>
+
+            <div class="form-input">
                 <label class="form-input__label" for="profile_pic">Profile Picture <sup>*</sup></label>
                 <input class="form-input__input" id="profile-pic" type="file" name="profile_pic"
                     style="display: none; visibility: hidden" accept="image/*" required>
@@ -115,7 +120,7 @@
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
-                        <i class="fa-regular fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>

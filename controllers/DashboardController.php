@@ -204,6 +204,7 @@ class DashboardController extends Controller
             return "";
         } else {
             $db = new Database();
+
             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
@@ -216,11 +217,13 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $date= $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic  WHERE ride_request.provider_nic = ? &&  ride_request.done = 0 LIMIT 4 ");
+            $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic INNER JOIN care_rider_time_slot on ride_request.request_id = care_rider_time_slot.request_id  WHERE ride_request.provider_nic = ? &&  ride_request.done = 0 ORDER BY care_rider_time_slot.date DESC limit 4 ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $request_confirm = $result->fetch_all(MYSQLI_ASSOC);
+
+            //print_r($request_confirm);die();
 
             $stmt = $db->connection->prepare("SELECT * FROM ride_request INNER JOIN service_consumer on service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1");
             $stmt->bind_param("s", $nic);

@@ -1,13 +1,10 @@
 .consumer-pharmacy-neworders-advanceinfo
 {
-    background-color:#D9D9F9;
-    width:800px;
-    /*    width:1150px;*/
+    background-color:#EFEEFD;
     margin-left: 300px;
     margin-top: 40px;
     border-radius: 1rem;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
+    padding: 3rem;
 }
 
 
@@ -25,10 +22,10 @@
     display: flex;
     flex-direction: row;
     background-color: #ffffff;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 0.5rem;
+    /*margin-top: 1rem;*/
+    /*margin-left: 1rem;*/
+    /*margin-right: 1rem;*/
+    /*padding: 0.5rem;*/
 
 }
 
@@ -72,15 +69,15 @@
 .consumer-pharmacy-neworders-advanceinfo__order-med-details__names__availableMedList
 {
     font-weight: bold;
-    margin-top: 25px;
-    width: 5cm;
+    /*margin-top: 25px;*/
+    /*width: 5cm;*/
 
 }
 
 .consumer-pharmacy-neworders-advanceinfo__order-med-details__names__AdvanceAmount
 {
     font-weight: bold;
-    margin-top:10px;
+    /*margin-top:10px;*/
 
 
 }
@@ -88,15 +85,13 @@
 .consumer-pharmacy-neworders-advanceinfo__order-med-details__names__TotalAmount
 {
     font-weight: bold;
-    margin-top: 90px;
+    /*margin-top: 90px;*/
 
 }
 
 .consumer-pharmacy-neworders-advanceinfo__order-med-details__names__Note
 {
     font-weight: bold;
-    margin-top: 10px;
-
 }
 
 
@@ -158,12 +153,9 @@
     color: white;
     border-radius: 8px;
     border:none;
-    width: 170px;
-    height: 40px;
     font-size: 1rem;
-    margin-top: 70px;
-    margin-left: 250px;
     cursor: pointer;
+    margin-block: 1rem;
 }
 
 .advance-info-submit-button a {
@@ -180,15 +172,20 @@
     justify-content: center;
     display: flex;
     margin: 0 auto;
+    padding-bottom: 1rem;
 
 }
 
 .customer_remark{
     font-weight: bold;
     padding-block: 1rem;
-    margin-left: 2rem;
+    margin-inline: 2rem;
     display: flex;
-    padding-left: 1rem;
+    padding-inline: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 0.2rem;
+
     /*justify-content: center;*/
 }
 
@@ -212,4 +209,21 @@
 
 .customer_remark_data{
     font-weight: normal;
+}
+
+.pharmacy-neworders-advanceinfo__button{
+    display: flex;
+    justify-content: center;
+}
+
+.pharmacy-request__input{
+    padding: 0.3rem;
+    width: 15rem;
+    border-radius: 8px;
+}
+
+.pharmacy-request__text-area{
+    padding: 0.3rem;
+    width: 15rem;
+    border-radius: 8px;
 }

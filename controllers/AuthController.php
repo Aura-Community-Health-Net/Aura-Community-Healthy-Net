@@ -304,6 +304,8 @@ class AuthController extends Controller
                 $branchName = $_POST["branchName"];
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirmPassword"];
+                $location_lat = $_POST["location_lat"];
+                $location_lng = $_POST["location_lng"];
 
                 $file = $_FILES["image"];
                 $file_name = $file["name"];
@@ -363,15 +365,17 @@ class AuthController extends Controller
                                     email_address, 
                                     password, 
                                     mobile_number, 
+                                    location_lat,
+                                    location_lng,
                                     bank_name, 
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
-                    $stmt->bind_param("sssssisssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $type);
+                    $stmt->bind_param("ssssssddsssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $location_lat, $location_lng, $bankName, $branchName, $image, $bankNo, $type);
                     $stmt->execute();
 
 
@@ -661,7 +665,8 @@ class AuthController extends Controller
         $address = $_POST["address"];
         $password = $_POST["password"];
         $confirmPassword = $_POST["confirmPassword"];
-
+        $location_lat = $_POST["location_lat"];
+        $location_lng = $_POST["location_lng"];
         $file = $_FILES["image"];
         $file_name = $file["name"];
         $file_tmp_name = $file["tmp_name"];
@@ -707,11 +712,13 @@ class AuthController extends Controller
                                     address, 
                                     email_address, 
                                     password, 
-                                    mobile_number, 
-                                    profile_picture) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                    mobile_number,
+                                    location_lat,
+                                    location_lng,
+                                    profile_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             $image = "/uploads/$new_file_name";
-            $stmt->bind_param("sssssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $image);
+            $stmt->bind_param("ssssssdds", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $location_lat, $location_lng, $image);
             $stmt->execute();
             $_SESSION["nic"] = $nic;
             $_SESSION["is_admin"] = false;
