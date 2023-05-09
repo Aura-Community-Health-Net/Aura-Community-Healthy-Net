@@ -45,8 +45,7 @@
                 }
                 ?>
             </div>
-        </div>
-        <div class="provider-signup-form__right">
+
             <div class="form-input">
                 <label class="form-input__label" for="address">Address <sup>*</sup></label>
                 <input class="form-input__input" id="address" type="text" name="address"
@@ -57,7 +56,7 @@
                 <label class="form-input__label" for="profilePic">Profile Picture <sup>*</sup></label>
 
                 <input class="form-input__input" id="profile-pic" type="file" name="image"
-                    style="display: none; visibility: hidden" accept="image/*" required>
+                       style="display: none; visibility: hidden" accept="image/*" required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" type="button" id="profile-pic-btn">
@@ -65,6 +64,13 @@
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>
+            </div>
+        </div>
+        <div class="provider-signup-form__right">
+            <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <input class="form-input__map" id="location" type="text" name="location"
+                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
             </div>
 
             <div class="form-input">

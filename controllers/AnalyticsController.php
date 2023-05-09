@@ -462,10 +462,10 @@ public  static function getPharmacyAnalyticsOrderCount(): bool|string
 }
 
 
-public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
+//public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
-{
+//{
 //    $nic = $_SESSION["nic"];
 //    $providerType = $_SESSION["user_type"];
 //    if (!$nic || $providerType !== "pharmacy") {
@@ -539,7 +539,7 @@ public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 //        header("Content-Type: application/json");
 //        return json_encode($product_records);
 //    }
-}
+//}
 
 
     public static function getCareRiderAnalyticsRevenueChart()
@@ -566,7 +566,7 @@ public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
     }
-}
+
 
 
 

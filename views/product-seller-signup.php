@@ -57,6 +57,8 @@
                     value="<?php echo $_POST['address'] ?? ''; ?>" required>
             </div>
 
+
+
             <div class="form-input">
                 <label class="form-input__label" for="regNumber">Business Registration Number <sup>*</sup></label>
                 <input class="form-input__input" id="regNumber" type="text" name="regNumber"
@@ -67,18 +69,20 @@
                 }
                 ?>
             </div>
-        </div>
-        <div class="provider-signup-form__right">
+
             <div class="form-input">
                 <label class="form-input__label" for="bankNo">Bank Account Number <sup>*</sup></label>
                 <input class="form-input__input" id="bankNo" type="number" name="bankNo"
-                    value="<?php echo $_POST['bankNo'] ?? ''; ?>" required>
+                       value="<?php echo $_POST['bankNo'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["bankNo"])) {
                     echo "<p class = 'errors'> {$errors["bankNo"]}</p>";
                 }
                 ?>
             </div>
+
+        </div>
+        <div class="provider-signup-form__right">
 
             <div class="form-input">
                 <label class="form-input__label" for="bankName">Bank Name <sup>*</sup></label>
@@ -90,6 +94,12 @@
                 <label class="form-input__label" for="branchName">Branch Name <sup>*</sup></label>
                 <input class="form-input__input" id="branchName" type="text" name="branchName"
                     value="<?php echo $_POST['branchName'] ?? ''; ?>" required>
+            </div>
+
+            <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <input class="form-input__map" id="location" type="text" name="location"
+                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
             </div>
 
             <div class="form-input">

@@ -22,26 +22,29 @@
 
 <div class="dashboard__bottom-container">
     <div class="dashboard__bottom-cards">
-        <h3>Payment Details</h3>
+        <h3>Due Payment Details</h3>
 
         <?php
         foreach ($due_payments as $due_payment){
             $profile_picture = $due_payment["profile_picture"];
             $provider_name = $due_payment["name"];
-            $amount = $due_payment["amount"];
-            $bank_acc_number = $due_payment["bank_account_number"];
+            $amount = number_format($due_payment["amount"], 2, '.', ',');
+            $purpose = $due_payment["purpose"];
 
             echo "
              <div class='admin-dashboard__due-payments'>
-                <img src='$profile_picture' class = 'due-payment__provider-img admin__due-payments' alt=''>
-                <p>$provider_name</p>
-                <p>$amount</p>
-                <p>$bank_acc_number</p>
+                <img src='$profile_picture' class = 'due-payment__provider-img admin__due-payments__details' alt=''>
+                <p class='admin__due-payments__details admin-payment-name'>$provider_name</p>
+                <p class='admin__due-payments__details admin-payment-price'>Rs. $amount</p>
+                <p class='admin__due-payments__details admin-payment-purpose'>$purpose</p>
             </div>
             ";
         }
         ?>
 
+        <a href='/admin-dashboard/due-payments'>
+            <button class="all-products-btn">All Due Payments</button>
+        </a>
 
     </div>
     

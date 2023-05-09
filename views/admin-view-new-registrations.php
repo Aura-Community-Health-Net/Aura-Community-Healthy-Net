@@ -74,20 +74,24 @@ if (empty($new_registrations)) {
             echo "<li class='data-title'> <div>Address</div> <div>{$personal['address']}</div></li>";
             echo "<li class='data-title'> <div>SLMC Reg No</div> <div>{$personal['slmc_reg_no']}</div></li>";
             echo "<li class='data-title'> <div>Field of study</div> <div>{$personal['field_of_study']}</div></li>";
-            // echo "<li class='data-title'> <div>Certificate of MBBS</div> <div>{$personal['certificate_of_mbbs']}</div></li>";
+            echo "<li class='data-title'> <div>Certificate of MBBS</div> <div><a href='{$personal['certificate_of_mbbs']}' target='_blank'>MBBS Certificate</a></div></li>";
             echo "<li class='data-title'> <div>Qualifications</div> <div>{$qualifications_el}</div></li>";
             echo "<li class='data-title'> <div>Bank Account Number</div> <div>{$personal['bank_account_number']}</div></li>";
             echo "<li class='data-title'> <div>Bank Name</div> <div>{$personal['bank_name']}</div></li>";
             echo "<li class='data-title'> <div>Bank Branch Number</div> <div>{$personal['bank_branch_name']}</div></li>";
             echo "</ul>";
 
-            echo "<form class='verify' action='/service-providers/verify?nic={$personal["provider_nic"]}&provider_type=$provider_type' method='post'>
-                    <div class='verification-button-section'>
+            echo "
+            <div class='verification-button-section'>
+                    <form class='verify' action='/service-providers/verify?nic={$personal["provider_nic"]}&provider_type=$provider_type' method='post'>
                         <button class='verify-btn'>Verify</button>
-                        <button class='verify-btn'>Deny</button>
-                    </div>
-                  </form>";
-            echo "</div>";
+                    </form>
+                  
+                  <form action='/service-providers/verify?nic={$personal["provider_nic"]}&provider_type=$provider_type' method='post'>                  
+                        <button class='deny-btn'>Deny</button>                   
+                  </form>
+            </div></div>";
+
             continue;
 
         } elseif ($provider_type == "pharmacy") {
@@ -101,7 +105,7 @@ if (empty($new_registrations)) {
             echo "<li class='data-title'> <div>Mobile Number</div> <div>{$registration['mobile_number']}</div></li>";
             echo "<li class='data-title'> <div>Pharmacy Registration Number</div> <div>{$registration['pharmacist_reg_no']}</div></li>";
             echo "<li class='data-title'> <div>Address</div> <div>{$registration['address']}</div></li>";
-            // echo "<li class='data-title'> <div>NMRA Certificate</div><div>{$registration['nmra_certificate']}</div></li>";
+            echo "<li class='data-title'> <div>NMRA Certificate</div> <div><a href='{$registration['nmra_certificate']}' target='_blank'>NMRA Certificate</a></div></li>";
             echo "<li class='data-title'> <div>Bank Account Number</div> <div>{$registration['bank_account_number']}</div></li>";
             echo "<li class='data-title'> <div>Bank Name</div> <div>{$registration['bank_name']}</div></li>";
             echo "<li class='data-title'> <div>Bank Branch Number</div> <div>{$registration['bank_branch_name']}</div></li>";
@@ -140,14 +144,16 @@ if (empty($new_registrations)) {
             echo "</ul>";
         }
 
-        echo "<form class='verify' action='/service-providers/verify?nic={$registration['provider_nic']}&provider_type=$provider_type' method='post'>
-                    <div class='verification-button-section'>
+        echo "
+            <div class='verification-button-section'>
+                    <form class='verify' action='/service-providers/verify?nic={$registration['provider_nic']}&provider_type=$provider_type' method='post'>
                         <button class='verify-btn'>Verify</button>
-                        <button class='verify-btn'>Deny</button>
-                    </div>
-                  </form>";
-        echo "</div>";
-
+                    </form>
+                  
+                  <form action='/service-providers/deny?nic={$registration['provider_nic']}&provider_type=$provider_type' method='post'>                  
+                        <button class='deny-btn'>Deny</button>                   
+                  </form>
+            </div></div>";
     }
     ?>
 </div>
