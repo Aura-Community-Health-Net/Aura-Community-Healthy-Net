@@ -122,7 +122,7 @@ if (!$pharmacy['is_verified']) {
                 echo "     
         <div class='order-count__details'>
             <h3>All Orders</h3>
-            <p class='all-order-count'>$order_count</p>
+            <p class='all-order-count'>$all_orders_count</p>
         </div>";
             }
             ?>

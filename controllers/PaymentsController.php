@@ -520,13 +520,13 @@ class PaymentsController extends Controller
         $balance = $total_amount - $advance_amount;
         $provider_nic = $pharmacy_request_details["provider_nic"];
 
-        $stmt1 = $db->connection->prepare("INSERT INTO medicine_order( balance, provider_nic, consumer_nic) VALUES (?,?,?)");
+        $stmt1 = $db->connection->prepare("INSERT INTO medicine_order( balance, provider_nic, consumer_nic,request_id) VALUES (?,?,?,?)");
 
 //        $order_id = NULL;
         try {
 
             $db->connection->begin_transaction();
-            $stmt1->bind_param("dss", $balance, $provider_nic, $nic);
+            $stmt1->bind_param("dss", $balance, $provider_nic, $nic,$medicines_request_id);
             $stmt1->execute();
 
             $order_id = $stmt1->insert_id;

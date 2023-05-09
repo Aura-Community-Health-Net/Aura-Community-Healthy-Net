@@ -133,11 +133,12 @@ class DashboardController extends Controller
 
 
 
-            $stmt = $db->connection->prepare("SELECT COUNT(consumer_nic) AS all_order_count FROM medicine_order WHERE provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT COUNT(order_id) AS all_order_count FROM medicine_order WHERE provider_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $all_orders_count = $result->fetch_all(MYSQLI_ASSOC);
+
 
 
             $stmt = $db->connection->prepare("SELECT distinct(o.order_id), s.profile_picture, 
