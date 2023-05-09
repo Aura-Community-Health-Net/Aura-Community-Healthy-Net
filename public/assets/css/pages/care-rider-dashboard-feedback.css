@@ -1,11 +1,14 @@
 .care-rider-feedbacks{
     position: relative;
     left: 50px;
-    top: 20px;
-    width: 1200px;
+    /* top: 20px; */
+    /*width: 1200px;*/
     background-color: #EFEEFD;
     padding: 1rem;
+    border-radius: 1rem;
+    margin: 6rem;
 }
+
 
 .care-rider-feedbacks__data{
     margin-top: 10px;
@@ -41,4 +44,15 @@
     top: -25px;
 
     left: 5px;
+}
+.Not-verified-care-rider-feedback{
+    text-align: center;
+    margin: 10rem;
+    /* text-decoration-color: rebeccapurple; */
+    color: red;
+    font-weight: 900;
+    font-size: 40px;
+    height: 100px;
+    border-radius: 3rem;
+    padding: 1.5rem
 }

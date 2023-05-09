@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\core\Database;
 use app\core\Controller;
+use app\core\Database;
 
 
 class AnalyticsController extends Controller
@@ -56,6 +56,7 @@ class AnalyticsController extends Controller
         ]);
 
     }
+
 
 
     public static function getDoctorAnalyticsRevenueChart():array|bool|string{
@@ -180,30 +181,28 @@ class AnalyticsController extends Controller
     }
 
 
-    public function getProductSellerAnalyticsPage(): bool|array|string
-    {
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if (!$nic || $providerType !== "product-seller") {
-            header("location: /provider-login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $product_seller = $result->fetch_assoc();
-        }
+//     public function getProductSellerAnalyticsPage(): bool|array|string
+//     {
+//         $nic = $_SESSION["nic"];
+//         $providerType = $_SESSION["user_type"];
+//         if (!$nic || $providerType !== "product-seller") {
+//             header("location: /provider-login");
+//             return "";
+//         } else {
+//             $db = new Database();
+//             $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+//             $stmt->bind_param("s", $nic);
+//             $stmt->execute();
+//             $result = $stmt->get_result();
+//             $product_seller = $result->fetch_assoc();
+//         }
 
-        return self::render(view: 'product-seller-dashboard-analytics', layout: "product-seller-dashboard-layout", layoutParams: [
-            "product_seller" => $product_seller,
-            "active_link" => "analytics",
-            "title" => "Analytics"
-        ]);
-    }
-
-
+//         return self::render(view: 'product-seller-dashboard-analytics', layout: "product-seller-dashboard-layout", layoutParams: [
+//             "product_seller" => $product_seller,
+//             "active_link" => "analytics",
+//             "title" => "Analytics"
+//         ]);
+//   
     public static function getPharmacyAnalyticsPage(): array|bool|string
     {
         $nic = $_SESSION["nic"];
@@ -449,8 +448,6 @@ class AnalyticsController extends Controller
         }
     }
 
-
-
     public static function getPharmacyAnalyticsRevenueChart(): bool|string
     {
 
@@ -519,76 +516,70 @@ class AnalyticsController extends Controller
         }
 
 
-
-
-
     }
 
+    public static function getPharmacyAnalyticsOrderCount(): bool|string
+    {
 
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "pharmacy") {
+            header("location: /provider-login");
+            return "";
+        } else {
+            $db = new Database();
+            $chart_time = $_GET["period"] ?? "all_time";
 
-public  static function getPharmacyAnalyticsOrderCount(): bool|string
-{
-
-    $nic = $_SESSION["nic"];
-    $providerType = $_SESSION["user_type"];
-    if (!$nic || $providerType !== "pharmacy") {
-        header("location: /provider-login");
-        return "";
-    } else{
-        $db = new Database();
-        $chart_time = $_GET["period"] ?? "all_time";
-
-        $stmt = "";
-        switch ($chart_time){
-            case "this_week";
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+            $stmt = "";
+            switch ($chart_time) {
+                case "this_week";
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM medicine_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
                 AND WEEK(created_at, 1) = WEEK(NOW(), 1)
                 AND status != 'unpaid' 
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
-            case ("this_month");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                case ("this_month");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM medicine_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
                 AND MONTH(created_at) = MONTH(NOW())
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
-            case ("past_six_months");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                case ("past_six_months");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM medicine_order WHERE provider_nic = ? 
                 AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
 
-            case ("all_time");
-                $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
+                case ("all_time");
+                    $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM medicine_order WHERE provider_nic = ? 
                 AND status != 'unpaid'
                 GROUP BY DATE(created_at)");
-                break;
+                    break;
+            }
+
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $order_records = $result->fetch_all(MYSQLI_ASSOC);
+            header("Content-Type: application/json");
+            return json_encode($order_records);
+
         }
-
-        $stmt->bind_param("s", $nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $order_records = $result->fetch_all(MYSQLI_ASSOC);
-        header("Content-Type: application/json");
-        return json_encode($order_records);
-
     }
-}
+
+    public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
-public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
-
-
-{
+    {
 //    $nic = $_SESSION["nic"];
 //    $providerType = $_SESSION["user_type"];
 //    if (!$nic || $providerType !== "pharmacy") {
@@ -662,32 +653,152 @@ public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 //        header("Content-Type: application/json");
 //        return json_encode($product_records);
 //    }
-}
-
+    }
 
     public static function getCareRiderAnalyticsRevenueChart()
     {
-        $db = new Database();
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
         if (!$nic || $providerType !== "care-rider") {
             header("location: /provider-login");
             return "";
-        }
-        else
-        {
-            $stmt = $db->connection->prepare("SELECT care_rider_time_slot.date, SUM(ride.cost) FROM ride INNER JOIN care_rider_time_slot on ride.request_id = care_rider_time_slot.request_id WHERE ride.provider_nic = ? GROUP BY care_rider_time_slot.date  ");
-            $stmt->bind_param("s",$nic);
+        } else {
+            $db = new Database();
+            $chart_time = $_GET["period"] ?? "all_time";
+
+            $stmt = "";
+            switch ($chart_time) {
+                case "this_week":
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 WHERE ride.provider_nic = ? 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 AND WEEK(care_rider_time_slot.date, 1) = WEEK(NOW(), 1)
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                    break;
+
+                case "this_month":
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 WHERE ride.provider_nic = ? 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 AND MONTH(care_rider_time_slot.date) = MONTH(NOW())
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                    break;
+
+                case "past_six_months":
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 WHERE ride.provider_nic = ? 
+                                                 AND care_rider_time_slot.date BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                    break;
+
+                case "this_year":
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 WHERE ride.provider_nic = ? 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                    break;
+
+                case "all_time":
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 WHERE ride.provider_nic = ? 
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                    break;
+            }
+
+            $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $records = $result->fetch_all(MYSQLI_ASSOC);
-            echo '<pre>';
-            var_dump($records);
-            echo '</pre>';
+
+            header("Content-Type: application/json");
+            return json_encode($records);
+        }
+    }
+
+    public static function getCareRiderAnalyticsRequestCountChart(): bool|string
+      {
+          $nic = $_SESSION["nic"];
+          $providerType = $_SESSION["user_type"];
+          if (!$nic || $providerType !== "care-rider") {
+              header("location: /provider-login");
+              return "";
+          } else {
+              $db = new Database();
+              $chart_time = $_GET["period"] ?? "all_time";
+
+              $stmt = "";
+              switch ($chart_time) {
+                  case "this_week";
+                      $stmt = $db->connection->prepare("SELECT DATE(crts.date) as date, COUNT(ride_request.request_id) as request_count 
+                FROM ride_request INNER JOIN care_rider_time_slot crts on ride_request.request_id = crts.request_id WHERE crts.provider_nic = ? 
+                AND YEAR(crts.date) = YEAR(NOW()) 
+                AND WEEK(crts.date, 1) = WEEK(NOW(), 1)
+                GROUP BY DATE(crts.date)");
+                      break;
+
+                  case ("this_month");
+                      $stmt = $db->connection->prepare("SELECT DATE(crts.date) as date, COUNT(ride_request.request_id) as request_count 
+                FROM ride_request INNER JOIN care_rider_time_slot crts on ride_request.request_id = crts.request_id WHERE crts.provider_nic = ? 
+                AND YEAR(crts.date) = YEAR(NOW()) 
+                AND MONTH(crts.date) = MONTH(NOW())
+                GROUP BY DATE(crts.date)");
+                      break;
+
+                  case ("past_six_months");
+                      $stmt = $db->connection->prepare("SELECT DATE(crts.date) as date, COUNT(ride_request.request_id) as request_count 
+                 FROM ride_request INNER JOIN care_rider_time_slot crts on ride_request.request_id = crts.request_id WHERE crts.provider_nic = ? 
+                AND crts.date BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                GROUP BY DATE(crts.date)");
+                      break;
+
+                  case ("all_time");
+                      $stmt = $db->connection->prepare("SELECT DATE(crts.date) as date, COUNT(ride_request.request_id) as request_count 
+                 FROM ride_request INNER JOIN care_rider_time_slot crts on ride_request.request_id = crts.request_id WHERE crts.provider_nic = ? 
+                GROUP BY DATE(crts.date)");
+                      break;
+              }
+
+              $stmt->bind_param("s", $nic);
+              $stmt->execute();
+              $result = $stmt->get_result();
+              $request_records = $result->fetch_all(MYSQLI_ASSOC);
+              header("Content-Type: application/json");
+              return json_encode($request_records);
+              print_r($request_records);die();
+          }
+      }
+
+    public function getProductSellerAnalyticsPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
             return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product_seller = $result->fetch_assoc();
         }
 
-
+        return self::render(view: 'product-seller-dashboard-analytics', layout: "product-seller-dashboard-layout", layoutParams: [
+            "product_seller" => $product_seller,
+            "active_link" => "analytics",
+            "title" => "Analytics"
+        ]);
     }
 }
 
