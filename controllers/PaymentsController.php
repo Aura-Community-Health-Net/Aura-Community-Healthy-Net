@@ -526,7 +526,7 @@ class PaymentsController extends Controller
         try {
 
             $db->connection->begin_transaction();
-            $stmt1->bind_param("dss", $balance, $provider_nic, $nic,$medicines_request_id);
+            $stmt1->bind_param("dssi", $balance, $provider_nic, $nic,$medicines_request_id);
             $stmt1->execute();
 
             $order_id = $stmt1->insert_id;

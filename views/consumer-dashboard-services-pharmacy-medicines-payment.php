@@ -38,7 +38,7 @@
     </form>
 
 
-    <script src="/assets/js/pages/consumer-payment.js"></script>
+<!--    <script src="/assets/js/pages/consumer-payment.js"></script>-->
 
 </div>
 
@@ -119,7 +119,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "https://0982-2401-dd00-1e-00-fffe.ngrok-free.app/medicines-checkout/success",
+                    return_url: "https://8352-212-104-225-176.ngrok-free.app/medicines-checkout/success",
                     receipt_email: emailAddress,
                 },
             });
