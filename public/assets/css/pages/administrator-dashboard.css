@@ -11,3 +11,16 @@
 .admin-header{
     align-items: center;
 }
+
+.admin-dashboard__due-payments{
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    gap: 1rem;
+}
+
+.due-payment__provider-img{
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}

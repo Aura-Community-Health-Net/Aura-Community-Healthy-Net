@@ -413,7 +413,7 @@ public static function RequestForPharmacy():bool|array|string
 
             $db = new Database();
 
-            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic");
+            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1");
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacies = $result->fetch_all(MYSQLI_ASSOC);

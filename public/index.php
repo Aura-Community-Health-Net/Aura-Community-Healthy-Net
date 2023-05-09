@@ -74,9 +74,12 @@ $app->router->post('/administrator-login', [AuthController::class, 'loginAdminis
 $app->router->get('/admin-dashboard', [AdministratorController::class, 'getAdministratorDashboardPage']);
 $app->router->get('/admin-dashboard/new-registrations', [AdministratorController::class, 'getNewRegistrationPage']);
 $app->router->post('/service-providers/verify', [ServiceProvidersController::class, 'verifyServiceProvider']);
+$app->router->post('/service-providers/deny', [ServiceProvidersController::class, 'denyServiceProvider']);
 $app->router->get('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->post('/admin-dashboard/due-payments', [AdministratorController::class, 'getAdministratorDuePaymentsPage']);
 $app->router->get('/admin-dashboard/analytics', [AdministratorController::class, 'getAdministratorAnalyticsPage']);
+$app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart', [AdministratorController::class, 'getAdministratorProductSellersRevenueChart']);
+$app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[AdministratorController::class,'getAdministratorPharmacyRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller
@@ -164,6 +167,8 @@ $app->router->post('/doctor-dashboard/appointments-consulted', [DoctorAppointmen
 
 $app->router->get('/doctor-dashboard/patients', [PatientsController::class, 'getDoctorPatientsPage']);
 $app->router->get('/doctor-dashboard/analytics', [AnalyticsController::class, 'getDoctorAnalyticsPage']);
+$app->router->get('/doctor-dashboard/analyticsRevenueChart',[AnalyticsController::class,'getDoctorAnalyticsRevenueChart']);
+$app->router->get('/doctor-dashboard/analyticsAppointmentCountChart',[AnalyticsController::class,'getDoctorAnalyticsAppointmentCount']);
 $app->router->get('/doctor-dashboard/feedback', [FeedbacksController::class, 'getDoctorFeedbackPage']);
 $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDoctorProfilePage']);
 

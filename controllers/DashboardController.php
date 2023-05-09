@@ -283,7 +283,7 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic JOIN doctor_time_slot on doctor_time_slot.appointment_id = appointment.appointment_id WHERE appointment.provider_nic = ? &&  appointment.done = 0");
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic JOIN doctor_time_slot on doctor_time_slot.appointment_id = appointment.appointment_id WHERE appointment.provider_nic = ? &&  appointment.done = 0 ORDER BY doctor_time_slot.date DESC LIMIT 2;");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -307,13 +307,6 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $all_patients = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && done = 1");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $count_appointments = $result->fetch_assoc();
-            //print_r($count_timeSlots);
-
                 $stmt = $db->connection->prepare("SELECT MAX(doctor_time_slot.date),service_consumer.profile_picture,service_consumer.name,doctor_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM doctor_time_slot INNER JOIN appointment ON appointment.appointment_id = doctor_time_slot.appointment_id INNER JOIN service_consumer ON service_consumer.consumer_nic = appointment.consumer_nic WHERE appointment.provider_nic = ? && appointment.done = 1 GROUP BY appointment.provider_nic");
                 $stmt->bind_param("s", $nic);
                 $stmt->execute();
@@ -323,7 +316,7 @@ class DashboardController extends Controller
                 //print_r($patient_details);
 
             return self::render(view: 'doctor-dashboard', layout: "doctor-dashboard-layout", params: [
-                "doctor" => $doctor,"appointment_confirm"=>$appointment_confirm,"appointment_done"=>$appointment_done,"new_patients"=>$new_patients,"all_patients"=>$all_patients,"patient_details"=>$patient_details,"count_appointments"=>$count_appointments],
+                "doctor" => $doctor,"appointment_confirm"=>$appointment_confirm,"appointment_done"=>$appointment_done,"new_patients"=>$new_patients,"all_patients"=>$all_patients,"patient_details"=>$patient_details],
                 layoutParams:[
                     "title" => "Dashboard",
                     "active_link" => "dashboard",

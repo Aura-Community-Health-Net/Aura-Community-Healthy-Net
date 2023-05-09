@@ -22,11 +22,8 @@ if (!$pharmacy['is_verified']) {
         <h3>New Orders</h3>
         <?php
 
-        if ($medicines_orders_list === null) {
-            echo "<div class= 'No_med_orders'>NO ORDERS YET</div>";
-        }
+        if ($medicines_orders_list) {
 
-        else{
         foreach ($medicines_orders_list as $new_order) {
 
             $consumer_profile = $new_order["profile_picture"];
@@ -48,7 +45,12 @@ if (!$pharmacy['is_verified']) {
         </div>
 ";
 
-        } }?>
+        }}
+        else{
+                echo "<h2 class= 'No_med_orders'>No Orders Yet</h2>";
+
+
+        }?>
 
         <a href='/pharmacy-dashboard/orders'>
             <button class="all-orders-btn">All Orders</button>
@@ -64,7 +66,7 @@ if (!$pharmacy['is_verified']) {
         <?php
 
         if ($order_preview === null) {
-            echo "<div class= 'No_med_orders'>NO ORDERS YET</div>";
+            echo "<h2 class= 'No_med_orders'>No Orders Yet</h2>";
         } else {
 
             $consumer_name = $order_preview["consumer_name"];
@@ -134,15 +136,17 @@ if (!$pharmacy['is_verified']) {
     <div class="dashboard__bottom-cards">
         <h3>Medicines List</h3>
 
-        <?php foreach ($medicines as $medicine) {
+        <?php
+        if($medicines){
+            foreach ($medicines as $medicine) {
 
-            $med_image = $medicine['image'];
-            $med_name = $medicine['name'];
-            $med_price = $medicine['price']/100;
-            $med_quantity = $medicine['quantity'];
-            $med_quantity_unit = $medicine['quantity_unit'];
+                $med_image = $medicine['image'];
+                $med_name = $medicine['name'];
+                $med_price = $medicine['price']/100;
+                $med_quantity = $medicine['quantity'];
+                $med_quantity_unit = $medicine['quantity_unit'];
 
-            echo "
+                echo "
              <div class='dashboard__bottom-cards__detail'> <img class='dashboard__bottom-product-img' src='$med_image' alt=''>
             <h4></h4>
             <h4>$med_name</h4>
@@ -150,7 +154,11 @@ if (!$pharmacy['is_verified']) {
             <h4>Rs. $med_price</h4>
                   </div>";
 
-        } ?>
+            }
+        }
+        else{
+            echo "<h2 class='empty-medicines-list'>No Medicines yet</h2>";
+        }?>
 
         <a href='/pharmacy-dashboard/medicines'>
             <button class="all-products-btn">All Medicines</button>

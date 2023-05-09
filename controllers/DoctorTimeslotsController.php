@@ -24,6 +24,7 @@ class DoctorTimeslotsController extends Controller
         $stmt->execute();
         $result = $stmt->get_result();
         $doctor = $result->fetch_assoc();
+
         $stmt = $db->connection->prepare("SELECT * FROM doctor_time_slot WHERE provider_nic = ?");
         $stmt->bind_param("s", $nic);
         $stmt->execute();
@@ -33,7 +34,7 @@ class DoctorTimeslotsController extends Controller
         /*var_dump($timeslots);
         exit();*/
         return self::render(view: 'doctor-dashboard-timeslots', layout: "doctor-dashboard-layout", params: [
-            "timeslots" => $timeslots
+            "timeslots" => $timeslots, "doctor" => $doctor
         ], layoutParams: [
             "title" => "Timeslots",
             "active_link" => "timeslots",

@@ -89,6 +89,6 @@ if ($medicines === null) {
     </div>
 
 </div>
-?>";
-}
+";}?>
+
 

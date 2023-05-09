@@ -42,7 +42,11 @@
                 </tr>
                 <tr>
                     <td><b>Qualifications</b></td>
-                    <td><?php echo $doctorQualification[0]['qualifications']."<br>".$doctorQualification[0]['qualifications']; ?></td>
+                    <td>
+                        <?php foreach ($doctorQualification as $value) {
+                             echo $value['qualifications'].'<br>';
+                         } ?>
+                    </td>
                 </tr>
 
             </table>

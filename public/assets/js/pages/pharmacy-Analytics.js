@@ -1,7 +1,7 @@
 const medRevenueChartCanvas = document.querySelector("#revenue-chart");
 const medOrderCountCanvas = document.querySelector("#order-count-chart");
-const medicineVsRevenueCanvas = document.querySelector("#medicine-vs-revenue-chart");
-const medicineAnalyticsDropdown = document.querySelector("#pharmacy-analytics-dropdown");
+// const medicineVsRevenueCanvas = document.querySelector("#medicine-vs-revenue-chart");
+const medicineAnalyticsDropdown = document.querySelector("#medicine-analytics-dropdown");
 
 let medRevenueChart,medOrderCountChart,medicineVsRevenueChart;
 
@@ -21,6 +21,7 @@ async function getMedOrderCountData(period="this_month"){
         console.log(dates)
         console.log(orders)
         console.log(Chart)
+
         medOrderCountChart = new Chart(medOrderCountCanvas, {
             type: 'bar',
             data: {
@@ -96,10 +97,10 @@ async  function getMedRevenueData(period="this_month"){
 
 
 
-
-async function getMedicineVsRevenueData(){
-
-}
+//
+// async function getMedicineVsRevenueData(){
+//
+// }
 
 
 
@@ -111,8 +112,12 @@ async function getMedicineVsRevenueData(){
 
 window.addEventListener("load",async ()=>{
     await getMedRevenueData();
+
+
+})
+
+window.addEventListener("load",async ()=>{
     await getMedOrderCountData();
-    await getMedicineVsRevenueData();
 
 })
 
@@ -120,17 +125,18 @@ medicineAnalyticsDropdown.addEventListener("change",async ()=>{
     if(medRevenueChart){
         medRevenueChart.destroy();
     }
+    await  getMedRevenueData(medicineAnalyticsDropdown.value);
 
     if(medOrderCountChart){
         medOrderCountChart.destroy();
     }
-    if(medicineVsRevenueChart){
-        medicineVsRevenueChart.destroy();
-    }
-
-    await  getMedRevenueData(medicineAnalyticsDropdown.value);
     await getMedOrderCountData(medicineAnalyticsDropdown.value);
-    await getMedicineVsRevenueData(medicineAnalyticsDropdown.value);
+
+    // if(medicineVsRevenueChart){
+    //     medicineVsRevenueChart.destroy();
+    // }
+    //
+    // await getMedicineVsRevenueData(medicineAnalyticsDropdown.value);
 })
 
 
