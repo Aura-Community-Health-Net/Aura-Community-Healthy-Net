@@ -12,7 +12,11 @@
 <div class="care-rider-feedbacks">
 
 
-    <?php foreach ($feedback as $value) { ?>
+    <?php
+    if (empty($feedback)) {
+        echo "<div class='Not-verified-care-rider-feedback'>No Feedback Here </div>";
+    } else {
+    foreach ($feedback as $value) { ?>
         <div class="consumer-feedback">
             <div class="consumer-feedback__details">
                 <div>
@@ -26,7 +30,7 @@
             <p><?php echo $value['text'] ?> </p>
         </div>
 
-    <?php } ?>
+    <?php } } ?>
 
 
 </div>

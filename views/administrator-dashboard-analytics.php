@@ -12,8 +12,11 @@
     <!--    </div>-->
 
     <div class="administrator-analytics__top-container">
+        <canvas id="admin-pharmacy-revenue-chart" class="admin-pharmacy-revenue-chart"></canvas>
         <canvas id="admin-product-seller-revenue-chart" class="admin-product-seller-revenue-chart"></canvas>
     </div>
+
+
 
 </div>
 

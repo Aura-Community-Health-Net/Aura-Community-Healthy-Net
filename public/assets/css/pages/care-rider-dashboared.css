@@ -47,11 +47,9 @@
 }
 
 .care-rider-top-left{
-    /*overflow: auto;*/
-    /*overflow-x: hidden;*/
-    height: 400px;
+    height: 500px;
     width: 50%;
-    background-color:#EFEEFD;
+    background-color: #EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -63,9 +61,9 @@
     height: 200px;
 }
 .care-rider-top-center{
-    height: 400px;
+    height: 500px;
     width: 50%;
-    background-color:#EFEEFD;
+    background-color: #EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
     margin: 10px;
@@ -87,7 +85,7 @@
     border-radius: 8px;
     margin-top: 1rem;
     background-color: #ffffff;
-    /* padding: 2rem; */
+    padding: 2rem;
     width: 80%;
     margin-inline: 4rem;
 }
@@ -122,7 +120,11 @@
 
 .care-rider-bottom-container{
     display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
 }
+
 .care-rider-dashboard-bottom-left{
     width: 50%;
     background-color:#EFEEFD;
@@ -133,11 +135,11 @@
 
 }
 .care-rider-dashboard-bottom-right{
-    width: 50%;
-    background-color:#EFEEFD;
+    width: 45%;
+    background-color: #EFEEFD;
     border-radius: 3%;
     padding-inline: 5px;
-    margin: 10px;
+    margin: 1rem;
     height: 350px;
 }
 .care-rider-dashboard-bottom-right img{
@@ -149,4 +151,40 @@
     background-color: #ffffff;
     padding: 0.5rem;
     border-radius: 5px;
+}
+.Not-verified-care-rider{
+    text-align: center;
+    margin: 10rem;
+    /* text-decoration-color: rebeccapurple; */
+    color: red;
+    font-weight: 900;
+    font-size: 40px;
+    /*background-color: white;*/
+    height: 100px;
+    border-radius: 1rem;
+
+}
+.Not-verified-care-rider-timeslot{
+    text-align: center;
+    margin: 10rem;
+    /* text-decoration-color: rebeccapurple; */
+    color: red;
+    font-weight: 900;
+    font-size: 40px;
+    height: 100px;
+    border-radius: 1rem;
+    padding: 1.5rem
+}
+.view-privious-request-button{
+    border: none;
+    background-color: #0002A1;
+    padding: 5px 32px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    /* margin-top: 10px; */
+    color: white;
+    margin-top: 1rem;
+    margin-left: 25rem;
 }

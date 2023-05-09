@@ -21,7 +21,9 @@ $provider_nic = $_GET['provider_nic'];
                             <h3><b><?php echo $doctor['name']; ?></b></h3><br>
                             <h4><?php echo $doctor['field_of_study']; ?></h4>
                             <h4>SLMC Reg.No: <?php echo $doctor['slmc_reg_no']; ?></h4>
-                            <p><?php echo $doctor_qualifications[0]['qualifications'] . " , " . $doctor_qualifications[1]['qualifications']; ?></p>
+                            <p><?php foreach ($doctor_qualifications as $value) {
+                                    echo $value['qualifications'].'<br>';
+                                } ?></p>
                         </div>
                     </div>
                 </td>
@@ -53,12 +55,20 @@ $provider_nic = $_GET['provider_nic'];
                             <input name="destination-lng" id="destination-lng" style="opacity: 0">
                             <div class="consumer-dashboard-doctor-profile__top__right__location">
                                 <p>Add Location</p>
+                                <div>
+                                    <input type="text" placeholder="Enter the address" class="doctor-input-location" id="address">
+                                    <button onclick="findAddress()" type="button" id="doctor-location-search">Search</button>
+                                </div>
+
+                                <div>
+                                    <select name="location_results" id="location_results" class="location_results"></select>
+                                </div>
                                 <div class="map" id="map" style="height:400px;width: 80%;margin-inline: auto">
                                 </div>
                             </div>
                             <p class="consumer-dashboard-doctor-profile__top__right_p">You will need to pay Rs. 1500.00
                                 for an appointment</p>
-                            <button name="doctor-pay-btn">Continue to Pay</button>
+                            <button name="doctor-pay-btn" class="doctor-payment-btn">Continue to Pay</button>
                         </div>
                     </form>
                 </td>
@@ -117,9 +127,46 @@ $provider_nic = $_GET['provider_nic'];
     })
     ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
 
-<script>let map;
+<script>let map, marker1;
     const destinationLatInput = document.querySelector("#destination-lat")
     const destinationLngInput = document.querySelector("#destination-lng")
+    const address = document.querySelector("#address");
+    const locationResultsInput = document.querySelector("#location_results")
+    let results = []
+
+
+    locationResultsInput.addEventListener('change', () => {
+        console.log(locationResultsInput.value)
+        const selectedLocation = results.find((i) => i.place_id === Number(locationResultsInput.value))
+        console.log(selectedLocation)
+        setMarkerAndPan({
+            lat: Number(selectedLocation.lat),
+            lng: Number(selectedLocation.lon)
+        })
+    })
+
+        async function findAddress() {
+            try{
+                const response = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + address.value)
+                const locationResults = await response.json()
+                results = locationResults
+                if(results.length === 1) {
+                    setMarkerAndPan({
+                        lat: Number(results[0].lat),
+                        lng: Number(results[0].lon)
+                    })
+                }
+                let options = locationResults.map(lR => {
+                    return "<option value='"+lR.place_id +"' >" + lR.display_name + "</option>"
+                }).join("")
+                locationResultsInput.innerHTML = options
+            } catch (e) {
+                console.log(e)
+            }
+
+        }
+
+
 
     async function initMap(lat, lng) {
         //@ts-ignore
@@ -129,7 +176,7 @@ $provider_nic = $_GET['provider_nic'];
             center: {lat: lat, lng: lng},
             zoom: 17,
         });
-        const marker1 = new Marker({
+        marker1 = new Marker({
             map: map,
             position: {lat: lat, lng: lng},
             draggable: true, title: "destination", icon: {
@@ -146,6 +193,13 @@ $provider_nic = $_GET['provider_nic'];
         })
 
 
+    }
+
+    function setMarkerAndPan(selectedLocation) {
+        map.panTo(selectedLocation)
+        marker1.setPosition(selectedLocation)
+        destinationLatInput.value = selectedLocation.lat
+        destinationLngInput.value = selectedLocation.lng
     }
 
 
