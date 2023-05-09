@@ -141,11 +141,20 @@ class MedicinesController extends Controller
             $result = $stmt->get_result();
             $available_med_details = $result->fetch_assoc();
 
+            $stmt = $db->connection->prepare("SELECT name FROM medicine WHERE provider_nic = ?");
+            $stmt->bind_param("s",$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $medicines_list = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
 
 
             return self::render(view: 'pharmacy-dashboard-newRequests-advanceinfo', layout: "pharmacy-dashboard-layout",
                 params:[
                     "available_med_details" => $available_med_details,
+                    "medicines_list" => $medicines_list
                 ],
                 layoutParams: ["pharmacy" => $pharmacy, "title" => "New Requests", "active_link" => "new-requests"]);
 

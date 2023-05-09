@@ -1,7 +1,15 @@
 <?php
 /**
  * @var array $services
+ * @var array $consumer
+ *  @var $care_rider_provider_count;
+ * @var $doctor_provider_count;
+ * @var $pharmacy_provider_count;
+ * @var $product_seller_provider_count;
+ * @var $care_rider_provider_count;
  */
+
+//print_r($consumer); die();
 
 ?>
 
@@ -10,25 +18,25 @@
         <h3>Services Count</h3>
         <div class="services-count__details">
             <h3>Doctor</h3>
-            <p class="services-count">5</p>
+            <p class="services-count"><?php echo $doctor_provider_count['COUNT(record_id)']; ?></p>
         </div>
         <div class="services-count__details">
             <h3>Pharmacy</h3>
-            <p class="services-count">4</p>
+            <p class="services-count"><?php echo $pharmacy_provider_count['COUNT(record_id)']; ?></p>
         </div>
         <div class="services-count__details">
             <h3>Product Seller</h3>
-            <p class="services-count">2</p>
+            <p class="services-count"><?php echo $product_seller_provider_count['COUNT(record_id)']; ?></p>
         </div>
         <div class="services-count__details">
             <h3>Care Rider</h3>
-            <p class="services-count">0</p>
+            <p class="services-count"><?php echo $care_rider_provider_count['COUNT(request_id)']; ?></p>
         </div>
     </div>
 
 
     <div class="dashboard__top-cards">
-        <div class="calendar">
+                <div class="calendar">
             <div class="calendar-header">
                 <span class="month-picker" id="month-picker">February</span>
                 <div class="year-picker">

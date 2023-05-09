@@ -5,6 +5,7 @@
  * @var array $feedback_for_sellers
  */
 
+
 $provider_nic = $product_details['provider_nic'];
 $provider_image = $product_details['profile_picture'];
 $provider_name = $product_details['provider_name'];
@@ -62,14 +63,15 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 
     <div class="item-top-right__container">
         <?php
-        foreach ($other_products as $other_product){
-            $rest_product_image = $other_product['image'];
-            $rest_product_name = $other_product['name'];
-            $rest_product_quantity = $other_product['quantity'];
-            $rest_product_quantity_unit = $other_product['quantity_unit'];
-            $rest_product_price = $other_product['price']/100;
-            $other_product_id = $other_product['product_id'];
-            echo "<div class='overview-items'>
+        if ($other_products){
+            foreach ($other_products as $other_product){
+                $rest_product_image = $other_product['image'];
+                $rest_product_name = $other_product['name'];
+                $rest_product_quantity = $other_product['quantity'];
+                $rest_product_quantity_unit = $other_product['quantity_unit'];
+                $rest_product_price = $other_product['price']/100;
+                $other_product_id = $other_product['product_id'];
+                echo "<div class='overview-items'>
                 <img src='$rest_product_image' alt=''>
                 <div>
                     <a class='overview-items__name'  href='/products/view?id=$other_product_id'>$rest_product_name </a>
@@ -79,11 +81,14 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
                 </div>
 
                 </div>";
+            }
+        } else {
+            echo "
+            <h2 class='empty-product-orders'>No Products yet</h2>
+            ";
         }
         ?>
-
     </div>
-
 </div>
 
 <div class="item-bottom-container">
@@ -91,7 +96,7 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 
             <?php
             if (empty($feedback_for_sellers)){
-                echo "No feedback yet";
+                echo "<h2 class='empty-product-orders'>No feedback yet</h2>";
             } else{
                 foreach ($feedback_for_sellers as $feedback_for_seller){
                     $feedback_profile_pic = $feedback_for_seller['profile_picture'];
@@ -116,7 +121,6 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 
                 }
             }
-
             ?>
     </div>
 

@@ -9,7 +9,7 @@
  * @var $request_details ;
  * @var $count_request ;
  * @var $date ;
- * @var $care_rider_time_slot
+ * @var $care_rider_time_slot;
  *
  *
  */
@@ -97,7 +97,7 @@ if (!$care_rider['is_verified']) {
             <h3>Request Count</h3>
             <div class="care-rider-request-details">
                 <h3>New Requests</h3>
-                <h1 style="color: #5BC849"><?php echo $new_request['COUNT(done)']; ?></h1>
+                <h1 style="color: #5BC849">9 ?></h1>
             </div>
             <div class="care-rider-request-details">
                 <h3>All Requests</h3>
