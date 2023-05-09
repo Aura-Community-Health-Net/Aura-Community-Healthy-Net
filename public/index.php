@@ -154,6 +154,7 @@ $app->router->get('/consumer-dashboard/services/care-rider',[CareRiderController
 $app->router->get('/consumer-dashboard/services/care-rider/request',[CareRiderController::class,'getCareRiderRequestsPage']);
 $app->router->post('/consumer-dashboard/services/care-rider/request/location',[CareRiderController::class,'getConsumerLocation']);
 $app->router->post('/consumer-dashboard/services/care-rider/request/feedback',[CareRiderController::class,'addConsumerCareRiderFeedback']);
+//$app->router->get('/consumer-dashboard/providers-count',[DashboardController::class,'getProvidersCount']);
 
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
