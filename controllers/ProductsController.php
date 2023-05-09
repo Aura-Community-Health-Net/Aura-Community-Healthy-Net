@@ -212,12 +212,21 @@ class ProductsController extends Controller
             $search_query = isset($_GET["q"]) ? $_GET["q"]: "";
 
             $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT location_lat, location_lng FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer_location = $result->fetch_assoc();
+            $location_lat = $consumer["location_lat"];
+            $location_lng = $consumer["location_lng"];
+
             if (!$category_id) {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.name LIKE '%$search_query%'");
-//                $stmt->bind_param("s", $search_query);
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic WHERE p.name LIKE '%$search_query%' AND st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000");
+                $stmt->bind_param("dd",  $location_lng, $location_lat);
             } else {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic WHERE p.category_id = ? AND p.name LIKE '%$search_query%'");
-                $stmt->bind_param("d", $category_id);
+                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic WHERE p.category_id = ? AND p.name LIKE '%$search_query%' AND st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000");
+                $stmt->bind_param("ddd", $category_id,  $location_lng, $location_lat);
 
             }
             $stmt->execute();
