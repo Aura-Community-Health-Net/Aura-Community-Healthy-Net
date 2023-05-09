@@ -53,6 +53,11 @@ class ServiceProvidersController extends Controller
         $provider_type = $_GET["provider_type"];
 
         $db = new Database();
+
+        $stmt = $db->connection->prepare("UPDATE service_provider SET is_verified = 2 WHERE provider_nic = ?");
+        $stmt->bind_param("s", $nic);
+        $stmt->execute();
+
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
         $stmt->bind_param("s", $nic);
         $stmt->execute();
@@ -72,7 +77,7 @@ class ServiceProvidersController extends Controller
             EmailSender::sendEmail(receiverEmail: $email_address, receiverName: $provider_name, subject: "Verification confirmation for your Aura account", htmlContent: "", params: [
                 "TYPE" => $type,
                 "NAME" => $provider_name,
-            ]);
+            ],templateId: 3);
             header("location: /admin-dashboard/new-registrations?provider_type=$provider_type");
             return "";
         } catch (Exception $e){

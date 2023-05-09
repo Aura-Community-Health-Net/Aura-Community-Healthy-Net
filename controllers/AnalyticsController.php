@@ -576,10 +576,16 @@ class AnalyticsController extends Controller
         }
     }
 
-    public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
+//public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
 
 
-    {
+//{
+
+//     public static function getPharmacyRevenueVsMedicinePercentage(): bool|string
+
+
+//     {
+
 //    $nic = $_SESSION["nic"];
 //    $providerType = $_SESSION["user_type"];
 //    if (!$nic || $providerType !== "pharmacy") {
@@ -653,7 +659,12 @@ class AnalyticsController extends Controller
 //        header("Content-Type: application/json");
 //        return json_encode($product_records);
 //    }
-    }
+
+//}
+
+
+//     }
+
 
     public static function getCareRiderAnalyticsRevenueChart()
     {
@@ -800,7 +811,7 @@ class AnalyticsController extends Controller
             "title" => "Analytics"
         ]);
     }
-}
+
 
 
 
