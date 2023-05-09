@@ -11,9 +11,16 @@
 
 <div class="care-rider-analytics">
     <div class="care-rider-analytics__top">
-        <img src="/assets/images/care-rider-analytics-top.png">
+        <canvas id="request-count-chart">   </canvas>
     </div>
     <div class="care-rider-analytics__bottom">
-        <img src="/assets/images/care-rider-analytics-bottom.png">
+
+        <canvas id="revenue-chart">   </canvas>
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+
+    <script src="/assets/js/pages/care-rider-analytics.js"></script>

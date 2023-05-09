@@ -66,17 +66,12 @@
                 }
                 ?>
             </div>
-        </div>
-
-        <div class="provider-signup-form__right">
 
             <div class="form-input">
                 <label class="form-input__label" for="nmra">NMRA Certificate <sup>*</sup></label>
 
                 <input class="form-input__input" id="nmra-certificate" type="file" name="nmra"
-                    style="display: none; visibility: hidden" accept="application/pdf" required>
-
-
+                       style="display: none; visibility: hidden" accept="application/pdf" required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="nmra-certificate-btn" type="button">
@@ -85,16 +80,22 @@
                     <div id="nmra-certificate-filename"></div>
                 </div>
             </div>
+
             <div class="form-input">
                 <label class="form-input__label" for="bankaccno">Bank Account Number <sup>*</sup></label>
                 <input class="form-input__input" id="bankaccno" type="number" name="bankaccno"
-                    value="<?php echo $_POST['bankaccno'] ?? ''; ?>" required>
+                       value="<?php echo $_POST['bankaccno'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["bankaccno"])) {
                     echo "<p class = 'errors'> {$errors["bankaccno"]}</p>";
                 }
                 ?>
             </div>
+        </div>
+
+        <div class="provider-signup-form__right">
+
+
 
             <div class="form-input">
                 <label class="form-input__label" for="bankname">Bank Name <sup>*</sup></label>
@@ -106,6 +107,12 @@
                 <label class="form-input__label" for="bankbranch">Branch Name <sup>*</sup></label>
                 <input class="form-input__input" id="bankbranch" type="text" name="bankbranch"
                     value="<?php echo $_POST['bankbranch'] ?? ''; ?>" required>
+            </div>
+
+            <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <input class="form-input__map" id="location" type="text" name="location"
+                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
             </div>
 
             <div class="form-input">

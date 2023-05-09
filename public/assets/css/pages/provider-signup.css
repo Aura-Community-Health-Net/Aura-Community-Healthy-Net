@@ -1,5 +1,5 @@
 .provider-signup-form {
-    width: 50%;
+    width: 60%;
     margin: 2rem auto;
     background-color: white;
     padding: 2rem;
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     gap: 3rem;
+    margin-top: 2rem;
 }
 
 .provider-signup-form__bottom {
@@ -134,4 +135,11 @@
 .errors{
     font-size: 0.8rem;
     color: red;
+}
+
+.doctor-type__selector{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
 }

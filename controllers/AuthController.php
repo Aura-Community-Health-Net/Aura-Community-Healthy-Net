@@ -298,6 +298,7 @@ class AuthController extends Controller
                 $email = $_POST["email"];
                 $mobileNumber = $_POST["mobileNumber"];
                 $address = $_POST["address"];
+                $location = $_POST["location"];
                 $regNumber = $_POST["regNumber"];
                 $bankNo = $_POST["bankNo"];
                 $bankName = $_POST["bankName"];
@@ -363,11 +364,12 @@ class AuthController extends Controller
                                     email_address, 
                                     password, 
                                     mobile_number, 
+                                    location,
                                     bank_name, 
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';

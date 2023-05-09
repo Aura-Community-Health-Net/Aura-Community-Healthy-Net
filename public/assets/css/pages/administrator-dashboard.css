@@ -17,6 +17,9 @@
     background-color: white;
     border-radius: 8px;
     gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    align-items: center;
 }
 
 .due-payment__provider-img{
@@ -24,3 +27,16 @@
     aspect-ratio: 1;
     border-radius: 50%;
 }
+
+.admin-payment-name{
+    width: 15rem;
+}
+
+.admin-payment-price{
+    width: 8rem;
+}
+
+.admin-payment-purpose{
+    width: 20rem;
+}
+

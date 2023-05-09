@@ -44,3 +44,17 @@
     text-align: center;
     padding-block: 10px;
 }
+.not-verified-doctor-timeslot{
+    color: red;
+    display: flex;
+    background-color: #EFEEFD;
+    margin-top: 4rem;
+    margin-left: 3rem;
+    width: 90%;
+    height: 10rem;
+}
+.not-verified-doctor-timeslot h2{
+    display: flex;
+    margin-left: 25rem;
+    margin-top: 4rem;
+}

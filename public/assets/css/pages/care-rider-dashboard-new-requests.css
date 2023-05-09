@@ -66,3 +66,14 @@
 .care_rider-request__left th{
     height: 30px;
 }
+.Not-verified-care-rider-new-requests{
+    text-align: center;
+    margin: 10rem;
+    /* text-decoration-color: rebeccapurple; */
+    color: red;
+    font-weight: 900;
+    font-size: 40px;
+    height: 100px;
+    border-radius: 1rem;
+    padding: 1.5rem
+}
