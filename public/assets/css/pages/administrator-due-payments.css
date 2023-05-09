@@ -26,7 +26,6 @@
 .due-payments__details{
     display: grid;
     grid-template-columns: repeat(6 ,1fr);
-    gap: 3rem;
     justify-content: center;
     margin: 1rem;
 }
@@ -37,7 +36,14 @@
     background-color: white;
     border-radius: 8px;
     padding: 0.5rem;
-    gap: 2rem;
     justify-content: center;
     margin: 1rem;
 }
+
+.due-payments__pro-pic{
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-left: 2rem;
+}
+

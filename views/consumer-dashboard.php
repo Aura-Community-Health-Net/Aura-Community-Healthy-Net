@@ -36,7 +36,7 @@
 
 
     <div class="dashboard__top-cards">
-        <div class="calendar">
+                <div class="calendar">
             <div class="calendar-header">
                 <span class="month-picker" id="month-picker">February</span>
                 <div class="year-picker">

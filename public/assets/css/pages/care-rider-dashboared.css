@@ -14,10 +14,7 @@
     display: flex;
 
 }
- h3{
-    text-align: center;
-    margin-top: 1rem;
-}
+
 .care-rider-appointment-list__item__scroll{
     margin-top: 0.75rem;
     overflow: auto;
@@ -57,8 +54,6 @@
     padding-inline: 5px;
     margin: 10px;
 }
-
-
 
 .care-rider-top-center{
     height: 500px;

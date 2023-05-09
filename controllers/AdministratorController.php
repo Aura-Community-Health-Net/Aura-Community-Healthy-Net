@@ -105,7 +105,8 @@ class AdministratorController extends Controller
         $result = $stmt->get_result();
         $care_rider_count = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, pr.amount, s.bank_account_number FROM service_provider s INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic LIMIT 4");
+        $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, sum(pr.amount)/100 AS amount, pr.purpose FROM service_provider s 
+        INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC LIMIT 4");
         $stmt->execute();
         $result = $stmt->get_result();
         $due_payments = $result->fetch_all(MYSQLI_ASSOC);
@@ -130,8 +131,7 @@ class AdministratorController extends Controller
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
 
-        $stmt = $db->connection->prepare("SELECT p.provider_nic, sum(p.amount) AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY provider_nic ORDER BY amount DESC");
-//        $stmt->bind_param("s", $provider_nic);
+        $stmt = $db->connection->prepare("SELECT s.profile_picture, sum(p.amount)/100 AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number, s.provider_nic FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC");
         $stmt->execute();
         $result = $stmt->get_result();
         $payments = $result->fetch_all(MYSQLI_ASSOC);
@@ -277,25 +277,57 @@ class AdministratorController extends Controller
         return json_encode($data);
         }
 
+    }
 
 
+    public static function getAdministratorDoctorRevenueChart(): bool|string
+    {
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        switch ($chart_time) {
+            case "this_week";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'doctor' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    AND WEEK(date_time, 1) = WEEK(NOW(), 1)
+                                                    GROUP BY DATE(date_time)");
+                break;
+
+            case "this_month";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue 
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic
+                                                    WHERE s.provider_type = 'doctor' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    AND MONTH(date_time) = MONTH(NOW())
+                                                    GROUP BY DATE(date_time)");
+                break;
+
+            case "past_six_months";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'doctor' AND YEAR(date_time) = YEAR(NOW()) 
+                                                    GROUP BY DATE(date_time)");
+                break;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            case "all_time";
+                $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
+                                                    FROM payment_record  INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
+                                                    WHERE s.provider_type = 'doctor'
+                                                    GROUP BY DATE(date_time)");
+                break;
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        header("Content-Type: application/json");
+        return json_encode($data);
+    }
 
 
 

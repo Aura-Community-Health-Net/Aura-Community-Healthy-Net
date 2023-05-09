@@ -75,23 +75,23 @@
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="mbbs-certificate-btn" type="button">
-                        <i class="fa-regular fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="mbbs-certificate-filename"></div>
                 </div>
+            </div>
+
+            <div id="form-input">
+                <label class="form-input__label" for="qualifications">Qualifications <sup>*</sup></label>
+                <textarea class="form-input__textarea" id="qualifications" name="qualifications" tabindex="9"
+                          placeholder="Please put qualifications with separating commas" rows="5"
+                          value="<?php echo $_POST['qualifications'] ?? ''; ?>" required></textarea>
             </div>
         </div>
 
 
 
         <div class="provider-signup-form__right">
-            <div id="form-input">
-                <label class="form-input__label" for="qualifications">Qualifications <sup>*</sup></label>
-                <textarea class="form-input__textarea" id="qualifications" name="qualifications" tabindex="9"
-                    placeholder="Please put qualifications with separating commas" rows="5"
-                    value="<?php echo $_POST['qualifications'] ?? ''; ?>" required></textarea>
-            </div>
-
             <div id="form-input">
                 <label class="form-input__label" for="account-num">Bank Account Number <sup>*</sup></label>
                 <input class="form-input__input" id="account-num" type="text" name="account-num" tabindex="10"
@@ -115,6 +115,12 @@
                     value="<?php echo $_POST['branch-name'] ?? ''; ?>" required>
             </div>
 
+            <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <input class="form-input__map" id="location" type="text" name="location"
+                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
+            </div>
+
             <div id="form-input">
                 <label class="form-input__label" for="profile-pic">Profile Picture <sup>*</sup></label>
                 <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File" tabindex="13"
@@ -122,7 +128,7 @@
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
-                        <i class="fa-regular fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>
@@ -148,9 +154,9 @@
     </div>
 
 
-    <div class="provider-signup-form__bottom">
+    <div class="provider-signup-form__bottom ">
 
-        <div class="provider-signup-form__bottom__top">
+        <div class="provider-signup-form__bottom__top doctor-type__selector">
             <div class="western">
                 <label>Western</label>
                 <input type="radio" value="Western" name="doctor_type" id="western">
