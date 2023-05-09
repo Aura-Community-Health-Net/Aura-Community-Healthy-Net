@@ -16,6 +16,7 @@
 
 
         <canvas id="admin-product-seller-revenue-chart" class="admin-product-seller-revenue-chart"></canvas>
+        <canvas id="admin-doctor-revenue-chart" class="admin-doctor-revenue-chart"></canvas>
     </div>
 
 
