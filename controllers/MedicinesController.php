@@ -141,11 +141,20 @@ class MedicinesController extends Controller
             $result = $stmt->get_result();
             $available_med_details = $result->fetch_assoc();
 
+            $stmt = $db->connection->prepare("SELECT name FROM medicine WHERE provider_nic = ?");
+            $stmt->bind_param("s",$provider_nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $medicines_list = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
 
 
             return self::render(view: 'pharmacy-dashboard-newRequests-advanceinfo', layout: "pharmacy-dashboard-layout",
                 params:[
                     "available_med_details" => $available_med_details,
+                    "medicines_list" => $medicines_list
                 ],
                 layoutParams: ["pharmacy" => $pharmacy, "title" => "New Requests", "active_link" => "new-requests"]);
 
@@ -410,10 +419,21 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT location_lng,locatin_lat FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s",$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $location = $result->fetch_assoc();
+
+            $location_lat = $location["location_lat"];
+            $location_lng = $location["location_lng"];
+
 
             $db = new Database();
 
-            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1");
+            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1 AND st_distance_sphere(point(?,?),point(r.locatin_lat,r.location_lng)) <= 10000");
+            $stmt->bind_param("dd",$location_lat,$location_lng);
             $stmt->execute();
             $result = $stmt->get_result();
             $pharmacies = $result->fetch_all(MYSQLI_ASSOC);
