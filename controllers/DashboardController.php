@@ -189,11 +189,7 @@ class DashboardController extends Controller
             ]);
         }
 
-
         }
-
-
-
 
     public static function getCareRiderDashboard(): bool|array|string
     {
@@ -340,12 +336,22 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
+            if ($providerType != "care-rider"){
+                $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
                     FROM service_provider s
                     INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic 
                     INNER JOIN service_consumer c on c.consumer_nic = pr.consumer_nic WHERE c.consumer_nic = ? LIMIT 4");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
+                $stmt->bind_param("s", $nic);
+                $stmt->execute();
+            } else {
+                $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, crts.date FROM service_provider s
+                                         INNER JOIN care_rider_time_slot crts on s.provider_nic = crts.provider_nic
+                                         INNER JOIN ride_request rr on crts.request_id = rr.request_id
+                                         INNER JOIN service_consumer sc on sc.consumer_nic = rr.consumer_nic WHERE sc.consumer_nic = ? LIMIT 4");
+                $stmt->bind_param("s", $nic);
+                $stmt->execute();
+            }
+
             $result = $stmt->get_result();
             $services = $result->fetch_all(MYSQLI_ASSOC);
             return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', params: ["services" => $services],  layoutParams: [

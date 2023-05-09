@@ -41,7 +41,6 @@
     </div>
 
     <div class="header-link__container">
-        <a class="header-link" href="#our-services">Our Services</a>
         <a class="header-link" href="/contact-us">Contact Us</a>
         <a class="header-link" href="/about-us">About Us</a>
         <?php
