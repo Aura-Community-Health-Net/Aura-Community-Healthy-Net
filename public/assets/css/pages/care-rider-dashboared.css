@@ -57,12 +57,9 @@
     padding-inline: 5px;
     margin: 10px;
 }
-.appointment-list__item__scroll{
-    margin-top: 0.75rem;
 
-    width: 330px;
-    height: 200px;
-}
+
+
 .care-rider-top-center{
     height: 500px;
     width: 50%;
@@ -171,7 +168,7 @@
     text-align: center;
     margin: 10rem;
     /* text-decoration-color: rebeccapurple; */
-    color: red;
+    color: blue;
     font-weight: 900;
     font-size: 40px;
     height: 100px;
