@@ -13,7 +13,7 @@ if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations' style='color: red'> <p>You're not verified yet. Please check later.</p></div>";
 }
 
-//print_r($appointment_confirm[0]);
+//print_r($appointment_confirm);die();
 //print_r($patient_details);
 ?>
 

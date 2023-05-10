@@ -280,7 +280,7 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $doctor = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic JOIN doctor_time_slot on doctor_time_slot.appointment_id = appointment.appointment_id WHERE appointment.provider_nic = ? &&  appointment.done = 0 ORDER BY doctor_time_slot.date DESC LIMIT 2;");
+            $stmt = $db->connection->prepare("SELECT * FROM appointment INNER JOIN service_consumer on service_consumer.consumer_nic = appointment.consumer_nic JOIN doctor_time_slot on doctor_time_slot.appointment_id = appointment.appointment_id WHERE appointment.provider_nic = ? &&  appointment.done = 0 && appointment.status = 'paid' ORDER BY doctor_time_slot.date DESC LIMIT 2;");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -292,13 +292,13 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $appointment_done = $result->fetch_all(MYSQLI_ASSOC);
 
-            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && done = 0");
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && done = 0 && appointment.status = 'paid'");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $new_patients = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ?");
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && appointment.status = 'paid' ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
