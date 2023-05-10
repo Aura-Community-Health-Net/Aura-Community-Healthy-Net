@@ -78,7 +78,7 @@ foreach ($medicines_list as $medicine){
 
                                   <?php
 
-                                   echo '<select name="availableMedicines_list" id="availableMedicines_list" multiple>';
+                                   echo '<select name="availableMedicines_list[]" id="availableMedicines_list" multiple>';
 
                                   foreach ($medicines_names as $medicines_name) {
                                       echo "<option value='$medicines_name'>$medicines_name</option>";

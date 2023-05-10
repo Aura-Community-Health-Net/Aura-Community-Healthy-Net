@@ -167,7 +167,9 @@ class MedicinesController extends Controller
     public static function sendMedicineAdvanceInfo()
     {
 
-         $available_med_list = $_POST["availableMedicines_list"];
+         $available_med_list = json_encode($_POST["availableMedicines_list"] ?? []);
+
+         var_dump($available_med_list);
 
 
 //         $available_med_list = json_encode(explode(",", $available_med_list));
