@@ -426,7 +426,7 @@ public static function RequestForPharmacy():bool|array|string
             $result = $stmt->get_result();
             $location = $result->fetch_assoc();
 
-            $location_lat = $location["location_lat"];
+            $location_lat = $location["locatin_lat"];
             $location_lng = $location["location_lng"];
 
 
