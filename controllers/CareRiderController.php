@@ -19,6 +19,14 @@ return "";
 
 else {
     $db = new Database();
+    $stmt = $db->connection->prepare("SELECT location_lat,location_lng FROM service_consumer WHERE consumer_nic = ?");
+    $stmt->bind_param("s",$nic);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $consumer =$result->fetch_assoc();
+    $location_lat = $consumer["location_lat"];
+    $location_lng = $consumer["location_lng"];
+
     $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
     $stmt->bind_param("s", $nic);
     $stmt->execute();
@@ -27,7 +35,8 @@ else {
 
     $search_query = isset($_GET["q"]) ? $_GET["q"]: "";
 
-    $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN vehicle on care_rider.provider_nic = vehicle.provider_nic  WHERE name LIKE '%$search_query%' ");
+    $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic AND st_distance_sphere(point(?,?), point(service_provider.location_lng,service_provider.location_lat))<=10000 INNER JOIN vehicle on care_rider.provider_nic = vehicle.provider_nic  WHERE name LIKE '%$search_query%' ");
+    $stmt->bind_param("dd",$location_lng,$location_lat);
     $stmt->execute();
     $result = $stmt->get_result();
     $care_rider = $result->fetch_all(MYSQLI_ASSOC);
@@ -35,7 +44,7 @@ else {
     //print_r($care_rider);die();
 }
 
-return self::render(view: 'consumer-dashboard-services-care-rider', layout: "consumer-dashboard-layout",params: ["care_rider"=>$care_rider], layoutParams: [
+return self::render(view: 'consumer-dashboard-services-care-rider', layout: "consumer-dashboard-layout",params: ['consumer'=>$consumer,"care_rider"=>$care_rider], layoutParams: [
     "consumer" => $consumer,
     "care_rider"=>$care_rider,
     "active_link" => "care-rider",
