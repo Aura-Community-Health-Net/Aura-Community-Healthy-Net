@@ -27,16 +27,18 @@
         <?php
         foreach ($due_payments as $due_payment){
             $profile_picture = $due_payment["profile_picture"];
+            $provider_nic = $due_payment["provider_nic"];
             $provider_name = $due_payment["name"];
             $amount = number_format($due_payment["amount"], 2, '.', ',');
-            $purpose = $due_payment["purpose"];
+            $provider_type = $due_payment["provider_type"];
 
             echo "
              <div class='admin-dashboard__due-payments'>
                 <img src='$profile_picture' class = 'due-payment__provider-img admin__due-payments__details' alt=''>
                 <p class='admin__due-payments__details admin-payment-name'>$provider_name</p>
+                <p class='admin__due-payments__details admin-payment-price'>$provider_nic</p>                
                 <p class='admin__due-payments__details admin-payment-price'>Rs. $amount</p>
-                <p class='admin__due-payments__details admin-payment-purpose'>$purpose</p>
+                <p class='admin__due-payments__details admin-payment-purpose'>$provider_type</p>
             </div>
             ";
         }

@@ -5,6 +5,7 @@
  * @var array $feedback_for_sellers
  */
 
+
 $provider_nic = $product_details['provider_nic'];
 $provider_image = $product_details['profile_picture'];
 $provider_name = $product_details['provider_name'];
@@ -86,28 +87,8 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
             <h2 class='empty-product-orders'>No Products yet</h2>
             ";
         }
-        foreach ($other_products as $other_product){
-            $rest_product_image = $other_product['image'];
-            $rest_product_name = $other_product['name'];
-            $rest_product_quantity = $other_product['quantity'];
-            $rest_product_quantity_unit = $other_product['quantity_unit'];
-            $rest_product_price = $other_product['price']/100;
-            $other_product_id = $other_product['product_id'];
-            echo "<div class='overview-items'>
-                <img src='$rest_product_image' alt=''>
-                <div>
-                    <a class='overview-items__name'  href='/products/view?id=$other_product_id'>$rest_product_name </a>
-                    <p>$rest_product_quantity $rest_product_quantity_unit</p>
-                    <p class='overview-items__price'>Rs. $rest_product_price</p>
-                    <button id='add-to-cart-btn' class='add-to-cart-btn' data-id='$other_product_id'><i class='fa-solid fa-cart-plus'></i></button>
-                </div>
-
-                </div>";
-        }
         ?>
-
     </div>
-
 </div>
 
 <div class="item-bottom-container">
@@ -140,7 +121,6 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 
                 }
             }
-
             ?>
     </div>
 

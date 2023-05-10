@@ -42,6 +42,7 @@
     justify-content: center;
     background-color: #EFEEFD ;
     border-radius: 1rem;
+    box-shadow: 0 80px 60px rgba(0, 0, 0, 0.2);;
 }
 
 .care-rider-card > div {

@@ -169,6 +169,8 @@ class AuthController extends Controller
                 $picFile = $_FILES["pic"];
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirmpassword"];
+                $location_lat = $_POST["location_lat"];
+                $location_lng = $_POST["location_lng"];
 
                 $file1_name = $picFile["name"];
                 $file1_full_path = $picFile["full_path"];
@@ -256,16 +258,18 @@ class AuthController extends Controller
                              email_address,
                              password,
                              mobile_number,
+                             locatin_lat,
+                             location_lng,
                              bank_name,
                              bank_branch_name,
                              profile_picture,
                              bank_account_number,
-                             provider_type) VALUES (?,UUID(),?,?,?,?,?,?,?,?,?,?)");
+                             provider_type) VALUES (?,UUID(),?,?,?,?,?,?,?,?,?,?,?,?)");
 
                     $picFile = "/uploads/$new_picfile_name";
                     $provider_type = "pharmacy";
 
-                    $result->bind_param("sssssssssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
+                    $result->bind_param("ssssssddsssis", $nic, $ownerName, $address, $emailAddress, $hashedPassword, $mobile,$location_lat,$location_lng, $bankName, $bankBranch, $picFile, $bankAccNo, $provider_type);
                     $result->execute();
                     $Result = $result->get_result();
 
@@ -369,17 +373,15 @@ class AuthController extends Controller
                                     email_address, 
                                     password, 
                                     mobile_number, 
-                                    location_lat,
-                                    location_lng,
                                     bank_name, 
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
-                    $stmt->bind_param("ssssssddsssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $location_lat, $location_lng, $bankName, $branchName, $image, $bankNo, $type);
+                    $stmt->bind_param("sssssssssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $type);
                     $stmt->execute();
 
 

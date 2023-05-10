@@ -315,8 +315,6 @@ class ProductsController extends Controller
             header("location: /products/view?id=$product_id");
             return "";
         }
-
-
     }
 
     public static function getConsumerProductPayment(): bool|array|string

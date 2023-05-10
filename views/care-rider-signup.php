@@ -105,11 +105,11 @@
                     value="<?php echo $_POST['branch_name'] ?? ''; ?>" required>
             </div>
 
-            <div class="form-input">
-                <label class="form-input__label" for="location">Location <sup>*</sup></label>
-                <input class="form-input__map" id="location" type="text" name="location"
-                       value="<?php echo $_POST['location'] ?? ''; ?>" required>
-            </div>
+<!--            <div class="form-input">-->
+<!--                <label class="form-input__label" for="location">Location <sup>*</sup></label>-->
+<!--                <input class="form-input__map" id="location" type="text" name="location"-->
+<!--                       value="--><?php //echo $_POST['location'] ?? ''; ?><!--" required>-->
+<!--            </div>-->
 
             <div class="form-input">
                 <label class="form-input__label" for="profile_pic">Profile Picture <sup>*</sup></label>
