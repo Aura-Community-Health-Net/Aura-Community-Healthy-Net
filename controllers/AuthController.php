@@ -369,17 +369,15 @@ class AuthController extends Controller
                                     email_address, 
                                     password, 
                                     mobile_number, 
-                                    location_lat,
-                                    location_lng,
                                     bank_name, 
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
-                    $stmt->bind_param("ssssssddsssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $location_lat, $location_lng, $bankName, $branchName, $image, $bankNo, $type);
+                    $stmt->bind_param("sssssssssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $type);
                     $stmt->execute();
 
 

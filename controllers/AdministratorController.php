@@ -277,7 +277,7 @@ class AdministratorController extends Controller
         return json_encode($data);
         }
 
-    }
+
 
 
     public static function getAdministratorDoctorRevenueChart(): bool|string
