@@ -25,7 +25,7 @@
         <div class='add-minus-products'>
             <button class='add-to-cart-btn'><i class='fa-solid fa-minus'></i></button>
             <p>1</p>
-            <button class='add-to-cart-btn'> <i class='fa-regular fa-plus'></i></button>
+            <button class='add-to-cart-btn'> <i class='fa fa-plus'></i></button>
         </div>
 
         <div class='cart-item__actions'>
