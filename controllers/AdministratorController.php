@@ -276,7 +276,10 @@ class AdministratorController extends Controller
         header("Content-Type: application/json");
         return json_encode($data);
         }
-        public static function getAdministratorDoctorRevenueChart(): bool|string{
+
+    public static function getAdministratorDoctorRevenueChart(): bool|string
+    {
+
         $db = new Database();
         $chart_time = $_GET["period"] ?? "all_time";
 

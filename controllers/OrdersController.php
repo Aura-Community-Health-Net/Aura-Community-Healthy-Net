@@ -157,18 +157,20 @@ class OrdersController extends Controller
 //            ");
 
 
-            $stmt = $db->connection->prepare("SELECT distinct (o.order_id),s.profile_picture,s.name AS consumer_name,s.mobile_number,r.available_medicines
-                FROM medicine_order o 
-                         INNER JOIN pharmacy_request r ON  r.consumer_nic = o.consumer_nic
+            $stmt = $db->connection->prepare("SELECT distinct(o.order_id),s.profile_picture,s.name AS consumer_name,s.mobile_number,r.available_medicines
+                FROM medicine_order o
+                         INNER JOIN pharmacy_request r ON  r.request_id = o.request_id
                          INNER  JOIN order_has_med ohm ON ohm.order_id = o.order_id
                          INNER  JOIN service_consumer s ON s.consumer_nic = o.consumer_nic 
                          INNER JOIN  medicine m  ON m.med_id = ohm.med_id
-                         WHERE o.provider_nic = ? AND o.status='paid' AND r.Sent_Request!='unsent'");
+                         WHERE o.provider_nic = ? AND o.status='paid'");
 
             $stmt->bind_param("s",$provider_nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $orders = $result->fetch_all(MYSQLI_ASSOC);
+
+
 
 
 
