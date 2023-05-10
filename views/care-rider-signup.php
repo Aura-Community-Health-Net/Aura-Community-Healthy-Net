@@ -104,7 +104,7 @@
                 <input class="form-input__input" id="branch_name" type="text" name="branch_name"
                     value="<?php echo $_POST['branch_name'] ?? ''; ?>" required>
             </div>
-
+          
             <div class="form-input">
                 <label class="form-input__label" for="location">Location <sup>*</sup></label>
                 <div class="form-input__map" id="location">

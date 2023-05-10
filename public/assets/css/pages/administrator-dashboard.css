@@ -17,7 +17,7 @@
     background-color: white;
     border-radius: 8px;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     padding: 1rem;
     align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .admin-payment-name{
-    width: 15rem;
+    width: 12rem;
 }
 
 .admin-payment-price{
@@ -37,6 +37,6 @@
 }
 
 .admin-payment-purpose{
-    width: 20rem;
+    width: 10rem;
 }
 

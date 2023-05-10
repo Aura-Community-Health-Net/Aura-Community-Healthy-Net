@@ -39,6 +39,7 @@
     width: 100%;
     gap: 2rem;
     justify-content: space-evenly;
+    align-items: inherit;
 }
 .doctor-appointments__buttons-consulted button{
     display: flex;

@@ -105,7 +105,7 @@ class AdministratorController extends Controller
         $result = $stmt->get_result();
         $care_rider_count = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, sum(pr.amount)/100 AS amount, pr.purpose FROM service_provider s 
+        $stmt = $db->connection->prepare("SELECT s.profile_picture, s.provider_nic, s.name, sum(pr.amount)/100 AS amount, s.provider_type FROM service_provider s 
         INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC LIMIT 4");
         $stmt->execute();
         $result = $stmt->get_result();
@@ -275,13 +275,12 @@ class AdministratorController extends Controller
         $data = $result->fetch_all(MYSQLI_ASSOC);
         header("Content-Type: application/json");
         return json_encode($data);
-        }
 
-    }
-
+   }
 
     public static function getAdministratorDoctorRevenueChart(): bool|string
     {
+
         $db = new Database();
         $chart_time = $_GET["period"] ?? "all_time";
 

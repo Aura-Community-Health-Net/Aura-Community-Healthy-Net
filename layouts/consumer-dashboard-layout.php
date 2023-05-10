@@ -110,18 +110,6 @@
 
             </div>
 
-
-
-            <li>
-                <a href="/consumer-dashboard/analytics">
-                    <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
-                    <span class="nav-title">Analytics</span>
-                    </button>
-                </a>
-
-            </li>
-
             <li>
                 <a href="/consumer-dashboard/feedback">
                     <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">

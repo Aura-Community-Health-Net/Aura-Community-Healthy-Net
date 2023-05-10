@@ -7,7 +7,7 @@
 //$provider_nic = $_SESSION['nic'];
 
 
-//print_r($appointments_details[0]);die();
+//print_r($appointments_details);die();
 $done = 1;
 ?>
 <?php if(!$doctor['is_verified']) {?>

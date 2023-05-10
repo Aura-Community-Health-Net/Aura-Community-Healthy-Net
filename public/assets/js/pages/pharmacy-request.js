@@ -28,14 +28,14 @@ uploadPresButtons.forEach(function (attach_prescription_Button){
         <form class="pharmacy-request-form" id="pharmacy-request-form" action="/consumer-dashboard/services/pharmacy?pharmacy_id=${elementID}"  method="post" enctype="multipart/form-data">
        
               <div class="form-input">
-                <label class="form-input__label" for="">Prescription</label>
+                <label class="form-input__label" for="">Prescription <sup>*</sup></label>
 
                 <input  id="prescription" type="file" name="prescription"
                     style="display: none; visibility: hidden" accept="image/*" required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="prescription-upload-btn" type="button">
-                        <i class="fa-regular fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="prescription-filename"></div>
                 </div>
