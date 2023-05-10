@@ -46,3 +46,9 @@
 .doctor-feedbacks__data td{
     text-align: center;
 }
+.doctor-feedbacks h2{
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
+    color: #00005C;
+}

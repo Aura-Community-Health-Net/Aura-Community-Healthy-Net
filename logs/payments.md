@@ -2307,3 +2307,411 @@ null
 "payment_intent.created"
 ```
 
+## 2023-05-10 11:52:11
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-10 11:52:11
+
+```json
+{
+    "id": "evt_3N69gtB9kJ5FDFAy0E63w5Dk",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1683712331,
+    "data": {
+        "object": {
+            "id": "pi_3N69gtB9kJ5FDFAy0IT52T5Z",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N69gtB9kJ5FDFAy0IT52T5Z_secret_0TzwpDQGvwnBtxRdZ80WKhmMW",
+            "confirmation_method": "automatic",
+            "created": 1683712331,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "3"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "nimaldahanayaka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_exV8BHpfNH5fJN",
+        "idempotency_key": "a54bbffd-306f-44bf-824a-c3a00cfcea85"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-10 11:52:11
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-10 11:53:34
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-10 11:53:34
+
+```json
+{
+    "id": "evt_3N69iFB9kJ5FDFAy1E1I0q8F",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1683712415,
+    "data": {
+        "object": {
+            "id": "pi_3N69iFB9kJ5FDFAy1dAvOZgt",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N69iFB9kJ5FDFAy1dAvOZgt_secret_np0R6X5l3UCeKmrglE8tLpJXC",
+            "confirmation_method": "automatic",
+            "created": 1683712415,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "4"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "nimaldahanayaka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_M9zuzZo5hStA01",
+        "idempotency_key": "7903fc9b-565a-44be-8701-7ba0f00b8e4b"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-10 11:53:34
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-10 11:54:37
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-10 11:54:37
+
+```json
+{
+    "id": "evt_3N69iFB9kJ5FDFAy1ErQEdMS",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1683712477,
+    "data": {
+        "object": {
+            "id": "pi_3N69iFB9kJ5FDFAy1dAvOZgt",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 150000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N69iFB9kJ5FDFAy1dAvOZgt_secret_np0R6X5l3UCeKmrglE8tLpJXC",
+            "confirmation_method": "automatic",
+            "created": 1683712415,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N69iFB9kJ5FDFAy13rQuTeu",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "4"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N69jEB9kJ5FDFAydDqO7MtL",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_wRjIhWCDX4OQz1",
+        "idempotency_key": "6f7a8c93-a6c0-4200-808d-f49230f3edb5"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-10 11:54:37
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-10 11:54:37
+
+```json
+"cus_Nls7GVufr6OhtH"
+```
+
+## 2023-05-10 11:54:37
+
+```json
+150000
+```
+
+## 2023-05-10 11:54:38
+
+```json
+{
+    "consumer_nic": "785644667V",
+    "stripe_id": "cus_Nls7GVufr6OhtH",
+    "name": "Nimal Dahanayaka",
+    "email_address": "nimaldahanayaka@gmail.com",
+    "location_lat": 6.0329,
+    "location_lng": 80.2168,
+    "profile_picture": "\/uploads\/785644667Vc44760a987ab90f5c1fb8bcf2d813b129355b8dc4f553cc9profile_picdownload (3).jfif",
+    "password": "$2y$10$YWdGYXGBwv5KRxop.UVAje5obC0cXkRTsjtcwaHSCmFsuYjh02G5O",
+    "mobile_number": "0756676377",
+    "address": "No 43A, Beligaha Junction, Galle"
+}
+```
+
+## 2023-05-10 11:54:38
+
+```json
+{
+    "provider_nic": "889874525V",
+    "appointment_id": "4"
+}
+```
+
+## 2023-05-10 11:54:38
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": true,
+    "isMedOrderPayment": false
+}
+```
+
+## 2023-05-10 11:54:38
+
+```json
+4
+```
+
+## 2023-05-10 11:54:38
+
+```json
+"inserted payment record"
+```
+
+## 2023-05-10 11:55:48
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-10 11:55:48
+
+```json
+{
+    "id": "evt_3N69kPB9kJ5FDFAy0PQtt9Cl",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1683712549,
+    "data": {
+        "object": {
+            "id": "pi_3N69kPB9kJ5FDFAy0pDVKju7",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N69kPB9kJ5FDFAy0pDVKju7_secret_CUXiW9PfLf5TnYppq1C427WLP",
+            "confirmation_method": "automatic",
+            "created": 1683712549,
+            "currency": "lkr",
+            "customer": "cus_Nls7GVufr6OhtH",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "4"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "nimaldahanayaka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_LgfjWLLnuDGk8n",
+        "idempotency_key": "39b17378-cfea-4262-858c-aa008e513f05"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-10 11:55:48
+
+```json
+"payment_intent.created"
+```
+

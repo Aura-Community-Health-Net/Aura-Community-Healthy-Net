@@ -42,7 +42,7 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
         </div>
 
         <div class="doctor-dashboard__center__top">
-            <h3 style="margin-bottom: 1.5rem">Patients List</h3>
+            <h3 style="margin-bottom: 1.5rem">Patients Count</h3>
             <?php if(!$doctor['is_verified']) {?>
                 <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
                     <div class="doctor-dashboard__patients__count">
@@ -74,7 +74,7 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
     </div>
 
         <div class="doctor-dashboard__center__bottom">
-            <h3 style="margin-bottom: 1rem">Consulted</h3>
+            <h3 style="margin-bottom: 1rem">Last Consulted Patient</h3>
             <?php if(!$doctor['is_verified']) {?>
                     <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
                         <?php if($consulted_patients['COUNT(done)'] != 0){ ?>
@@ -97,7 +97,7 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
 
         <div class="doctor-dashboard__right__bottom">
             <h3 style="margin-bottom: 2rem">Analytics</h3>
-            <div>
+            <div class="doctor-dashboard__right__bottom-analytics">
                 <canvas class="doctor-dashboard_revenue_analytics" id="doctor-dashboard_revenue_analytics"></canvas>
             </div>
         </div>
