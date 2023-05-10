@@ -9,6 +9,7 @@ use http\Params;
 
 class MedicinesController extends Controller
 {
+    //ADDING MEDICINE BY PHARMACY
 
     public static function addMed(): array |bool|string
     {
@@ -80,7 +81,7 @@ class MedicinesController extends Controller
     }
 
 
-
+   //VIEWING THE MEDICINES PAGE BY PHARMACY
 
     public static function viewMedPage()
     {
@@ -114,7 +115,7 @@ class MedicinesController extends Controller
     }
 
 
-
+  //RETRIEVE THE SENDING MEDICINE ADVANCE INFORMATION FORM BY PHARMACY
     public static function getSendMedicineAdvanceInfoForm()
     {
 
@@ -161,15 +162,17 @@ class MedicinesController extends Controller
         }
     }
 
-
+  //SENDING ADVANCE INFORMATION BY PHARMACY
 
     public static function sendMedicineAdvanceInfo()
     {
 
-         $available_med_list = $_POST["medicines_list"];
+         $available_med_list = json_encode($_POST["availableMedicines_list"] ?? []);
+
+         var_dump($available_med_list);
 
 
-         $available_med_list = json_encode(explode(",", $available_med_list));
+//         $available_med_list = json_encode(explode(",", $available_med_list));
 
 
          $total_amount = $_POST["total_amount"];
@@ -223,6 +226,8 @@ class MedicinesController extends Controller
     {
         return self::render(view: '/sidebar');
     }
+
+    //DELETE MEDICINES BY PHARMACY
     public static function deleteMedicines(): string
     {
 
@@ -250,7 +255,7 @@ class MedicinesController extends Controller
     }
 
 
-
+    //UPDATE MEDICINES BY PHARMACY
 
     public  static  function updateMedicines(): string
     {
@@ -284,8 +289,10 @@ class MedicinesController extends Controller
         return "";
     }
 
+
 public static function RequestForPharmacy():bool|array|string
 {
+
     $nic = $_SESSION["nic"];
 
     if(!$nic )
@@ -350,6 +357,12 @@ public static function RequestForPharmacy():bool|array|string
         return "";
     }
 }
+
+
+
+ //RETRIVE THE LIST OF PHARMACIES
+
+
     public static function getPharmacyList(): bool|array|string
     {
 
@@ -398,10 +411,7 @@ public static function RequestForPharmacy():bool|array|string
     }
 
 
-
-
-
-
+//CONSUMER'S PAYMENT RECEIPT FOR PHARMACY
 
     public static function getPharmacyPaymentReceipt(): bool|array|string
     {
@@ -452,7 +462,7 @@ public static function RequestForPharmacy():bool|array|string
         }
     }
 
-
+//CONSUMER'S PHARMACY DASHBOARD
 
     public static function getConsumerPharmacyOverview(): bool|array|string
     {
@@ -526,7 +536,7 @@ public static function RequestForPharmacy():bool|array|string
     }
 
 
-
+//ADDING FEEDBACK FOR PHARMACY BY CONSUMER
     public static function addPharmacyFeedback(): string
     {
         $nic = $_SESSION["nic"];
@@ -569,7 +579,7 @@ public static function RequestForPharmacy():bool|array|string
 
     }
 
-
+//RETRIVING PHARMACY REQUEST DETAILS PAGE BY CONSUMER
    public  static function getPharmacyRequestDetailsPage(): bool|array|string
    {
        $nic = $_SESSION["nic"];
@@ -610,12 +620,7 @@ public static function RequestForPharmacy():bool|array|string
    }
 
 
-
-
-
-
-
-
+   //RETRIVE  THE PAYMENT FORM FOR THE CONSUMER
     public static function getConsumerMedicinesPayment(): bool|array|string
     {
         $nic = $_SESSION["nic"];

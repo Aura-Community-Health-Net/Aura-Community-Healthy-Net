@@ -71,7 +71,7 @@ class ProfileController extends Controller
             "title" => "Profile"
         ]);
     }
-
+// RETRIEVE PROFILE DETAILS OF PHARMACY
     public static function getPharmacyProfilePage(): bool|array|string
     {
         $provider_nic = $_SESSION["nic"];

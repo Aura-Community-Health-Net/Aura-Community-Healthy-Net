@@ -95,6 +95,8 @@ class DashboardController extends Controller
 
 
     }
+
+    //RETRIEVE PHARMACY DASHBOARD PAGE
     public static function getPharmacyDashboard(): bool|array|string
     {
 
