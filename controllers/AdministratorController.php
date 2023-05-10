@@ -275,7 +275,8 @@ class AdministratorController extends Controller
         $data = $result->fetch_all(MYSQLI_ASSOC);
         header("Content-Type: application/json");
         return json_encode($data);
-        }
+
+   }
 
     public static function getAdministratorDoctorRevenueChart(): bool|string
     {

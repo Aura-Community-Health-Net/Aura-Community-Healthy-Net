@@ -16,6 +16,15 @@ class ConsumerDoctorController extends Controller
             return "";
         } else {
             $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT location_lat, location_lng FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer_location = $result->fetch_assoc();
+            $location_lat = $consumer_location["location_lat"];
+            $location_lng = $consumer_location["location_lng"];
+
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
@@ -25,10 +34,11 @@ class ConsumerDoctorController extends Controller
             $name = isset($_GET['q'])? $_GET['q']:"";
 
             if(!$name){
-                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic");
-
+                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000");
+                $stmt->bind_param("dd",  $location_lng, $location_lat);
             }else{
-                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE name LIKE '%$name%'");
+                $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE name LIKE '%$name%' AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000");
+                $stmt->bind_param("dd",  $location_lng, $location_lat);
             }
             $stmt->execute();
             $result = $stmt->get_result();
@@ -42,36 +52,6 @@ class ConsumerDoctorController extends Controller
             "title" => "Profile"
         ]);
     }
-
-    /*public function ConsumerServicesDoctorFilter(): bool|array|string
-    {
-        $nic = $_SESSION["nic"];
-        $userType = $_SESSION["user_type"];
-        if (!$nic || $userType !== "consumer") {
-            header("location: /login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-
-            $name = strtoupper($_POST['search']);
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN doctor on service_provider.provider_nic = doctor.provider_nic WHERE name=?");
-            $stmt->bind_param("s", $name);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $doctor = $result->fetch_all(MYSQLI_ASSOC);
-        }
-
-        return self::render(view: 'consumer-dashboard-service-doctor', layout: "consumer-dashboard-layout", params: ['consumer'=>$consumer,'doctor' => $doctor], layoutParams: [
-            'consumer'=>$consumer,
-            "active_link" => "profile",
-            "title" => "Profile"
-        ]);
-    }*/
 
     public function getConsumerServicesDoctorProfilePage(): bool|array|string
     {
@@ -191,15 +171,6 @@ class ConsumerDoctorController extends Controller
 
             $db = new Database();
 
-
-//            $stmt = $db->connection->prepare("SELECT appointment_id FROM doctor_time_slot WHERE slot_number = ?");
-//            $stmt->bind_param("i", $slot_number);
-//            $stmt->execute();
-//            $result = $stmt->get_result();
-//            $appoint_id = $result->fetch_assoc();
-
-
-//            if(empty($appoint_id)){
                 $stmt = $db->connection->prepare("INSERT INTO appointment (
                       done,
                       provider_nic,
@@ -215,7 +186,6 @@ class ConsumerDoctorController extends Controller
                 $stmt->bind_param("s",$appointment_id );
                 $stmt->execute();
                 $result = $stmt->get_result();
-//            }
 
 
             header("location: /consumer-dashboard/services/doctor/profile/payment?appointment_id=$appointment_id");

@@ -256,14 +256,14 @@ class PaymentsController extends Controller
                         $stmt = $db->connection->prepare("UPDATE appointment SET status = 'paid' WHERE appointment_id = ? AND consumer_nic = ?");
                         $stmt->bind_param("ds", $appointment_id, $customer["consumer_nic"]);
                         $stmt->execute();
-//                        $provider_nic = $metadata['provider_nic'];
-//
-//                        $amount = 1500;
-//                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
-//                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
-//                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
-//                        $stmt->execute();
-//                        PaymentsController::logPayment("inserted payment record");
+                        $provider_nic = $metadata["provider_nic"];
+
+                        $amount = 1500;
+                        $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
+                        $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
+                        $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
+                        $stmt->execute();
+                        PaymentsController::logPayment("inserted payment record");
 
                         if ($db->connection->errno) {
                             $db->connection->rollback();
@@ -412,6 +412,8 @@ class PaymentsController extends Controller
             $result = $stmt->get_result();
             $appointment = $result->fetch_assoc();
 
+            $provider_nic = $appointment["provider_nic"];
+
             if (!$appointment) {
                 http_response_code(400);
                 return json_encode("Appointment not found!");
@@ -426,7 +428,7 @@ class PaymentsController extends Controller
                 ],
                 'customer' => $stripeCustomerId,
                 'receipt_email' => $customer_email,
-                'metadata' => ["appointment_id" => $appointment_id]
+                'metadata' => ["appointment_id" => $appointment_id,"provider_nic"=>$provider_nic]
             ]);
             $output = [
                 'clientSecret' => $paymentIntent->client_secret,
