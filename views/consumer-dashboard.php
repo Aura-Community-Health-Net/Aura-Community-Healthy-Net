@@ -4,6 +4,18 @@
  */
 
 ?>
+<!--<head>-->
+<!---->
+<!---->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css" media="print" />-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>-->
+<!---->
+<!--    <title></title>-->
+<!---->
+<!--</head>-->
+
 
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
@@ -57,6 +69,8 @@
             </div>
             <div class="month-list"></div>
         </div>
+
+<!--        <div id="calendar"></div>-->
     </div>
 
     <div class="dashboard__top-cards events-container">
@@ -95,8 +109,7 @@
            
             <h4 class='dashboard__top-cards_email'>$email_address</h4>
             <h4>$service_date</h4>
-            
-            
+                
         </div>
             ";
             }
@@ -106,5 +119,21 @@
     </div>
 
 </div>
-
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        var calendarEl = document.getElementById('calendar');-->
+<!---->
+<!--        var calendar = new FullCalendar.Calendar(calendarEl, {-->
+<!--            plugins: [ 'dayGrid' ],-->
+<!--            dateClick: function(info) {-->
+<!--                var selectedDate = info.dateStr;-->
+<!--                console.log('Clicked on: ' + selectedDate);-->
+<!--                // Assign the selected date to a variable here-->
+<!--            }-->
+<!--        });-->
+<!---->
+<!--        calendar.render();-->
+<!--    });-->
+<!---->
+<!--</script>-->
 <script src="/assets/js/components/calendar.js"></script>

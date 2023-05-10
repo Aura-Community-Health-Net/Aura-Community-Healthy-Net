@@ -22,7 +22,7 @@
     overflow: auto;
     overflow-x: hidden;
     width: 330px;
-    height: 200px;
+    height: auto;
 }
 .appointment-list__item__scroll{
     overflow: auto;

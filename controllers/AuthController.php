@@ -34,6 +34,8 @@ class AuthController extends Controller
                 $password = $_POST["password"];
                 $con_password = $_POST["con-password"];
                 $doctor_type = $_POST['doctor_type'];
+                $location_lat = $_POST["location_lat"];
+                $location_lng = $_POST["location_lng"];
 
 
                 $certificate = $_FILES["certificate"];
@@ -111,16 +113,18 @@ class AuthController extends Controller
                             address, 
                             email_address, 
                             password, 
-                            mobile_number, 
+                            mobile_number,
+                            location_lat,
+                            location_lng,
                             bank_name, 
                             bank_branch_name, 
                             profile_picture, 
                             bank_account_number, 
-                            provider_type) VALUES ( ?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            provider_type) VALUES ( ?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $profilePic = "/uploads/$new_file_name2";
                     $type = "doctor";
-                    $stmt->bind_param("sssssssssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $bank_name, $branch_name, $profilePic, $account_no, $type);
+                    $stmt->bind_param("ssssssddsssis", $nic, $name, $address, $email, $hashedPassword, $mobile_number, $location_lat, $location_lng, $bank_name, $branch_name, $profilePic, $account_no, $type);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
