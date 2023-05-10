@@ -12,18 +12,40 @@
 //print_r($consumer); die();
 
 ?>
-<!--<head>-->
-<!---->
-<!---->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css" media="print" />-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>-->
-<!---->
-<!--    <title></title>-->
-<!---->
-<!--</head>-->
 
+<head>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                dayClick: function(date, jsEvent, view) {
+                    // create a form to submit selected date
+                    var form = $('<form>').attr({
+                        method: 'POST',
+                        action: '/your/controller/url'
+                    }).append(
+                        $('<input>').attr({
+                            type: 'hidden',
+                            name: 'date',
+                            value: date.format()
+                        })
+                    );
+                    // append the form to the body and submit it
+                    $('body').append(form);
+                    form.submit();
+                    console.log('Selected date: ' + date.format());
+                }
+            });
+        });
+
+    </script>
+    <title></title>
+</head>
 
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
@@ -47,38 +69,38 @@
     </div>
 
 
-    <div class="dashboard__top-cards">
-                <div class="calendar">
-            <div class="calendar-header">
-                <span class="month-picker" id="month-picker">February</span>
-                <div class="year-picker">
-                <span class="year-change" id="prev-year">
-                    <pre><</pre>
-                </span>
-                    <span id="year">2021</span>
-                    <span class="year-change" id="next-year">
-                    <pre>></pre>
-                </span>
-                </div>
-            </div>
-            <div class="calendar-body">
-                <div class="calendar-week-day">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                </div>
-                <div class="calendar-days"></div>
-            </div>
-            <div class="calendar-footer">
-            </div>
-            <div class="month-list"></div>
-        </div>
-
-<!--        <div id="calendar"></div>-->
+    <div class="dashboard__top-cards" style="width: 38%">
+        <div id='calendar'></div>
+<!--                <div class="calendar">-->
+<!--            <div class="calendar-header">-->
+<!--                <span class="month-picker" id="month-picker">February</span>-->
+<!--                <div class="year-picker">-->
+<!--                <span class="year-change" id="prev-year">-->
+<!--                    <pre><</pre>-->
+<!--                </span>-->
+<!--                    <span id="year">2021</span>-->
+<!--                    <span class="year-change" id="next-year">-->
+<!--                    <pre>></pre>-->
+<!--                </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="calendar-body">-->
+<!--                <div class="calendar-week-day">-->
+<!--                    <div>Sun</div>-->
+<!--                    <div>Mon</div>-->
+<!--                    <div>Tue</div>-->
+<!--                    <div>Wed</div>-->
+<!--                    <div>Thu</div>-->
+<!--                    <div>Fri</div>-->
+<!--                    <div>Sat</div>-->
+<!--                </div>-->
+<!--                <div class="calendar-days"></div>-->
+<!--            </div>-->
+<!--            <div class="calendar-footer">-->
+<!--            </div>-->
+<!--            <div class="month-list"></div>-->
+<!--        </div>-->
+<!---->
     </div>
 
     <div class="dashboard__top-cards events-container">
@@ -127,21 +149,4 @@
     </div>
 
 </div>
-<!--<script>-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        var calendarEl = document.getElementById('calendar');-->
-<!---->
-<!--        var calendar = new FullCalendar.Calendar(calendarEl, {-->
-<!--            plugins: [ 'dayGrid' ],-->
-<!--            dateClick: function(info) {-->
-<!--                var selectedDate = info.dateStr;-->
-<!--                console.log('Clicked on: ' + selectedDate);-->
-<!--                // Assign the selected date to a variable here-->
-<!--            }-->
-<!--        });-->
-<!---->
-<!--        calendar.render();-->
-<!--    });-->
-<!---->
-<!--</script>-->
 <script src="/assets/js/components/calendar.js"></script>
