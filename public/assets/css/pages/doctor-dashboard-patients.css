@@ -48,3 +48,9 @@
 .doctor-patients__data p{
     width: 10rem;
 }
+.doctor-patients h2{
+    color: #00005C;
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
+}

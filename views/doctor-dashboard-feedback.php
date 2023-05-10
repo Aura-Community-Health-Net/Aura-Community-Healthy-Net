@@ -16,7 +16,10 @@
 <div class="doctor-feedbacks__container">
 <div class="doctor-feedbacks">
     <?php if(!$doctor['is_verified']) {?>
-        <div class="not-verified-doctor-timeslot"><h2>No Feedbacks yet</h2></div><?php } else {?>
+        <div class="not-verified-doctor-timeslot"><h2>No Feedback yet</h2></div><?php } else {?>
+        <?php if(!$feedback){
+            echo '<h2>No Feedback Yet</h2>';
+        }else{ ?>
             <?php foreach ($feedback as $value) { ?>
                 <div class="doctor-feedbacks__data__container">
                     <div class="doctor-feedbacks__data">
@@ -32,7 +35,7 @@
                 </div>
 
             <?php } ?>
-    <?php } ?>
+    <?php } } ?>
 </div>
 
 </div>

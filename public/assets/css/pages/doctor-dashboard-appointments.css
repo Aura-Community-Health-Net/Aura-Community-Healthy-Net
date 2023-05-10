@@ -65,3 +65,9 @@
 .doctor-appointments__left th{
     height: 30px;
 }
+.doctor-appointments__left__container h2{
+    display: flex;
+    justify-content: center;
+    margin-top: 12rem;
+    color: #00005C;
+}
