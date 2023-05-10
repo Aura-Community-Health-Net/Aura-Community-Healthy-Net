@@ -14,7 +14,7 @@
         <form action="/consumer-dashboard/services/care-rider" class="form-item--search" method="get">
             <div class="care-rider-search-bar">
                 <input type="text" placeholder="Search ..." name="q" id="q">
-                <button href="" type="submit"><i class="fa fa-search"></i></button>
+                <button class="care-rider-button" href="" type="submit"><i class="fa fa-search"></i></button>
             </div>
             <select class="form-items-dropdown" name="product-categories" id="product-categories">
                 <option value="Car">Car</option>

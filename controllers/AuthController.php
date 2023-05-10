@@ -409,6 +409,8 @@ class AuthController extends Controller
                 $branchName = $_POST["branch_name"];
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirm_password"];
+                $location_lat = $_POST["location_lat"];
+                $location_lng = $_POST["location_lng"];
 
                 $file1 = $_FILES["profile_pic"];
                 $file_name1 = $file1["name"];
@@ -426,7 +428,7 @@ class AuthController extends Controller
                 $result = $db->connection->query(query: $sql);
 
                 if ($result->num_rows > 0) {
-                    //            echo "Email already in use";
+//                                echo "nic already in use";
                     $errors["nic"] = "nic already in use";
                 }
 
@@ -434,7 +436,6 @@ class AuthController extends Controller
                 //email
                 $sql = "SELECT * FROM service_provider WHERE email_address = '$email'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
                     //            echo "Email already in use";
                     $errors["email"] = "Email address already in use";
@@ -444,7 +445,6 @@ class AuthController extends Controller
                 //mobile number
                 $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobileNumber'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
                     $errors["mobile_number"] = "Mobile number already in use";
 
@@ -454,7 +454,6 @@ class AuthController extends Controller
                 //number plate
                 $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
                     $errors["number_plate"] = "number plate already in use";
 
@@ -464,7 +463,6 @@ class AuthController extends Controller
                 //driving licence number
                 $sql = "SELECT * FROM care_rider WHERE driving_licence_number = '  $drivingLicenseNumber '";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
                     $errors["driving_licence_number"] = "driving licence number already in use";
 
@@ -474,7 +472,6 @@ class AuthController extends Controller
                 //bank account number
                 $sql = "SELECT * FROM service_provider WHERE bank_account_number = '$bankNo'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
                     //            echo "Email already in use";
                     $errors["bank_account_number"] = "bank account number already in use";
@@ -496,16 +493,18 @@ class AuthController extends Controller
                                        email_address,
                                        password,
                                        mobile_number,
+                                       location_lat,
+                                       location_lng,
                                        bank_name,
                                        bank_branch_name,
                                        profile_picture,
                                        bank_account_number,
                                        provider_type )
-                             VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                             VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $role = "care-rider";
-                    $stmt->bind_param("sssssisssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $role);
+                    $stmt->bind_param("sssssiddsssis", $nic, $name, $address, $email, $hashedPassword, $mobileNumber, $location_lat, $location_lng, $bankName, $branchName, $image, $bankNo, $role);
                     $stmt->execute();
 //
                     $stmt = $db->connection->prepare("INSERT INTO care_rider ( provider_nic,
