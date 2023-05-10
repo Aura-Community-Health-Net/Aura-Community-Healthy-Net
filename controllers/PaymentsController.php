@@ -442,6 +442,7 @@ class PaymentsController extends Controller
 
     }
 
+    //PAYMENT PROCESS FOR PHARMACY BY CONSUMERS
 
     public static function ChargeForMedicine(): bool|string
     {
@@ -630,7 +631,7 @@ class PaymentsController extends Controller
         ]);
     }
 
-
+//MEDICINE PAYMENT SUCCESS
     public static function medicinePaymentSuccess(): bool|array|string
     {
         $nic = $_SESSION["nic"];
