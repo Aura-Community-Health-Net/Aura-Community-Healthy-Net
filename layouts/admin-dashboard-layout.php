@@ -78,20 +78,20 @@
 
                 <li>
                     <a href="/admin-dashboard/new-registrations"><button
-                            class="navbtn <?php echo $active_link === 'new-registrations' || $active_link === 'products' ? 'active' : '' ?>">
+                            class="navbtn <?php echo $active_link === 'new-registrations' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
                             <span class="nav-title">Registrations</span>
-                        </button></a>
+                        </button>
+                    </a>
                 </li>
 
                 <li>
-                    <a href="/admin-dashboard/due-payments">
-                        <button class="navbtn" <?php echo $active_link === 'payments' ? 'active' : '' ?>">
+                    <a href="/admin-dashboard/due-payments"><button
+                                class="navbtn" <?php echo $active_link === 'payments' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             <span class="nav-title">Payments</span>
                         </button>
                     </a>
-
                 </li>
 
                 <li>
@@ -101,7 +101,6 @@
                         <span class="nav-title">Analytics</span>
                         </button>
                     </a>
-
                 </li>
 
                 <li>
@@ -121,7 +120,6 @@
                         <span class="nav-title">Logout</span>
                         </button>
                     </a>
-
                 </li>
             </ul>
         </nav>
