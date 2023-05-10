@@ -79,7 +79,7 @@ foreach ($medicines as $medicine) {
                        required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-regular fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>
@@ -92,7 +92,7 @@ foreach ($medicines as $medicine) {
         </tr>
     </table>
     <button type="button" id="add-med-btn" class="add-btn">
-        <i class="fa-regular fa-plus"></i>
+        <i class="fa fa-plus"></i>
     </button>
 </form>
 <div class="overlay" id="add-medicine-overlay">
@@ -101,7 +101,7 @@ foreach ($medicines as $medicine) {
         <img class="modal-img" src="/assets/images/confirmation.jpg">
         <div class="modal-actions">
             <button class="cancel-btn" id="add-medicine-cancel-btn">Cancel</button>
-            <button class="ok-btn" id="add-medicine-ok-btn">ok</button>
+            <button class="ok-btn" id="add-medicine-ok-btn">Ok</button>
         </div>
     </div>
 </div>

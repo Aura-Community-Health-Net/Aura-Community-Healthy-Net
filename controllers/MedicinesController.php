@@ -265,7 +265,7 @@ class MedicinesController extends Controller
 
         $med_id = $_GET["med_id"];
         $med_name = $_POST["med_name"];
-        $med_price = (int) $_POST["price"];
+        $med_price = $_POST["price"]*100;
         $med_quantity = (int) $_POST["quantity"];
         $med_quantity_unit = $_POST["quantity_unit"];
         $med_stock = (int) $_POST["stock"];
@@ -282,32 +282,11 @@ class MedicinesController extends Controller
 
         header("location: /pharmacy-dashboard/medicines");
         return "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 
 public static function RequestForPharmacy():bool|array|string
 {
-
-
-
-
     $nic = $_SESSION["nic"];
-
 
     if(!$nic )
     {
@@ -342,8 +321,6 @@ public static function RequestForPharmacy():bool|array|string
         $prescription_image = "/uploads/prescriptions/$newfile_name";
 
 
-
-
         $db = new Database();
 //    $stmt = $db->connection->prepare("SELECT s.id FROM pharmacy p INNER JOIN service_provider s  WHERE s.id = ? ");
 //    $stmt->bind_param("s",$id);
@@ -362,9 +339,6 @@ public static function RequestForPharmacy():bool|array|string
 //    var_dump($result);
 //    var_dump($id);
 
-
-
-
         $stmt = $db->connection->prepare("INSERT INTO pharmacy_request(customer_remark,prescription,consumer_nic,provider_nic)
                 VALUES (?,?,?,?)");
         $stmt->bind_param("ssss",$customer_remark,$prescription_image,$nic,$provider_nic);
@@ -374,35 +348,8 @@ public static function RequestForPharmacy():bool|array|string
         $stmt->execute();
                header("location: /consumer-dashboard/services/pharmacy/request-details");
         return "";
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
     public static function getPharmacyList(): bool|array|string
     {
 
@@ -420,19 +367,19 @@ public static function RequestForPharmacy():bool|array|string
             $consumer = $result->fetch_assoc();
 
             $db = new Database();
-            $stmt = $db->connection->prepare("SELECT location_lng,locatin_lat FROM service_consumer WHERE consumer_nic = ?");
+            $stmt = $db->connection->prepare("SELECT location_lng,location_lat FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s",$nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $location = $result->fetch_assoc();
 
-            $location_lat = $location["locatin_lat"];
+            $location_lat = $location["location_lat"];
             $location_lng = $location["location_lng"];
 
 
             $db = new Database();
 
-            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1 AND st_distance_sphere(point(?,?),point(r.locatin_lat,r.location_lng)) <= 10000");
+            $stmt = $db->connection->prepare("SELECT r.id, p.pharmacy_name,r.provider_nic,r.mobile_number FROM pharmacy p INNER JOIN service_provider r ON p.provider_nic = r.provider_nic WHERE r.is_verified = 1 AND st_distance_sphere(point(?,?),point(r.location_lat,r.location_lng)) <= 10000");
             $stmt->bind_param("dd",$location_lat,$location_lng);
             $stmt->execute();
             $result = $stmt->get_result();
