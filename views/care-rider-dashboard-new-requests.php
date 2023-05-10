@@ -25,9 +25,7 @@ $confirm = 2;
             </thead>
 
             <?php
-            if (!$care_rider['is_verified']) {
-                echo "<tbody class='care_rider-request__left'><tr><td colspan='6' class='Not-verified-care-rider-new-requests'>No Request Yet</td></tr></tbody>";
-            } else {
+            if ($request_details)  {
                 foreach ($request_details as $value) {
                     $profile_picture = $value["profile_picture"];
                     $consumer_name = $value["name"];
@@ -81,6 +79,11 @@ $confirm = 2;
                                             </tbody>
                                     ";
                         }  }
+            else {
+                {
+                    echo "<tbody class='care_rider-request__left'><tr><td colspan='6' class='Not-verified-care-rider-new-requests'>No Request Yet</td></tr></tbody>";
+                }
+            }
                                         ?>
 
                 </table>

@@ -63,7 +63,7 @@
     cursor: pointer;
 }
 
-button {
+.care-rider-button {
     border: none;
     outline: none;
     /*background-color: var(--color-primary);*/
