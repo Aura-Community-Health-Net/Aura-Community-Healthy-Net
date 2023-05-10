@@ -81,6 +81,7 @@ $app->router->get('/admin-dashboard/analytics', [AdministratorController::class,
 $app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart', [AdministratorController::class, 'getAdministratorProductSellersRevenueChart']);
 $app->router->get('/admin-dashboard/analytics/doctor-revenue-chart', [AdministratorController::class, 'getAdministratorDoctorRevenueChart']);
 $app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[AdministratorController::class,'getAdministratorPharmacyRevenueChart']);
+$app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [AdministratorController::class, 'getAdministratorCareRiderRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 
 // For product-seller

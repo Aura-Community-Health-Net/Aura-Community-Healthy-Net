@@ -14,8 +14,6 @@
                     <h3><?php echo $value['name'] ?></h3>
                 </div>
                 <h4><?php echo $value['date_time'] ?></h4>
-
-
             </div>
             <p><?php echo $value['text'] ?> </p>
         </div>

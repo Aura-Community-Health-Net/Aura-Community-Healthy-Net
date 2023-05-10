@@ -44,7 +44,7 @@ deleteMedicineButtons.forEach(function (deleteMed_button){
             <div class="modal-actions">
               <button class="cancel-btn" id="delete-medicine-cancel-btn">Cancel</button>
               <form action="/pharmacy-dashboard/medicines/delete?med_id=${splittedID[2]}" method="post">
-                   <button class="ok-btn" id="delete-medicine-ok-btn">ok</button>
+                   <button class="ok-btn" id="delete-medicine-ok-btn">Ok</button>
               </form>
             </div>
   `;

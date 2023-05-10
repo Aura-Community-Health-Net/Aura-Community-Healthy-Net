@@ -4,10 +4,6 @@
  * @var array $pharmacy_request_details
  * @var array $pharmacy_details
  */
-//print_r($appointments_details);
-//$provider_nic = $_SESSION['nic'];
-
-
 ?>
 
 
@@ -16,7 +12,19 @@
 
 
     <div class="pharmacy-request__left__background">
-        <?php foreach ($pharmacy_details as  $detail)
+
+        <?php
+
+        if (empty($pharmacy_details)) {
+            echo "<h2 class='empty-feedbacks'>You haven't made requests yet</h2>";
+
+        }
+        else{
+
+
+
+
+        foreach ($pharmacy_details as  $detail)
         {
             $pharmacy_name = $detail['name'];
             $profile_img = $detail['profile_picture'];
@@ -38,7 +46,8 @@
                         <button class='ok-btn' id='accept-request-btn'><a href='/consumer-dashboard/services/pharmacy/payment-receipt?id=$request_id'>View</a></button>
                     </div>
             </div>";
-          }?>
+          }}
+        ?>
     </div>
 <!--</div>-->
 

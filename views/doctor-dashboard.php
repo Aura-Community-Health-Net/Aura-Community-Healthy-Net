@@ -6,13 +6,14 @@
  * @var $new_patients;
  * @var $all_patients;
  * @var $patient_details;
+ * @var $consulted_patients;
  */
 //print_r($appointment_done);die();
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations' style='color: red'> <p>You're not verified yet. Please check later.</p></div>";
 }
 
-//print_r($appointment_confirm[0]);
+//print_r($appointment_confirm);die();
 //print_r($patient_details);
 ?>
 
@@ -21,6 +22,7 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
                 <h3>New Appointment List</h3>
             <?php if(!$doctor['is_verified']) {?>
             <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
+                    <?php if($new_patients['COUNT(done)']!=0){?>
             <div class="appointment-list__item__scroll">
                 <table>
                     <?php foreach ($appointment_confirm as  $value) { ?>
@@ -36,11 +38,11 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
                 </table>
                 <a href="/doctor-dashboard/appointments"><button>Show More</button></a>
             </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
 
         <div class="doctor-dashboard__center__top">
-            <h3 style="margin-bottom: 1.5rem">Patients List</h3>
+            <h3 style="margin-bottom: 1.5rem">Patients Count</h3>
             <?php if(!$doctor['is_verified']) {?>
                 <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
                     <div class="doctor-dashboard__patients__count">
@@ -72,29 +74,30 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
     </div>
 
         <div class="doctor-dashboard__center__bottom">
-            <h3 style="margin-bottom: 1rem">Consulted</h3>
+            <h3 style="margin-bottom: 1rem">Last Consulted Patient</h3>
             <?php if(!$doctor['is_verified']) {?>
-                <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
-                    <div class="doctor-dashboard__consulted">
-                        <div class="doctor-dashboard__consulted__profile">
-                            <img src=" <?php echo $patient_details['profile_picture'];?>">
-                            <div>
-                                <h4><b> <?php echo $patient_details['name'] ;?></b></h4>
-                                <h5> <?php echo $patient_details['mobile_number'] ;?></h5>
+                    <div class="not-verified-doctor"><h2>No patients yet</h2></div><?php } else {?>
+                        <?php if($consulted_patients['COUNT(done)'] != 0){ ?>
+                        <div class="doctor-dashboard__consulted">
+                            <div class="doctor-dashboard__consulted__profile">
+                                <img src=" <?php echo $patient_details['profile_picture'];?>">
+                                <div>
+                                    <h4><b> <?php echo $patient_details['name'] ;?></b></h4>
+                                    <h5> <?php echo $patient_details['mobile_number'] ;?></h5>
+                                </div>
                             </div>
-                        </div>
-                       <div class="doctor-dashboard__consulted__details">
-                           <p><b>Last Checked</b> <?php echo " - ". $patient_details['MAX(doctor_time_slot.date)'] ;?></p>
-                           <p><b>Address</b> <?php echo " - ". $patient_details['address'] ;?></p>
-                           <p><b>Mobile Number</b><?php echo " - ". $patient_details['mobile_number'] ;?></p>
-                       </div>
+                           <div class="doctor-dashboard__consulted__details">
+                               <p><b>Last Checked</b> <?php echo " - ". $patient_details['MAX(doctor_time_slot.date)'] ;?></p>
+                               <p><b>Address</b> <?php echo " - ". $patient_details['address'] ;?></p>
+                               <p><b>Mobile Number</b><?php echo " - ". $patient_details['mobile_number'] ;?></p>
+                           </div>
                     </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
 
         <div class="doctor-dashboard__right__bottom">
             <h3 style="margin-bottom: 2rem">Analytics</h3>
-            <div>
+            <div class="doctor-dashboard__right__bottom-analytics">
                 <canvas class="doctor-dashboard_revenue_analytics" id="doctor-dashboard_revenue_analytics"></canvas>
             </div>
         </div>

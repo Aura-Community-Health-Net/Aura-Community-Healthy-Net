@@ -57,10 +57,10 @@ $address = $pharmacy['address'];
             $list_med_price = $medicine['price'];
 
 
-            echo "    <div class='overview-items overview-medicine'>
+            echo "    <div class='overview-items overview-medicine overviewmedicines_container'>
             <img src='$list_med_image' alt=''>
             <div>
-               <p class='overview-items__name'>$list_med_name </p>
+               <p class='overview-items__name overview-items_medicine_name'>$list_med_name </p>
                <p>$list_med_quantity  $list_med_quantity_unit</p>
                <p class='overview-items__price'>Rs. $list_med_price</p> 
             </div>
@@ -82,7 +82,7 @@ $address = $pharmacy['address'];
 
 
         if (empty($feedback_set)) {
-            echo "No Feedback yet";
+            echo "<h2 class='empty-feedbacks'>No Feedback yet</h2>";
         } else {
 
             foreach ($feedback_set as $feedback) {

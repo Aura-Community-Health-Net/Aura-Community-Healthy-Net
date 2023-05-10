@@ -24,6 +24,9 @@
 <!--            </tr>-->
 <!--        </table>-->
 
+    <?php if(!$patient_details){
+        echo '<h2>No Past Patients</h2>';
+    }else{ ?>
                 <?php foreach ($patient_details as $value) {?>
                             <div class="doctor-patients__data">
                                 <img src="<?php echo $value['profile_picture'];?>" alt="">
@@ -33,6 +36,6 @@
                                 <p><?php echo $value['mobile_number'];?></p>
                                 <p><?php echo $value['address'];?></p>
                             </div>
-                <?php }?>
+                <?php } }?>
 </div>
 <?php } ?>

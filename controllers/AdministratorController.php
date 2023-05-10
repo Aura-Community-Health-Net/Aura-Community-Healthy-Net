@@ -211,6 +211,72 @@ class AdministratorController extends Controller
         return json_encode($data);
     }
 
+//getAdministratorCareRiderRevenueChart
+
+    public static function getAdministratorCareRiderRevenueChart(){
+        $db = new Database();
+        $chart_time = $_GET["period"] ?? "all_time";
+
+        $stmt = "";
+        switch ($chart_time) {
+            case "this_week":
+                $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 AND WEEK(care_rider_time_slot.date, 1) = WEEK(NOW(), 1)
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                break;
+
+            case "this_month":
+                $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 AND MONTH(care_rider_time_slot.date) = MONTH(NOW())
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                break;
+
+            case "past_six_months":
+                $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 AND care_rider_time_slot.date BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                break;
+
+            case "this_year":
+                $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 AND YEAR(care_rider_time_slot.date) = YEAR(NOW()) 
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                break;
+
+            case "all_time":
+                $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                                                 FROM ride 
+                                                 INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
+                                                 GROUP BY DATE(care_rider_time_slot.date)");
+                break;
+
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        header("Content-Type: application/json");
+        return json_encode($data);
+    }
+
+
+
+
+
+
+
+
+
+
     public static function getAdministratorPharmacyRevenueChart()
 
     {
@@ -275,7 +341,8 @@ class AdministratorController extends Controller
         $data = $result->fetch_all(MYSQLI_ASSOC);
         header("Content-Type: application/json");
         return json_encode($data);
-        }
+
+   }
 
     public static function getAdministratorDoctorRevenueChart(): bool|string
     {
