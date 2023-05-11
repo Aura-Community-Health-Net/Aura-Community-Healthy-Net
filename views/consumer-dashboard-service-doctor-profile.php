@@ -90,9 +90,11 @@ $provider_nic = $_GET['provider_nic'];
                         }else{ ?>
                         <?php foreach ($feedback as $value) { ?>
                             <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                                <img src="<?php echo $value['profile_picture'] ?>">
-                                <h3><b><?php echo $value['name'] ?></b></h3>
-                                <h4><?php echo $value['date_time'] ?></h4>
+                                <div style="display: flex;flex-direction: row;gap: 1rem;justify-content: center;align-items: center">
+                                    <img src="<?php echo $value['profile_picture'] ?>" alt="">
+                                    <h3><b><?php echo $value['name'] ?></b></h3>
+                                    <p><?php echo $value['date_time'] ?></p>
+                                </div>
                                 <p><?php echo $value['text'] ?></p>
                             </div>
                         <?php } } ?>
