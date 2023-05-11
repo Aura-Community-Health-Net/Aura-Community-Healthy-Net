@@ -57,14 +57,10 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                 </div>
                             </div>
                             <div class="dat-time-container ">
-<!--                                <div class="location-time" >-->
-<!--                                    <label for=""> Date </label>-->
-<!--                                    <input type="date" name="date" id="date">-->
-<!--                                </div>-->
 
                                 <div class="location-time">
                                     <label for="">Pick up time</label>
-                                    <input type="time" name="pickup-time" id="pickup-time">
+                                    <input class="pickup-time" type="time" name="pickup-time" id="pickup-time">
                                 </div>
                             </div>
 
