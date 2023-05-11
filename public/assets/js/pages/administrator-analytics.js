@@ -26,10 +26,10 @@ async function getProductSellerRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Product Sellers Revenue',
                     data: revenues,
-                    borderColor: 'rgb(252, 79, 0)',
-                    backgroundColor: 'rgba(252, 79, 0, 0.5)',
+                    borderColor: 'rgb(249, 217, 73)',
+                    backgroundColor: 'rgba(249, 217, 73, 0.5)',
                     fill: 'origin'
                 }]
             },
@@ -66,7 +66,7 @@ async function getPharmacyRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Pharmacy Revenue',
                     data: revenues,
 
                     borderColor: 'rgb(54, 162, 235)',
@@ -108,7 +108,7 @@ async function getDoctorRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Doctors Revenue',
                     data: revenues,
                     borderColor: 'rgb(252, 79, 0)',
                     backgroundColor: 'rgba(252, 79, 0, 0.5)',
@@ -147,7 +147,7 @@ async function getCareRiderRevenueChartData(){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Care Riders Revenue',
                     data: revenues,
                     borderColor: 'rgb(20, 240, 60)',
                     backgroundColor: 'rgba(20, 240, 60, 0.5)',

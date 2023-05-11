@@ -1,7 +1,8 @@
 <?php
 /**
- * @var array $services
- * @var array $consumer
+ * @var array $services;
+ * @var array $care_rider_services;
+ * @var array $consumer;
  *  @var $care_rider_provider_count;
  * @var $doctor_provider_count;
  * @var $pharmacy_provider_count;
@@ -9,7 +10,6 @@
  * @var $care_rider_provider_count;
  */
 
-//print_r($consumer); die();
 
 ?>
 
@@ -128,6 +128,29 @@
                 $email_address = $service['email_address'];
                 $service_date_time = $service['date_time'];
                 $service_date = explode(" ", $service_date_time)[0];
+                echo "
+            <div class='dashboard__top-cards__detail'>
+            <img class='order-consumer-img' src='$profile_picture' alt=''>
+            <div>
+                <h4>$name</h4>
+                <h5>$mobile_number</h5>
+            </div>
+            <h4>$provider_type</h4>
+           
+            <h4 class='dashboard__top-cards_email'>$email_address</h4>
+            <h4>$service_date</h4>
+                
+        </div>
+            ";
+            }
+
+            foreach ($care_rider_services as $care_rider_service){
+                $profile_picture = $care_rider_service['profile_picture'];
+                $name = $care_rider_service['name'];
+                $mobile_number = $care_rider_service['mobile_number'];
+                $provider_type = $care_rider_service['provider_type'];
+                $email_address = $care_rider_service['email_address'];
+                $care_rider_services_date_time = $care_rider_service['date'];
                 echo "
             <div class='dashboard__top-cards__detail'>
             <img class='order-consumer-img' src='$profile_picture' alt=''>

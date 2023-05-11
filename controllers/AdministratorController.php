@@ -160,7 +160,7 @@ class AdministratorController extends Controller
             "title" => "Analytics",
                 "admin" => [
                     "name" => "Randima Dias"
-            ], "active_link" => "feedback"
+            ], "active_link" => "analytics"
         ]);
     }
 

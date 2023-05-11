@@ -11,12 +11,19 @@
 
 <div class="dashboard__top-container">
     <div class="dashboard__top-cards">
-        <h3>Overview Service Providers</h3>
-        <img class="admin-analytics" src="/assets/images/admin-analytics.png" alt="">
+        <h3>Registered</h3>
     </div>
 
     <div class="dashboard__top-cards">
-        <img src="/assets/images/calander.jfif" alt="">
+
+    </div>
+
+    <div class="dashboard__top-cards">
+
+    </div>
+
+    <div class="dashboard__top-cards">
+
     </div>
 </div>
 
@@ -49,7 +56,7 @@
         </a>
 
     </div>
-    
+
     <div class="dashboard__bottom-cards">
         <h3>New Registrations</h3>
 
@@ -69,6 +76,7 @@
             <p class='services-count'>$pharmacy_count</p>
     ";}?>
         </div>
+
         <div class='services-count__details'>
             <?php foreach ($product_sellers as $product_seller){
                 $seller_count = $product_seller["provider_count"];
