@@ -47,7 +47,7 @@
 }
 
 .care-rider-top-left{
-    /*height: 500px;*/
+    position: relative;
     width: 50%;
     background-color: #EFEEFD;
     border-radius: 3%;
@@ -174,18 +174,16 @@
 }
 .view-privious-request-button{
     border: none;
-    background-color: #0002A1;
-    /* padding: 5px 32px; */
+    background-color: #00005C;
+    padding: 5px 32px;
     text-align: center;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 8px;
-    /* margin-top: 10px; */
     color: white;
-    margin-top: 1rem;
-    margin-left: 25rem;
-    /* margin: 1rem; */
-    padding-inline: 1rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
 }
 .care-rider-analytics{
     background-color: white;

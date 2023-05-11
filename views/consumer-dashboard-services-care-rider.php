@@ -33,7 +33,7 @@
                         <h2><?php echo $value['name']?></h2>
                         <div>
                             <p><span>Type of Vehicle </span><?php echo $value['type']?></p>
-                            <p><span>color </span> :<?php echo $value['color']?></p>
+                            <p><span>Color </span> :<?php echo $value['color']?></p>
                             <p><span>Mobile No </span> <?php echo $value['mobile_number']?></p>
                         </div>
                         <a href="/consumer-dashboard/services/care-rider/request?provider_nic=<?php echo$value['provider_nic'] ?>">
