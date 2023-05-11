@@ -1,21 +1,21 @@
 
-<!--<div class="pharmacy-analytics__container">-->
-<!---->
-<!--    <select class="pharmacy-analytics-dropdown" name="" id="medicine-analytics-dropdown">-->
-<!--        <option value="this_week">This Week</option>-->
-<!--        <option value="this_month">This Month</option>-->
-<!--        <option value="past_six_months">Past six months</option>-->
-<!--        <option value="all_time">All</option>-->
-<!--    </select>-->
-<!---->
-<!---->
-<!--    <div class="pharmacy-analytics__top-container">-->
-<!--        <canvas id="order-count-chart" class="order-count-chart"></canvas>-->
-<!--        <canvas id="medicine-vs-revenue-chart" class="medicine-vs-revenue-chart"></canvas>-->
-<!--    </div>-->
-<!---->
-<!--    <h3>Revenue</h3>-->
-<!--    <canvas id="revenue-chart" class="revenue-chart"></canvas>-->
+<div class="pharmacy-analytics__container">
+
+    <select class="pharmacy-analytics-dropdown" name="" id="medicine-analytics-dropdown">
+        <option value="this_week">This Week</option>
+        <option value="this_month">This Month</option>
+        <option value="past_six_months">Past six months</option>
+        <option value="all_time">All</option>
+    </select>
+
+
+    <div class="pharmacy-analytics__top-container">
+        <canvas id="order-count-chart" class="order-count-chart"></canvas>
+        <canvas id="medicine-vs-revenue-chart" class="medicine-vs-revenue-chart"></canvas>
+    </div>
+
+    <h3>Revenue</h3>
+    <canvas id="revenue-chart" class="revenue-chart"></canvas>
 
 
 

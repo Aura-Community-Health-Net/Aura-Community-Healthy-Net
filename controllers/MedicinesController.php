@@ -637,18 +637,36 @@ public static function RequestForPharmacy():bool|array|string
 //           $result = $stmt->get_result();
 //           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
+//
+
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic   INNER JOIN medicine_order m ON m.request_id = pr.request_id   WHERE pr.consumer_nic = ? AND m.status='unpaid' ORDER BY pr.date_time DESC ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();
-           $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
+           $pharmacy_reply = $result->fetch_all(MYSQLI_ASSOC);
+
+
+           $stmt = $db->connection->prepare("SELECT pr.request_id,s.name,s.mobile_number,s.profile_picture,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.Sent_Request='unsent' AND consumer_nic = ? ORDER BY pr.date_time DESC  ");
+           $stmt->bind_param("s",$nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $consumer_request = $result->fetch_all(MYSQLI_ASSOC);
+
+//           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
+//           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic INNER  JOIN medicine_order m ON m.request_id = pr.request_id WHERE pr.consumer_nic = ?   ORDER BY pr.date_time DESC;");
+//           $stmt->bind_param("s",$nic);
+//           $stmt->execute();
+//           $result = $stmt->get_result();
+//           $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
 
 
            return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails', layout: 'consumer-dashboard-layout', params:[
 //               "pharmacy_request_details" => $pharmacy_request_details,
-               "pharmacy_details" => $pharmacy_details
+               "pharmacy_reply" => $pharmacy_reply,
+               "consumer_request" => $consumer_request
            ],layoutParams: [
                "consumer" => $consumer,
+               "pharmacy_reply" => $pharmacy_reply,
                "title" => "Medicines",
                "active_link" => "dashboard-medicines"
            ]);
