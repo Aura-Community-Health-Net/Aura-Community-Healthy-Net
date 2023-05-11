@@ -249,7 +249,7 @@ class DashboardController extends Controller
             $count_request = $result->fetch_assoc();
             //print_r($count_timeSlots);
 
-            $stmt = $db->connection->prepare("SELECT MAX(care_rider_time_slot.date),service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 1 GROUP BY ride_request.provider_nic  ");
+            $stmt = $db->connection->prepare("SELECT care_rider_time_slot.request_id,service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address,care_rider_time_slot.request_id FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 0 ORDER by care_rider_time_slot.request_id DESC  limit 1 ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
