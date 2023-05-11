@@ -66,6 +66,8 @@ class FeedbacksController extends Controller
         }
     }
 
+    //RETRIVE PHARMACY FEEDBACK FOR PHARMACY
+
     public static function getPharmacyFeedbackPage(): bool|array|string
 
     {
@@ -152,7 +154,7 @@ class FeedbacksController extends Controller
         ]);
     }
 
-
+///RETRIEVE PHARMACY FEEDBACK FOR PHARMACY
 
     public  static  function PharmacyFeedback(): array|bool|string
     {

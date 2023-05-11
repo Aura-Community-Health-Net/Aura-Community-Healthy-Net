@@ -202,7 +202,9 @@ class AnalyticsController extends Controller
 //             "active_link" => "analytics",
 //             "title" => "Analytics"
 //         ]);
-//   
+//
+
+//RETRIVE PHARMACY ANALYTICS PAGE
     public static function getPharmacyAnalyticsPage(): array|bool|string
     {
         $nic = $_SESSION["nic"];
@@ -448,6 +450,8 @@ class AnalyticsController extends Controller
         }
     }
 
+    //REVENUE CHART FOR THE PHARMACY(ANALYTICS)
+
     public static function getPharmacyAnalyticsRevenueChart(): bool|string
     {
 
@@ -517,6 +521,8 @@ class AnalyticsController extends Controller
 
 
     }
+
+    //ORDER COUNT CHART FOR PHARMACY(ANALYTICS)
 
     public static function getPharmacyAnalyticsOrderCount(): bool|string
     {

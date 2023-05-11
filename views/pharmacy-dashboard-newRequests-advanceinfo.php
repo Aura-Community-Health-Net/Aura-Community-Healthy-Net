@@ -6,18 +6,22 @@
  * @var string $title
  * @var string $active_link
  */
-echo "<pre>";
-var_dump($medicines_list);
-echo "</pre>";
-?>
+//echo "<pre>";
+//var_dump($medicines_list);
+//echo "</pre>";
+//?>
 <?php
 
+//$medicines_element = "";
+//foreach ($medicines_list as $medicine){
+//    $medicines_element = $medicines_element."<li>$medicine</li>";
+$medicines_names = [];
+foreach ($medicines_list as $medicine){
 
-//$options = array();
-//while ($row = $medicines_list->fetch_assoc()) {
-//    $options[] = $row['name'];
-
-
+    $medicines_names[] = $medicine["name"];
+//    print_r($medicines_names);
+//    echo  $medicine["name"]."<br>";
+}
 
 
 ?>
@@ -71,39 +75,18 @@ echo "</pre>";
 
                      <div class='pharmacy-neworders-advanceinfo__order-med-details__description'>
                          <div class='pharmacy-neworders-advanceinfo__order-med-details__description__medicinesList'>
-                             <!--                               <ul class='medicines_list'>-->
-                             <!--                                     <li><input id='medicines_list' type='text' name='medicines_list' value='-->
-                             <!--                               </ul>-->
-<!--                             <textarea name="medicines_list" class="pharmacy-request__text-area" placeholder="Please enter each medicine seperated with comma"></textarea>-->
 
-                                 <select name="availableMedicines_list" id="availableMedicines_list" multiple>
-<!--                                     -->
-<!--//                                        $select_options = '';-->
-<!--//                                        foreach ($medicines_list as $option)-->
-<!--//                                        {-->
-<!--//                                            $select_options.='<option value="'.$option.'">'.$option . '</option>';-->
-<!--//                                        }-->
-<!--//-->
-<!--////                                        $select_html = '<select>' . $select_options . '</select>';-->
-<!--////-->
-<!--////                                        echo $select_html;-->
-                                     <?php
+                                  <?php
 
-                                        $medicines_element = "";
-                                     foreach($medicines_list as $medicine){
-                                         $medicines_element.= '<option value="'.$medicine.'">'.$medicines_element.'<li>$medicine</li>';
-                                     }
+                                   echo '<select name="availableMedicines_list[]" id="availableMedicines_list" multiple>';
 
+                                  foreach ($medicines_names as $medicines_name) {
+                                      echo "<option value='$medicines_name'>$medicines_name</option>";
+                                   }
+                                   echo '</select>';
 
+                                  ?>
 
-                                     $selected_medicine = '<select>' .$medicines_element. '</select>';
-
-
-
-                                     ?>
-
-
-                                 </select>
 
                          </div>
                          <div class='pharmacy-neworders-advanceinfo__order-med-details__description__TotalAmount'>

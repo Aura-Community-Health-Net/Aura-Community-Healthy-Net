@@ -71,6 +71,8 @@ class OrdersController extends Controller
         }
     }
 
+    //MARKING THE MEDICINE ORDER AS PREPARED
+
     public static function markMedOrderAsPrepared(): string
     {
         $nic = $_SESSION["nic"];
@@ -88,6 +90,8 @@ class OrdersController extends Controller
             return "";
         }
     }
+
+    //NEW PHARMACYREQUESTS FOR PHARMACY BY CONSUMERS
 
     public static function viewNewMedRequestsPage()
     {
@@ -125,7 +129,7 @@ class OrdersController extends Controller
 
     }
 
-
+    //MEDICINE ORDERS FOR PHARMACY
     public static function viewMedicineOrders(){
 
         $provider_nic = $_SESSION["nic"];

@@ -15,6 +15,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
 <div class="consumer-dashboard-doctor-profile">
     <div class="consumer-dashboard-doctor-profile__top">
         <table>
+
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__top__left">
@@ -41,6 +42,11 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                 <h4 style="padding: 1rem;">Available Time-Slots</h4>
                                 <div class="care-rider-timeslots-display">
                                     <table id="care-rider-available-slot">
+                                        <thead>
+                                        <th>Date</th>
+                                        <th>From Time</th>
+                                        <th>To Time</th>
+                                        </thead>
                                         <?php foreach ($time_slot as $value) { ?>
                                             <tr>
                                                 <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
@@ -57,14 +63,10 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                 </div>
                             </div>
                             <div class="dat-time-container ">
-<!--                                <div class="location-time" >-->
-<!--                                    <label for=""> Date </label>-->
-<!--                                    <input type="date" name="date" id="date">-->
-<!--                                </div>-->
 
                                 <div class="location-time">
                                     <label for="">Pick up time</label>
-                                    <input type="time" name="pickup-time" id="pickup-time">
+                                    <input class="pickup-time" type="time" name="pickup-time" id="pickup-time">
                                 </div>
                             </div>
 
