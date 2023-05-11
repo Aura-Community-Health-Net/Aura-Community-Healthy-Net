@@ -24,15 +24,23 @@
         </form>
 
     </div>
-        <div class="care-rider__card-details">
-            <?php foreach ($care_rider as $value) {?>
+    <?php
+    $emptyClass = !$care_rider ? "care-rider__card-details--empty" : "";
+    ?>
+        <div class="care-rider__card-details <?= $emptyClass ?>">
+            <?php
+            if(!$care_rider){
+                echo "<div class='empty-care-riders'>No nearby Care Riders </div>";
+            }
+            else{
+            foreach ($care_rider as $value) {?>
             <div class="care-rider-container">
                 <div class="care-rider-card">
                     <img src="<?php echo $value['profile_picture']; ?>">
                     <div class="consumer-dashboard-care-rider__bottom__center__data">
                         <h2><?php echo $value['name']?></h2>
                         <div>
-                            <p><span>Type of Vehicle </span><?php echo $value['type']?></p>
+                            <p ><span>Type of Vehicle </span><?php echo $value['type']?></p>
                             <p><span>Color </span> :<?php echo $value['color']?></p>
                             <p><span>Mobile No </span> <?php echo $value['mobile_number']?></p>
                         </div>
@@ -42,6 +50,7 @@
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php }
+            } ?>
         </div>
 

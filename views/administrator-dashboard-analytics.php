@@ -12,10 +12,13 @@
     <!--    </div>-->
 
     <div class="administrator-analytics__top-container">
-        <canvas id="admin-pharmacy-revenue-chart" class="admin-pharmacy-revenue-chart"></canvas>
-        <canvas id="admin-product-seller-revenue-chart" class="admin-product-seller-revenue-chart"></canvas>
-        <canvas id="admin-doctor-revenue-chart" class="admin-doctor-revenue-chart"></canvas>
-        <canvas id="admin-care-rider-revenue-chart" class="admin-care-rider-revenue-chart"></canvas>
+        <canvas id="admin-doctor-revenue-chart" class="admin-revenue-chart"></canvas>
+        <canvas id="admin-pharmacy-revenue-chart" class="admin-revenue-chart"></canvas>
+    </div>
+
+    <div class="administrator-analytics__top-container">
+        <canvas id="admin-product-seller-revenue-chart" class="admin-revenue-chart"></canvas>
+        <canvas id="admin-care-rider-revenue-chart" class="admin-revenue-chart"></canvas>
     </div>
 
 

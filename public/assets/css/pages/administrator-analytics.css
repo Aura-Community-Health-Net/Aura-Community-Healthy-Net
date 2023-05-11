@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.administrator-analytics__top-container{
+    display: flex;
+}
+
 .administrator-analytics-dropdown{
     width: 10rem;
     padding: 0.4rem 1rem;
@@ -17,22 +21,10 @@
     right: 1rem;
 }
 
-.admin-product-seller-revenue-chart{
+.admin-revenue-chart{
     background-color: white;
     border-radius: 8px;
     margin: 3rem;
-}
-
-
-.admin-doctor-revenue-chart{
-    background-color: white;
-    border-radius: 8px;
-    margin: 3rem;
-}
-
-
-.admin-pharmacy-revenue-chart{
-    background-color: white;
-    border-radius: 8px;
-    margin: 3rem;
+    max-width: 31rem;
+    max-height: 18rem;
 }
