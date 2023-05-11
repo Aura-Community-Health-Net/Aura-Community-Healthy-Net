@@ -178,7 +178,7 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
-//$app->router->get('/consumer-dashboard/feedback',[AnalyticsController::class,'getConsumerFeedbackPage']);
+$app->router->post('/consumer-dashboard/events',[DashboardController::class,'getUpcomingEvents']);
 $app->router->get('/consumer-dashboard/analytics',[AnalyticsController::class,'getConsumerAnalyticsPage']);
 
 $app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
@@ -227,6 +227,7 @@ $app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calc
 $app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
 $app->router->get('/medicines-checkout/success',[PaymentsController::class,'medicinePaymentSuccess']);
+$app->router->get('/doctor/payment/success', [PaymentsController::class, 'DoctorPaymentSuccess']);
 //  Run the application
 $app->run();
 

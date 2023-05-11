@@ -69,8 +69,8 @@
                         console.log(`client secret is ${clientSecret}`);
                         elements = stripe.elements({clientSecret});
 
-                        // const linkAuthenticationElement = elements.create("linkAuthentication");
-                        // linkAuthenticationElement.mount("#link-authentication-element");
+                        const linkAuthenticationElement = elements.create("linkAuthentication");
+                        linkAuthenticationElement.mount("#link-authentication-element");
 
                         const paymentElementOptions = {
                             layout: "tabs",
@@ -83,7 +83,7 @@
 
                         break;
                     case 500:
-                        const errorData = await res.text();
+                        const errorData = await res.json();
                         console.log(errorData);
                         return;
                 }
@@ -110,7 +110,7 @@
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "https://af51-2401-dd00-1e-00-fffe.ngrok-free.app/checkout/success",
+                    return_url: "https://01db-2401-dd00-1e-00-fffe.ngrok-free.app/doctor/payment/success",
                     receipt_email: emailAddress,
                 },
             });
