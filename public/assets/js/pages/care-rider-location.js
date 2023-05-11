@@ -50,7 +50,7 @@ async function initMap(lat, lng) {
     riderMarker = new Marker({
         map: map,
         position: {lat: lat, lng: lng},
-        draggable: false, title: "destination", icon: {
+        draggable: false, title: "current-location", icon: {
             url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         }
     })
@@ -102,7 +102,7 @@ function attachLocationButtonListener(button) {
                 map,
                 position: pickupPosition,
                 // pickupPosition2,
-                draggable: false, title: "destination", icon: {
+                draggable: false, title: "consumer-pickup", icon: {
                     url: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
                 }
             })
@@ -116,7 +116,7 @@ function attachLocationButtonListener(button) {
                 map,
                 position: dropPosition,
                 // pickupPosition2,
-                draggable: false, title: "destination", icon: {
+                draggable: false, title: "consumer-destination", icon: {
                     url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
                 }
             })

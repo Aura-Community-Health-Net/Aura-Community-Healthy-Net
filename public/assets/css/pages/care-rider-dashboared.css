@@ -81,11 +81,12 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    margin-top: 1rem;
+    /*margin-top: 1rem;*/
     background-color: #ffffff;
     padding: 2rem;
     width: 80%;
     margin-inline: 4rem;
+    margin: 3.5rem;
 }
 .care-rider-dashboard__request img{
     width: 200px;
