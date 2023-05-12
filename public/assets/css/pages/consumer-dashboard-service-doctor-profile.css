@@ -135,6 +135,15 @@
     border: none;
     vertical-align: center;
 }
+.doctor-feedback-btn{
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #00005C;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .consumer-dashboard-doctor-profile__bottom table{
     border-spacing: 50px;
 }
