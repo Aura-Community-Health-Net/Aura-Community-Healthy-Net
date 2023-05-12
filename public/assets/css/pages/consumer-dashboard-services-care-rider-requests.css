@@ -65,3 +65,40 @@
     padding: 0.5rem 1rem;
     border-radius: 1rem;
 }
+#care-rider-pickup-location-search{
+    position: relative;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #00005C;
+    padding: 8px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    left: -6.5rem;
+    margin-block: 1rem;
+}
+.care-rider-pickup-location {
+    padding: 0.5rem;
+    margin-right: 105px;
+    margin-top: 16px;
+    width: 279px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
+.pickup-location-results{
+    position: relative;
+    width: 60%;
+    height: 1.5rem;
+    bottom: 0.75rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-left: -7.5rem;
+}
+.care-rider-location_results{
+    position: relative;
+    width: 60%;
+    height: 1.5rem;
+    /* bottom: 2rem; */
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
