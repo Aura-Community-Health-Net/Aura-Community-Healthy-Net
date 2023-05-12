@@ -254,7 +254,7 @@ class AuthController extends Controller
                              email_address,
                              password,
                              mobile_number,
-                             locatin_lat,
+                             location_lat,
                              location_lng,
                              bank_name,
                              bank_branch_name,
