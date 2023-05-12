@@ -32,7 +32,6 @@
 
         }
         ?>
-
     </div>
 
     <div class="dashboard__top-cards admin-top-cards">
@@ -91,7 +90,7 @@
 
 <div class="dashboard__bottom-container">
 
-    <div class="dashboard__bottom-cards">
+    <div class="dashboard__bottom-cards admin-bottom-card">
         <h3>Customers</h3>
         <?php
         foreach ($all_consumers as $consumer){

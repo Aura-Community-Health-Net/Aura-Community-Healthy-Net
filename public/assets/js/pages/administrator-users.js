@@ -43,17 +43,17 @@
 //             <form class="user-update-form" action="/admin-dashboard/users/update?user=${nic}" method="post">
 //
 //                 <label class="form-input__label" for="">NIC</label>
-//                 <input  class="form-input__input" type="text" name="nic" value="${tr.dataset.nic}">
+//                 <input  class="form-input__input" type="text" name="nic" value="${button.dataset.nic}">
 //                 <label class="form-input__label" for="">Email Address</label>
-//                 <input class="form-input__input" type="text" name="address" value="${tr.dataset.address}">
+//                 <input class="form-input__input" type="text" name="address" value="${button.dataset.address}">
 //                 <label class="form-input__label" for="">Mobile Number</label>
-//                 <input class="form-input__input" type="text" name="mobile_number" value="${tr.dataset.mobile_number}">
+//                 <input class="form-input__input" type="text" name="mobile_number" value="${button.dataset.mobile_number}">
 //                 <label class="form-input__label" for="">Address</label>
-//                 <input class="form-input__input" type="text" name="address" value="${tr.dataset.address}
+//                 <input class="form-input__input" type="text" name="address" value="${button.dataset.address}
 //                 <label class="form-input__label" for="">Bank Account Number</label>
-//                 <input class="form-input__input" type="text" name="bank_account_number" value="${tr.dataset.bank_account_number}">
+//                 <input class="form-input__input" type="text" name="bank_account_number" value="${button.dataset.bank_account_number}">
 //                 <label class="form-input__label" for="">Bank Branch</label>
-//                 <input class="form-input__input" type="text" name="bank_branch" value="${tr.dataset.bank_account_number}">
+//                 <input class="form-input__input" type="text" name="bank_branch" value="${button.dataset.bank_account_number}">
 //                 </form>
 //         </div>
 //         `;
@@ -115,23 +115,23 @@ function attachUpdateButtonListener(button){
         const userId = button.dataset.usernic;
         const userName = button.dataset.username;
         const userEmail = button.dataset.useremail;
-        const tr = button.parentElement.parentElement;
-        console.log(tr.dataset)
+        // const datasetElement = button.parentElement.parentElement;
+        console.log(button.dataset)
         console.log(userId)
 
         updateUserModal.innerHTML = `
          <h3>Update User information for ${userName}</h3>
         <div class="modal-actions">
-            <form class="user-update-form" action="/admin-dashboard/users/update?userId=${userId}}" method="post">
+            <form class="user-update-form" action="/admin-dashboard/users/update?userId=${userId}" method="post">
                
                 <label class="form-input__label" for="">NIC</label>
-                <input  class="form-input__input" type="text" name="nic" value="${tr.dataset.usernic}">
+                <input  class="form-input__input" type="text" name="nic" value="${button.dataset.usernic}">
                 <label class="form-input__label" for="">Email Address</label>
-                <input class="form-input__input" type="text" name="email" value="${tr.dataset.useremail}">
+                <input class="form-input__input" type="text" name="email" value="${button.dataset.useremail}">
                 <label class="form-input__label" for="">Mobile Number</label>
-                <input class="form-input__input" type="text" name="mobile_number" value="${tr.dataset.mobilenumber}">                
+                <input class="form-input__input" type="text" name="mobile_number" value="${button.dataset.mobilenumber}">                
                 <label class="form-input__label" for="">Address</label>
-                <input class="form-input__input" type="text" name="address" value="${tr.dataset.address}">
+                <input class="form-input__input" type="text" name="address" value="${button.dataset.address}">
                
                 <div class="update-btn-section">
                     <button class="cancel-btn" id="update-cancel-btn" type="button">Cancel</button>

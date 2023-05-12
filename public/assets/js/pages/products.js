@@ -165,8 +165,7 @@ function attachUpdateButtonListener(button){
     const productId = button.dataset.productid;
     const productName = button.dataset.productname;
     const tr = button.parentElement.parentElement;
-    console.log(tr.dataset)
-    console.log(productId)
+    console.log(Object.from(tr.dataset))
     const categoryID = button.dataset.categoryid;
     // <label className="form-input__label" htmlFor="">Product Image</label>
     // <input type="file" id="image" name="image" style="display: none; visibility: hidden" accept="image/*"

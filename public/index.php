@@ -84,6 +84,7 @@ $app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[Administr
 $app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [AdministratorController::class, 'getAdministratorCareRiderRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 $app->router->get('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
+$app->router->post('/admin-dashboard/users/update', [AdministratorController::class, 'updateConsumerByAdmin']);
 
 // For product-seller
 $app->router->get('/product-seller-dashboard', [DashboardController::class, 'getProductSellerDashboardPage']);
@@ -121,11 +122,6 @@ $app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPh
 $app->router->get('/pharmacy-dashboard/analytics/revenue-chart',[AnalyticsController::class,'getPharmacyAnalyticsRevenueChart']);
 $app->router->get('/pharmacy-dashboard/analytics/order-count-chart',[AnalyticsController::class,'getPharmacyAnalyticsOrderCount']);
 $app->router->get('/pharmacy-dashboard/analytics/medicine-vs-revenue-chart',[AnalyticsController::class,'getPharmacyRevenueVsMedicinePercentage']);
-
-
-
-
-
 
 
 // For Care Rider
