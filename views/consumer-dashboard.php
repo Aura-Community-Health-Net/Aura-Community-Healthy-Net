@@ -8,8 +8,13 @@
  * @var $pharmacy_provider_count;
  * @var $product_seller_provider_count;
  * @var $care_rider_provider_count;
+ * @var $current_upcoming_details;
+ * @var $upcoming_details;
  */
 
+if (!$current_upcoming_details){
+    return $upcoming_details;
+}
 
 ?>
 
@@ -26,8 +31,8 @@
                 dayClick: function(date, jsEvent, view) {
                     // create a form to submit selected date
                     var form = $('<form>').attr({
-                        method: 'POST',
-                        action: '/your/controller/url'
+                        method: 'GET',
+                        action: '/consumer-dashboard'
                     }).append(
                         $('<input>').attr({
                             type: 'hidden',
@@ -105,10 +110,48 @@
 
     <div class="dashboard__top-cards events-container">
         <h3 class="events-header">Events for this day</h3>
+        <?php if(!$current_upcoming_details) { ?>
         <div class="events-container__empty">
             <i class="fa-regular fa-calendar-days events-icon"></i>
             <h4 class="no-events">No upcoming events due</h4>
         </div>
+        <?php }else{?>
+        <div class="doc_upcoming_details_scroll_bar">
+            <?php if(!$upcoming_details){?>
+                    <?php foreach ($current_upcoming_details as $value){ ?>
+                            <div class="doc_upcoming_details">
+                                <div style="display: flex;flex-direction: row;gap: 1.5rem">
+                                    <img src="<?php echo $value['profile_picture']?>" alt="">
+                                    <div style="display: flex; flex-direction: column;justify-content: center;">
+                                        <h4><?php echo $value['name']; ?></h4>
+                                        <h5><?php echo $value['provider_type'];?></h5>
+                                    </div>
+                                </div>
+                                <div style="display: flex;gap: 1.5rem;flex-direction: row;">
+                                    <h4><?php echo $value['date'];?></h4>
+                                    <h4><?php echo $value['from_time']." - ".$value['to_time'];?></h4>
+                                </div>
+                            </div>
+                    <?php } ?>
+            <?php }else{?>
+                    <?php foreach ($upcoming_details as $value){ ?>
+                        <div class="doc_upcoming_details">
+                            <div style="display: flex;flex-direction: row;gap: 1.5rem">
+                                <img src="<?php echo $value['profile_picture']?>" alt="">
+                                <div style="display: flex; flex-direction: column;justify-content: center;">
+                                    <h4><?php echo $value['name']; ?></h4>
+                                    <h5><?php echo $value['provider_type'];?></h5>
+                                </div>
+                            </div>
+                            <div style="display: flex;gap: 1.5rem;flex-direction: row;">
+                                <h4><?php echo $value['date'];?></h4>
+                                <h4><?php echo $value['from_time']." - ".$value['to_time'];?></h4>
+                            </div>
+                        </div>
+                    <?php } ?>
+            <?php } ?>
+        </div>
+        <?php }?>
     </div>
 
 </div>

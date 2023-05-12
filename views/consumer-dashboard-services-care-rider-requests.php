@@ -41,18 +41,25 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                                 <h4 style="padding: 1rem;">Available Time-Slots</h4>
                                 <div class="care-rider-timeslots-display">
                                     <table id="care-rider-available-slot">
-                                        <?php foreach ($time_slot as $value) { ?>
-                                            <tr>
-                                                <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
-                                                <td><?php echo $value['date']; ?></td>
-                                                <td><?php echo $value['from_time'] ?></td>
-                                                <td><?php echo $value['to_time'] ?></td>
-                                                <td><?php echo " "; ?></td>
-                                                <td><input type="radio" value="
-                                            <?php echo $value['slot_number']; ?>" name="available-time-slot">
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                        <thead>
+                                        <th>Date</th>
+                                        <th>From Time</th>
+                                        <th>To Time</th>
+                                        </thead>
+                                        <tbody>
+                                                <?php foreach ($time_slot as $value) { ?>
+                                                    <tr>
+                                                        <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
+                                                        <td><?php echo $value['date']; ?></td>
+                                                        <td><?php echo $value['from_time'] ?></td>
+                                                        <td><?php echo $value['to_time'] ?></td>
+                                                        <td><?php echo " "; ?></td>
+                                                        <td><input type="radio" value="
+                                                    <?php echo $value['slot_number']; ?>" name="available-time-slot">
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -72,6 +79,23 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
 
 
                             <!--                    <div class="consumer-dashboard-care-rider-profile__top__right">-->
+
+                            <p><b>Add Location</b></p>
+                            <div>
+                                <input type="text" placeholder="Enter the pickup address" class="care-rider-input-location" id="pickup-address">
+                                <button onclick="findPickupAddress()" type="button" id="care-rider-location-search">Search</button>
+                            </div>
+                            <div>
+                                <select name="pickup-location_results" id="pickup-location_results" class="care-rider-location_results"></select>
+                            </div>
+
+                            <div>
+                                <input type="text" placeholder="Enter the drop address" class="care-rider-input-location" id="drop-address">
+                                <button onclick="findDropAddress()" type="button" id="care-rider-location-search">Search</button>
+                            </div>
+                            <div>
+                                <select name="drop-location_results" id="drop-location_results" class="care-rider-location_results"></select>
+                            </div>
 
                             <div class="item-top-right__container">
                                 <div class="map" id="map" style="height:100%;width: 80%;margin-inline: auto">
@@ -116,7 +140,7 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                         <!--                        <input type="datetime-local" name="feedback-datetime" class="doctor-feedback-datetime">-->
                         <input type="text" name="feedback-msg" class="doctor-feedback">
                         <input name="provider_nic" value="<?php echo $provider_nic ?>" type="text" hidden>
-                        <button name="care-rider-feedback-btn">Submit</button>
+                        <button class="btn" name="care-rider-feedback-btn">Submit</button>
                     </form>
                 </div>
             </td>
@@ -146,12 +170,80 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
     })
     ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
 
-<script>let map;
+<script>let map, marker1,marker2;
     const pickupLatInput = document.querySelector("#pickup-lat")
     const pickupLngInput = document.querySelector("#pickup-lng")
     const dropLatInput = document.querySelector("#drop-lat")
     const dropLngInput = document.querySelector("#drop-lng")
     const distanceInput = document.querySelector("#distance")
+    const pickupAddress = document.querySelector("#pickup-address");
+    const pickupLocationResultsInput = document.querySelector("#pickup-location_results")
+    let pickupResults = []
+    const dropAddress = document.querySelector("#drop-address");
+    const dropLocationResultsInput = document.querySelector("#drop-location_results")
+    let dropResults = []
+
+    pickupLocationResultsInput.addEventListener('change', () => {
+        console.log(pickupLocationResultsInput.value)
+        const selectedPickupLocation = results.find((i) => i.place_id === Number(pickupLocationResultsInput.value))
+        console.log(selectedPickupLocation)
+        setMarker1AndPan({
+            lat: Number(selectedPickupLocation.lat),
+            lng: Number(selectedPickupLocation.lon)
+        })
+    })
+
+    dropLocationResultsInput.addEventListener('change', () => {
+        console.log(dropLocationResultsInput.value)
+        const selectedDropLocation = results.find((i) => i.place_id === Number(dropLocationResultsInput.value))
+        console.log(selectedDropLocation)
+        setMarker2AndPan({
+            lat: Number(selectedDropLocation.lat),
+            lng: Number(selectedDropLocation.lon)
+        })
+    })
+
+    async function findPickupAddress() {
+        try{
+            const pickupResponse = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + pickupAddress.value)
+            const pickupLocationResults = await pickupResponse.json()
+            pickupResults = pickupLocationResults
+            if(pickupResults.length === 1) {
+                setMarkerAndPan({
+                    lat: Number(results[0].lat),
+                    lng: Number(results[0].lon)
+                })
+            }
+            let pickupOptions = pickupLocationResults.map(lR => {
+                return "<option value='"+lR.place_id +"' >" + lR.display_name + "</option>"
+            }).join("")
+            pickupLocationResultsInput.innerHTML = pickupOptions
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
+    async function findDropAddress() {
+        try{
+            const dropResponse = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + dropAddress.value)
+            const dropLocationResults = await dropResponse.json()
+            dropResults = dropLocationResults
+            if(dropResults.length === 1) {
+                setMarkerAndPan({
+                    lat: Number(results[0].lat),
+                    lng: Number(results[0].lon)
+                })
+            }
+            let dropOptions = dropLocationResults.map(lR => {
+                return "<option value='"+lR.place_id +"' >" + lR.display_name + "</option>"
+            }).join("")
+            dropLocationResultsInput.innerHTML = dropOptions
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
 
     async function initMap(lat, lng) {
         //@ts-ignore
@@ -164,14 +256,14 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
             center: {lat: lat, lng: lng},
             zoom: 17,
         });
-        const marker1 = new Marker({
+        marker1 = new Marker({
             map: map,
             position: {lat: lat, lng: lng},
             draggable: true, title: "pickup", icon: {
                 url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
             }
         })
-        const marker2 = new Marker({
+        marker2 = new Marker({
             map: map,
             position: {lat: lat, lng: lng},
             draggable: true, title: "drop", icon: {
@@ -251,8 +343,20 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
 
 
         })
+    }
 
+    function setMarker1AndPan(selectedPickupLocation) {
+        map.panTo(selectedPickupLocation)
+        marker1.setPosition(selectedPickupLocation)
+        pickupLatInput.value = selectedPickupLocation.lat
+        pickupLngInput.value = selectedPickupLocation.lng
+    }
 
+    function setMarker2AndPan(selectedDropLocation) {
+        map.panTo(selectedDropLocation);
+        marker2.setPosition(selectedDropLocation);
+        dropLatInput.value = selectedDropLocation.lat();
+        dropLngInput.value = selectedDropLocation.lng();
     }
 
 

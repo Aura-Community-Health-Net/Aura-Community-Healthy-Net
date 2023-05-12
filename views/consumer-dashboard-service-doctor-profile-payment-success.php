@@ -1,8 +1,8 @@
 <div class="payment_success_container">
     <div class="payment_success_left_container">
         <div class="payment_success_text">
-            <h2>Thanks for your Request</h2>
-            <h1>Your Request Has Successfully Sent</h1>
+            <h2>Thanks for your purchase</h2>
+            <h1>Your Payment is Successful</h1>
             <i class="payment_success_icon fa-regular fa-circle-check"></i>
         </div>
 
@@ -11,3 +11,6 @@
         <img src="/assets/images/payment-successful.webp" alt="">
     </div>
 </div>
+
+
+

@@ -79,7 +79,7 @@ if (!$care_rider['is_verified']) {
                         <div class="care-rider-order-details">
                             <div>
                                 <h5>Date</h5>
-                                <h5><?php echo $request_details['MAX(care_rider_time_slot.date)']; ?> </h5>
+                                <h5><?php echo $request_details['date']; ?> </h5>
                             </div>
                             <div>
                                 <h5>Time</h5>

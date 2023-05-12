@@ -258,7 +258,7 @@ class PaymentsController extends Controller
                         $stmt->execute();
                         $provider_nic = $metadata["provider_nic"];
 
-                        $amount = 1500;
+                        $amount = 1500*100;
                         $stmt = $db->connection->prepare("INSERT INTO payment_record (purpose, amount, provider_nic, consumer_nic) VALUES (?, ?, ?, ?)");
                         $purpose = "Consumer with $consumer_nic paid Rs $amount to provider with $provider_nic";
                         $stmt->bind_param("sdss", $purpose, $amount, $provider_nic, $consumer_nic);
@@ -656,6 +656,33 @@ class PaymentsController extends Controller
             "consumer" => $service_consumer,
             "active_link" => "dashboard-medicines",
             "title" => "Medicines"
+        ]);
+    }
+
+    public static function DoctorPaymentSuccess(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $usertype = $_SESSION["user_type"];
+//        var_dump($nic, $usertype);
+//        exit();
+        if (!$nic || $usertype !== "consumer") {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $service_consumer = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-service-doctor-profile-payment-success', layout: "consumer-dashboard-layout", params: ['consumer' => $service_consumer], layoutParams: [
+
+            "consumer" => $service_consumer,
+            "active_link" => "dashboard-products",
+            "title" => "Doctor"
         ]);
     }
 }
