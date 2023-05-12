@@ -55,15 +55,10 @@
     border-radius: 1rem;
 
 }
-.care-rider-timeslots-display{
-    overflow: auto;
-    overflow-x: hidden;
-    height: 300px;
-    /* width: 700px; */
-}
 .pickup-time{
     padding: 0.5rem 1rem;
     border-radius: 1rem;
+    margin: 1rem;
 }
 #care-rider-pickup-location-search{
     position: relative;
@@ -101,4 +96,14 @@
     /* bottom: 2rem; */
     border: 2px solid #ccc;
     border-radius: 6px;
+}
+.care-rider-drop-location_results
+{
+
+}
+.care-rider-dashboard-care-rider-profile__top__right{
+    overflow: auto;
+    height: 400px;
+    width: 700px;
+    overflow-x: hidden;
 }
