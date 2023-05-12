@@ -346,24 +346,23 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            if ($providerType != "care-rider"){
-                $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
-                    FROM service_provider s
-                    INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic 
-                    INNER JOIN service_consumer c on c.consumer_nic = pr.consumer_nic WHERE c.consumer_nic = ? LIMIT 4");
-                $stmt->bind_param("s", $nic);
-                $stmt->execute();
-            } else {
-                $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, crts.date FROM service_provider s
-                                         INNER JOIN care_rider_time_slot crts on s.provider_nic = crts.provider_nic
-                                         INNER JOIN ride_request rr on crts.request_id = rr.request_id
-                                         INNER JOIN service_consumer sc on sc.consumer_nic = rr.consumer_nic WHERE sc.consumer_nic = ? LIMIT 4");
-                $stmt->bind_param("s", $nic);
-                $stmt->execute();
-            }
-
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, pr.date_time
+                FROM service_provider s
+                INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic 
+                INNER JOIN service_consumer c on c.consumer_nic = pr.consumer_nic WHERE c.consumer_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
             $result = $stmt->get_result();
             $services = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.mobile_number, s.provider_type, s.email_address, crts.date FROM service_provider s
+                INNER JOIN care_rider_time_slot crts on s.provider_nic = crts.provider_nic
+                INNER JOIN ride rr on crts.request_id = rr.request_id
+                INNER JOIN service_consumer sc on sc.consumer_nic = rr.consumer_nic WHERE sc.consumer_nic = ? LIMIT 4");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $care_rider_services = $result->fetch_all(MYSQLI_ASSOC);
 
 //get past doctors count
             $stmt = $db->connection->prepare("SELECT COUNT(record_id) FROM payment_record INNER JOIN service_provider on payment_record.provider_nic = service_provider.provider_nic WHERE payment_record.consumer_nic = ? && service_provider.provider_type = 'doctor'");
@@ -371,7 +370,6 @@ class DashboardController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $doctor_provider_count = $result->fetch_assoc();
-//             print_r($doctor_provider_count); die();
 
 //get past pharmacy count
             $stmt = $db->connection->prepare("SELECT COUNT(record_id) FROM payment_record INNER JOIN service_provider on payment_record.provider_nic = service_provider.provider_nic WHERE payment_record.consumer_nic = ? && service_provider.provider_type = 'pharmacy'");
@@ -399,19 +397,16 @@ class DashboardController extends Controller
             $stmt->execute();
             $result = $stmt->get_result();
             $current_doc_upcoming_details = $result->fetch_all(MYSQLI_ASSOC);
-
+          
             $stmt= $db->connection->prepare("SELECT * FROM service_provider INNER JOIN ride_request on service_provider.provider_nic = ride_request.provider_nic INNER JOIN care_rider_time_slot on ride_request.request_id = care_rider_time_slot.request_id WHERE ride_request.done = 1 AND ride_request.consumer_nic = ? AND care_rider_time_slot.date = CURRENT_DATE");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $current_rider_upcoming_details = $result->fetch_all(MYSQLI_ASSOC);
-
+          
             $current_upcoming_details = array_merge($current_doc_upcoming_details,$current_rider_upcoming_details);
-            //print_r($current_rider_upcoming_details);die();
-
-            //print_r($_GET);
-
-            if(!empty($_GET)){
+          
+          if(!empty($_GET)){
                 $date = $_GET['date'];
 
                 $stmt= $db->connection->prepare("SELECT * FROM service_provider INNER JOIN appointment on service_provider.provider_nic = appointment.provider_nic INNER JOIN doctor_time_slot on appointment.appointment_id = doctor_time_slot.appointment_id WHERE appointment.status = 'paid' AND appointment.done = 0 AND appointment.consumer_nic = ? AND doctor_time_slot.date = ?");
@@ -430,13 +425,23 @@ class DashboardController extends Controller
             }else{
                 $upcoming_details="";
             }
-            //header("location: /consumer-dashboard");
-            return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', params: ["services" => $services,"doctor_provider_count" =>$doctor_provider_count,"pharmacy_provider_count"=>$pharmacy_provider_count, "product_seller_provider_count"=>$product_seller_provider_count, "care_rider_provider_count" =>$care_rider_provider_count,"current_upcoming_details"=>$current_upcoming_details,"upcoming_details"=>$upcoming_details],  layoutParams: [
+          
+          return self::render(view: 'consumer-dashboard', layout: 'consumer-dashboard-layout', params:
+                [
+                    "services" => $services,
+                    "care_rider_services" => $care_rider_services,
+                    "doctor_provider_count" =>$doctor_provider_count,
+                    "pharmacy_provider_count"=>$pharmacy_provider_count,
+                    "product_seller_provider_count"=>$product_seller_provider_count,
+                    "care_rider_provider_count" =>$care_rider_provider_count,
+                    "current_upcoming_details"=>$current_upcoming_details,
+                    "upcoming_details"=>$upcoming_details],
+                              
+                layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Dashboard",
                 "active_link" => "dashboard"
             ]);
         }
     }
-
 }

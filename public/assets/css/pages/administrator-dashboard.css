@@ -16,9 +16,9 @@
     display: flex;
     background-color: white;
     border-radius: 8px;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     align-items: center;
 }
 
@@ -29,14 +29,55 @@
 }
 
 .admin-payment-name{
-    width: 12rem;
+    width: 10rem;
 }
 
 .admin-payment-price{
-    width: 8rem;
+    width: 6rem;
 }
 
 .admin-payment-purpose{
+    width: 8rem;
+}
+
+.reg-service-providers{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem;
+}
+
+.reg-service-providers img{
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%
+}
+
+.admin-top-cards{
+    width: 330px;
+}
+
+.admin-top-cards h3{
+    margin-bottom: 1rem;
+}
+
+.reg-service-providers{
+    background-color: #ffffFF;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.admin-services-count__details{
+    background-color: white;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.admin-services-count__details h3{
     width: 10rem;
 }
 

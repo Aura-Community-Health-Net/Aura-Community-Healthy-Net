@@ -82,7 +82,7 @@
 
                 <li>
                     <a href="/pharmacy-dashboard/new-requests">
-                        <button class="navbtn" <?php echo $active_link === 'new-requests' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'new-requests' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-code-pull-request"></i></span>
                             <span class="nav-title">New Requests</span>
                         </button>
@@ -91,7 +91,7 @@
 
                 <li>
                     <a href="/pharmacy-dashboard/orders">
-                        <button class="navbtn" <?php echo $active_link === 'orders' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'orders' ? 'active' : '' ?>">
                         <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                         <span class="nav-title">Orders</span>
                         </button>
@@ -102,7 +102,7 @@
 
                 <li>
                     <a href="/pharmacy-dashboard/analytics">
-                        <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                             <span class="nav-title">Analytics</span>
                         </button>
@@ -112,7 +112,7 @@
 
                 <li>
                     <a href="/pharmacy-dashboard/feedback">
-                        <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
 
                             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                             <span class="nav-title">Feedback</span>
@@ -123,7 +123,7 @@
 
                 <li>
                     <a href="/pharmacy-dashboard/profile">
-                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
 
                             <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                             <span class="nav-title">Profile</span>
@@ -135,7 +135,7 @@
 
                 <li class="logout">
                     <form action="/provider-logout" method="post">
-                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                               <span class="nav-icon">
                                  <i class="fa-solid fa-right-from-bracket"></i></span>
                               <span class="nav-title">Logout</span>
