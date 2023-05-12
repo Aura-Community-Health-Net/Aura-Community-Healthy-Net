@@ -12,9 +12,9 @@
  * @var $upcoming_details;
  */
 
-if (!$current_upcoming_details){
-    return $upcoming_details;
-}
+//if (!$current_upcoming_details){
+//    return $upcoming_details;
+//}
 
 ?>
 
