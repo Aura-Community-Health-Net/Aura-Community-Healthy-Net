@@ -16,14 +16,13 @@ $product_image = $product_details['image'];
 $product_name = $product_details['name'];
 $product_quantity = $product_details['quantity'];
 $product_quantity_unit = $product_details['quantity_unit'];
-$product_price = $product_details['price']/100;
+$product_price = $product_details['price'] / 100;
 $product_id = $product_details['product_id'];
 $category_id = $product_details['category_id'];
 $product_stock = $product_details['stock'];
 $is_available = $product_stock > 0 || $category_id === 5 ? "" : "<p class='stock-notice'>No stock</p>";
 $is_button_active = $product_stock > 0 || $category_id === 5 ? "" : "disabled";
 $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id=$product_id" : "#";
-
 ?>
 
 
@@ -63,13 +62,13 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 
     <div class="item-top-right__container">
         <?php
-        if ($other_products){
-            foreach ($other_products as $other_product){
+        if ($other_products) {
+            foreach ($other_products as $other_product) {
                 $rest_product_image = $other_product['image'];
                 $rest_product_name = $other_product['name'];
                 $rest_product_quantity = $other_product['quantity'];
                 $rest_product_quantity_unit = $other_product['quantity_unit'];
-                $rest_product_price = $other_product['price']/100;
+                $rest_product_price = $other_product['price'] / 100;
                 $other_product_id = $other_product['product_id'];
                 echo "<div class='overview-items'>
                 <img src='$rest_product_image' alt=''>
@@ -94,17 +93,17 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
 <div class="item-bottom-container">
     <div class="item-bottom-left-container">
 
-            <?php
-            if (empty($feedback_for_sellers)){
-                echo "<h2 class='empty-product-orders'>No feedback yet</h2>";
-            } else{
-                foreach ($feedback_for_sellers as $feedback_for_seller){
-                    $feedback_profile_pic = $feedback_for_seller['profile_picture'];
-                    $feedback_consumer_name = $feedback_for_seller['name'];
-                    $feedback_date = $feedback_for_seller['date_time'];
-                    $feedback_text = $feedback_for_seller['text'];
+        <?php
+        if (empty($feedback_for_sellers)) {
+            echo "<h2 class='empty-product-orders'>No feedback yet</h2>";
+        } else {
+            foreach ($feedback_for_sellers as $feedback_for_seller) {
+                $feedback_profile_pic = $feedback_for_seller['profile_picture'];
+                $feedback_consumer_name = $feedback_for_seller['name'];
+                $feedback_date = $feedback_for_seller['date_time'];
+                $feedback_text = $feedback_for_seller['text'];
 
-                    echo "
+                echo "
                 <div class='consumer-feedback'>
                 <div class='consumer-feedback__header'>
 
@@ -119,14 +118,15 @@ $href = $product_stock > 0 || $category_id === 5 ? "/product-checkout?product_id
             </p>
                 </div>";
 
-                }
             }
-            ?>
+        }
+        ?>
     </div>
 
     <div class="item-bottom-right-container">
         <h3>Give your feedback</h3>
-        <form action="<?php echo "/consumer-dashboard/products-overview/feedback?provider_nic=$provider_nic&product_id=$product_id";?>" method="post" >
+        <form action="<?php echo "/consumer-dashboard/products-overview/feedback?provider_nic=$provider_nic&product_id=$product_id"; ?>"
+              method="post">
             <textarea class="feedback-textarea" name="product-feedback" id="" cols="28" rows="17"></textarea>
             <button class="btn">Submit</button>
         </form>

@@ -50,11 +50,11 @@ $products = is_null($products) ? [] : $products;
     ?>
 </div>
 
-<div class='pagination-numbers'>
-    <a class="pagination-button">1</a>
-    <a class="pagination-button pagination-button--active">2</a>
-    <a class="pagination-button">3</a>
-</div>
+<!--<div class='pagination-numbers'>-->
+<!--    <a class="pagination-button">1</a>-->
+<!--    <a class="pagination-button pagination-button--active">2</a>-->
+<!--    <a class="pagination-button">3</a>-->
+<!--</div>-->
 
 
 

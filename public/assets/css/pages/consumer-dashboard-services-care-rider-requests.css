@@ -43,11 +43,7 @@
     margin: 3rem;
 }
 .dat-time-container{
-    padding: 0.5rem 1rem;
     border-radius: 1rem;
-    /*display: flex;*/
-    /*background-color:#EFEEFD;*/
-    /*border-radius: 1rem;*/
 }
 .care-rider-dashboard-timeslots-display{
     background-color:#EFEEFD;
@@ -55,11 +51,24 @@
     border-radius: 1rem;
 
 }
+.care-rider-timeslots-display{
+    overflow: auto;
+    overflow-x: hidden;
+}
 .pickup-time{
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     margin: 1rem;
 }
+
+
+/* .care-rider__overview-detail{
+    background-color: #EFEEFD;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: normal; */
+
 #care-rider-pickup-location-search{
     position: relative;
     font-size: 1rem;

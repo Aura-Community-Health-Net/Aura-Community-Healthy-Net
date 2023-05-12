@@ -69,8 +69,9 @@
         <h3>Do you really want to add this timeslot?</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg">
         <div class="modal-actions">
-            <button class="cancel-btn" id="add-care-rider-timeslot-cancel-btn">Cancel</button>
             <button class="ok-btn" id="add-care-rider-timeslot-ok-btn">Ok</button>
+            <button class="cancel-btn" id="add-care-rider-timeslot-cancel-btn">Cancel</button>
+
         </div>
     </div>
 </div>

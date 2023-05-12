@@ -20,12 +20,12 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                     <div class="consumer-dashboard-doctor-profile__top__left">
                         <div class="item-top-left__container">
                             <img src="<?php echo $care_rider[0]['profile_picture']; ?>" alt="">
-                            <div class="provider__overview-detail">
+                            <div class="care-rider__overview-detail">
                                 <h2><?php echo($care_rider[0]['name']) ?></h2>
-                                <h3>Type of Vehicle:<?php echo($care_rider[0]['type']); ?></h3>
-                                <h3>color:<?php echo($care_rider[0]['color']); ?></h3>
-                                <h3>No-Plate:<?php echo($care_rider[0]['number_plate']); ?>4</h3>
-                                <h3>MobileNo:<?php echo($care_rider[0]['mobile_number']); ?>7</h3>
+                                <p>Type of Vehicle:<?php echo($care_rider[0]['type']); ?></p>
+                                <p>color:<?php echo($care_rider[0]['color']); ?></p>
+                                <p>No-Plate:<?php echo($care_rider[0]['number_plate']); ?>4</p>
+                                <p>MobileNo:<?php echo($care_rider[0]['mobile_number']); ?>7</p>
                             </div>
                         </div>
 

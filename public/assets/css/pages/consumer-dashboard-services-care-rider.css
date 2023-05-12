@@ -34,6 +34,11 @@
     padding: 2rem 2rem;
 }
 
+.care-rider__card-details--empty {
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+}
+
 
 .care-rider-card {
     display: flex;
@@ -111,8 +116,11 @@
 
 }
 
-/*.care-rider-search{*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    background-color: transparent;*/
-/*}*/
+.empty-care-riders{
+    text-align: center;
+    color: #00005C;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+

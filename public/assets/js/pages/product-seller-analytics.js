@@ -63,7 +63,7 @@ async function getOrderCountData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Orders',
+                    label: 'Orders Count',
                     data: orders,
                     backgroundColor: '#F7D716',
                     borderColor: 'rgb(30, 40, 200)',
@@ -101,9 +101,9 @@ async function getProductVsRevenueData(period = "this_month"){
             data: {
                 labels: products,
                 datasets: [{
-                    label: 'Products',
+                    label: 'Products vs Revenue',
                     data: revenues,
-                    backgroundColor: ['#DC0000', '#3EC70B', '#FFB100', '#070A52', '#EB455F', '#00FFAB','#D21312', '#FCE22A', '#F56EB3', '#B2B2B2',],
+                    // backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', '#F9D949', '#00FFCA', '#00FFAB','#D21312', '#FCE22A', '#F56EB3', '#B2B2B2',],
                     fill: 'origin'
                 }]
             },
