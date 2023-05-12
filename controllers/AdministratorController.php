@@ -487,5 +487,45 @@ class AdministratorController extends Controller
         ]);
     }
 
+
+
+    public static function updateProviderDetails(): bool|array|string
+    {
+        $nic = $_POST['provider_nic'];
+        $is_admin = $_SESSION["is_admin"];
+        $provider_nic = $_POST['nic'];
+        $provider_name = $_POST['name'];
+        $email_address = $_POST['email'];
+        $mobile_number = $_POST['mobile'];
+        $address = $_POST['address'];
+        $account_no = $_POST['acc_no'];
+        $bank_name = $_POST['bank'];
+        $branch_name = $_POST['branch'];
+
+        print_r($nic);
+
+        if (!$is_admin) {
+            header("location: /administrator-login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("UPDATE service_provider SET provider_nic = ?,
+                              name = ?,
+                              address = ?,
+                              email_address = ?,
+                        mobile_number = ?,
+                        bank_name = ?,
+                        bank_branch_name = ?,
+                        bank_account_number = ?
+                        WHERE provider_nic = ?");
+            $stmt->bind_param("sssssssis", $provider_nic, $provider_name, $address,$email_address,$mobile_number,$bank_name,$branch_name,$account_no,$nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            header("location: /admin-dashboard/users");
+            return "";
+        }
+    }
+
 }
 

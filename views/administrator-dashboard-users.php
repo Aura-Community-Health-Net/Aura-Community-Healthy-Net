@@ -3,7 +3,7 @@
  * @var array $providers
  * @var array $consumers
  * */
-
+//print_r($providers[0]['name']);die();
 ?>
 
 <div class="admin-users-container">
@@ -36,7 +36,7 @@
                 <p>$address</p>
                 <p>$bank_acc_no</p>
                 <p>$bank_name, $bank_branch_name</p>
-                <i class='fa-solid fa-pen update-user'></i></button> 
+                <button id='update-provider-$nic' data-nic='$nic' data-name='$provider_name' data-email='$email_address' data-mobile='$mobile_number' data-address='$address' data-account='$bank_acc_no' data-bank='$bank_name' data-branch='$bank_branch_name' class='action-btn action-btn--edit provider-update update-provider'><i class='fa-solid fa-pen update-user'></i></button> 
             </div>
            
             ";
@@ -58,7 +58,7 @@
             $address = $consumer["address"];
             echo "
 
-              <tr data-usernic='$nic' data-useremail='$email_address' data-mobilenumber='$mobile_number', data-address='$address'></tr>
+              <tr data-usernic='$nic' data-useremail='$email_address' data-mobilenumber='$mobile_number' data-address='$address'></tr>
               <div class='admin-users__sub-container'>  
               <div class='admin-users__profile'>
                 <img class='users-image' src='{$profile_picture}' alt=''>
@@ -82,6 +82,12 @@
 
 <div class="overlay" id="update-user-overlay">
     <div class="modal" id="update-user-modal">
+
+    </div>
+</div>
+
+<div class="overlay" id="update-provider-overlay">
+    <div class="modal" id="update-provider-modal">
 
     </div>
 </div>
