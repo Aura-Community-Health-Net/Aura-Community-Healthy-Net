@@ -80,6 +80,33 @@ class MedicinesController extends Controller
 
     }
 
+    //DELETE MEDICINES BY PHARMACY
+    public static function deleteMedicines(): string
+    {
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType )
+        {
+            header("location: /provider-login");
+        }
+
+        $medicine_id = $_GET["med_id"];
+        $db = new Database();
+        $stmt = $db->connection->prepare("DELETE FROM medicine WHERE med_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $medicine_id,$nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
+
+    }
+
 
    //VIEWING THE MEDICINES PAGE BY PHARMACY
 
@@ -112,6 +139,55 @@ class MedicinesController extends Controller
             ], layoutParams: ["pharmacy" => $pharmacy, "title" => "Medicines", "active_link" => "medicines-list"]);
 
         }
+    }
+
+
+    //UPDATE MEDICINES BY PHARMACY
+
+    public  static  function updateMedicines(): string
+    {
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "pharmacy" )
+        {
+            header("location: /provider-login");
+            return "";
+        }
+
+        $med_id = $_GET["med_id"];
+        $med_name = $_POST["med_name"];
+        $med_price = (int) $_POST["price"];
+        $med_quantity = (int) $_POST["quantity"];
+        $med_quantity_unit = $_POST["quantity_unit"];
+        $med_stock = (int) $_POST["stock"];
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ? WHERE med_id = ? AND provider_nic = ?");
+
+
+        $stmt->bind_param("siiisis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_id,$nic);
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -227,81 +303,9 @@ class MedicinesController extends Controller
         return self::render(view: '/sidebar');
     }
 
-    //DELETE MEDICINES BY PHARMACY
-    public static function deleteMedicines(): string
-    {
-
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType )
-        {
-            header("location: /provider-login");
-        }
-
-        $medicine_id = $_GET["med_id"];
-        $db = new Database();
-        $stmt = $db->connection->prepare("DELETE FROM medicine WHERE med_id = ? AND provider_nic = ?");
-        $stmt->bind_param("ds", $medicine_id,$nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        header("location: /pharmacy-dashboard/medicines");
-        return "";
 
 
 
-
-
-    }
-
-
-    //UPDATE MEDICINES BY PHARMACY
-
-    public  static  function updateMedicines(): string
-    {
-
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType !== "pharmacy" )
-        {
-            header("location: /provider-login");
-            return "";
-        }
-
-        $med_id = $_GET["med_id"];
-        $med_name = $_POST["med_name"];
-        $med_price = (int) $_POST["price"];
-        $med_quantity = (int) $_POST["quantity"];
-        $med_quantity_unit = $_POST["quantity_unit"];
-        $med_stock = (int) $_POST["stock"];
-        $db = new Database();
-
-        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ? WHERE med_id = ? AND provider_nic = ?");
-
-
-        $stmt->bind_param("siiisis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_id,$nic);
-
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        header("location: /pharmacy-dashboard/medicines");
-        return "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
 
 
    //PHARMACY REQUEST BY SERVICE CONSUMER
@@ -499,7 +503,7 @@ public static function RequestForPharmacy():bool|array|string
         }
     }
 
-
+//RETRIVING  SENT PHARMACY REQUEST DETAILS ADVANCE INFO(PRESCRIPTION AND REMARK) BY CONSUMER
     public static function getSentRequestDetailsView(): bool|array|string
     {
         $nic =$_SESSION["nic"];
@@ -655,8 +659,8 @@ public static function RequestForPharmacy():bool|array|string
 
     }
 
-//RETRIVING PHARMACY REQUEST DETAILS PAGE BY CONSUMER
-   public  static function getSentRequestDetailsPage(): bool|array|string
+//RETRIVING  SENT PHARMACY REQUEST DETAILS PAGE BY CONSUMER
+   public  static function getSentRequestPage(): bool|array|string
    {
        $nic = $_SESSION["nic"];
        if (!$nic){

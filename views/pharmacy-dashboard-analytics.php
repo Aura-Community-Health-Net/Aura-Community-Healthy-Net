@@ -11,19 +11,10 @@
 
     <div class="pharmacy-analytics__top-container">
         <canvas id="order-count-chart" class="order-count-chart"></canvas>
-        <canvas id="medicine-vs-revenue-chart" class="medicine-vs-revenue-chart"></canvas>
     </div>
 
     <h3>Revenue</h3>
     <canvas id="revenue-chart" class="revenue-chart"></canvas>
-
-
-
-
-
-
-
-
 
 </div>
 

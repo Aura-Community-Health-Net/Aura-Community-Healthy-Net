@@ -101,7 +101,7 @@ foreach ($medicines as $medicine) {
         <img class="modal-img" src="/assets/images/confirmation.jpg">
         <div class="modal-actions">
             <button class="cancel-btn" id="add-medicine-cancel-btn">Cancel</button>
-            <button class="ok-btn" id="add-medicine-ok-btn">ok</button>
+            <button class="ok-btn" id="add-medicine-ok-btn">Ok</button>
         </div>
     </div>
 </div>

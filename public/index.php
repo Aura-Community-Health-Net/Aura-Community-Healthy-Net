@@ -201,7 +201,7 @@ $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getCo
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'getPharmacyList']);
 $app->router->post('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'RequestForPharmacy']);
-$app->router->get('/consumer-dashboard/services/pharmacy/request-details',[MedicinesController::class,'getSentRequestDetailsPage']);
+$app->router->get('/consumer-dashboard/services/pharmacy/request-details',[MedicinesController::class,'getSentRequestPage']);
 $app->router->get('/consumer-dashboard/services/pharmacy/request-details/view',[MedicinesController::class,'getSentRequestDetailsView']);
 $app->router->get('/consumer-dashboard/services/pharmacy/pharmacy-reply',[MedicinesController::class,'getPharmacyReply']);
 
