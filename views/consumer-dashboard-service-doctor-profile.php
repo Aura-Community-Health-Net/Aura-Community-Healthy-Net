@@ -106,7 +106,7 @@ $provider_nic = $_GET['provider_nic'];
                         <form action="/consumer-dashboard/services/doctor/profile-feedback?provider_nic=<?php echo $_GET['provider_nic']; ?>"
                               method="POST">
                             <textarea name="doctor-feedback" class="doctor-feedback"> </textarea>
-                            <button name="doctor-feedback-btn">Submit</button>
+                            <button class="doctor-feedback-btn" name="doctor-feedback-btn">Submit</button>
                         </form>
                     </div>
                 </td>
