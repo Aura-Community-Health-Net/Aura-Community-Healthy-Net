@@ -80,8 +80,17 @@
                 <li>
                     <a href="/admin-dashboard/new-registrations"><button
                             class="navbtn <?php echo $active_link === 'new-registrations' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
+                            <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
                             <span class="nav-title">Registrations</span>
+                        </button>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin-dashboard/users"><button
+                                class="navbtn <?php echo $active_link === 'users' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                            <span class="nav-title">Users</span>
                         </button>
                     </a>
                 </li>

@@ -111,12 +111,42 @@ class AdministratorController extends Controller
         $result = $stmt->get_result();
         $due_payments = $result->fetch_all(MYSQLI_ASSOC);
 
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'doctor' AND is_verified = 1 LIMIT 4");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reg_doctors = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'pharmacy' AND is_verified = 1 LIMIT 4");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reg_pharmacies = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'product-seller' AND is_verified = 1 LIMIT 4");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reg_sellers = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'care-rider' AND is_verified = 1 LIMIT 4");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reg_riders = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $db->connection->prepare("SELECT * FROM service_consumer");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $all_consumers = $result->fetch_all(MYSQLI_ASSOC);
+
         return self::render(view: 'administrator-dashboard', layout: "admin-dashboard-layout", params: [
             "pharmacies" => $pharmacist_count,
             "product_sellers" => $product_seller_count,
             "doctors" => $doctor_count,
             "care_riders"=>$care_rider_count,
-            "due_payments"=>$due_payments
+            "due_payments"=>$due_payments,
+            "reg_doctors"=>$reg_doctors,
+            "reg_pharmacies"=>$reg_pharmacies,
+            "reg_sellers"=>$reg_sellers,
+            "reg_riders"=>$reg_riders,
+            "all_consumers"=>$all_consumers
         ], layoutParams: [
             "title" => "Dashboard",
             "admin" => [
@@ -126,25 +156,62 @@ class AdministratorController extends Controller
         ]);
     }
 
+    public static function getAdministratorUsersPage(): bool|array|string
+    {
+        $db = new Database();
+        $is_admin = $_SESSION["is_admin"];
+
+        if (!$is_admin){
+            header("location: /administrator-login");
+            return "";
+        } else {
+            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE is_verified = 1");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $providers = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumers = $result->fetch_all(MYSQLI_ASSOC);
+
+            return self::render(view: 'administrator-dashboard-users', layout: "admin-dashboard-layout", params: [
+                "providers"=>$providers,
+                "consumers"=>$consumers
+            ], layoutParams: [
+                "title" => "Users",
+                "admin" => [
+                    "name" => "Randima Dias"
+                ],
+                "active_link" => "users"
+            ]);
+        }
+    }
+
     public static function getAdministratorDuePaymentsPage(): bool|array|string
     {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
 
-        $stmt = $db->connection->prepare("SELECT s.profile_picture, sum(p.amount)/100 AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number, s.provider_nic FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $payments = $result->fetch_all(MYSQLI_ASSOC);
+        if (!$is_admin) {
+            header("location: /administrator-login");
+            return "";
+        } else{
+            $stmt = $db->connection->prepare("SELECT s.profile_picture, sum(p.amount)/100 AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number, s.provider_nic FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $payments = $result->fetch_all(MYSQLI_ASSOC);
 
-        return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [
-            'payments' => $payments
-        ], layoutParams: [
-            "title" => "Due Payments",
-            "admin" => [
-                "name" => "Randima Dias"
-            ],
-            "active_link" => "payments"
-        ]);
+            return self::render(view: 'administrator-dashboard-due-payments', layout: "admin-dashboard-layout", params: [
+                'payments' => $payments
+            ], layoutParams: [
+                "title" => "Due Payments",
+                "admin" => [
+                    "name" => "Randima Dias"
+                ],
+                "active_link" => "payments"
+            ]);
+        }
     }
 
     public static function getAdministratorAnalyticsPage(): bool|array|string
