@@ -499,6 +499,45 @@ public static function RequestForPharmacy():bool|array|string
         }
     }
 
+
+    public static function getSentRequestDetailsView(): bool|array|string
+    {
+        $nic =$_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        $id = $_GET["id"];
+//        var_dump($id);
+
+        if(!$nic || $userType !== "consumer"){
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+
+            $stmt = $db->connection->prepare("SELECT pr.request_id,p.pharmacy_name,pr.customer_remark,pr.prescription FROM  pharmacy_request pr INNER JOIN pharmacy p ON pr.provider_nic = p.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
+            $stmt->bind_param("si", $nic, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $sentRequest_details = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails-view', layout: "consumer-dashboard-layout",params:[
+            "sentRequest_details" => $sentRequest_details,
+        ], layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "pharmacy",
+            "title" => "Pharmacy"]);
+
+
+
+
+    }
+
 //CONSUMER'S PHARMACY DASHBOARD
 
     public static function getConsumerPharmacyOverview(): bool|array|string
@@ -617,7 +656,7 @@ public static function RequestForPharmacy():bool|array|string
     }
 
 //RETRIVING PHARMACY REQUEST DETAILS PAGE BY CONSUMER
-   public  static function getPharmacyRequestDetailsPage(): bool|array|string
+   public  static function getSentRequestDetailsPage(): bool|array|string
    {
        $nic = $_SESSION["nic"];
        if (!$nic){
@@ -631,13 +670,38 @@ public static function RequestForPharmacy():bool|array|string
            $result = $stmt->get_result();
            $consumer = $result->fetch_assoc();
 
-//           $stmt = $db->connection->prepare("SELECT pr.request_id,pr.total_amount,pr.advance_amount,pr.pharmacy_remark,pr.available_medicines FROM pharmacy_request pr WHERE pr.consumer_nic = ?");
-//           $stmt->bind_param("s",$nic);
-//           $stmt->execute();
-//           $result = $stmt->get_result();
-//           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-//
+           $stmt = $db->connection->prepare("SELECT pr.request_id,s.name,s.mobile_number,s.profile_picture,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE  consumer_nic = ? ORDER BY pr.date_time DESC  ");
+           $stmt->bind_param("s",$nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $consumer_request = $result->fetch_all(MYSQLI_ASSOC);
+
+
+           return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails', layout: 'consumer-dashboard-layout', params:[
+               "consumer_request" => $consumer_request
+           ],layoutParams: [
+               "consumer" => $consumer,
+               "title" => "Medicines",
+               "active_link" => "dashboard-medicines"
+           ]);
+       }
+
+   }
+
+   public static function getPharmacyReply(): bool|array|string
+   {
+       $nic = $_SESSION["nic"];
+       if (!$nic){
+           header("location: /login");
+           return "";
+       } else {
+           $db = new Database();
+           $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+           $stmt->bind_param("s", $nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $consumer = $result->fetch_assoc();
 
            $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic   INNER JOIN medicine_order m ON m.request_id = pr.request_id   WHERE pr.consumer_nic = ? AND m.status='unpaid' ORDER BY pr.date_time DESC ");
            $stmt->bind_param("s",$nic);
@@ -645,33 +709,15 @@ public static function RequestForPharmacy():bool|array|string
            $result = $stmt->get_result();
            $pharmacy_reply = $result->fetch_all(MYSQLI_ASSOC);
 
-
-           $stmt = $db->connection->prepare("SELECT pr.request_id,s.name,s.mobile_number,s.profile_picture,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.Sent_Request='unsent' AND consumer_nic = ? ORDER BY pr.date_time DESC  ");
-           $stmt->bind_param("s",$nic);
-           $stmt->execute();
-           $result = $stmt->get_result();
-           $consumer_request = $result->fetch_all(MYSQLI_ASSOC);
-
-//           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
-//           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic INNER  JOIN medicine_order m ON m.request_id = pr.request_id WHERE pr.consumer_nic = ?   ORDER BY pr.date_time DESC;");
-//           $stmt->bind_param("s",$nic);
-//           $stmt->execute();
-//           $result = $stmt->get_result();
-//           $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
-
-
-           return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails', layout: 'consumer-dashboard-layout', params:[
-//               "pharmacy_request_details" => $pharmacy_request_details,
-               "pharmacy_reply" => $pharmacy_reply,
-               "consumer_request" => $consumer_request
+           return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacyReply', layout: 'consumer-dashboard-layout', params:[
+               "pharmacy_reply" => $pharmacy_reply
            ],layoutParams: [
                "consumer" => $consumer,
-               "pharmacy_reply" => $pharmacy_reply,
                "title" => "Medicines",
                "active_link" => "dashboard-medicines"
            ]);
-       }
 
+       }
    }
 
 

@@ -74,14 +74,16 @@
 
 .consumer-services-pharmacy-pharmacyRequest-button
 {
+    position:absolute;
+    right: 1rem;
     background-color: #00005C;
     width: 3.8cm;
     height: 0.8cm;
     border: none;
     border-radius: 0.6rem;
     cursor: pointer;
-    margin-left: 1100px ;
-    margin-top:-700px;
+    /*margin-left: 500px ;*/
+    /*margin-top:-700px;*/
     color: white;
 
 }
@@ -92,14 +94,40 @@
     font-size: 1rem;
 }
 
+.consumer-services-pharmacy-pharmacyReply-button{
+    position: absolute;
+    right: 11rem;
+    background-color: #00005C;
+    height: 0.8cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+
+}
+
+.consumer-services-pharmacy-pharmacyReply-button a{
+    color: white;
+    font-size: 1rem;
+}
+
+
+
+
+
 .pharmacy-view-btn a
 {
     color: white;
 }
 
 .sent-request__container{
-    padding-top: 2rem;
-    padding-right: 4rem;
+    padding: 2rem;
+    position: relative;
+
+}
+.sent-request__container button{
+    /*display: flex;*/
+    /*flex-direction: row;*/
 }
 
 

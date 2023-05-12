@@ -10,6 +10,8 @@
 <div class="sent-request__container">
     <button class="consumer-services-pharmacy-pharmacyRequest-button"><a
                 href="/consumer-dashboard/services/pharmacy/request-details">Sent Requests</a></button>
+
+    <button class="consumer-services-pharmacy-pharmacyReply-button"><a href="/consumer-dashboard/services/pharmacy/pharmacy-reply">Pharmacy Reply</a></button>
 </div>
 
 
@@ -33,6 +35,7 @@
             <div  class='services-pharmacy-attributes' id='services-pharmacy-pharmacyViewButton'>
                 <button class='pharmacy-view-btn'><a href='/consumer-dashboard/services/pharmacy/view?id=$id'>View</a></button>
             </div>
+            
 
             <div  class='services-pharmacy-attributes' id='services-pharmacy-presUpload-btn'>
                 <button id='request-pharmacy-$id' data-pharmacyid='$id' data-pharmacyname='$pharmacy_name'  class='action-btn action-btn--request pharmacy-request'>Upload Prescription</button>
