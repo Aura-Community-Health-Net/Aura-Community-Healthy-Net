@@ -1,10 +1,10 @@
 <?php
 /**
- * @var array $doctor;
+ * @var $doctor;
  *
  */
 
-//print_r($doctor);
+//print_r($doctor);die();
 /*if (!isset($_GET['doctor-appointment-btn'])){
     $consumer_nic = $_SESSION['nic'];
 }*/
@@ -27,21 +27,22 @@
     <div class="doctor__card-details">
             <div class="doctor-container" id="doctor-container">
                 <?php foreach ($doctor as $value) {
-                    $nic = $value['provider_nic'];?>
-                    <div class="doctor-card" id="doctor-card">
-                        <img src="<?php echo $value['profile_picture']; ?>">
-                        <div class="consumer-dashboard-doctor__bottom__center__data" id="doctor-card">
-                            <h2><?php echo $value['name']; ?></h2>
-                            <h2 hidden> <?php echo $value['type']; ?></h2>
-                            <div>
-                                <p><?php echo $value['field_of_study']; ?></p>
+                    if($value['is_verified']){
+                        $nic = $value['provider_nic'];?>
+                        <div class="doctor-card" id="doctor-card">
+                            <img src="<?php echo $value['profile_picture']; ?>">
+                            <div class="consumer-dashboard-doctor__bottom__center__data" id="doctor-card">
+                                <h2><?php echo $value['name']; ?></h2>
+                                <h2 hidden> <?php echo $value['type']; ?></h2>
+                                <div>
+                                    <p><?php echo $value['field_of_study']; ?></p>
+                                </div>
+                                <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo $value['provider_nic']; ?>">
+                                    <button name="doctor-appointment-btn">Make Appointment</button>
+                                </a>
                             </div>
-                            <a href="/consumer-dashboard/services/doctor/profile?provider_nic=<?php echo $value['provider_nic']; ?>">
-                                <button name="doctor-appointment-btn">Make Appointment</button>
-                            </a>
                         </div>
-                    </div>
-                <?php } ?>
+                <?php } } ?>
             </div>
     </div>
 

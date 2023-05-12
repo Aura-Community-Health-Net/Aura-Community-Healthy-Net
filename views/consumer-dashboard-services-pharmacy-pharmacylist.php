@@ -18,12 +18,16 @@
 <div class='consumer-services-pharmacy-pharmacylist-Container'>
 
     <?php
-    foreach ($pharmacies as $pharmacy){
-        $pharmacy_name = $pharmacy['pharmacy_name'];
-        $mobile = $pharmacy['mobile_number'];
-        $id = $pharmacy['id'];
+    if(!$pharmacies){
+        echo "<div class='empty-pharmacies'>No nearby Pharmacies</div>";
+    }
+    else{
+        foreach ($pharmacies as $pharmacy){
+            $pharmacy_name = $pharmacy['pharmacy_name'];
+            $mobile = $pharmacy['mobile_number'];
+            $id = $pharmacy['id'];
 
-        echo "
+            echo "
          <tr data-pharmacyid='$id' data-pharmacyname = '$pharmacy_name'>
         <div class = 'services-pharmacy-pharmacyList'>
             <div class='services-pharmacy-attributes' id='services-pharmacy-pharmacyName'>$pharmacy_name
@@ -46,6 +50,8 @@
     </tr>
         
         ";
+        }
+
     }
     ?>
 </div>

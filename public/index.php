@@ -81,7 +81,9 @@ $app->router->get('/admin-dashboard/analytics', [AdministratorController::class,
 $app->router->get('/admin-dashboard/analytics/product-sellers-revenue-chart', [AdministratorController::class, 'getAdministratorProductSellersRevenueChart']);
 $app->router->get('/admin-dashboard/analytics/doctor-revenue-chart', [AdministratorController::class, 'getAdministratorDoctorRevenueChart']);
 $app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[AdministratorController::class,'getAdministratorPharmacyRevenueChart']);
+$app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [AdministratorController::class, 'getAdministratorCareRiderRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
+$app->router->get('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
 
 // For product-seller
 $app->router->get('/product-seller-dashboard', [DashboardController::class, 'getProductSellerDashboardPage']);
@@ -156,6 +158,7 @@ $app->router->post('/consumer-dashboard/services/care-rider/request/location',[C
 $app->router->post('/consumer-dashboard/services/care-rider/request/feedback',[CareRiderController::class,'addConsumerCareRiderFeedback']);
 //$app->router->get('/consumer-dashboard/providers-count',[DashboardController::class,'getProvidersCount']);
 
+
 //For Doctor
 $app->router->get('/doctor-dashboard', [DashboardController::class, 'getDoctorDashboardPage']);
 //$app->router->get('/doctor-dashboard', [DashboardController::class, 'DoctorDashboard']);
@@ -177,7 +180,7 @@ $app->router->get('/doctor-dashboard/profile', [ProfileController::class, 'getDo
 
 //For Consumer
 $app->router->get('/consumer-dashboard', [DashboardController::class, 'getConsumerDashboardPage']);
-//$app->router->get('/consumer-dashboard/feedback',[AnalyticsController::class,'getConsumerFeedbackPage']);
+$app->router->post('/consumer-dashboard/events',[DashboardController::class,'getUpcomingEvents']);
 $app->router->get('/consumer-dashboard/analytics',[AnalyticsController::class,'getConsumerAnalyticsPage']);
 
 $app->router->get('/consumer-dashboard/products', [ProductsController::class, 'getConsumerProductsPage']);
@@ -213,7 +216,7 @@ $app->router->get('/consumer-dashboard/services/pharmacy/medicines-checkout',[Me
 $app->router->post('/consumer-dashboard/services/pharmacy/medicines-checkout',[MedicinesController::class,'getConsumerMedicinesPayment']);
 
 $app->router->get('/consumer-dashboard/services/pharmacy/view',[MedicinesController::class,'getConsumerPharmacyOverview']);
-$app->router->get('/consumer-dashboard/services/care-rider/request/sent',[CareRiderController::class,'getCareRideRequestSentPage']);
+$app->router->get('/consumer-dashboard/services/care-rider/request/successful',[CareRiderController::class,'getCareRideRequestSuccessPage']);
 $app->router->post('/consumer-dashboard/products-overview/feedback', [ProductsController::class, 'addProductFeedback']);
 $app->router->post('/consumer-dashboard/services/pharmacy/view/feedback',[MedicinesController::class,'addPharmacyFeedback']);
 
@@ -228,6 +231,7 @@ $app->router->get('/verify-DoctorFees-amount', [PaymentsController::class, 'calc
 $app->router->get('/verify-medicines-amount',[PaymentsController::class,'ChargeForMedicine']);
 $app->router->get('/checkout/success', [PaymentsController::class, 'paymentSuccess']);
 $app->router->get('/medicines-checkout/success',[PaymentsController::class,'medicinePaymentSuccess']);
+$app->router->get('/doctor/payment/success', [PaymentsController::class, 'DoctorPaymentSuccess']);
 //  Run the application
 $app->run();
 

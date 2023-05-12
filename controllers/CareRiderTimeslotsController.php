@@ -50,7 +50,7 @@ class CareRiderTimeslotsController extends Controller
     {
         $nic = $_SESSION['nic'];
         $providerType = $_SESSION['user_type'];
-        if(!$nic || $providerType !== "care-rider"){
+        if (!$nic || $providerType !== "care-rider") {
             header("location: /provider-login");
             return "";
         }
@@ -62,47 +62,44 @@ class CareRiderTimeslotsController extends Controller
         $result = $stmt->get_result();
         $care_rider = $result->fetch_assoc();
 
-
         if (!$care_rider["is_verified"]) {
             return "
-        <style>
-        .verification-error{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            font-size: 4rem;
-            color: rgba(0, 0, 0, 0.3);
+    <style>
+    .verification-error{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 4rem;
+        color: rgba(0, 0, 0, 0.3);
+    }
+   </style>
+    <div class='verification-error'>You're not verified, Please check later</div>";
         }
-       </style>
-        <div class='verification-error'>You're not verified, Please check later</div>";
-        }
-
 
         $errors = [];
         if (empty($errors)) {
+            $fromTime = date("h:i A", strtotime($_POST["fromTime"]));
+            $toTime = date("h:i A", strtotime($_POST["toTime"]));
 
             $stmt = $db->connection->prepare("INSERT INTO care_rider_time_slot (
-                              date,
-                              from_time,
-                              to_time,
-                            request_id,
-                              provider_nic
-                              
-                              ) VALUES ( ?, ?, ?,null,? )");
+                      date,
+                      from_time,
+                      to_time,
+                      request_id,
+                      provider_nic
+                    ) VALUES (?, ?, ?, null, ?)");
 
-            $stmt->bind_param("ssss", $_POST["date"], $_POST["fromTime"], $_POST["toTime"],$nic);
+            $stmt->bind_param("ssss", $_POST["date"], $fromTime, $toTime, $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             header("location: /care-rider-dashboard/timeslots");
             return "";
-
         } else {
             return self::render(view: 'care-rider-dashboard-timeslots', layout: "care-rider-dashboard-layout", layoutParams: ['errors' => $errors]);
         }
     }
-
     public static function deleteCareRiderTimeSlots(): array|bool|string
     {
         $nic = $_SESSION['nic'];

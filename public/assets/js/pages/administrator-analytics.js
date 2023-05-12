@@ -2,8 +2,9 @@ const adminProductSellersRevenueChartCanvas = document.querySelector("#admin-pro
 const administratorAnalyticsDropdown = document.querySelector("#administrator-analytics-dropdown");
 const adminPharmaciesRevenueChartCanvas = document.querySelector("#admin-pharmacy-revenue-chart");
 const adminDoctorRevenueChartCanvas = document.querySelector("#admin-doctor-revenue-chart");
+const adminCareRiderRevenueChartCanvas = document.querySelector("#admin-care-rider-revenue-chart");
 let adminProductSellersRevenueChart,adminPharmacyRevenueChart;
-let adminDoctorRevenueChart;
+let adminDoctorRevenueChart,adminCareRiderRevenueChart;
 
 async function getProductSellerRevenueData(period = "this_month"){
     try{
@@ -25,10 +26,10 @@ async function getProductSellerRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Product Sellers Revenue',
                     data: revenues,
-                    borderColor: 'rgb(252, 79, 0)',
-                    backgroundColor: 'rgba(252, 79, 0, 0.5)',
+                    borderColor: 'rgb(249, 217, 73)',
+                    backgroundColor: 'rgba(249, 217, 73, 0.5)',
                     fill: 'origin'
                 }]
             },
@@ -65,7 +66,7 @@ async function getPharmacyRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Pharmacy Revenue',
                     data: revenues,
 
                     borderColor: 'rgb(54, 162, 235)',
@@ -107,7 +108,7 @@ async function getDoctorRevenueData(period = "this_month"){
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Doctors Revenue',
                     data: revenues,
                     borderColor: 'rgb(252, 79, 0)',
                     backgroundColor: 'rgba(252, 79, 0, 0.5)',
@@ -128,12 +129,55 @@ async function getDoctorRevenueData(period = "this_month"){
 
 }
 
+async function getCareRiderRevenueChartData(){
+    try{
+        const result = await fetch("/admin-dashboard/analytics/care-rider-revenue-chart?period=this_year");
+        const data = await result.json();
+        console.log(data)
+        const dates = data.map((d)=> {
+            return d.date;
+
+        })
+        const revenues = data.map((d)=> {
+            return d.revenue;
+        })
+
+        adminCareRiderRevenueChart = new Chart(adminCareRiderRevenueChartCanvas, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Care Riders Revenue',
+                    data: revenues,
+                    borderColor: 'rgb(20, 240, 60)',
+                    backgroundColor: 'rgba(20, 240, 60, 0.5)',
+                    fill: 'origin'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+
+
+    } catch (e){
+        console.log(e)
+    }
+}
+
       
 
 window.addEventListener("load", async () => {
     await getProductSellerRevenueData();
     await getDoctorRevenueData();
     await getPharmacyRevenueData();
+    await getCareRiderRevenueChartData();
 })
 administratorAnalyticsDropdown.addEventListener("change", async () => {
     if (adminProductSellersRevenueChart){
@@ -146,8 +190,14 @@ administratorAnalyticsDropdown.addEventListener("change", async () => {
     if(adminPharmacyRevenueChart){
         adminPharmacyRevenueChart.destroy();
     }
+
+
+    if( adminCareRiderRevenueChart){
+        adminCareRiderRevenueChart.destroy();
+    }
     await getProductSellerRevenueData(administratorAnalyticsDropdown.value);
     await getDoctorRevenueData(administratorAnalyticsDropdown.value);    
     await getPharmacyRevenueData(administratorAnalyticsDropdown.value);
+    await getDoctorRevenueData(administratorAnalyticsDropdown.value);
 })
 

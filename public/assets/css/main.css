@@ -62,6 +62,7 @@
 @import "pages/consumer-cart.css";
 @import "pages/administrator-analytics.css";
 @import "pages/contact-us.css";
+@import "pages/admin-users.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
@@ -76,7 +77,7 @@
 @import "pages/care-rider-dashboard-new-requests.css";
 @import "pages/consumer-dashboard-services-care-rider-requests.css";
 @import "pages/consumer-dashboard-payment-success.css";
-
+@import "pages/consumer-dashboard-care-rider-request-success.css";
 *,
 *::after,
 *::before {

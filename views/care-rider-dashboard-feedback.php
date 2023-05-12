@@ -14,7 +14,7 @@
 
     <?php
     if (empty($feedback)) {
-        echo "<div class='Not-verified-care-rider-feedback'>No Feedback Here </div>";
+        echo "<div class='Not-verified-care-rider-feedback'>No Feedback Yet </div>";
     } else {
     foreach ($feedback as $value) { ?>
         <div class="consumer-feedback">

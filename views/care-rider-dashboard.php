@@ -9,7 +9,7 @@
  * @var $request_details ;
  * @var $count_request ;
  * @var $date ;
- * @var $care_rider_time_slot;
+ * @var $care_rider_time_slot ;
  *
  *
  */
@@ -30,13 +30,11 @@ if (!$care_rider['is_verified']) {
     <div class="care-rider-top-container">
 
         <div class="care-rider-top-left">
-            <h3>New Requests List</h3>
+            <h3 style="text-align: center;margin: 1rem;padding: 1rem;">New Requests List</h3>
             <table class="care-rider-appointment-list__item__scroll">
                 <?php
 
-                if (!$care_rider['is_verified']) {
-                    echo "<div class= 'Not-verified-care-rider'>No Request Yet</div>";
-                } else {
+                if ($request_confirm) {
                     foreach ($request_confirm as $value) { ?>
                         <tr class="care-rider-request-list__item">
                             <td><img src="<?php echo $value['profile_picture'] ?>" alt=""></td>
@@ -48,7 +46,12 @@ if (!$care_rider['is_verified']) {
                         </tr>
                         <?php
                     }
-                } ?>
+                } else {
+                    echo "
+                    <h2 class='empty-product-orders'>No request yet</h2>
+                    ";
+                }
+                ?>
 
             </table>
             <div><a href='/care-rider-dashboard/new-requests'>
@@ -58,12 +61,9 @@ if (!$care_rider['is_verified']) {
 
         </div>
         <div class="care-rider-top-center">
-            <h3>Newest Request Preview</h3>
+            <h3 style="text-align: center;margin: 1rem;padding: 1rem;">Newest Request Preview</h3>
             <?php
-
-            if (!$care_rider['is_verified']) {
-                echo "<div class= 'Not-verified-care-rider'>No Request Yet</div>";
-            } else {
+            if ($request_details) {
 
                 if ($count_request['COUNT(done)'] > 0) { ?>
                     <div class="care-rider-dashboard__request">
@@ -79,7 +79,7 @@ if (!$care_rider['is_verified']) {
                         <div class="care-rider-order-details">
                             <div>
                                 <h5>Date</h5>
-                                <h5><?php echo $request_details['MAX(care_rider_time_slot.date)']; ?> </h5>
+                                <h5><?php echo $request_details['date']; ?> </h5>
                             </div>
                             <div>
                                 <h5>Time</h5>
@@ -89,15 +89,20 @@ if (!$care_rider['is_verified']) {
                     </div>
                     <?php
                 }
-            } ?>
+            } else {
+                echo " <h2  class='empty-product-orders'>No request yet</h2>";
+            }
+
+            ?>
         </div>
     </div>
     <div class="care-rider-bottom-container">
         <div class="care-rider-dashboard-bottom-left">
-            <h3>Request Count</h3>
+            <h3 style="text-align: center;margin: 1rem;padding: 1rem;">Request Count</h3>
+
             <div class="care-rider-request-details">
                 <h3>New Requests</h3>
-                <h1 style="color: #5BC849">9 ?></h1>
+                <h1 style="color: #5BC849"><?php echo $count_request['COUNT(done)']; ?></h1>
             </div>
             <div class="care-rider-request-details">
                 <h3>All Requests</h3>
@@ -105,12 +110,16 @@ if (!$care_rider['is_verified']) {
             </div>
 
         </div>
+
+
         <div class="care-rider-dashboard-bottom-right">
-            <h3>Analytics</h3>
-            <canvas id="revenue-chart">   </canvas>
+            <h3 style="text-align: center;margin: 1rem;padding: 1rem;">Analytics</h3>
+            <div class="care-rider-analytics">
+                <canvas id="revenue-chart"></canvas>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
@@ -118,16 +127,16 @@ if (!$care_rider['is_verified']) {
 <script>
     const revenueRideChartCanvas = document.querySelector("#revenue-chart");
 
-    async function getRideRevenueData(period="this_month"){
-        try{
+    async function getRideRevenueData(period = "this_month") {
+        try {
             const result = await fetch("/care-rider-dashboard/analytics/revenue-chart?period=this_month");
             const data = await result.json();
             console.log(data)
-            const dates = data.map((d)=> {
+            const dates = data.map((d) => {
                 return d.date;
 
             })
-            const revenues = data.map((d)=> {
+            const revenues = data.map((d) => {
                 return d.revenue;
             })
 
@@ -153,13 +162,12 @@ if (!$care_rider['is_verified']) {
             });
 
 
-
-
-        } catch (e){
+        } catch (e) {
             console.log(e)
         }
     }
-    window.addEventListener("load",async () => {
+
+    window.addEventListener("load", async () => {
         await getRideRevenueData();
 
     })

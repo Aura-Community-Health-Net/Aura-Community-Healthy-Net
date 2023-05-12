@@ -34,6 +34,11 @@
     padding: 2rem 2rem;
 }
 
+.care-rider__card-details--empty {
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+}
+
 
 .care-rider-card {
     display: flex;
@@ -42,7 +47,7 @@
     justify-content: center;
     background-color: #EFEEFD ;
     border-radius: 1rem;
-    box-shadow: 0 80px 60px rgba(0, 0, 0, 0.2);;
+    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.4);
 }
 
 .care-rider-card > div {
@@ -63,7 +68,7 @@
     cursor: pointer;
 }
 
-button {
+.care-rider-button {
     border: none;
     outline: none;
     /*background-color: var(--color-primary);*/
@@ -111,8 +116,11 @@ button {
 
 }
 
-/*.care-rider-search{*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    background-color: transparent;*/
-/*}*/
+.empty-care-riders{
+    text-align: center;
+    color: #00005C;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+

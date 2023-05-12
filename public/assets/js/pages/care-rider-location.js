@@ -23,15 +23,15 @@ const locationButtons = document.querySelectorAll(".location-btn");
 
 let map;
 let MapMarker;
-let newMarker;
+let riderMarker, pickupMarker, dropMarker;
 let directionsService;
 let directionsRenderer;
-let polyline;
-let care_rider_Position;
+let riderToPickupPolyline, pickupToDropPolyline
+let initialLat, initialLng;
 
 async function initMap(lat, lng) {
-    //@ts-ignore
-    care_rider_Position = {lat, lng}
+    initialLat = lat;
+    initialLng = lng;
     const {Map: GoogleMap} = await google.maps.importLibrary("maps");
     const {Marker} = await google.maps.importLibrary("marker");
 
@@ -47,10 +47,10 @@ async function initMap(lat, lng) {
     directionsRenderer.setMap(map);
 
 
-    const marker1 = new Marker({
+    riderMarker = new Marker({
         map: map,
         position: {lat: lat, lng: lng},
-        draggable: false, title: "destination", icon: {
+        draggable: false, title: "current-location", icon: {
             url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         }
     })
@@ -61,7 +61,7 @@ if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
-        // console.log("Latitude: " + lat + ", Longitude: " + lng);
+        console.log("Latitude: " + lat + ", Longitude: " + lng);
         initMap(lat, lng);
     }, function (error) {
         console.error("Error getting location:", error);
@@ -75,75 +75,147 @@ if (navigator.geolocation) {
 function attachLocationButtonListener(button) {
     button.addEventListener("click", function () {
 
-        const position = {
+        const pickupPosition = {
             lat: Number(button.dataset.from_lat),
             lng: Number(button.dataset.from_lng)
         }
-        // const position2 = {
-        //     to_lat: Number(button.dataset.to_lat),
-        //     to_lng: Number(button.dataset.to_lng)
-        // }
 
-        console.log(position);
-        map.panTo(position)
-        // map.panTo(position2)
-        if (newMarker) {
-            newMarker.setPosition(position);
-            // newMarker.setPosition(position2);
+        const dropPosition = {
+            lat: Number(button.dataset.to_lat),
+            lng: Number(button.dataset.to_lng)
+        }
+
+
+        console.log(pickupPosition);
+        console.log(dropPosition)
+        console.log({
+            lat: initialLat,
+            lng: initialLng
+        })
+        map.panTo(pickupPosition)
+        // map.panTo(pickupPosition2)
+        if (pickupMarker) {
+            pickupMarker.setPosition(pickupPosition);
+            // newMarker.setPosition(pickupPosition2);
         } else {
-            newMarker = new MapMarker({
+            pickupMarker = new MapMarker({
                 map,
-                position,
-                // position2,
-                draggable: false, title: "destination", icon: {
+                position: pickupPosition,
+                // pickupPosition2,
+                draggable: false, title: "consumer-pickup", icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+                }
+            })
+        }
+
+        if (dropMarker) {
+            dropMarker.setPosition(pickupPosition);
+            // newMarker.setPosition(pickupPosition2);
+        } else {
+            dropMarker = new MapMarker({
+                map,
+                position: dropPosition,
+                // pickupPosition2,
+                draggable: false, title: "consumer-destination", icon: {
                     url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
                 }
             })
         }
-        clearPolyline()
-        drawPolyline(care_rider_Position, position)
+
+
+        clearPolyline(riderToPickupPolyline)
+        drawPolyline({lat: initialLat, lng: initialLng}, pickupPosition, "riderToPickup")
+
+
+        clearPolyline(pickupToDropPolyline)
+        drawPolyline(pickupPosition, dropPosition, "pickupToDrop")
+
         // drawPolyline(position1,position2)
     });
 }
 
-function drawPolyline(origin, destination) {
+/**
+ * @param {lat: number;lng: number} origin
+ * @param {lat: number;lng: number} destination
+ * @param {"riderToPickup"|"pickupToDrop"} mode
+ */
+function drawPolyline(origin, destination, mode = "riderToPickup") {
     // Calculate the route using the DirectionsService
     // const directionsService = new google.maps.DirectionsService();
-    const request = {
-        origin,
-        destination,
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK) {
-            const distance = result.routes[0].legs[0].distance.value; // Get the driving distance in meters
-            console.log(`Driving distance: ${distance} meters`);
-            const points = [];
-            const legs = result.routes[0].legs;
-            for (let i = 0; i < legs.length; i++) {
-                const steps = legs[i].steps;
-                for (let j = 0; j < steps.length; j++) {
-                    const nextSegment = steps[j].path;
-                    for (let k = 0; k < nextSegment.length; k++) {
-                        points.push(nextSegment[k]);
+
+    if (mode === "riderToPickup") {
+        const request = {
+            origin,
+            destination,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, (result, status) => {
+            if (status === google.maps.DirectionsStatus.OK) {
+                const distance = result.routes[0].legs[0].distance.value; // Get the driving distance in meters
+                console.log(`Driving distance: ${distance} meters`);
+                const points = [];
+                const legs = result.routes[0].legs;
+                for (let i = 0; i < legs.length; i++) {
+                    const steps = legs[i].steps;
+                    for (let j = 0; j < steps.length; j++) {
+                        const nextSegment = steps[j].path;
+                        for (let k = 0; k < nextSegment.length; k++) {
+                            points.push(nextSegment[k]);
+                        }
                     }
                 }
+                // Create the Polyline object
+                riderToPickupPolyline = new google.maps.Polyline({
+                    path: points,
+                    geodesic: true,
+                    strokeColor: '#0000FF',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+                // Set the Polyline object on the map
+                riderToPickupPolyline.setMap(map);
             }
-            // Create the Polyline object
-            polyline = new google.maps.Polyline({
-                path: points,
-                geodesic: true,
-                strokeColor: '#FF0000',
-                strokeOpacity: 1.0,
-                strokeWeight: 2
-            });
-            // Set the Polyline object on the map
-            polyline.setMap(map);
-        }
-    });
+        });
+    }
+
+    if (mode === "pickupToDrop") {
+        const request = {
+            origin,
+            destination,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, (result, status) => {
+            if (status === google.maps.DirectionsStatus.OK) {
+                const distance = result.routes[0].legs[0].distance.value; // Get the driving distance in meters
+                console.log(`Driving distance: ${distance} meters`);
+                const points = [];
+                const legs = result.routes[0].legs;
+                for (let i = 0; i < legs.length; i++) {
+                    const steps = legs[i].steps;
+                    for (let j = 0; j < steps.length; j++) {
+                        const nextSegment = steps[j].path;
+                        for (let k = 0; k < nextSegment.length; k++) {
+                            points.push(nextSegment[k]);
+                        }
+                    }
+                }
+                // Create the Polyline object
+                pickupToDropPolyline = new google.maps.Polyline({
+                    path: points,
+                    geodesic: true,
+                    strokeColor: 'green',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+                // Set the Polyline object on the map
+                pickupToDropPolyline.setMap(map);
+            }
+        });
+    }
+
 }
 
-function clearPolyline() {
+function clearPolyline(polyline) {
     // Check if the Polyline object exists and remove it from the map
     if (polyline) {
         polyline.setMap(null);

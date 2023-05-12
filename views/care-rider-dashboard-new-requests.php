@@ -25,9 +25,7 @@ $confirm = 2;
             </thead>
 
             <?php
-            if (!$care_rider['is_verified']) {
-                echo "<tbody class='care_rider-request__left'><tr><td colspan='6' class='Not-verified-care-rider-new-requests'>No Request Yet</td></tr></tbody>";
-            } else {
+            if ($request_details)  {
                 foreach ($request_details as $value) {
                     $profile_picture = $value["profile_picture"];
                     $consumer_name = $value["name"];
@@ -56,7 +54,7 @@ $confirm = 2;
                                 <td><p>$date</p></td>
                                 <td><p>$mobile_number</p></td>    
                                 <td>
-                                    <button style='color: black; background-color: #FFFFFF' type='button' data-from_lat=$from_lat data-from_lng=$from_lng data-to_lat=$to_lat data-to_lng=$to_lng class='action-btn action-btn--location location-btn'> 
+                                    <button style='color: black; background-color: #FFFFFF' type='button' data-from_lat='$from_lat' data-from_lng='$from_lng' data-to_lat='$to_lat' data-to_lng='$to_lng' class='action-btn action-btn--location location-btn'> 
                                         <i class='fa-solid fa-location-dot'></i>
                                     </button>
                                 </td> 
@@ -81,6 +79,11 @@ $confirm = 2;
                                             </tbody>
                                     ";
                         }  }
+            else {
+                {
+                    echo "<tbody class='care_rider-request__left'><tr><td colspan='6' class='Not-verified-care-rider-new-requests'>No Request Yet</td></tr></tbody>";
+                }
+            }
                                         ?>
 
                 </table>

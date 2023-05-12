@@ -110,21 +110,9 @@
 
             </div>
 
-
-
-            <li>
-                <a href="/consumer-dashboard/analytics">
-                    <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
-                    <span class="nav-title">Analytics</span>
-                    </button>
-                </a>
-
-            </li>
-
             <li>
                 <a href="/consumer-dashboard/feedback">
-                    <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
+                    <button class="navbtn <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
                     <span class="nav-title">Feedback</span>
                     </button>
@@ -134,7 +122,7 @@
 
             <li>
                 <a href="/consumer-dashboard/profile">
-                    <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                    <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav-title">Profile</span>
                     </button>
@@ -144,7 +132,7 @@
 
             <li class="logout">
                 <form action="/logout" method="post">
-                    <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                    <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                     <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
                     <span class="nav-title">Logout</span>

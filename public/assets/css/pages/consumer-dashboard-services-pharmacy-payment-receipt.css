@@ -1,6 +1,7 @@
 .consumer-pharmacy-neworders-advanceinfo
 {
     background-color:#EFEEFD;
+<<<<<<< HEAD
     /*margin-left: 300px;*/
     margin: 80px 9rem;
     display: flex;
@@ -8,6 +9,11 @@
     height:500px ;
     border-radius: 1rem;
     /*padding: 3rem;*/
+=======
+    border-radius: 1rem;
+    padding: 3rem;
+    margin: 2rem 8rem;
+>>>>>>> 7bfe5a0b48dcc02550b10fcb0439a150877777c6
 }
 
 
@@ -194,10 +200,7 @@
 
 .pharmacy_request_details
 {
-    background-color: #D9D9F9;
-    /*padding-left:9rem;*/
-    /*padding-bottom: 1rem;*/
-    /*margin-bottom: 1rem;*/
+
 
     margin: 50px auto;
     width: 50rem;
@@ -232,4 +235,10 @@
     padding: 0.3rem;
     width: 15rem;
     border-radius: 8px;
+}
+
+
+.pharmacy-request__left__background{
+    display: flex;
+    justify-content: center;
 }

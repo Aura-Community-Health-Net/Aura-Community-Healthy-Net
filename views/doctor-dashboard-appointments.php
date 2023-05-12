@@ -7,7 +7,7 @@
 //$provider_nic = $_SESSION['nic'];
 
 
-//print_r($appointments_details[0]);die();
+//print_r($appointments_details);die();
 $done = 1;
 ?>
 <?php if(!$doctor['is_verified']) {?>
@@ -15,6 +15,9 @@ $done = 1;
 <div class="doctor-appointments_container" xmlns="http://www.w3.org/1999/html">
     <div class="doctor-appointments__left__container">
         <form method="post">
+            <?php if(!$appointments_details){
+                echo '<h2>No Appointments Yet</h2>';
+            }else{ ?>
                 <table style="width:100%">
                     <thead class="doctor-appointments__left__head">
                             <tr class="doctor-appointments__left__data">
@@ -28,6 +31,7 @@ $done = 1;
                     </thead>
 
 <!--                <div class="doctor-appointments__left__background">-->
+
 
                     <?php foreach ($appointments_details as $value) { ?>
 
@@ -67,6 +71,7 @@ $done = 1;
 
 <!--                </div>-->
                 </table>
+        <?php } ?>
         </form>
 
     </div>

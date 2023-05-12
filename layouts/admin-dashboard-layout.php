@@ -4,6 +4,7 @@
  * @var array $admin
  * @var string $active_link
  */
+
 ?>
 
 <!doctype html>
@@ -79,15 +80,24 @@
                 <li>
                     <a href="/admin-dashboard/new-registrations"><button
                             class="navbtn <?php echo $active_link === 'new-registrations' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
+                            <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
                             <span class="nav-title">Registrations</span>
                         </button>
                     </a>
                 </li>
 
                 <li>
+                    <a href="/admin-dashboard/users"><button
+                                class="navbtn <?php echo $active_link === 'users' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                            <span class="nav-title">Users</span>
+                        </button>
+                    </a>
+                </li>
+
+                <li>
                     <a href="/admin-dashboard/due-payments"><button
-                                class="navbtn" <?php echo $active_link === 'payments' ? 'active' : '' ?>">
+                                class="navbtn <?php echo $active_link === 'payments' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             <span class="nav-title">Payments</span>
                         </button>
@@ -96,7 +106,7 @@
 
                 <li>
                     <a href="/admin-dashboard/analytics">
-                        <button class="navbtn" <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
                         <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
                         <span class="nav-title">Analytics</span>
                         </button>
@@ -105,7 +115,7 @@
 
                 <li>
                     <a href="/admin-dashboard/feedback">
-                        <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                             <span class="nav-title">Feedback</span>
                         </button>
@@ -114,7 +124,7 @@
 
                 <li class="logout">
                     <a href="/administrator-login">
-                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-right-from-bracket"></i></span>
                         <span class="nav-title">Logout</span>

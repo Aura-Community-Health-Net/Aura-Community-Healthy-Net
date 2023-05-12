@@ -99,7 +99,7 @@
                 <a href="/doctor-dashboard/patients">
                     <button id="doctor-patients-btn"
                             class="navbtn" ">
-                    <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
+                    <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
                     <span class="nav-title">Patients</span>
                     </button>
                 </a>
@@ -122,7 +122,7 @@
                     <button id="doctor-feedback-btn"
                             class="navbtn">
                     <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></i></span>
-                    <span class="nav-title">Feedbacks</span>
+                    <span class="nav-title">Feedback</span>
                     </button>
                 </a>
 

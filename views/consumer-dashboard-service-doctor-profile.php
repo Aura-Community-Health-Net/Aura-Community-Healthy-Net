@@ -37,6 +37,11 @@ $provider_nic = $_GET['provider_nic'];
                             </div>
                             <div class="consumer-dashboard-doctor-profile__top__right__timeslot">
                                 <table id="doctor-available-slot">
+                                    <thead>
+                                    <th>Date</th>
+                                    <th>From Time</th>
+                                    <th>To Time</th>
+                                    </thead>
                                     <?php foreach ($time_slot as $value) { ?>
                                         <tr>
                                             <td hidden><?php echo date('l', strtotime($value['date'])); ?></td>
@@ -54,7 +59,7 @@ $provider_nic = $_GET['provider_nic'];
                             <input name="destination-lat" id="destination-lat" style="opacity: 0">
                             <input name="destination-lng" id="destination-lng" style="opacity: 0">
                             <div class="consumer-dashboard-doctor-profile__top__right__location">
-                                <p>Add Location</p>
+                                <p><b>Add Location</b></p>
                                 <div>
                                     <input type="text" placeholder="Enter the address" class="doctor-input-location" id="address">
                                     <button onclick="findAddress()" type="button" id="doctor-location-search">Search</button>
@@ -80,14 +85,19 @@ $provider_nic = $_GET['provider_nic'];
             <tr>
                 <td>
                     <div class="consumer-dashboard-doctor-profile__bottom__left">
+                        <?php if(!$feedback){
+                            echo '<h2>No Feedback Yet</h2>';
+                        }else{ ?>
                         <?php foreach ($feedback as $value) { ?>
                             <div class="consumer-dashboard-doctor-profile__bottom__left__data">
-                                <img src="<?php echo $value['profile_picture'] ?>">
-                                <h3><b><?php echo $value['name'] ?></b></h3>
-                                <h4><?php echo $value['date_time'] ?></h4>
+                                <div style="display: flex;flex-direction: row;gap: 1rem;justify-content: center;align-items: center">
+                                    <img src="<?php echo $value['profile_picture'] ?>" alt="">
+                                    <h3><b><?php echo $value['name'] ?></b></h3>
+                                    <p><?php echo $value['date_time'] ?></p>
+                                </div>
                                 <p><?php echo $value['text'] ?></p>
                             </div>
-                        <?php } ?>
+                        <?php } } ?>
                     </div>
                 </td>
                 <td>
@@ -96,7 +106,7 @@ $provider_nic = $_GET['provider_nic'];
                         <form action="/consumer-dashboard/services/doctor/profile-feedback?provider_nic=<?php echo $_GET['provider_nic']; ?>"
                               method="POST">
                             <textarea name="doctor-feedback" class="doctor-feedback"> </textarea>
-                            <button name="doctor-feedback-btn">Submit</button>
+                            <button class="doctor-feedback-btn" name="doctor-feedback-btn">Submit</button>
                         </form>
                     </div>
                 </td>
