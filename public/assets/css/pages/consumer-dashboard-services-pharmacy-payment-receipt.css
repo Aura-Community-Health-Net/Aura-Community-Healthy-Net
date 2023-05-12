@@ -173,8 +173,9 @@
     width: 300px;
     justify-content: center;
     display: flex;
-    margin: 0 auto;
+    margin: 50px auto;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 
 }
 
@@ -198,7 +199,10 @@
     /*padding-bottom: 1rem;*/
     /*margin-bottom: 1rem;*/
 
-    margin: 0 auto;
+    margin: 50px auto;
+    width: 50rem;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 
