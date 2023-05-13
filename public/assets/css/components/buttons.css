@@ -87,6 +87,23 @@
 
 }
 
+.form-submit-btn{
+    background-color: #0002A1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    margin-top: 25px;
+    width: 5rem;
+    height: 2rem;
+    position: absolute;
+    right: 2rem;
+}
+
 /*#services-pharmacy-presUpload-btn{*/
 
 

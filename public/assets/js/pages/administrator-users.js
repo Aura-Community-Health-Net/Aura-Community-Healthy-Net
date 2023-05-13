@@ -48,7 +48,7 @@ function attachUpdateButtonListener(button){
         updateUserModal.innerHTML = `
          <h3>Update User information for ${userName}</h3>
         <div class="modal-actions">
-            <form class="user-update-form" action="/admin-dashboard/users/update?userId=${userId}" method="post">
+            <form class="user-update-form" action="/admin-dashboard/consumers/update?userId=${userId}" method="post">
                
                 <label class="form-input__label" for="">NIC</label>
                 <input  class="form-input__input" type="text" name="nic" value="${button.dataset.usernic}">

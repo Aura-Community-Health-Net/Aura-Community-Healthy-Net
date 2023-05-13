@@ -63,6 +63,7 @@
 @import "pages/administrator-analytics.css";
 @import "pages/contact-us.css";
 @import "pages/admin-users.css";
+@import "pages/user-agreement.css";
 
 /* Importing Layouts */
 @import "layout/internal-dashboard.css";
