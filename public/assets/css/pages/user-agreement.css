@@ -20,3 +20,22 @@
 .user-agreement-topic{
     margin-block: 1rem;
 }
+
+.about-us-container{
+    background-color: #EFEEFD;
+    margin: 5rem 20rem;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.about-us-container h2{
+    color: #00005C;
+    margin-block: 1rem;
+    text-align: center;
+}
+
+.about-us-container h3{
+    color: #00005C;
+    margin-block: 1rem;
+    text-align: center;
+}
