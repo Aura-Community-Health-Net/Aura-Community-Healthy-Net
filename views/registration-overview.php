@@ -57,7 +57,7 @@
         if (!$nic){
             echo "<a class='login-link' href='/provider-login'>Log in as Provider</a>";
         } else {
-            echo "<a class='login-link'> You are logged in as $nic </a>";
+            echo "<a class='login-link' href='#'> You are logged in as $nic </a>";
         }
         ?>
     </div>

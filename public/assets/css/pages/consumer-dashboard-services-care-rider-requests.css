@@ -81,6 +81,11 @@
     left: -6.5rem;
     margin-block: 1rem;
 }
+.care-rider-search-location-button{
+    background-color: #00005C;
+    border-radius: 0.2rem;
+}
+
 .care-rider-pickup-location {
     padding: 0.5rem;
     margin-right: 105px;

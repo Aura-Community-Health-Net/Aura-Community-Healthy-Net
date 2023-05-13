@@ -153,7 +153,7 @@
     <div class="provider-signup-form__bottom">
         <div class="policy">
             <input type="checkbox" name="ua" required>
-            <p>I have read and agree the </p> <span><a href="#"> Terms and Conditions and Privacy Policy</a></span>
+            <p>I have read and agree the </p> <span><a href="/terms-conditions-and-user-agreements"> Terms and Conditions and Privacy Policy</a></span>
         </div>
         <?php
         if (isset($errors) && isset($errors["ua"])) {

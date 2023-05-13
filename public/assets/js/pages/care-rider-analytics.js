@@ -1,6 +1,6 @@
-const revenueRideChartCanvas = document.querySelector("#revenue-chart");
-const requestCountCanvas = document.querySelector("#request-count-chart");
-
+const revenueRideChartCanvas = document.querySelector("#care-rider-revenue-chart");
+const requestCountCanvas = document.querySelector("#care-rider-request-count-chart");
+const careRiderAnalyticsDropdown = document.querySelector("#care-rider-analytics-dropdown");
 // const careRiderAnalyticsDropdown = document.querySelector("#care-rider-analytics-dropdown");
 
 let revenueRideChart,requestCountChart;
@@ -90,6 +90,24 @@ async function getRequestCountData(period = "this_month"){
 
 window.addEventListener("load",async () => {
     await getRideRevenueData();
+})
+
+    window.addEventListener("load",async ()=>{
     await getRequestCountData();
+
+})
+
+    careRiderAnalyticsDropdown.addEventListener("change",async ()=>{
+        if(revenueRideChart){
+            revenueRideChart.destroy();
+        }
+        await  getRideRevenueData(careRiderAnalyticsDropdown.value);
+
+        if(requestCountChart){
+            requestCountChart.destroy();
+        }
+        await getRequestCountData(careRiderAnalyticsDropdown.value);
+
+
 
 })

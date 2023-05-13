@@ -11,3 +11,30 @@
     height: 300px;
 
 }
+.care-rider-analytics-container{
+    background-color: #EFEEFD;
+    margin: 2rem;
+    border-radius: 8px;
+    padding: 1rem;
+     /*max-height: 100vh;*/
+    position: relative;
+
+
+}
+.care-rider-analytics-dropdown{
+    width: 10rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+.care-rider-chart{
+    background-color: white;
+    margin: 1rem;
+}
+.care-rider-revenue-chart{
+    background-color: white;
+    margin: 2rem;
+}
