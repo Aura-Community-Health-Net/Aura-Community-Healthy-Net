@@ -138,7 +138,8 @@ function attachProviderUpdateButtonListener(button){
         <div class="modal-actions">
             <form class="user-update-form" action="/admin-dashboard/provider/update?provider_nic=${provider_nic}}" method="post">
                
-                <input name="provider_nic" type="hidden" id="provider_nic" value="${provider_nic}">
+                <input name="provider_nic" type="hidden
+                " id="provider_nic" value="${provider_nic}">
                 <label class="form-input__label" for="">NIC</label>
                 <input  class="form-input__input" id="nic" type="text" name="nic">
                 <label class="form-input__label" for="">Full Name</label>
