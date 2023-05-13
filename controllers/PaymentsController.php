@@ -599,14 +599,12 @@ class PaymentsController extends Controller
 
 
         } catch (\Exception $e) {
+            var_dump($e->getMessage());
             http_response_code(500);
             header("Content-Type: application/json");
             return "Internal Server Error.Please Try again later";
         }
-
-
     }
-
 
     public static function paymentSuccess(): bool|array|string
     {
