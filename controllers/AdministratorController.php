@@ -189,14 +189,15 @@ class AdministratorController extends Controller
         }
     }
 
-    public static function updateConsumerByAdmin() {
+    public static function updateConsumerByAdmin(): string
+    {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
 
         $consumer_nic = $_POST["nic"];
         $email_address = $_POST["email"];
         $mobile_number = $_POST["mobile_number"];
-        $mobile_number = $_POST["address"];
+        $address = $_POST["address"];
 
         if (!$is_admin){
             header("location: /administrator-login");
@@ -205,7 +206,7 @@ class AdministratorController extends Controller
             $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?, email_address = ?, mobile_number = ?, address = ?");
             $stmt->bind_param("ssss", $consumer_nic, $email_address, $mobile_number, $address);
             $result = $stmt->get_result();
-            header("location: /admin-dashboard/users/update?userId=$consumer_nic");
+            header("location: /admin-dashboard/consumers/update?userId=$consumer_nic");
             return "";
         }
     }
