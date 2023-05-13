@@ -405,7 +405,8 @@ class DashboardController extends Controller
             $current_rider_upcoming_details = $result->fetch_all(MYSQLI_ASSOC);
           
             $current_upcoming_details = array_merge($current_doc_upcoming_details,$current_rider_upcoming_details);
-          
+
+            //print_r($current_upcoming_details);die();
           if(!empty($_GET)){
                 $date = $_GET['date'];
 
