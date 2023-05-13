@@ -5,19 +5,6 @@
 ?>
 
 <div class="due-payments__container-main">
-    <form action="" class="due-payments__container">
-        <input class="form-items--date-selector" type="date">
-        <select class="form-items--dropdown" name="product-categories" id="product-categories">
-            <option value="Doctor">Doctor</option>
-            <option value="Pharmacy">Pharmacy</option>
-            <option value="Product Seller">Product Seller</option>
-        </select>
-
-        <div class="due-payments__sort">
-            <p>Sort <span><i class="fa-solid fa-arrow-up-wide-short"></i></span></p>
-        </div>
-    </form>
-
     <div class="due-payment__details-main">
         <div class="due-payments__details" >
             <h4>Profile Picture</h4>

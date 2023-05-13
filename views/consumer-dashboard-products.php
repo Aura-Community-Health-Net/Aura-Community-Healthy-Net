@@ -23,40 +23,17 @@ $searchTerm = $searchTerm ? $searchTerm : "";
         $seeds = $product_category == "Seeds" ? "selected": "";
         $leaves = $product_category == "Leaves" ? "selected" : "";
         $dried_herbs = $product_category == "Dried Herbs" ? "selected" : "";
-        $cooked_foods = $product_category == "Cooked Foods" ? "selected" : "s";
+        $cooked_foods = $product_category == "Cooked Foods" ? "selected" : "";
         ?>
     <select class="form-items--dropdown" name="product-categories" id="product-categories">
         <option value="all">Select category</option>
         <?php
-//        if($med_fruit_veg_selected){
-//            echo "<option value='Medicinal Fruits & Vegetables' selected>Medicinal Fruits & Vegetables</option>";
-//        } else {
             echo "<option value='Medicinal Fruits & Vegetables' $med_fruit_veg_selected>Medicinal Fruits & Vegetables</option>";
-//        }
-
-//        if ($seeds){
-//            echo "<option value='Seeds' selected> Seeds </option>";
-//        } else {
             echo "<option value='Seeds' $seeds> Seeds </option>";
-//        }
-
-//        if ($leaves){
-//            echo "<option value='Leaves' selected>Leaves</option>";
-//        } else{
             echo "<option value='Leaves' $leaves>Leaves</option>";
-//        }
-
-//        if ($dried_herbs){
-//            echo "<option value='Dried Herbs' selected>Dried Herbs</option>";
-//        } else {
             echo " <option value='Dried Herbs' $dried_herbs>Dried Herbs</option>";
-//        }
-
-//        if ($cooked_foods){
-//            echo "<option value='Cooked Foods' selected>Cooked Foods</option>";
-//        } else{
             echo "<option value='Cooked Foods' $cooked_foods>Cooked Foods</option>";
-//        }
+
         ?>
     </select>
     <input type="submit">
@@ -94,11 +71,6 @@ $searchTerm = $searchTerm ? $searchTerm : "";
     ?>
 </div>
 
-<!--<div class='pagination-numbers'>-->
-<!--    <a class="pagination-button">1</a>-->
-<!--    <a class="pagination-button pagination-button--active">2</a>-->
-<!--    <a class="pagination-button">3</a>-->
-<!--</div>-->
 
 
 

@@ -86,8 +86,9 @@ $app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [Admini
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 $app->router->get('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
 $app->router->post('/admin-dashboard/consumers/update', [AdministratorController::class, 'updateConsumerByAdmin']);
-$app->router->post('/admin-dashboard/users/update', [AdministratorController::class, 'updateConsumerByAdmin']);
+//$app->router->post('/admin-dashboard/consumers/update', [AdministratorController::class, 'updateConsumerByAdmin']);
 $app->router->post('/admin-dashboard/provider/update', [AdministratorController::class, 'updateProviderDetails']);
+$app->router->post('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
 
 
 // For product-seller

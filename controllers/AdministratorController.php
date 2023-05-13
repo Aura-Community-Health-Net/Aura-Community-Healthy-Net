@@ -11,6 +11,7 @@ class AdministratorController extends Controller
     {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
+
         if ($is_admin) {
             $provider_type = $_GET["provider_type"] ?? "doctor";
             if ($provider_type == "doctor") {
@@ -166,9 +167,27 @@ class AdministratorController extends Controller
             header("location: /administrator-login");
             return "";
         } else {
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE is_verified = 1");
-            $stmt->execute();
-            $result = $stmt->get_result();
+//            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE is_verified = 1");
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//            $providers = $result->fetch_all(MYSQLI_ASSOC);
+
+            $provider_type = $_GET["provider_type"] ?? "all";
+
+            if($provider_type === "all") {
+                $sql = "SELECT * FROM service_provider";
+            }
+            if ($provider_type === "doctor"){
+                $sql = "SELECT * FROM service_provider WHERE provider_type = 'doctor'";
+            } else if ($provider_type === "pharmacy"){
+                $sql = "SELECT * FROM service_provider WHERE provider_type = 'pharmacy'";
+            } else if ($provider_type === "product-seller"){
+                $sql = "SELECT * FROM service_provider WHERE provider_type = 'product-seller'";
+            } else if ($provider_type === "care-rider"){
+                $sql = "SELECT * FROM service_provider WHERE provider_type = 'care-rider'";
+            }
+
+            $result = $db->connection->query(query: $sql);
             $providers = $result->fetch_all(MYSQLI_ASSOC);
 
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer");
@@ -178,7 +197,8 @@ class AdministratorController extends Controller
 
             return self::render(view: 'administrator-dashboard-users', layout: "admin-dashboard-layout", params: [
                 "providers"=>$providers,
-                "consumers"=>$consumers
+                "consumers"=>$consumers,
+                "provider_type"=>$provider_type
             ], layoutParams: [
                 "title" => "Users",
                 "admin" => [
@@ -198,15 +218,20 @@ class AdministratorController extends Controller
         $email_address = $_POST["email"];
         $mobile_number = $_POST["mobile_number"];
         $address = $_POST["address"];
+        var_dump($consumer_nic, $email_address, $mobile_number, $address);
 
         if (!$is_admin){
             header("location: /administrator-login");
             return "";
         } else {
-            $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?, email_address = ?, mobile_number = ?, address = ?");
-            $stmt->bind_param("ssss", $consumer_nic, $email_address, $mobile_number, $address);
+            $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?,
+                              email_address = ?,
+                              address = ?,
+                              mobile_number = ?
+                        WHERE consumer_nic = ?");
+            $stmt->bind_param("sssss", $consumer_nic, $email_address, $mobile_number, $address,$nic);
             $result = $stmt->get_result();
-            header("location: /admin-dashboard/consumers/update?userId=$consumer_nic");
+            header("location: /admin-dashboard/users");
             return "";
         }
     }
