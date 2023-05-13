@@ -49,6 +49,7 @@ $app = new Application(dirname(__DIR__));
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact-us', [SiteController::class, 'contactUs']);
 $app->router->get('/terms-conditions-and-user-agreements', [SiteController::class, 'userAgreement']);
+$app->router->get('/about-us', [SiteController::class, 'aboutUs']);
 
 //Authentication Routes
 $app->router->get('/provider-register', [AuthController::class, 'getProviderSignupPage']);
@@ -86,7 +87,6 @@ $app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [Admini
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 $app->router->get('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
 $app->router->post('/admin-dashboard/consumers/update', [AdministratorController::class, 'updateConsumerByAdmin']);
-//$app->router->post('/admin-dashboard/consumers/update', [AdministratorController::class, 'updateConsumerByAdmin']);
 $app->router->post('/admin-dashboard/provider/update', [AdministratorController::class, 'updateProviderDetails']);
 $app->router->post('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
 

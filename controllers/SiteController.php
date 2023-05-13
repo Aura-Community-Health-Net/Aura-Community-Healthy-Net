@@ -31,4 +31,11 @@ class SiteController extends Controller
         ];
         return self::render(view: 'user-agreement', params: $params, layoutParams: ["title"=>"Terms, Conditions and User Agreements"]);
     }
+
+    public static function aboutUs(){
+        $params = [
+            'name'=>"About Us"
+        ];
+        return self::render(view: 'about-us', params: $params, layoutParams: ["title"=>"About Us"]);
+    }
 }
