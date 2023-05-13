@@ -55,6 +55,14 @@
 
 .admin-top-cards{
     width: 330px;
+    height: 22rem;
+    overflow-y: auto;
+}
+
+.admin-bottom-card{
+    width: 330px;
+    height: 406.4px;
+    overflow-y: auto;
 }
 
 .admin-top-cards h3{

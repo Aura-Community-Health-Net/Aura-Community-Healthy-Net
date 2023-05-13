@@ -111,22 +111,22 @@ class AdministratorController extends Controller
         $result = $stmt->get_result();
         $due_payments = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'doctor' AND is_verified = 1 LIMIT 4");
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'doctor' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_doctors = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'pharmacy' AND is_verified = 1 LIMIT 4");
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'pharmacy' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_pharmacies = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'product-seller' AND is_verified = 1 LIMIT 4");
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'product-seller' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_sellers = $result->fetch_all(MYSQLI_ASSOC);
 
-        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'care-rider' AND is_verified = 1 LIMIT 4");
+        $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'care-rider' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_riders = $result->fetch_all(MYSQLI_ASSOC);
@@ -161,6 +161,7 @@ class AdministratorController extends Controller
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
 
+
         if (!$is_admin){
             header("location: /administrator-login");
             return "";
@@ -185,6 +186,27 @@ class AdministratorController extends Controller
                 ],
                 "active_link" => "users"
             ]);
+        }
+    }
+
+    public static function updateConsumerByAdmin() {
+        $db = new Database();
+        $is_admin = $_SESSION["is_admin"];
+
+        $consumer_nic = $_POST["nic"];
+        $email_address = $_POST["email"];
+        $mobile_number = $_POST["mobile_number"];
+        $mobile_number = $_POST["address"];
+
+        if (!$is_admin){
+            header("location: /administrator-login");
+            return "";
+        } else {
+            $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?, email_address = ?, mobile_number = ?, address = ?");
+            $stmt->bind_param("ssss", $consumer_nic, $email_address, $mobile_number, $address);
+            $result = $stmt->get_result();
+            header("location: /admin-dashboard/users/update?userId=$consumer_nic");
+            return "";
         }
     }
 
