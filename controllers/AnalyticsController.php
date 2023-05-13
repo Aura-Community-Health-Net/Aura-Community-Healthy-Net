@@ -687,7 +687,7 @@ class AnalyticsController extends Controller
             $stmt = "";
             switch ($chart_time) {
                 case "this_week":
-                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost) AS revenue 
                                                  FROM ride 
                                                  INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
                                                  WHERE ride.provider_nic = ? 
@@ -697,7 +697,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_month":
-                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost) AS revenue 
                                                  FROM ride 
                                                  INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
                                                  WHERE ride.provider_nic = ? 
@@ -707,7 +707,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "past_six_months":
-                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost) AS revenue 
                                                  FROM ride 
                                                  INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
                                                  WHERE ride.provider_nic = ? 
@@ -716,7 +716,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_year":
-                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost) AS revenue 
                                                  FROM ride 
                                                  INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
                                                  WHERE ride.provider_nic = ? 
@@ -725,7 +725,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "all_time":
-                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost)/100 AS revenue 
+                    $stmt = $db->connection->prepare("SELECT DATE(care_rider_time_slot.date) AS date, SUM(ride.cost) AS revenue 
                                                  FROM ride 
                                                  INNER JOIN care_rider_time_slot ON ride.request_id = care_rider_time_slot.request_id 
                                                  WHERE ride.provider_nic = ? 

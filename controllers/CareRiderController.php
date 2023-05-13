@@ -7,6 +7,8 @@ use app\core\Database;
 
 class CareRiderController extends Controller
 {
+    //consumer=> get display provider list page
+    //consumer-dashboard-services-care-rider-page
     public static function getCareRiderChoosePage(): bool|array|string
     {
         $nic = $_SESSION["nic"];
@@ -48,6 +50,8 @@ class CareRiderController extends Controller
             "title" => "Care Rider"]);
     }
 
+    // counsumer => according to service provider display timeslot, feedback
+    //consumer-dashboard-services-care-rider-requests-page
     public static function getCareRiderRequestsPage(): bool|array|string
     {
 //        print_r($_GET);
@@ -60,8 +64,6 @@ class CareRiderController extends Controller
         } else {
 
             $db = new Database();
-
-//
 
             $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic INNER JOIN care_rider_time_slot on care_rider.provider_nic = care_rider_time_slot.provider_nic WHERE service_provider.provider_nic =? && care_rider_time_slot.request_id IS NULL ");
             $stmt->bind_param("s", $provider_nic);
@@ -98,7 +100,8 @@ class CareRiderController extends Controller
             "title" => "Care Rider",
             "time_slot" => $time_slot]);
     }
-
+//get request success page
+//display distance, cost
     public static function getCareRideRequestSuccessPage(): bool|array|string
 
     {
@@ -129,6 +132,8 @@ class CareRiderController extends Controller
             "title" => "Care Rider"]);
     }
 
+    //give the feedback to consumer to providers
+    //consumer-dashboard-services-care-rider-requests-page
     public static function addConsumerCareRiderFeedback(): bool|array|string
     {
 
@@ -154,7 +159,8 @@ class CareRiderController extends Controller
 
 
     }
-
+// Insert to pickup time and location database
+//consumer-dashboard-services-care-rider-requests-page
     public function getConsumerLocation(): bool|array|string
     {
 //        print_r($_GET);

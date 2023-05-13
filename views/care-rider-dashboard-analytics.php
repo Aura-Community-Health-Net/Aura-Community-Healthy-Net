@@ -3,25 +3,30 @@
  * @var array $new_request
  */
 ?>
-
 <head>
-    <link rel="stylesheet" href="assets/css/main.css">
-
     <title>Analytics</title>
 </head>
 
-<div class="care-rider-analytics">
-    <div class="care-rider-analytics__top">
-        <canvas id="request-count-chart">   </canvas>
-    </div>
-    <div class="care-rider-analytics__bottom">
+<div class="care-rider-analytics-container">
+    <select class="care-rider-analytics-dropdown" name="" id="care-rider-analytics-dropdown">
+        <option value="this_week">This Week</option>
+        <option value="this_month">This Month</option>
+        <option value="past_six_months">Past six months</option>
+        <option value="all_time">All</option>
+    </select>
 
-        <canvas id="revenue-chart">   </canvas>
+
+
+    <div class="care-rider-chart">
+
+        <canvas id="care-rider-request-count-chart"></canvas>
+    </div>
+
+    <div class="care-rider-revenue-chart">
+        <canvas  id="care-rider-revenue-chart"></canvas
     </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 
 
-    <script src="/assets/js/pages/care-rider-analytics.js"></script>
+<script src="/assets/js/pages/care-rider-analytics.js"></script>
