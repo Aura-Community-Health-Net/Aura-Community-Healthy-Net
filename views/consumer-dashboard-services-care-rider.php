@@ -12,6 +12,7 @@
                 <input type="text" placeholder="Search ..." name="q" id="q">
                 <button class="care-rider-button" href="" type="submit"><i class="fa fa-search"></i></button>
             </div>
+
             <select class="form-items-dropdown" name="vehicle_type" id="vehicle_type">
                 <option value="">All</option>
                 <option value="Car">Car</option>
