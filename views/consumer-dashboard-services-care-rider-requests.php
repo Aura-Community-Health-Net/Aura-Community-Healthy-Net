@@ -84,20 +84,20 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
                             <p><b>Add Location</b></p>
                             <div>
                                 <input type="text" placeholder="Enter the pickup address" class="care-rider-input-location" id="pickup-address">
-                                <button onclick="findPickupAddress()" type="button" id="care-rider-location-search">Search</button>
+                                <button class="care-rider-search-location-button" onclick="findPickupAddress()" type="button" id="care-rider-location-search">Search</button>
                             </div>
 
                             <div>
-                                <select name="pickup-location_results" id="pickup-location_results" class="location_results"></select>
+                                <select name="pickup-location_results" id="pickup-location_results" class="location_results" style="margin-top: 2.5rem"></select>
                             </div>
 
                             <div>
                                 <input type="text" placeholder="Enter the drop address" class="care-rider-input-location" id="drop-address">
-                                <button onclick="findDropAddress()" type="button" id="care-rider-location-search">Search</button>
+                                <button class="care-rider-search-location-button" onclick="findDropAddress()" type="button" id="care-rider-location-search">Search</button>
                             </div>
 
                             <div>
-                                <select name="drop-location_results" id="drop-location_results" class="care-rider-drop-location_results"></select>
+                                <select name="drop-location_results" id="drop-location_results" class="location_results" style="margin-top: 2.5rem"></select>
                             </div>
 
                             <div class="item-top-right__container">
@@ -198,7 +198,8 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
     async function findPickupAddress() {
         try{
             const pickupResponse = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + pickupAddress.value)
-            const pickupLocationResults = await pickupResponse.json()
+            const pickupLocationResults  = await pickupResponse.json()
+            console.log(pickupLocationResults)
             results = pickupLocationResults
             if(results.length === 1) {
                 setMarkerAndPan({
@@ -362,9 +363,9 @@ if (!isset($_GET['care-rider-feedback-btn'])) {
 
     function setMarker1AndPan(selectedDropLocation) {
         map.panTo(selectedDropLocation)
-        marker1.setPosition(selectedDropLocation)
-        pickupLatInput.value = selectedDropLocation.lat
-        pickupLngInput.value = selectedDropLocation.lng
+        marker2.setPosition(selectedDropLocation)
+        dropLatInput.value = selectedDropLocation.lat
+        dropLngInput.value = selectedDropLocation.lng
     }
 
     if (navigator.geolocation) {
