@@ -3,13 +3,30 @@
  * @var array $providers
  * @var array $consumers
  * */
-//print_r($providers[0]['name']);die();
+$provider_type = $_GET["provider_type"] ?? "doctor";
 ?>
 
 <div class="admin-users-container">
     <h3>Registered Service Providers</h3>
     <div class="admin-users__top-container">
+
+        <form action="/admin-dashboard/users">
+            <?php
+            $doctor_selected = $provider_type  == "doctor";
+            $pharmacy
+            ?>
+            <select name="provider_type" id="provider_type" class="admin-registration-form">
+                <?php
+                if ($doctor_selected){
+                    echo "<option value='doctor' selected>Doctor</option>";
+                } else
+                ?>
+            </select>
+        </form>
+        
+        
         <?php
+        
         foreach ($providers as $provider) {
             $profile_picture = $provider["profile_picture"];
             $provider_type = $provider["provider_type"];
