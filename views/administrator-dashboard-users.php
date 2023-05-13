@@ -7,24 +7,30 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
 ?>
 
 <div class="admin-users-container">
-    <h3>Registered Service Providers</h3>
-    <div class="admin-users__top-container">
 
-        <form action="/admin-dashboard/users">
-            <?php
-            $doctor_selected = $provider_type  == "doctor";
-            $pharmacy
-            ?>
-            <select name="provider_type" id="provider_type" class="admin-registration-form">
-                <?php
-                if ($doctor_selected){
-                    echo "<option value='doctor' selected>Doctor</option>";
-                } else
-                ?>
-            </select>
-        </form>
-        
-        
+        <div class="admin-user-header">
+            <h3>Registered Service Providers
+                <form action="/admin-dashboard/users">
+                    <?php
+                    $doctor_selected = $provider_type  == "doctor" ? "selected" : "";
+                    $pharmacy_selected = $provider_type  == "pharmacy" ? "selected" : "";
+                    $product_seller_selected = $provider_type  == "product-seller" ? "selected" : "";
+                    $care_rider_selected = $provider_type  == "care-rider" ? "selected" : "";
+                    ?>
+                    <select name="provider_type" id="provider_type" class="admin-user-dropdown">
+                        <?php
+                            echo "<option value='doctor' $doctor_selected>Doctor</option>";
+                            echo "<option value='pharmacy' $pharmacy_selected>Pharmacy</option>";
+                            echo "<option value='product-seller' $product_seller_selected>Product-Seller</option>";
+                            echo "<option value='care-rider' $care_rider_selected>Care Rider</option>";
+                        ?>
+                    </select>
+
+                    <button type="submit" class="form-user-submit">Submit</button>
+                </form>
+        </div>
+
+    <div class="admin-users__top-container">
         <?php
         
         foreach ($providers as $provider) {
@@ -53,7 +59,6 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
                 <p>$address</p>
                 <p>$bank_acc_no</p>
                 <p>$bank_name, $bank_branch_name</p>
-                <button id='update-provider-$nic' data-nic='$nic' data-name='$provider_name' data-email='$email_address' data-mobile='$mobile_number' data-address='$address' data-account='$bank_acc_no' data-bank='$bank_name' data-branch='$bank_branch_name' class='action-btn action-btn--edit provider-update update-provider'><i class='fa-solid fa-pen update-user'></i></button> 
             </div>
            
             ";
@@ -87,7 +92,6 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
                 <p>{$email_address}</p>
                 <p>{$mobile_number}</p>
                 <p>{$address}</p>
-                <button id='update-user-$nic' data-usernic='$nic' data-username='$consumer_name' data-useremail='$email_address'  data-mobilenumber='$mobile_number', data-address='$address' class='action-btn action-btn--edit user-update update-user'><i class='fa-solid fa-pen'></i></button> 
                 
             </div>
            
