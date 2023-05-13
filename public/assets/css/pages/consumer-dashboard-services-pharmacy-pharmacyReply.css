@@ -1,0 +1,43 @@
+.pharmacy_reply__left{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    background-color:#EFEEFD;
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: 60rem;
+}
+
+
+.pharmacy_reply__left__background{
+    background-color: #807878;
+}
+
+
+.pharmacy_reply__left__data{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+}
+
+#pharmacy-reply-consumer-profile{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+
+#accept-reply-btn a{
+    color: white;
+
+}
+
+.reply_detail_pharmacyName{
+    width: 15rem;
+}
+
+#accept-reply-btn{
+    color:#00005C;
+}

@@ -3,7 +3,7 @@
  * @var array $services;
  * @var array $care_rider_services;
  * @var array $consumer;
- *  @var $care_rider_provider_count;
+ * @var $care_rider_provider_count;
  * @var $doctor_provider_count;
  * @var $pharmacy_provider_count;
  * @var $product_seller_provider_count;
@@ -12,9 +12,10 @@
  * @var $upcoming_details;
  */
 
-//if (!$current_upcoming_details){
-//    return $upcoming_details;
-//}
+
+if (!$current_upcoming_details  AND $upcoming_details){
+    return $upcoming_details;
+}else{
 
 ?>
 
@@ -216,3 +217,5 @@
 
 </div>
 <script src="/assets/js/components/calendar.js"></script>
+
+<?php } ?>

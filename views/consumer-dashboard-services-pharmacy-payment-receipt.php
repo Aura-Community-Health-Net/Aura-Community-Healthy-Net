@@ -14,8 +14,7 @@ $advance_amount = $payment_details['advance_amount']/100;
 $Total_amount = $payment_details['total_amount']/100;
 $note = $payment_details['pharmacy_remark'];
 $medicines_list = $payment_details['available_medicines'];
-$prescription = $payment_details['prescription'];
-$customer_remark = $payment_details['customer_remark'];
+
 $medicines = json_decode($medicines_list, true);
 
 
