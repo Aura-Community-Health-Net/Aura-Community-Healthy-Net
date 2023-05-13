@@ -11,11 +11,6 @@
  * @var $current_upcoming_details;
  * @var $upcoming_details;
  */
-
-if (!$current_upcoming_details  AND $upcoming_details){
-    return $upcoming_details;
-}else{
-
 ?>
 
 <head>
@@ -110,15 +105,15 @@ if (!$current_upcoming_details  AND $upcoming_details){
 
     <div class="dashboard__top-cards events-container">
         <h3 class="events-header">Events for this day</h3>
-        <?php if(!$current_upcoming_details) { ?>
+        <?php if(!$current_upcoming_details AND !$upcoming_details) { ?>
         <div class="events-container__empty">
             <i class="fa-regular fa-calendar-days events-icon"></i>
             <h4 class="no-events">No upcoming events due</h4>
         </div>
-        <?php }else{?>
+        <?php }else{ ?>
         <div class="doc_upcoming_details_scroll_bar">
-            <?php if(!$upcoming_details){?>
-                    <?php foreach ($current_upcoming_details as $value){ ?>
+            <?php if($upcoming_details){ ?>
+                <?php foreach ($upcoming_details as $value){ ?>
                             <div class="doc_upcoming_details">
                                 <div style="display: flex;flex-direction: row;gap: 1.5rem">
                                     <img src="<?php echo $value['profile_picture']?>" alt="">
@@ -134,7 +129,7 @@ if (!$current_upcoming_details  AND $upcoming_details){
                             </div>
                     <?php } ?>
             <?php }else{?>
-                    <?php foreach ($upcoming_details as $value){ ?>
+                    <?php foreach ($current_upcoming_details as $value){ ?>
                         <div class="doc_upcoming_details">
                             <div style="display: flex;flex-direction: row;gap: 1.5rem">
                                 <img src="<?php echo $value['profile_picture']?>" alt="">
@@ -216,5 +211,3 @@ if (!$current_upcoming_details  AND $upcoming_details){
 
 </div>
 <script src="/assets/js/components/calendar.js"></script>
-
-<?php } ?>

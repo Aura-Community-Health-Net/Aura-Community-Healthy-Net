@@ -407,8 +407,10 @@ class DashboardController extends Controller
             $current_upcoming_details = array_merge($current_doc_upcoming_details,$current_rider_upcoming_details);
 
             //print_r($current_upcoming_details);die();
+            //print_r($_GET['date']);
           if(!empty($_GET)){
                 $date = $_GET['date'];
+
 
                 $stmt= $db->connection->prepare("SELECT * FROM service_provider INNER JOIN appointment on service_provider.provider_nic = appointment.provider_nic INNER JOIN doctor_time_slot on appointment.appointment_id = doctor_time_slot.appointment_id WHERE appointment.status = 'paid' AND appointment.done = 0 AND appointment.consumer_nic = ? AND doctor_time_slot.date = ?");
                 $stmt->bind_param("ss", $nic,$date);
