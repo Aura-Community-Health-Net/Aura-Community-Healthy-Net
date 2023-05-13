@@ -604,10 +604,7 @@ class PaymentsController extends Controller
             header("Content-Type: application/json");
             return "Internal Server Error.Please Try again later";
         }
-
-
     }
-
 
     public static function paymentSuccess(): bool|array|string
     {
