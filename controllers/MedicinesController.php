@@ -80,6 +80,33 @@ class MedicinesController extends Controller
 
     }
 
+    //DELETE MEDICINES BY PHARMACY
+    public static function deleteMedicines(): string
+    {
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType )
+        {
+            header("location: /provider-login");
+        }
+
+        $medicine_id = $_GET["med_id"];
+        $db = new Database();
+        $stmt = $db->connection->prepare("DELETE FROM medicine WHERE med_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $medicine_id,$nic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
+
+    }
+
 
    //VIEWING THE MEDICINES PAGE BY PHARMACY
 
@@ -112,6 +139,55 @@ class MedicinesController extends Controller
             ], layoutParams: ["pharmacy" => $pharmacy, "title" => "Medicines", "active_link" => "medicines-list"]);
 
         }
+    }
+
+
+    //UPDATE MEDICINES BY PHARMACY
+
+    public  static  function updateMedicines(): string
+    {
+
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if(!$nic || $providerType !== "pharmacy" )
+        {
+            header("location: /provider-login");
+            return "";
+        }
+
+        $med_id = $_GET["med_id"];
+        $med_name = $_POST["med_name"];
+        $med_price = (int) $_POST["price"];
+        $med_quantity = (int) $_POST["quantity"];
+        $med_quantity_unit = $_POST["quantity_unit"];
+        $med_stock = (int) $_POST["stock"];
+        $db = new Database();
+
+        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ? WHERE med_id = ? AND provider_nic = ?");
+
+
+        $stmt->bind_param("siiisis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_id,$nic);
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        header("location: /pharmacy-dashboard/medicines");
+        return "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -227,67 +303,17 @@ class MedicinesController extends Controller
         return self::render(view: '/sidebar');
     }
 
-    //DELETE MEDICINES BY PHARMACY
-    public static function deleteMedicines(): string
-    {
-
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType )
-        {
-            header("location: /provider-login");
-        }
-
-        $medicine_id = $_GET["med_id"];
-        $db = new Database();
-        $stmt = $db->connection->prepare("DELETE FROM medicine WHERE med_id = ? AND provider_nic = ?");
-        $stmt->bind_param("ds", $medicine_id,$nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        header("location: /pharmacy-dashboard/medicines");
-        return "";
 
 
 
 
 
-    }
+
+   //PHARMACY REQUEST BY SERVICE CONSUMER
 
 
-    //UPDATE MEDICINES BY PHARMACY
-
-    public  static  function updateMedicines(): string
-    {
-
-        $nic = $_SESSION["nic"];
-        $providerType = $_SESSION["user_type"];
-        if(!$nic || $providerType !== "pharmacy" )
-        {
-            header("location: /provider-login");
-            return "";
-        }
-
-        $med_id = $_GET["med_id"];
-        $med_name = $_POST["med_name"];
-        $med_price = $_POST["price"]*100;
-        $med_quantity = (int) $_POST["quantity"];
-        $med_quantity_unit = $_POST["quantity_unit"];
-        $med_stock = (int) $_POST["stock"];
-        $db = new Database();
-
-        $stmt = $db->connection->prepare("UPDATE medicine SET name = ?,price = ?,stock=? , quantity = ?,quantity_unit = ? WHERE med_id = ? AND provider_nic = ?");
 
 
-        $stmt->bind_param("siiisis",$med_name,$med_price,$med_stock,$med_quantity,$med_quantity_unit,$med_id,$nic);
-
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        header("location: /pharmacy-dashboard/medicines");
-        return "";
-    }
 
 
 public static function RequestForPharmacy():bool|array|string
@@ -462,6 +488,45 @@ public static function RequestForPharmacy():bool|array|string
         }
     }
 
+//RETRIVING  SENT PHARMACY REQUEST DETAILS ADVANCE INFO(PRESCRIPTION AND REMARK) BY CONSUMER
+    public static function getSentRequestDetailsView(): bool|array|string
+    {
+        $nic =$_SESSION["nic"];
+        $userType = $_SESSION["user_type"];
+        $id = $_GET["id"];
+//        var_dump($id);
+
+        if(!$nic || $userType !== "consumer"){
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+
+            $stmt = $db->connection->prepare("SELECT pr.request_id,p.pharmacy_name,pr.customer_remark,pr.prescription FROM  pharmacy_request pr INNER JOIN pharmacy p ON pr.provider_nic = p.provider_nic WHERE pr.consumer_nic = ? AND pr.request_id = ?");
+            $stmt->bind_param("si", $nic, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $sentRequest_details = $result->fetch_assoc();
+        }
+
+        return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails-view', layout: "consumer-dashboard-layout",params:[
+            "sentRequest_details" => $sentRequest_details,
+        ], layoutParams: [
+            "consumer" => $consumer,
+            "active_link" => "pharmacy",
+            "title" => "Pharmacy"]);
+
+
+
+
+    }
+
 //CONSUMER'S PHARMACY DASHBOARD
 
     public static function getConsumerPharmacyOverview(): bool|array|string
@@ -579,8 +644,8 @@ public static function RequestForPharmacy():bool|array|string
 
     }
 
-//RETRIVING PHARMACY REQUEST DETAILS PAGE BY CONSUMER
-   public  static function getPharmacyRequestDetailsPage(): bool|array|string
+//RETRIVING  SENT PHARMACY REQUEST DETAILS PAGE BY CONSUMER
+   public  static function getSentRequestPage(): bool|array|string
    {
        $nic = $_SESSION["nic"];
        if (!$nic){
@@ -594,22 +659,16 @@ public static function RequestForPharmacy():bool|array|string
            $result = $stmt->get_result();
            $consumer = $result->fetch_assoc();
 
-//           $stmt = $db->connection->prepare("SELECT pr.request_id,pr.total_amount,pr.advance_amount,pr.pharmacy_remark,pr.available_medicines FROM pharmacy_request pr WHERE pr.consumer_nic = ?");
-//           $stmt->bind_param("s",$nic);
-//           $stmt->execute();
-//           $result = $stmt->get_result();
-//           $pharmacy_request_details = $result->fetch_all(MYSQLI_ASSOC);
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE pr.consumer_nic = ? ORDER BY pr.date_time DESC ");
+           $stmt = $db->connection->prepare("SELECT pr.request_id,s.name,s.mobile_number,s.profile_picture,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic WHERE  consumer_nic = ? ORDER BY pr.date_time DESC  ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();
-           $pharmacy_details = $result->fetch_all(MYSQLI_ASSOC);
+           $consumer_request = $result->fetch_all(MYSQLI_ASSOC);
 
 
            return self::render(view: 'consumer-dashboard-services-pharmacy-requestDetails', layout: 'consumer-dashboard-layout', params:[
-//               "pharmacy_request_details" => $pharmacy_request_details,
-               "pharmacy_details" => $pharmacy_details
+               "consumer_request" => $consumer_request
            ],layoutParams: [
                "consumer" => $consumer,
                "title" => "Medicines",
@@ -617,6 +676,37 @@ public static function RequestForPharmacy():bool|array|string
            ]);
        }
 
+   }
+
+   public static function getPharmacyReply(): bool|array|string
+   {
+       $nic = $_SESSION["nic"];
+       if (!$nic){
+           header("location: /login");
+           return "";
+       } else {
+           $db = new Database();
+           $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+           $stmt->bind_param("s", $nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $consumer = $result->fetch_assoc();
+
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic   INNER JOIN medicine_order m ON m.request_id = pr.request_id   WHERE pr.consumer_nic = ? AND m.status='unpaid' ORDER BY pr.date_time DESC ");
+           $stmt->bind_param("s",$nic);
+           $stmt->execute();
+           $result = $stmt->get_result();
+           $pharmacy_reply = $result->fetch_all(MYSQLI_ASSOC);
+
+           return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacyReply', layout: 'consumer-dashboard-layout', params:[
+               "pharmacy_reply" => $pharmacy_reply
+           ],layoutParams: [
+               "consumer" => $consumer,
+               "title" => "Medicines",
+               "active_link" => "dashboard-medicines"
+           ]);
+
+       }
    }
 
 
