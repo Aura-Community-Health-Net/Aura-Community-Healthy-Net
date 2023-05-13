@@ -1,0 +1,22 @@
+.user-agreement-container{
+    background-color: #EFEEFD;
+    margin: 2rem 15rem;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.user-agreement-container h2{
+    color: #00005C;
+    margin-block: 1rem;
+    text-align: center;
+}
+
+.user-agreement-container h3{
+    color: #00005C;
+    margin-block: 1rem;
+    text-align: center;
+}
+
+.user-agreement-topic{
+    margin-block: 1rem;
+}
