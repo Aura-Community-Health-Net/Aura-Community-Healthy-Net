@@ -11,6 +11,7 @@
  * @var $current_upcoming_details;
  * @var $upcoming_details;
  */
+
 ?>
 
 <head>

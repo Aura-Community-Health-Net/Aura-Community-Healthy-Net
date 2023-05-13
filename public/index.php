@@ -84,6 +84,7 @@ $app->router->get('/admin-dashboard/analytics/pharmacy-revenue-chart',[Administr
 $app->router->get('/admin-dashboard/analytics/care-rider-revenue-chart', [AdministratorController::class, 'getAdministratorCareRiderRevenueChart']);
 $app->router->get('/admin-dashboard/feedback', [AdministratorController::class, 'getAdministratorFeedbackPage']);
 $app->router->get('/admin-dashboard/users', [AdministratorController::class, 'getAdministratorUsersPage']);
+$app->router->post('/admin-dashboard/users/update', [AdministratorController::class, 'updateConsumerByAdmin']);
 $app->router->post('/admin-dashboard/provider/update', [AdministratorController::class, 'updateProviderDetails']);
 
 // For product-seller
@@ -122,11 +123,6 @@ $app->router->get('/pharmacy-dashboard/profile',[ProfileController::class,'getPh
 $app->router->get('/pharmacy-dashboard/analytics/revenue-chart',[AnalyticsController::class,'getPharmacyAnalyticsRevenueChart']);
 $app->router->get('/pharmacy-dashboard/analytics/order-count-chart',[AnalyticsController::class,'getPharmacyAnalyticsOrderCount']);
 $app->router->get('/pharmacy-dashboard/analytics/medicine-vs-revenue-chart',[AnalyticsController::class,'getPharmacyRevenueVsMedicinePercentage']);
-
-
-
-
-
 
 
 // For Care Rider
@@ -205,7 +201,9 @@ $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'getCo
 $app->router->get('/consumer-dashboard/profile',[ProfileController::class,'ConsumerProfile']);
 $app->router->get('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'getPharmacyList']);
 $app->router->post('/consumer-dashboard/services/pharmacy',[MedicinesController::class,'RequestForPharmacy']);
-$app->router->get('/consumer-dashboard/services/pharmacy/request-details',[MedicinesController::class,'getPharmacyRequestDetailsPage']);
+$app->router->get('/consumer-dashboard/services/pharmacy/request-details',[MedicinesController::class,'getSentRequestPage']);
+$app->router->get('/consumer-dashboard/services/pharmacy/request-details/view',[MedicinesController::class,'getSentRequestDetailsView']);
+$app->router->get('/consumer-dashboard/services/pharmacy/pharmacy-reply',[MedicinesController::class,'getPharmacyReply']);
 
 
 $app->router->get('/consumer-dashboard/services/pharmacy/payment-receipt',[MedicinesController::class,'getPharmacyPaymentReceipt']);

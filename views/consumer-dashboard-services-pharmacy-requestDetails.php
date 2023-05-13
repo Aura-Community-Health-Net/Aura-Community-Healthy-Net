@@ -1,8 +1,7 @@
 <?php
 /**
  * @var array $consumer
- * @var array $pharmacy_request_details
- * @var array $pharmacy_details
+ * @var array $consumer_request
  */
 ?>
 
@@ -12,6 +11,8 @@
 
 
     <div class="pharmacy-request__left__background">
+<<<<<<< HEAD
+=======
 
         <?php
 
@@ -33,21 +34,44 @@
             $date_time = $detail['date_time'];
             $date = explode(" ",$date_time)[0];
             $hasReplied = $detail['advance_amount'] !== null ? "<p class='pharmacy-replied'>Pharmacy replied</p>" : "<p>Request In Progress</p>";
+>>>>>>> 7bfe5a0b48dcc02550b10fcb0439a150877777c6
 
 
-            echo "
-            <div class='pharmacy_request__left'>
+          <?php
+             foreach ($consumer_request as $consumer){
+
+                 $consumer_profile = $consumer["profile_picture"];
+                 $pharmacy_name = $consumer['name'];
+                 $mobile_number = $consumer['mobile_number'];
+                 $request_id = $consumer['request_id'];
+                 $date_time = $consumer['date_time'];
+                 $date = explode(" ",$date_time)[0];
+
+             echo "  <div class='pharmacy_request__left'>
                     <div class='pharmacy_request__left__data'>
-                        <img id='pharmacy-request-consumer-profile' src='$profile_img' alt=''>
+                        <img id='pharmacy-request-consumer-profile' src='$consumer_profile' alt=''>
                         <p class='request_detail_pharmacyName'>$pharmacy_name</p>
                         <p>$mobile_number</p>
                         <p>$date</p>
-                        $hasReplied
-                        <button class='ok-btn' id='accept-request-btn'><a href='/consumer-dashboard/services/pharmacy/payment-receipt?id=$request_id'>View</a></button>
+                        <p>Request sent</p>
+                        <button class='ok-btn' id='accept-request-btn'><a href='/consumer-dashboard/services/pharmacy/request-details/view?id=$request_id'>View</a></button>
                     </div>
+<<<<<<< HEAD
+            </div>
+             ";
+
+
+
+
+             } ?>
+    </div>
+
+
+=======
             </div>";
           }}
         ?>
     </div>
 <!--</div>-->
+>>>>>>> 7bfe5a0b48dcc02550b10fcb0439a150877777c6
 

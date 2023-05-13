@@ -6,6 +6,7 @@
 
 <head>
     <link rel="stylesheet" href="assets/css/main.css">
+
     <title>Analytics</title>
 </head>
 
