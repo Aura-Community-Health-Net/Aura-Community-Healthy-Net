@@ -41,7 +41,7 @@
     <p>
         <h4 class="user-agreement-topic">Registration and Verification for Service Providers</h4>
 
-        a. To use our website, you need to register with us by providing your details in the Registration Page according to your service category.<br>
+        a. To use our website, you need to register with us by providing your valid details in the Registration Page according to your service category.<br>
         b. We will verify your registration details by checking your details and documentation that you give in the registration.<br>
         c. We reserve the right to approve or reject your registration at our discretion.<br>
 

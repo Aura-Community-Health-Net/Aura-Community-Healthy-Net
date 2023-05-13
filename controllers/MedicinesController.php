@@ -157,7 +157,7 @@ class MedicinesController extends Controller
 
         $med_id = $_GET["med_id"];
         $med_name = $_POST["med_name"];
-        $med_price = (int) $_POST["price"];
+        $med_price = (int) $_POST["price"]*100;
         $med_quantity = (int) $_POST["quantity"];
         $med_quantity_unit = $_POST["quantity_unit"];
         $med_stock = (int) $_POST["stock"];
@@ -692,11 +692,13 @@ public static function RequestForPharmacy():bool|array|string
            $result = $stmt->get_result();
            $consumer = $result->fetch_assoc();
 
-           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic   INNER JOIN medicine_order m ON m.request_id = pr.request_id   WHERE pr.consumer_nic = ? AND m.status='unpaid' ORDER BY pr.date_time DESC ");
+           $stmt = $db->connection->prepare("SELECT pr.request_id, s.name,s.mobile_number,s.profile_picture, pr.advance_amount,pr.date_time FROM service_provider s INNER JOIN pharmacy_request pr ON pr.provider_nic = s.provider_nic LEFT JOIN medicine_order mo on pr.request_id = mo.request_id   WHERE pr.consumer_nic = ? AND pr.request_id NOT IN (SELECT request_id FROM medicine_order) ORDER BY pr.date_time DESC ");
            $stmt->bind_param("s",$nic);
            $stmt->execute();
            $result = $stmt->get_result();
            $pharmacy_reply = $result->fetch_all(MYSQLI_ASSOC);
+
+
 
            return self::render(view: 'consumer-dashboard-services-pharmacy-pharmacyReply', layout: 'consumer-dashboard-layout', params:[
                "pharmacy_reply" => $pharmacy_reply

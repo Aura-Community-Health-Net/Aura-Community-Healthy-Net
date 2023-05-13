@@ -39,6 +39,8 @@
     cursor: pointer;
     color: white;
     font-size: 1rem;
+    padding-inline:1.3rem ;
+    padding-block:0.3rem ;
 }
 
 .pharmacy-request{
@@ -48,6 +50,8 @@
     cursor: pointer;
     color: white;
     font-size: 1rem;
+    padding-inline:1.3rem ;
+    padding-block:0.3rem;
 }
 
 .pharmacy-pres-upload-btn
@@ -59,6 +63,7 @@
     border-radius: 0.6rem;
     cursor: pointer;
     color: white;
+
 
 }
 
