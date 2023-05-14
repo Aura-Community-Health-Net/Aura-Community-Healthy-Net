@@ -441,7 +441,7 @@ class AuthController extends Controller
 
 
                 //email
-                $sql = "SELECT * FROM service_provider WHERE email_address = '$email'";
+                $sql = "SELECT * FROM service_provider WHERE email_address = '$email' ";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     //            echo "Email already in use";
@@ -450,7 +450,7 @@ class AuthController extends Controller
 
 
                 //mobile number
-                $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobileNumber'";
+                $sql = "SELECT * FROM service_provider WHERE mobile_number = '$mobileNumber' ";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     $errors["mobile_number"] = "Mobile number already in use";
@@ -459,7 +459,7 @@ class AuthController extends Controller
 
 
                 //number plate
-                $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate'";
+                $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate' ";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     $errors["number_plate"] = "number plate already in use";

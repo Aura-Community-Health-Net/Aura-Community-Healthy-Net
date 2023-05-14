@@ -85,6 +85,14 @@ if (!$care_rider['is_verified']) {
                                 <h5>Pickup Time</h5>
                                 <h5><?php echo $request_details['time']; ?></h5>
                             </div>
+                            <div>
+                                <h5>Distance</h5>
+                                <h5><?php echo $request_details['distance']; ?> km </h5>
+                            </div>
+                            <div>
+                                <h5>Amount</h5>
+                                <h5> Rs.<?php echo $request_details['distance']*70; ?>  </h5>
+                            </div>
                         </div>
                     </div>
                     <?php
