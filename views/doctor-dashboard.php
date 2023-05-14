@@ -8,7 +8,7 @@
  * @var $patient_details;
  * @var $consulted_patients;
  */
-//print_r($appointment_done);die();
+//print_r($patient_details);die();
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations' style='color: red'> <p>You're not verified yet. Please check later.</p></div>";
 }
@@ -38,8 +38,8 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
                 </table>
                 <a href="/doctor-dashboard/appointments"><button>Show More</button></a>
             </div>
-            <?php } } ?>
-        </div>
+            <?php } ?>
+        </div><?php } ?>
 
         <div class="doctor-dashboard__center__top">
             <h3 style="margin-bottom: 1.5rem">Patients Count</h3>
