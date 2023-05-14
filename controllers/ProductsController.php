@@ -39,8 +39,9 @@ class ProductsController extends Controller
             header("location: /product-seller-login");
             return "";
         } else {
-            $category_id = $_GET["category"];
+            $category_id = $_GET["product-categories"];
             $db = new Database();
+
 
             //        $sql = "SELECT * FROM product WHERE category_id = $category_id";
             $stmt = $db->connection->prepare("SELECT * FROM product WHERE category_id = ? AND provider_nic = ?");
@@ -71,6 +72,7 @@ class ProductsController extends Controller
             return self::render(view: 'product-seller-dashboard-products', layout: "product-seller-dashboard-layout", params: [
                 "products" => $products,
                 "category" => $category_id,
+                "product_category" => $product_category
             ], layoutParams: ["title" => $row["category_name"], "product_seller" => $product_seller, "active_link" => "products"]);
         }
     }
@@ -178,10 +180,10 @@ class ProductsController extends Controller
 
         $db = new Database();
         $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ?,stock = ? WHERE product_id = ? AND provider_nic = ?");
-        if ($category_id == 5){
+        if ($category_id == 5) {
             $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ? WHERE product_id = ? AND provider_nic = ?");
         }
-        if ($category_id != 5){
+        if ($category_id != 5) {
             $stmt->bind_param("ssdsdds", $name, $quantity, $price, $quantity_unit, $stock, $product_id, $nic);
         } else {
             $stmt->bind_param("ssdsds", $name, $quantity, $price, $quantity_unit, $product_id, $nic);
@@ -207,11 +209,33 @@ class ProductsController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
-            $category_id = isset($_GET["category_id"]) ? $_GET['category_id']:false;
+//            $category_id = isset($_GET["category_id"]) ? $_GET['category_id']:false;
 
-            $search_query = isset($_GET["q"]) ? $_GET["q"]: "";
+            $searchTerm = $_GET['q'] ?? null;
+            $search_query = isset($_GET["q"]) ? $_GET["q"] == "" ? "%" : "%{$_GET['q']}%": "%";
 
             $db = new Database();
+
+            $productCategory = $_GET["product-categories"] ?? "all";
+//            $product_category =  ? "Medicinal Fruits & Vegetables";
+//            var_dump($product_category);
+//            if ($product_category == "Medicinal Fruits & Vegetables"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Medicinal Fruits & Vegetable'";
+//            } elseif ($product_category == "Seeds"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Seeds'";
+//            } elseif ($product_category == "Leaves"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Leaves'";
+//            } elseif ($product_category == "Dried Herbs"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Dried Herbs'";
+//            } elseif ($product_category == "Cooked Foods"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Cooked Foods'";
+//            }
+//            $result = $db->connection->query(query: $sql);
+//            $product_category = [];
+//
+//            while ($row = $result->fetch_assoc()){
+//                $product_category[] = $row;
+//            }
 
             $stmt = $db->connection->prepare("SELECT location_lat, location_lng FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
@@ -221,25 +245,66 @@ class ProductsController extends Controller
             $location_lat = $consumer["location_lat"];
             $location_lng = $consumer["location_lng"];
 
-            if (!$category_id) {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic WHERE p.name LIKE '%$search_query%' AND st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000");
-                $stmt->bind_param("dd",  $location_lng, $location_lat);
+            if($productCategory === "all") {
+                $stmt = $db->connection->prepare("
+            SELECT 
+                p.product_id, 
+                p.image, 
+                p.name, 
+                p.quantity, 
+                p.quantity_unit, 
+                p.price, 
+                h.business_name, 
+                p.stock, 
+                p.category_id 
+            FROM 
+                product p 
+                    INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic 
+                    INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic 
+                    INNER JOIN product_category pc ON p.category_id = pc.category_id 
+            WHERE p.name LIKE '$search_query' AND 
+                  st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000"
+                );
+                $stmt->bind_param("dd", $location_lng, $location_lat);
+
             } else {
-                $stmt = $db->connection->prepare("SELECT p.product_id, p.image, p.name, p.quantity, p.quantity_unit, p.price, h.business_name, p.stock, p.category_id FROM product p INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic WHERE p.category_id = ? AND p.name LIKE '%$search_query%' AND st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000");
-                $stmt->bind_param("ddd", $category_id,  $location_lng, $location_lat);
+                $stmt = $db->connection->prepare("
+            SELECT 
+                p.product_id, 
+                p.image, 
+                p.name, 
+                p.quantity, 
+                p.quantity_unit, 
+                p.price, 
+                h.business_name, 
+                p.stock, 
+                p.category_id 
+            FROM 
+                product p 
+                    INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic 
+                    INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic 
+                    INNER JOIN product_category pc ON p.category_id = pc.category_id 
+            WHERE pc.category_name = ? AND 
+                  p.name LIKE '$search_query' AND 
+                  st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000"
+                );
+                $stmt->bind_param("sdd", $productCategory, $location_lng, $location_lat);
 
             }
+
+
+
             $stmt->execute();
 
             $result = $stmt->get_result();
             $products = $result->fetch_all(MYSQLI_ASSOC);
-
-//            var_dump($search_query);
 //            var_dump($products);
-//            exit();
+
 
             return self::render(view: 'consumer-dashboard-products', layout: 'consumer-dashboard-layout', params: [
-                'products'=>$products
+                'products' => $products,
+                'searchTerm' => $searchTerm,
+                'product_category' => $productCategory
             ], layoutParams: [
                 "consumer" => $consumer,
                 "title" => "Natural Food Products",
@@ -284,8 +349,8 @@ class ProductsController extends Controller
             $feedback_list = $result->fetch_all(MYSQLI_ASSOC);
 
             return self::render(view: 'consumer-dashboard-product-overview', layout: 'consumer-dashboard-layout', params: [
-                'product_details'=>$product,
-                'other_products'=>$product_list,
+                'product_details' => $product,
+                'other_products' => $product_list,
                 'feedback_for_sellers' => $feedback_list
             ], layoutParams: [
                 "consumer" => $consumer,
@@ -303,11 +368,10 @@ class ProductsController extends Controller
         $product_feedback = $_POST["product-feedback"];
         $provider_nic = $_GET["provider_nic"];
 
-        if (!$nic || $providerType!=='consumer')
-        {
+        if (!$nic || $providerType !== 'consumer') {
             header("location: /login");
             return "";
-        } else{
+        } else {
             $db = new Database();
             $stmt = $db->connection->prepare("INSERT INTO feedback (text, date_time, provider_nic, consumer_nic) VALUES (?, now(), ?, ?)");
             $stmt->bind_param("sss", $product_feedback, $provider_nic, $nic);
@@ -321,7 +385,7 @@ class ProductsController extends Controller
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
-        if (!$nic || $providerType!=='consumer') {
+        if (!$nic || $providerType !== 'consumer') {
             header("location: /login");
             return "";
         } else {

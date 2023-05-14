@@ -140,7 +140,7 @@
     </div>
 
     <div class="dashboard__bottom-cards">
-        <h3>Registrations</h3>
+        <h3>New Registrations Count</h3>
 
          <div class='admin-services-count__details'>
              <?php foreach ($doctors as $doctor) {

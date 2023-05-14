@@ -23,4 +23,12 @@ class SiteController extends Controller
         ];
         return self::render(view: 'site-contact', params: $params, layoutParams: ["title" => "Contact Us"]);
     }
+
+    public static function userAgreement(): bool|array|string
+    {
+        $params = [
+            'name'=>"Terms, Conditions, User Agreements"
+        ];
+        return self::render(view: 'user-agreement', params: $params, layoutParams: ["title"=>"Terms, Conditions and User Agreements"]);
+    }
 }

@@ -83,7 +83,7 @@ class OrdersController extends Controller
         } else {
             $order_id = $_GET["order_id"] ?? null;
             $db = new Database();
-            $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'prepared' WHERE provider_nic = ? AND status = 'paid' AND order_id = ?");
+            $stmt = $db->connection->prepare("UPDATE medicine_order SET status = 'prepare' WHERE provider_nic = ? AND status = 'paid' AND order_id = ?");
             $stmt->bind_param("sd", $nic, $order_id);
             $stmt->execute();
             header("location: /pharmacy-dashboard/orders");

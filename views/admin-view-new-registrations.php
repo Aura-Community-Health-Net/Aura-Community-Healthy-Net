@@ -6,7 +6,7 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
 ?>
 
 
-<form action="/admin-dashboard/new-registrations">
+<form action="/admin-dashboard/new-registrations" class="admin-registration-form">
     <?php
     $doctor_selected = $provider_type == "doctor";
     $pharmacy_selected = $provider_type == "pharmacy";
@@ -14,7 +14,7 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
     $care_rider_selected = $provider_type == "care_rider";
     ?>
 
-    <select name="provider_type" id="provider_type">
+    <select name="provider_type" id="provider_type" class="admin-reg-dropdown">
         <?php
         if ($doctor_selected) {
             echo "<option value='doctor' selected>Doctor</option>";
@@ -42,7 +42,7 @@ $provider_type = $_GET["provider_type"] ?? "doctor";
         ?>
     </select>
 
-    <input type="submit">
+    <input type="submit" class="form-submit-btn" >
 </form>
 <?php
 if (empty($new_registrations)) {

@@ -1,25 +1,42 @@
 <?php
 /**
  * @var array | null $products
- * @
+ * @var array $product_category
+ * @var string|null $searchTerm
  */
 
 $products = is_null($products) ? [] : $products;
+//$product_category = $_GET["product_category"] ?? "Medicinal Fruits & Vegetables";
+
+$searchTerm = $searchTerm ? $searchTerm : "";
+
 ?>
 
 
 <form action="/consumer-dashboard/products" class="form-item--search" method="get">
     <div class="search-bar">
-        <input type="text" placeholder="Search Product..." name="q" id="q">
-        <button href="" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search Product..." name="q" id="q" value="<?= $searchTerm ?>">
+<!--        <button href="" type="submit"><i class="fa fa-search"></i></button>-->
     </div>
+        <?php
+        $med_fruit_veg_selected = $product_category == "Medicinal Fruits & Vegetables" ? "selected" : "";
+        $seeds = $product_category == "Seeds" ? "selected": "";
+        $leaves = $product_category == "Leaves" ? "selected" : "";
+        $dried_herbs = $product_category == "Dried Herbs" ? "selected" : "";
+        $cooked_foods = $product_category == "Cooked Foods" ? "selected" : "";
+        ?>
     <select class="form-items--dropdown" name="product-categories" id="product-categories">
-        <option value="Medicinal Fruits & Vegetables">Medicinal Fruits & Vegetables</option>
-        <option value="Seeds">Seeds</option>
-        <option value="Leaves">Leaves</option>
-        <option value="Dried Herbs">Dried Herbs</option>
-        <option value="Cooked Foods">Cooked Foods</option>
+        <option value="all">Select category</option>
+        <?php
+            echo "<option value='Medicinal Fruits & Vegetables' $med_fruit_veg_selected>Medicinal Fruits & Vegetables</option>";
+            echo "<option value='Seeds' $seeds> Seeds </option>";
+            echo "<option value='Leaves' $leaves>Leaves</option>";
+            echo " <option value='Dried Herbs' $dried_herbs>Dried Herbs</option>";
+            echo "<option value='Cooked Foods' $cooked_foods>Cooked Foods</option>";
+
+        ?>
     </select>
+    <input type="submit">
 </form>
 
 <div class="consumer-product__grid-container" id="consumer-product__grid-container">
@@ -47,14 +64,13 @@ $products = is_null($products) ? [] : $products;
         </div>
     </div>";
     }
+
+    if(empty($products)) {
+        echo "No results";
+    }
     ?>
 </div>
 
-<!--<div class='pagination-numbers'>-->
-<!--    <a class="pagination-button">1</a>-->
-<!--    <a class="pagination-button pagination-button--active">2</a>-->
-<!--    <a class="pagination-button">3</a>-->
-<!--</div>-->
 
 
 

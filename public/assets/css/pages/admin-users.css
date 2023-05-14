@@ -4,6 +4,7 @@
     padding: 1rem;
     margin: 2rem;
     border-radius: 8px;
+    position: relative;
 }
 
 .admin-users__top-container{
@@ -38,5 +39,14 @@
     right: 3rem;
     color: #FFB200;
     padding-bottom: 1rem;
+}
+
+.admin-user-dropdown{
+    position: absolute;
+    right: 8rem;
+    top: 1rem;
+}
+
+.admin-user-header{
 }
 
