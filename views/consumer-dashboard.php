@@ -72,36 +72,7 @@
 
     <div class="dashboard__top-cards" style="width: 38%">
         <div id='calendar'></div>
-<!--                <div class="calendar">-->
-<!--            <div class="calendar-header">-->
-<!--                <span class="month-picker" id="month-picker">February</span>-->
-<!--                <div class="year-picker">-->
-<!--                <span class="year-change" id="prev-year">-->
-<!--                    <pre><</pre>-->
-<!--                </span>-->
-<!--                    <span id="year">2021</span>-->
-<!--                    <span class="year-change" id="next-year">-->
-<!--                    <pre>></pre>-->
-<!--                </span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="calendar-body">-->
-<!--                <div class="calendar-week-day">-->
-<!--                    <div>Sun</div>-->
-<!--                    <div>Mon</div>-->
-<!--                    <div>Tue</div>-->
-<!--                    <div>Wed</div>-->
-<!--                    <div>Thu</div>-->
-<!--                    <div>Fri</div>-->
-<!--                    <div>Sat</div>-->
-<!--                </div>-->
-<!--                <div class="calendar-days"></div>-->
-<!--            </div>-->
-<!--            <div class="calendar-footer">-->
-<!--            </div>-->
-<!--            <div class="month-list"></div>-->
-<!--        </div>-->
-<!---->
+
     </div>
 
     <div class="dashboard__top-cards events-container">
@@ -124,8 +95,8 @@
                                     </div>
                                 </div>
                                 <div style="display: flex;gap: 1.5rem;flex-direction: row;">
-                                    <h4><?php echo $value['date'];?></h4>
-                                    <h4><?php echo $value['from_time']." - ".$value['to_time'];?></h4>
+                                    <p><?php echo $value['date'];?></p>
+                                    <p><?php echo $value['from_time']." - ".$value['to_time'];?></p>
                                 </div>
                             </div>
                     <?php } ?>
