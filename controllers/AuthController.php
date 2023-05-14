@@ -59,7 +59,6 @@ class AuthController extends Controller
 
 
 
-                //var_dump($_POST);
                 $db = new database();
 
                 $errors = [];

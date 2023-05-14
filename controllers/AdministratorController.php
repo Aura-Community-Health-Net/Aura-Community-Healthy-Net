@@ -13,7 +13,7 @@ class AdministratorController extends Controller
         $is_admin = $_SESSION["is_admin"];
 
         if ($is_admin) {
-            $provider_type = $_GET["provider_type"] ?? "doctor";
+            $provider_type = $_GET["provider_type"] ?? "doctor";    //show all the doctors who are not verified yet
             if ($provider_type == "doctor") {
                 $sql = "SELECT * FROM service_provider INNER JOIN doctor d on service_provider.provider_nic = d.provider_nic WHERE is_verified = 0";
                 $result = $db->connection->query(query: $sql);
@@ -46,11 +46,15 @@ class AdministratorController extends Controller
                     ],
                     "active_link" => "new-registrations"
                 ]);
+                //retrieve the all pharmacies which are not verified yet
             } elseif ($provider_type == "pharmacy") {
                 $sql = "SELECT * FROM service_provider INNER JOIN pharmacy p on service_provider.provider_nic = p.provider_nic WHERE is_verified = 0";
+
+                //retrieve the all product sellers which are not verified yet
             } elseif ($provider_type == "product-seller") {
-                $sql = "SELECT * FROM service_provider INNER JOIN `healthy_food/natural_medicine_provider` `hf/nmp` on service_provider.provider_nic = `hf/nmp`.provider_nic WHERE
-                                                                                                                                                         is_verified = 0";
+                $sql = "SELECT * FROM service_provider INNER JOIN `healthy_food/natural_medicine_provider` `hf/nmp` on service_provider.provider_nic = `hf/nmp`.provider_nic WHERE  is_verified = 0";
+
+                //retrieve the all product sellers which are not verified yet
             } elseif ($provider_type == "care-rider") {
                 $sql = "SELECT * FROM service_provider INNER JOIN care_rider cr on service_provider.provider_nic = cr.provider_nic INNER JOIN vehicle v on cr.provider_nic = v.provider_nic  WHERE is_verified = 0";
             }
@@ -81,57 +85,69 @@ class AdministratorController extends Controller
     {
         $db = new Database();
         $is_admin = $_SESSION["is_admin"];
+
+        //if the administrator credentials incorrect redirected to the administrator login page
         if (!$is_admin) {
             header("location: /administrator-login");
             return "";
         }
 
+        //get new registrations count of pharmacies
         $stmt = $db->connection->prepare("SELECT COUNT(provider_nic)AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='pharmacy'");
         $stmt->execute();
         $result = $stmt->get_result();
         $pharmacist_count = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get new registrations count of product sellers
         $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='product-seller'");
         $stmt->execute();
         $result = $stmt->get_result();
         $product_seller_count = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get new registrations count of doctors
         $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='doctor'");
         $stmt->execute();
         $result = $stmt->get_result();
         $doctor_count = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get new registrations count of care riders
         $stmt = $db->connection->prepare("SELECT COUNT(provider_nic) AS provider_count FROM service_provider s  WHERE s.is_verified = 0 AND s.provider_type='care-rider'");
         $stmt->execute();
         $result = $stmt->get_result();
         $care_rider_count = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the due payments for the providers for current month
         $stmt = $db->connection->prepare("SELECT s.profile_picture, s.provider_nic, s.name, sum(pr.amount)/100 AS amount, s.provider_type FROM service_provider s 
         INNER JOIN payment_record pr on s.provider_nic = pr.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC LIMIT 4");
         $stmt->execute();
         $result = $stmt->get_result();
         $due_payments = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the registered doctors
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'doctor' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_doctors = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the registered pharmacies
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'pharmacy' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_pharmacies = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the registered product sellers
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'product-seller' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_sellers = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the registered care riders
         $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_type = 'care-rider' AND is_verified = 1");
         $stmt->execute();
         $result = $stmt->get_result();
         $reg_riders = $result->fetch_all(MYSQLI_ASSOC);
 
+        //get the service consumers
         $stmt = $db->connection->prepare("SELECT * FROM service_consumer");
         $stmt->execute();
         $result = $stmt->get_result();
@@ -172,18 +188,28 @@ class AdministratorController extends Controller
 //            $result = $stmt->get_result();
 //            $providers = $result->fetch_all(MYSQLI_ASSOC);
 
+
+            //filter all the service providers
             $provider_type = $_GET["provider_type"] ?? "all";
 
             if($provider_type === "all") {
                 $sql = "SELECT * FROM service_provider";
             }
+
+            //filter all the doctors
             if ($provider_type === "doctor"){
                 $sql = "SELECT * FROM service_provider WHERE provider_type = 'doctor'";
+
+                //filter all the pharmacies
             } else if ($provider_type === "pharmacy"){
                 $sql = "SELECT * FROM service_provider WHERE provider_type = 'pharmacy'";
+
+                //filter all the product sellers
             } else if ($provider_type === "product-seller"){
                 $sql = "SELECT * FROM service_provider WHERE provider_type = 'product-seller'";
             } else if ($provider_type === "care-rider"){
+
+                //filter all the scare riders
                 $sql = "SELECT * FROM service_provider WHERE provider_type = 'care-rider'";
             }
 
@@ -209,32 +235,32 @@ class AdministratorController extends Controller
         }
     }
 
-    public static function updateConsumerByAdmin(): string
-    {
-        $db = new Database();
-        $is_admin = $_SESSION["is_admin"];
-
-        $consumer_nic = $_POST["nic"];
-        $email_address = $_POST["email"];
-        $mobile_number = $_POST["mobile_number"];
-        $address = $_POST["address"];
-        var_dump($consumer_nic, $email_address, $mobile_number, $address);
-
-        if (!$is_admin){
-            header("location: /administrator-login");
-            return "";
-        } else {
-            $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?,
-                              email_address = ?,
-                              address = ?,
-                              mobile_number = ?
-                        WHERE consumer_nic = ?");
-            $stmt->bind_param("sssss", $consumer_nic, $email_address, $mobile_number, $address,$nic);
-            $result = $stmt->get_result();
-            header("location: /admin-dashboard/users");
-            return "";
-        }
-    }
+//    public static function updateConsumerByAdmin(): string
+//    {
+//        $db = new Database();
+//        $is_admin = $_SESSION["is_admin"];
+//
+//        $consumer_nic = $_POST["nic"];
+//        $email_address = $_POST["email"];
+//        $mobile_number = $_POST["mobile_number"];
+//        $address = $_POST["address"];
+//        var_dump($consumer_nic, $email_address, $mobile_number, $address);
+//
+//        if (!$is_admin){
+//            header("location: /administrator-login");
+//            return "";
+//        } else {
+//            $stmt = $db->connection->prepare("UPDATE service_consumer SET consumer_nic = ?,
+//                              email_address = ?,
+//                              address = ?,
+//                              mobile_number = ?
+//                        WHERE consumer_nic = ?");
+//            $stmt->bind_param("sssss", $consumer_nic, $email_address, $mobile_number, $address,$nic);
+//            $result = $stmt->get_result();
+//            header("location: /admin-dashboard/users");
+//            return "";
+//        }
+//    }
 
     public static function getAdministratorDuePaymentsPage(): bool|array|string
     {
@@ -245,6 +271,7 @@ class AdministratorController extends Controller
             header("location: /administrator-login");
             return "";
         } else{
+            //get the due payments of service providers for the current month
             $stmt = $db->connection->prepare("SELECT s.profile_picture, sum(p.amount)/100 AS amount, p.purpose, s.name, s.provider_type, s.bank_account_number, s.provider_nic FROM payment_record p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic WHERE YEAR(date_time) = YEAR(CURRENT_TIMESTAMP) AND MONTH(date_time) = MONTH(CURRENT_TIMESTAMP) GROUP BY s.provider_nic ORDER BY amount DESC");
             $stmt->execute();
             $result = $stmt->get_result();
@@ -279,7 +306,8 @@ class AdministratorController extends Controller
         ]);
     }
 
-    public static function getAdministratorProductSellersRevenueChart(){
+    public static function getAdministratorProductSellersRevenueChart(): bool|string  //get product sellers revenue chart
+    {
         $db = new Database();
         $chart_time = $_GET["period"] ?? "all_time";
 
@@ -290,6 +318,7 @@ class AdministratorController extends Controller
         $stmt = "";
         switch ($chart_time) {
             case "this_week";
+            //get the revenues for current week of all product sellers
                 $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
                                                     WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
@@ -298,6 +327,7 @@ class AdministratorController extends Controller
                 break;
 
             case "this_month";
+                //get the revenues for current month of all product sellers
                 $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue 
                                                     FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic
                                                     WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
@@ -306,6 +336,7 @@ class AdministratorController extends Controller
                 break;
 
             case "past_six_months";
+                //get the revenues for past six months of all product sellers
                 $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
                                                     WHERE s.provider_type = 'product-seller' AND YEAR(date_time) = YEAR(NOW()) 
@@ -313,6 +344,7 @@ class AdministratorController extends Controller
                 break;
 
             case "all_time";
+                //get the revenues for all dates of all product sellers
                 $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record  INNER JOIN service_provider s ON payment_record.provider_nic = s.provider_nic 
                                                     WHERE s.provider_type = 'product-seller'
@@ -328,7 +360,8 @@ class AdministratorController extends Controller
 
 //getAdministratorCareRiderRevenueChart
 
-    public static function getAdministratorCareRiderRevenueChart(){
+    public static function getAdministratorCareRiderRevenueChart(): bool|string
+    {
         $db = new Database();
         $chart_time = $_GET["period"] ?? "all_time";
 
@@ -383,16 +416,7 @@ class AdministratorController extends Controller
         return json_encode($data);
     }
 
-
-
-
-
-
-
-
-
-
-    public static function getAdministratorPharmacyRevenueChart()
+    public static function getAdministratorPharmacyRevenueChart(): bool|string
 
     {
 
@@ -510,7 +534,6 @@ class AdministratorController extends Controller
     }
 
 
-
     public static function getAdministratorFeedbackPage(): bool|array|string
     {
         $is_admin = $_SESSION["is_admin"];
@@ -519,6 +542,8 @@ class AdministratorController extends Controller
             return "";
         } else {
             $db = new Database();
+
+            //get all feedback thar provided by service consumers to the service providers
             $stmt = $db->connection->prepare("SELECT s.profile_picture, s.name, s.provider_type, f.text, f.date_time FROM service_provider s INNER JOIN feedback f on s.provider_nic = f.provider_nic ORDER BY f.date_time DESC");
             $stmt->execute();
             $result = $stmt->get_result();
@@ -536,44 +561,43 @@ class AdministratorController extends Controller
     }
 
 
-
-    public static function updateProviderDetails(): bool|array|string
-    {
-        $nic = $_POST['provider_nic'];
-        $is_admin = $_SESSION["is_admin"];
-        $provider_nic = $_POST['nic'];
-        $provider_name = $_POST['name'];
-        $email_address = $_POST['email'];
-        $mobile_number = $_POST['mobile'];
-        $address = $_POST['address'];
-        $account_no = $_POST['acc_no'];
-        $bank_name = $_POST['bank'];
-        $branch_name = $_POST['branch'];
-
-        print_r($nic);
-
-        if (!$is_admin) {
-            header("location: /administrator-login");
-            return "";
-        } else {
-            $db = new Database();
-            $stmt = $db->connection->prepare("UPDATE service_provider SET provider_nic = ?,
-                              name = ?,
-                              address = ?,
-                              email_address = ?,
-                        mobile_number = ?,
-                        bank_name = ?,
-                        bank_branch_name = ?,
-                        bank_account_number = ?
-                        WHERE provider_nic = ?");
-            $stmt->bind_param("sssssssis", $provider_nic, $provider_name, $address,$email_address,$mobile_number,$bank_name,$branch_name,$account_no,$nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            header("location: /admin-dashboard/users");
-            return "";
-        }
-    }
+//    public static function updateProviderDetails(): bool|array|string
+//    {
+//        $nic = $_POST['provider_nic'];
+//        $is_admin = $_SESSION["is_admin"];
+//        $provider_nic = $_POST['nic'];
+//        $provider_name = $_POST['name'];
+//        $email_address = $_POST['email'];
+//        $mobile_number = $_POST['mobile'];
+//        $address = $_POST['address'];
+//        $account_no = $_POST['acc_no'];
+//        $bank_name = $_POST['bank'];
+//        $branch_name = $_POST['branch'];
+//
+//        print_r($nic);
+//
+//        if (!$is_admin) {
+//            header("location: /administrator-login");
+//            return "";
+//        } else {
+//            $db = new Database();
+//            $stmt = $db->connection->prepare("UPDATE service_provider SET provider_nic = ?,
+//                              name = ?,
+//                              address = ?,
+//                              email_address = ?,
+//                        mobile_number = ?,
+//                        bank_name = ?,
+//                        bank_branch_name = ?,
+//                        bank_account_number = ?
+//                        WHERE provider_nic = ?");
+//            $stmt->bind_param("sssssssis", $provider_nic, $provider_name, $address,$email_address,$mobile_number,$bank_name,$branch_name,$account_no,$nic);
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//
+//            header("location: /admin-dashboard/users");
+//            return "";
+//        }
+//    }
 
 }
 

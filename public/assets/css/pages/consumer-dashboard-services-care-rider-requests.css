@@ -88,6 +88,7 @@
     color: #ffffFF;
     border: none;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .care-rider-pickup-location {
