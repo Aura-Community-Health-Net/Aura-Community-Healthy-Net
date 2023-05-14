@@ -1,7 +1,7 @@
 <div class="payment_success_container">
     <div class="payment_success_left_container">
         <div class="payment_success_text">
-            <h2>Thanks for your purchase</h2>
+            <h2>Thanks for your reservation</h2>
             <h1>Your Payment is Successful</h1>
             <i class="payment_success_icon fa-regular fa-circle-check"></i>
         </div>

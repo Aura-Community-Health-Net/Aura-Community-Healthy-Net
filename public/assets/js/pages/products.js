@@ -4,6 +4,7 @@ const addProductForm = document.querySelector("#add-product-form");
 const addProductOverlay = document.querySelector("#add-product-overlay");
 const addProductOKBtn = document.querySelector("#add-product-ok-btn");
 const addProductCancelBtn = document.querySelector("#add-product-cancel-btn");
+const addProductFinalBtn = document.querySelector("#add-product-final-btn");
 
 const deleteProductModal = document.querySelector("#delete-product-modal");
 const deleteProductOverlay = document.querySelector("#delete-product-overlay");
@@ -33,7 +34,8 @@ addProductModalButton.addEventListener("click", () => {
 });
 
 addProductOKBtn.addEventListener("click", () => {
-  addProductForm.submit();
+  // addProductForm.submit();
+  addProductFinalBtn.click();
 });
 
 addProductOverlay.addEventListener("click", (e) => {

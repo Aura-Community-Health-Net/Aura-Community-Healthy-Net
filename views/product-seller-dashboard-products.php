@@ -91,7 +91,7 @@ $stock = $_POST["stock"] ?? "";
             } ?>
         </tr>
     </table>
-
+    <input type="submit" id="add-product-final-btn" style="display: none">
     <button class="add-btn" id="add-product-btn" type="button"><i class="fa fa-plus"></i></button>
 </form>
 
