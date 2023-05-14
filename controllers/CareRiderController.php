@@ -42,7 +42,7 @@ class CareRiderController extends Controller
                     INNER JOIN care_rider ON service_provider.provider_nic = care_rider.provider_nic
                     AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000
                     INNER JOIN vehicle ON care_rider.provider_nic = vehicle.provider_nic
-                    WHERE name LIKE '%$search_query%'
+                    WHERE is_verified = TRUE AND name LIKE '%$search_query%'
                 ");
                 $stmt->bind_param("dd", $location_lng, $location_lat);
             } else {
@@ -51,7 +51,7 @@ class CareRiderController extends Controller
                     INNER JOIN care_rider ON service_provider.provider_nic = care_rider.provider_nic
                     AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000
                     INNER JOIN vehicle ON care_rider.provider_nic = vehicle.provider_nic
-                    WHERE vehicle.type = ? AND name LIKE '%$search_query%'
+                    WHERE  vehicle.type = ? AND is_verified =TRUE AND name LIKE '%$search_query%'
                 ");
                 $stmt->bind_param("dds", $location_lng, $location_lat, $vehicleType);
             }
