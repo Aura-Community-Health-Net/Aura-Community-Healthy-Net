@@ -30,9 +30,9 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
                             <td><img src="<?php echo $value['profile_picture']?>" alt=""></td>
                             <td><h5><b><?php echo $value['name']?></b><br>
                                     <?php echo $value['mobile_number']?></h5></td>
-                            <td><h4><?php echo $value['date']?></h4></td>
-                            <td><h4><?php echo $value['from_time']." - ".$value['to_time']?></h4></td>
-                            <td><h4><?php echo $value['address']?></h4></td>
+                            <td><p><?php echo $value['date']?></p></td>
+                            <td><p><?php echo $value['from_time']." - ".$value['to_time']?></p></td>
+                            <td><p><?php echo $value['address']?></p></td>
                         </tr>
                     <?php } ?>
                 </table>
