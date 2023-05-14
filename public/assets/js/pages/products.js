@@ -165,7 +165,8 @@ function attachUpdateButtonListener(button){
     const productId = button.dataset.productid;
     const productName = button.dataset.productname;
     const tr = button.parentElement.parentElement;
-    console.log(Object.from(tr.dataset))
+    console.log(tr.dataset)
+    console.log(productId)
     const categoryID = button.dataset.categoryid;
     // <label className="form-input__label" htmlFor="">Product Image</label>
     // <input type="file" id="image" name="image" style="display: none; visibility: hidden" accept="image/*"
@@ -190,7 +191,7 @@ function attachUpdateButtonListener(button){
                 <label class="form-input__label" for="">Price</label>
                 <input class="form-input__input" type="text" name="price" value="${tr.dataset.productprice}">
                 ${parseInt(categoryID) !== 5 ?
-                `<label class="form-input__label" for="">Stock</label>
+        `<label class="form-input__label" for="">Stock</label>
                 <input class="form-input__input" type="text" name="stock" value="${tr.dataset.productstock}">
                 <label class="form-input__label" for="">Stock Unit</label>
                 `: ""}

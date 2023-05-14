@@ -39,9 +39,8 @@ class ProductsController extends Controller
             header("location: /product-seller-login");
             return "";
         } else {
-            $category_id = $_GET["product-categories"];
+            $category_id = $_GET["category"];
             $db = new Database();
-
 
             //        $sql = "SELECT * FROM product WHERE category_id = $category_id";
             $stmt = $db->connection->prepare("SELECT * FROM product WHERE category_id = ? AND provider_nic = ?");
@@ -72,7 +71,6 @@ class ProductsController extends Controller
             return self::render(view: 'product-seller-dashboard-products', layout: "product-seller-dashboard-layout", params: [
                 "products" => $products,
                 "category" => $category_id,
-                "product_category" => $product_category
             ], layoutParams: ["title" => $row["category_name"], "product_seller" => $product_seller, "active_link" => "products"]);
         }
     }
