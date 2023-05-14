@@ -124,6 +124,7 @@
                     // Make sure to change this to your payment completion page
 
                     return_url: "https://1439-2401-dd00-1e-00-fffe.ngrok-free.app/medicines-checkout/success",
+
                     receipt_email: emailAddress,
                 },
             });

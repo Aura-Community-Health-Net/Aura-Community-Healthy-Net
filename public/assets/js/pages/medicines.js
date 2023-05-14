@@ -4,7 +4,7 @@ const addMedicineOverlay = document.querySelector("#add-medicine-overlay");
 const addMedicineForm = document.querySelector("#add-medicine-form");
 const addMedicineConfirmButton = document.querySelector("#add-medicine-ok-btn");
 const addMedicineCancelButton = document.querySelector("#add-medicine-cancel-btn");
-
+const addMedicineFinalButton = document.querySelector("#add-medicine-final-btn");
 
 
 const addMedicineImageInput = document.querySelector("#add_img");
@@ -164,8 +164,9 @@ addMedicineImageInput.addEventListener("change", function () {
 
 
 addMedicineConfirmButton.addEventListener("click", () => {
-   console.log("Clicked add ok button")
-  addMedicineForm.submit();
+  //  console.log("Clicked add ok button")
+  // addMedicineForm.submit();
+  addMedicineFinalButton.click();
 });
 
 addMedicineCancelButton.addEventListener("click", () => {

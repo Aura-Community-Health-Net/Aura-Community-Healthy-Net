@@ -8,10 +8,10 @@
  * @var $patient_details;
  * @var $consulted_patients;
  */
-//print_r($appointment_done);die();
+//print_r($patient_details);die();
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations' style='color: red'> <p>You're not verified yet. Please check later.</p></div>";
-}
+}else{
 
 //print_r($appointment_confirm);die();
 //print_r($patient_details);
@@ -30,16 +30,16 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
                             <td><img src="<?php echo $value['profile_picture']?>" alt=""></td>
                             <td><h5><b><?php echo $value['name']?></b><br>
                                     <?php echo $value['mobile_number']?></h5></td>
-                            <td><h4><?php echo $value['date']?></h4></td>
-                            <td><h4><?php echo $value['from_time']." - ".$value['to_time']?></h4></td>
-                            <td><h4><?php echo $value['address']?></h4></td>
+                            <td><p><?php echo $value['date']?></p></td>
+                            <td><p><?php echo $value['from_time']." - ".$value['to_time']?></p></td>
+                            <td><p><?php echo $value['address']?></p></td>
                         </tr>
                     <?php } ?>
                 </table>
                 <a href="/doctor-dashboard/appointments"><button>Show More</button></a>
             </div>
-            <?php } } ?>
-        </div>
+            <?php } ?>
+        </div><?php } ?>
 
         <div class="doctor-dashboard__center__top">
             <h3 style="margin-bottom: 1.5rem">Patients Count</h3>
@@ -107,3 +107,5 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 
 <script src="/assets/js/pages/doctor-analytics.js"></script>
+
+<?php } ?>
