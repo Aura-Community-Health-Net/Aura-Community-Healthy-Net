@@ -163,8 +163,8 @@
             <div class="section-four">
                 <h5 class="footer-title">About</h5>
                 <a href="/about-us" class="footer-details">About us</a>
-                <a href="/user-agreement" class="footer-details">User Agreement</a>
-                <a href="/privacy-policy" class="footer-details">Privacy Policy</a>
+                <a href="/terms-conditions-and-user-agreements" class="footer-details">User Agreement</a>
+                <a href="/terms-conditions-and-user-agreements" class="footer-details">Privacy Policy</a>
             </div>
         </footer>
     </section>
