@@ -13,7 +13,7 @@
 
     <div class="header-link__container">
         <a class="header-link" href="/contact-us">Contact Us</a>
-        <a class="header-link" href="/about-us">About Us</a>
+        <a class="header-link" href="/terms-conditions-and-user-agreements">About Us</a>
         <?php
         $nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
 
