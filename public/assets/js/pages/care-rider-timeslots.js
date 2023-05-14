@@ -4,9 +4,15 @@ const addCareRiderTimeslotOverlay = document.querySelector("#add-care-rider-time
 const addCareRiderTimeslotForm = document.querySelector("#add-care-rider-timeslot-form");
 const addCareRiderTimeslotConfirmButton = document.querySelector("#add-care-rider-timeslot-ok-btn");
 addCareRiderTimeslotCancelButton = document.querySelector("#add-care-rider-timeslot-cancel-btn");
-addCareRiderTimeslotConfirmButton.addEventListener("click", () => {addCareRiderTimeslotForm.submit();});
-addCareRiderTimeslotCancelButton.addEventListener("click", () => {addCareRiderTimeslotCloseModal();});
 
+addCareRiderTimeslotConfirmButton.addEventListener("click", () => {
+    //addCareRiderTimeslotForm.submit();
+    addCareRiderFinalButton.click()
+});
+addCareRiderTimeslotCancelButton.addEventListener("click", () => {
+    addCareRiderTimeslotCloseModal();
+});
+const addCareRiderFinalButton = document.querySelector("#add-care-rider-time-slot-final-button");
 const deleteCareRiderTimeslotModal = document.querySelector("#delete-care-rider-timeslot-modal");
 const deleteCareRiderTimeslotOverlay = document.querySelector("#delete-care-rider-timeslot-overlay");
 const deleteCareRiderTimeslotButtons = document.querySelectorAll(".care-rider-timeslot-delete");

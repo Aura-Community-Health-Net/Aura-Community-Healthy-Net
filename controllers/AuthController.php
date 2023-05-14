@@ -459,7 +459,7 @@ class AuthController extends Controller
 
 
                 //number plate
-                $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate'";
+                $sql = "SELECT * FROM vehicle WHERE number_plate = '$numberPlate' ";
                 $result = $db->connection->query(query: $sql);
                 if ($result->num_rows > 0) {
                     $errors["number_plate"] = "number plate already in use";

@@ -85,6 +85,14 @@ if (!$care_rider['is_verified']) {
                                 <h5>Pickup Time</h5>
                                 <h5><?php echo $request_details['time']; ?></h5>
                             </div>
+                            <div>
+                                <h5>Distance</h5>
+                                <h5><?php echo $request_details['distance']; ?> km </h5>
+                            </div>
+                            <div>
+                                <h5>Amount</h5>
+                                <h5> Rs.<?php echo $request_details['distance']*70; ?>  </h5>
+                            </div>
                         </div>
                     </div>
                     <?php
@@ -102,7 +110,7 @@ if (!$care_rider['is_verified']) {
 
             <div class="care-rider-request-details">
                 <h3>New Requests</h3>
-                <h1 style="color: #5BC849"><?php echo $count_request['COUNT(done)']; ?></h1>
+                <h1 style="color: #5BC849"><?php echo $new_request ['COUNT(done)']; ?></h1>
             </div>
             <div class="care-rider-request-details">
                 <h3>All Requests</h3>
