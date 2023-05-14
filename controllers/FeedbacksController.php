@@ -140,7 +140,7 @@ class FeedbacksController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
         }
-        $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_provider.profile_picture, service_provider.name FROM feedback INNER JOIN service_provider on feedback.provider_nic = service_provider.provider_nic WHERE feedback.consumer_nic = ?");
+        $stmt = $db->connection->prepare("SELECT feedback.text, feedback.date_time, service_provider.profile_picture, service_provider.name FROM feedback INNER JOIN service_provider on feedback.provider_nic = service_provider.provider_nic WHERE feedback.consumer_nic = ? ORDER BY date_time DESC ");
         $stmt->bind_param("s", $nic);
         $stmt->execute();
         $result = $stmt->get_result();

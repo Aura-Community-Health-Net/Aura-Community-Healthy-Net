@@ -18,13 +18,6 @@ class CareRiderController extends Controller
             return "";
         } else {
             $db = new Database();
-            $stmt = $db->connection->prepare("SELECT location_lat,location_lng FROM service_consumer WHERE consumer_nic = ?");
-            $stmt->bind_param("s", $nic);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $consumer = $result->fetch_assoc();
-            $location_lat = $consumer["location_lat"];
-            $location_lng = $consumer["location_lng"];
 
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
@@ -32,23 +25,62 @@ class CareRiderController extends Controller
             $result = $stmt->get_result();
             $consumer = $result->fetch_assoc();
 
+            $stmt = $db->connection->prepare("SELECT location_lat,location_lng FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $location_lat = $consumer["location_lat"];
+            $location_lng = $consumer["location_lng"];
+
             $search_query = isset($_GET["q"]) ? $_GET["q"] : "";
 
-            $stmt = $db->connection->prepare("SELECT * FROM service_provider INNER JOIN care_rider on service_provider.provider_nic = care_rider.provider_nic AND st_distance_sphere(point(?,?), point(service_provider.location_lng,service_provider.location_lat))<=10000 INNER JOIN vehicle on care_rider.provider_nic = vehicle.provider_nic  WHERE name LIKE '%$search_query%' ");
-            $stmt->bind_param("dd", $location_lng, $location_lat);
+            $vehicleType = $_GET["vehicle_type"] ?? "all";
+
+            if ($vehicleType === "all") {
+                $stmt = $db->connection->prepare("
+                    SELECT * FROM service_provider
+                    INNER JOIN care_rider ON service_provider.provider_nic = care_rider.provider_nic
+                    AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000
+                    INNER JOIN vehicle ON care_rider.provider_nic = vehicle.provider_nic
+                    WHERE name LIKE '%$search_query%'
+                ");
+                $stmt->bind_param("dd", $location_lng, $location_lat);
+            } else {
+                $stmt = $db->connection->prepare("
+                    SELECT * FROM service_provider
+                    INNER JOIN care_rider ON service_provider.provider_nic = care_rider.provider_nic
+                    AND st_distance_sphere(point(?, ?), point(service_provider.location_lng, service_provider.location_lat)) <= 10000
+                    INNER JOIN vehicle ON care_rider.provider_nic = vehicle.provider_nic
+                    WHERE vehicle.type = ? AND name LIKE '%$search_query%'
+                ");
+                $stmt->bind_param("dds", $location_lng, $location_lat, $vehicleType);
+            }
+
             $stmt->execute();
             $result = $stmt->get_result();
             $care_rider = $result->fetch_all(MYSQLI_ASSOC);
-
-            //print_r($care_rider);die();
         }
 
-        return self::render(view: 'consumer-dashboard-services-care-rider', layout: "consumer-dashboard-layout", params: ['consumer' => $consumer, "care_rider" => $care_rider], layoutParams: [
-            "consumer" => $consumer,
-            "care_rider" => $care_rider,
-            "active_link" => "care-rider",
-            "title" => "Care Rider"]);
+        return self::render(
+            view: 'consumer-dashboard-services-care-rider',
+            layout: "consumer-dashboard-layout",
+            params: [
+                'consumer' => $consumer,
+                "care_rider" => $care_rider,
+                'searchTerm' => $search_query,
+                "vehicle_type" => $vehicleType
+            ],
+            layoutParams: [
+                "consumer" => $consumer,
+                "care_rider" => $care_rider,
+                "active_link" => "care-rider",
+                "title" => "Care Rider"
+            ]
+        );
     }
+
+
+
 
     // counsumer => according to service provider display timeslot, feedback
     //consumer-dashboard-services-care-rider-requests-page
@@ -111,6 +143,8 @@ class CareRiderController extends Controller
             header("location: /login");
             return "";
         } else {
+
+            $req_id = $_GET['req_id'];
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
@@ -118,14 +152,17 @@ class CareRiderController extends Controller
             $result = $stmt->get_result();
             $service_consumer = $result->fetch_assoc();
 
+            $stmt=$db->connection->prepare("SELECT distance FROM ride_request WHERE consumer_nic =? AND request_id =?");
+            $stmt->bind_param("si",$nic,$req_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $success = $result->fetch_assoc();
+
+            //print_r($success);die();
+
         }
 
-        $stmt=$db->connection->prepare("SELECT cost,distance FROM ride WHERE consumer_nic=?");
-        $stmt->bind_param("s",$nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $success = $result->fetch_assoc();
-
+        //print_r($success);
         return self::render(view: '/consumer-dashboard-care-rider-request-success', layout: "consumer-dashboard-layout", params: ["consumer" => $service_consumer,"success"=>$success], layoutParams: [
             "consumer" => $service_consumer,
             "active_link" => "consumer",
@@ -196,20 +233,18 @@ class CareRiderController extends Controller
 //Input to rider-request-data
             $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,distance,done,confirmation,provider_nic,consumer_nic
                      )VALUES (?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssssss", $pickup_time, $location1, $location2, $distance, $done, $confirmation, $provider_nic, $nic,);
+            $stmt->bind_param("ssssiiss", $pickup_time, $location1, $location2, $distance, $done, $confirmation, $provider_nic, $nic,);
             $stmt->execute();
             $result = $stmt->get_result();
 
             $req_id = $stmt->insert_id;
             $stmt = $db->connection->prepare("UPDATE care_rider_time_slot SET request_id = ?
                                WHERE slot_number = $slot_number");
-            $stmt->bind_param("s", $req_id);
+            $stmt->bind_param("i", $req_id);
             $stmt->execute();
             $result = $stmt->get_result();
 
-
-
-            header("location: /consumer-dashboard/services/care-rider/request/successful");
+            header("location: /consumer-dashboard/services/care-rider/request/successful?req_id=$req_id");
 
         }
         return self::render(view: 'consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout", params: [], layoutParams: [

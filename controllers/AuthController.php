@@ -377,11 +377,13 @@ class AuthController extends Controller
                                     bank_branch_name, 
                                     profile_picture, 
                                     bank_account_number, 
-                                    provider_type) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?)");
+                                    provider_type,
+                                    location_lat,
+                                    location_lng) VALUES (?,UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $image = "/uploads/$new_file_name";
                     $type = 'product-seller';
-                    $stmt->bind_param("sssssssssis", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $type);
+                    $stmt->bind_param("sssssssssisdd", $nic, $ownerName, $address, $email, $hashedPassword, $mobileNumber, $bankName, $branchName, $image, $bankNo, $type, $location_lat, $location_lng);
                     $stmt->execute();
 
 
@@ -432,7 +434,6 @@ class AuthController extends Controller
                 //nic
                 $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
 //                                echo "nic already in use";
                     $errors["nic"] = "nic already in use";

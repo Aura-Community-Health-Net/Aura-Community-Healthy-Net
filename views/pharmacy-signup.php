@@ -59,7 +59,7 @@
             <div class="form-input">
                 <label class="form-input__label" for="pharmacyregno">Pharmacist Registration Number <sup>*</sup></label>
                 <input class="form-input__input" id="pharmacyregno" type="text" name="pharmacyregno"
-                    value="<?php echo $_POST['regNumber'] ?? ''; ?>" required>
+                    value="<?php echo $_POST['pharmacyregno'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["pharmacyregno"])) {
                     echo "<p class = 'errors'> {$errors["pharmacyregno"]}</p>";

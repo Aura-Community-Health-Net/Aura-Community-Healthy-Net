@@ -14,6 +14,7 @@
             <th>Category</th>
             <th>Product</th>
             <th>Quantity</th>
+            <th>Order Date</th>
         </tr>
 
         <?php
@@ -26,6 +27,7 @@
             $quantity = $order['quantity'];
             $quantity_unit = $order['quantity_unit'];
             $order_id = $order['order_id'];
+            $order_date = $order['created_at'];
 
             echo "
             <tr>
@@ -35,6 +37,7 @@
             <td>$category</td>
             <td>$product</td>
             <td>$quantity $quantity_unit</td>
+            <td>$order_date</td>
             <form action='/product-seller-dashboard/orders/mark-as-done?order_id=$order_id' method='post'>
                 <td><button class='done-btn'>Done</button></td>
             </form>

@@ -69,7 +69,6 @@
                         <input type="checkbox" id="remember-me" name="rememberMe">
                         <label class="remember-me" for="remember-me">Remember me</label>
                     </div>
-                    <a class="forgot-pw" href="#">Forgot Password ?</a>
                 </div>
                 <button class="btn btn--block login-btn">Login</button>
             </form>

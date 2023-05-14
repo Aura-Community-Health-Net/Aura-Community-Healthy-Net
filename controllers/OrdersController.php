@@ -24,13 +24,14 @@ class OrdersController extends Controller
                    p.name,
                    p.quantity,
                    p.quantity_unit,
-                   o.order_id
+                   o.order_id,
+                   o.created_at
             FROM service_consumer s 
                 INNER JOIN  product_order o ON s.consumer_nic = o.consumer_nic 
                 INNER JOIN order_has_product ohp ON o.order_id = ohp.order_id 
                 INNER JOIN product p on ohp.product_id = p.product_id 
                 INNER JOIN product_category cg on p.category_id = cg.category_id 
-            WHERE o.provider_nic = ? AND o.status = 'paid';
+            WHERE o.provider_nic = ? AND o.status = 'paid' ORDER BY o.created_at DESC;
             ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
