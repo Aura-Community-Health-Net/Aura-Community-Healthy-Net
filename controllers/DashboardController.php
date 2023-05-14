@@ -312,7 +312,7 @@ class DashboardController extends Controller
             $result = $stmt->get_result();
             $patient_details = $result->fetch_assoc();
 
-            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment WHERE provider_nic = ? && done = 1");
+            $stmt = $db->connection->prepare("SELECT COUNT(done) FROM appointment INNER JOIN doctor_time_slot on appointment.appointment_id = doctor_time_slot.appointment_id WHERE doctor_time_slot.provider_nic = ? AND done = 1");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
