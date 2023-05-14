@@ -847,3 +847,945 @@
 "payment_intent.created"
 ```
 
+## 2023-05-14 07:59:09
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 07:59:09
+
+```json
+{
+    "id": "evt_3N7XxZB9kJ5FDFAy0EbJUnwq",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684043949,
+    "data": {
+        "object": {
+            "id": "pi_3N7XxZB9kJ5FDFAy0UYLDJCI",
+            "object": "payment_intent",
+            "amount": 105000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7XxZB9kJ5FDFAy0UYLDJCI_secret_wq0fLIF3vVvI7yaq6BThkIRdL",
+            "confirmation_method": "automatic",
+            "created": 1684043949,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "med_order_id": "21",
+                "provider_nic": "995530635V"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "danushkasiriwardhana@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_4D3Fs9xhuiGv0m",
+        "idempotency_key": "e454afba-980e-4704-b678-a45a9baeb690"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-14 07:59:09
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+{
+    "id": "evt_3N7XxZB9kJ5FDFAy0J51gTWQ",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684043997,
+    "data": {
+        "object": {
+            "id": "pi_3N7XxZB9kJ5FDFAy0UYLDJCI",
+            "object": "payment_intent",
+            "amount": 105000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 105000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7XxZB9kJ5FDFAy0UYLDJCI_secret_wq0fLIF3vVvI7yaq6BThkIRdL",
+            "confirmation_method": "automatic",
+            "created": 1684043949,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N7XxZB9kJ5FDFAy0Djeo3sg",
+            "livemode": false,
+            "metadata": {
+                "med_order_id": "21",
+                "provider_nic": "995530635V"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N7XyKB9kJ5FDFAyiAU4P5zK",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_zbLlFHvi6ocdvR",
+        "idempotency_key": "22b97f6b-e063-402b-a4f1-cfaeae9a99ce"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"cus_NrWEYTqWD9fCMy"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+105000
+```
+
+## 2023-05-14 07:59:57
+
+```json
+{
+    "consumer_nic": "8798675643V",
+    "stripe_id": "cus_NrWEYTqWD9fCMy",
+    "name": "Danushka Siriwardhana",
+    "email_address": "danushkasiriwardhana@gmail.com",
+    "location_lat": 6.9021657,
+    "location_lng": 79.8608358,
+    "profile_picture": "\/uploads\/8798675643Vb57600db06cd52504c6f8c4f692392e18191b1f060de3b19profile_picScreenshot 2022-06-23 115820.png",
+    "password": "$2y$10$xNXRSR6307hmYxTyqPk8BegvkjANqzBF8ShuudnZ2CaRX4bac5uT2",
+    "mobile_number": "0765676456",
+    "address": "No 543, Gamsabha Junction, Colombo 6"
+}
+```
+
+## 2023-05-14 07:59:57
+
+```json
+{
+    "med_order_id": "21",
+    "provider_nic": "995530635V"
+}
+```
+
+## 2023-05-14 07:59:57
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": false,
+    "isMedOrderPayment": true
+}
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"21"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"Updated"
+```
+
+## 2023-05-14 07:59:57
+
+```json
+"inserted payment record"
+```
+
+## 2023-05-14 08:02:28
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:02:28
+
+```json
+{
+    "id": "evt_3N7Y0mB9kJ5FDFAy0O3g3Che",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044148,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y0mB9kJ5FDFAy0Ue2EzK6",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y0mB9kJ5FDFAy0Ue2EzK6_secret_Me1j4JJbkJJ1EAB0Se2VgHGp5",
+            "confirmation_method": "automatic",
+            "created": 1684044148,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "9"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "danushkasiriwardhana@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_NoJcQjGYYThMBJ",
+        "idempotency_key": "9fe813c3-3f7b-4365-95ae-8359138017e9"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-14 08:02:28
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-14 08:03:01
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:03:01
+
+```json
+{
+    "id": "evt_3N7Y0mB9kJ5FDFAy0cztALXM",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044181,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y0mB9kJ5FDFAy0Ue2EzK6",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 150000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y0mB9kJ5FDFAy0Ue2EzK6_secret_Me1j4JJbkJJ1EAB0Se2VgHGp5",
+            "confirmation_method": "automatic",
+            "created": 1684044148,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N7Y0mB9kJ5FDFAy0uljeCSE",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "9"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N7Y1IB9kJ5FDFAyRHq8ZwCt",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_lcIX8kaSwHTjsd",
+        "idempotency_key": "a1ff7f6c-072b-4e42-b32f-7bd39efcaa08"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-14 08:03:01
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-14 08:03:01
+
+```json
+"cus_NrWEYTqWD9fCMy"
+```
+
+## 2023-05-14 08:03:01
+
+```json
+150000
+```
+
+## 2023-05-14 08:03:01
+
+```json
+{
+    "consumer_nic": "8798675643V",
+    "stripe_id": "cus_NrWEYTqWD9fCMy",
+    "name": "Danushka Siriwardhana",
+    "email_address": "danushkasiriwardhana@gmail.com",
+    "location_lat": 6.9021657,
+    "location_lng": 79.8608358,
+    "profile_picture": "\/uploads\/8798675643Vb57600db06cd52504c6f8c4f692392e18191b1f060de3b19profile_picScreenshot 2022-06-23 115820.png",
+    "password": "$2y$10$xNXRSR6307hmYxTyqPk8BegvkjANqzBF8ShuudnZ2CaRX4bac5uT2",
+    "mobile_number": "0765676456",
+    "address": "No 543, Gamsabha Junction, Colombo 6"
+}
+```
+
+## 2023-05-14 08:03:01
+
+```json
+{
+    "provider_nic": "775687345V",
+    "appointment_id": "9"
+}
+```
+
+## 2023-05-14 08:03:01
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": true,
+    "isMedOrderPayment": false
+}
+```
+
+## 2023-05-14 08:03:01
+
+```json
+9
+```
+
+## 2023-05-14 08:03:01
+
+```json
+"inserted payment record"
+```
+
+## 2023-05-14 08:05:13
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:05:13
+
+```json
+{
+    "id": "evt_3N7Y3RB9kJ5FDFAy1sTIJQGA",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044313,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y3RB9kJ5FDFAy1xCOWSRU",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y3RB9kJ5FDFAy1xCOWSRU_secret_fY4xzXlqTttsLT1dnxdBZN86R",
+            "confirmation_method": "automatic",
+            "created": 1684044313,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "10"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "danushkasiriwardhana@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_hLVAPH8lsA2No4",
+        "idempotency_key": "08a2963a-5e18-493d-8b47-6d77f478587e"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-14 08:05:13
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-14 08:05:38
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:05:38
+
+```json
+{
+    "id": "evt_3N7Y3RB9kJ5FDFAy181mYAbo",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044338,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y3RB9kJ5FDFAy1xCOWSRU",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 150000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y3RB9kJ5FDFAy1xCOWSRU_secret_fY4xzXlqTttsLT1dnxdBZN86R",
+            "confirmation_method": "automatic",
+            "created": 1684044313,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N7Y3RB9kJ5FDFAy1IRjmCiU",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "10"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N7Y3pB9kJ5FDFAyYO9ZKEhd",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_DheGIhxqCvYHRT",
+        "idempotency_key": "2d0b018d-4e03-4539-a3a3-38cf39ef8198"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-14 08:05:38
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-14 08:05:38
+
+```json
+"cus_NrWEYTqWD9fCMy"
+```
+
+## 2023-05-14 08:05:38
+
+```json
+150000
+```
+
+## 2023-05-14 08:05:38
+
+```json
+{
+    "consumer_nic": "8798675643V",
+    "stripe_id": "cus_NrWEYTqWD9fCMy",
+    "name": "Danushka Siriwardhana",
+    "email_address": "danushkasiriwardhana@gmail.com",
+    "location_lat": 6.9021657,
+    "location_lng": 79.8608358,
+    "profile_picture": "\/uploads\/8798675643Vb57600db06cd52504c6f8c4f692392e18191b1f060de3b19profile_picScreenshot 2022-06-23 115820.png",
+    "password": "$2y$10$xNXRSR6307hmYxTyqPk8BegvkjANqzBF8ShuudnZ2CaRX4bac5uT2",
+    "mobile_number": "0765676456",
+    "address": "No 543, Gamsabha Junction, Colombo 6"
+}
+```
+
+## 2023-05-14 08:05:38
+
+```json
+{
+    "provider_nic": "775687345V",
+    "appointment_id": "10"
+}
+```
+
+## 2023-05-14 08:05:38
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": true,
+    "isMedOrderPayment": false
+}
+```
+
+## 2023-05-14 08:05:38
+
+```json
+10
+```
+
+## 2023-05-14 08:05:38
+
+```json
+"inserted payment record"
+```
+
+## 2023-05-14 08:07:37
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:07:37
+
+```json
+{
+    "id": "evt_3N7Y5lB9kJ5FDFAy1sEFtvuM",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044457,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y5lB9kJ5FDFAy1TAus4vs",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y5lB9kJ5FDFAy1TAus4vs_secret_OjAEKZu6Adx33bdxX4I3hX7Hz",
+            "confirmation_method": "automatic",
+            "created": 1684044457,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "11"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "danushkasiriwardhana@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_xhCud3OtPWT9GI",
+        "idempotency_key": "93cf655c-0c6e-4313-875f-965a75908bc0"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-14 08:07:37
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-14 08:08:06
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 08:08:06
+
+```json
+{
+    "id": "evt_3N7Y5lB9kJ5FDFAy1h7eoEl1",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684044486,
+    "data": {
+        "object": {
+            "id": "pi_3N7Y5lB9kJ5FDFAy1TAus4vs",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 150000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7Y5lB9kJ5FDFAy1TAus4vs_secret_OjAEKZu6Adx33bdxX4I3hX7Hz",
+            "confirmation_method": "automatic",
+            "created": 1684044457,
+            "currency": "lkr",
+            "customer": "cus_NrWEYTqWD9fCMy",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N7Y5lB9kJ5FDFAy1UzhG0HI",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "775687345V",
+                "appointment_id": "11"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N7Y6DB9kJ5FDFAy2J7L6NHR",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_KIGAyw9SPDbrLc",
+        "idempotency_key": "d43a9388-90cd-4751-9c12-12a0690a2915"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-14 08:08:06
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-14 08:08:06
+
+```json
+"cus_NrWEYTqWD9fCMy"
+```
+
+## 2023-05-14 08:08:06
+
+```json
+150000
+```
+
+## 2023-05-14 08:08:06
+
+```json
+{
+    "consumer_nic": "8798675643V",
+    "stripe_id": "cus_NrWEYTqWD9fCMy",
+    "name": "Danushka Siriwardhana",
+    "email_address": "danushkasiriwardhana@gmail.com",
+    "location_lat": 6.9021657,
+    "location_lng": 79.8608358,
+    "profile_picture": "\/uploads\/8798675643Vb57600db06cd52504c6f8c4f692392e18191b1f060de3b19profile_picScreenshot 2022-06-23 115820.png",
+    "password": "$2y$10$xNXRSR6307hmYxTyqPk8BegvkjANqzBF8ShuudnZ2CaRX4bac5uT2",
+    "mobile_number": "0765676456",
+    "address": "No 543, Gamsabha Junction, Colombo 6"
+}
+```
+
+## 2023-05-14 08:08:06
+
+```json
+{
+    "provider_nic": "775687345V",
+    "appointment_id": "11"
+}
+```
+
+## 2023-05-14 08:08:06
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": true,
+    "isMedOrderPayment": false
+}
+```
+
+## 2023-05-14 08:08:06
+
+```json
+11
+```
+
+## 2023-05-14 08:08:06
+
+```json
+"inserted payment record"
+```
+
