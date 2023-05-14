@@ -83,7 +83,11 @@
 }
 .care-rider-search-location-button{
     background-color: #00005C;
-    border-radius: 0.2rem;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: #ffffFF;
+    border: none;
+    font-size: 1rem;
 }
 
 .care-rider-pickup-location {
