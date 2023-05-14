@@ -13,14 +13,14 @@ if (!$product_seller['is_verified']) {
     echo "<div class='empty-registrations'> <p>You're not verified yet. Please check later.</p></div>";
 }
 if ($order_preview){
-    $profile_picture = $order_preview["profile_picture"];
-    $consumer_name = $order_preview["consumer_name"];
-    $mobile_number = $order_preview["mobile_number"];
-    $product_name = $order_preview["name"];
-    $quantity = $order_preview["quantity"];
-    $quantity_unit = $order_preview["quantity_unit"];
-    $product_image = $order_preview["image"];
-    $order_date = $order_preview["created_at"];
+    $latest_profile_picture = $order_preview["profile_picture"];
+    $latest_consumer_name = $order_preview["consumer_name"];
+    $latest_mobile_number = $order_preview["mobile_number"];
+    $latest_product_name = $order_preview["name"];
+    $latest_quantity = $order_preview["quantity"];
+    $latest_quantity_unit = $order_preview["quantity_unit"];
+    $latest_product_image = $order_preview["image"];
+    $latest_order_date = $order_preview["created_at"];
 }
 
 
@@ -73,21 +73,21 @@ if ($order_preview){
             echo "
         <div class='dashboard__top-cards__info'>
             <div class='dashboard__top-cards__detail'>
-                <img class='order-consumer-img' src='$profile_picture' alt=''>
+                <img class='order-consumer-img' src='$latest_profile_picture' alt=''>
                 <div>
-                    <h4>$consumer_name</h4>
-                    <h5>$mobile_number</h5>
+                    <h4>$latest_consumer_name</h4>
+                    <h5>$latest_mobile_number</h5>
                 </div>
                 
             </div>
 
             <div class='product-order-details'>
-                <h5>$product_name</h5><br>
-                <h5>$quantity $quantity_unit</h5>
-                <h5>$order_date</h5>
+                <h5>$latest_product_name</h5><br>
+                <h5>$latest_quantity $latest_quantity_unit</h5>
+                <h5>$latest_order_date</h5>
             </div>
             
-            <img class='order-product-img' src='$product_image' alt=''>
+            <img class='order-product-img' src='$latest_product_image' alt=''>
         </div>
         ";
         } else{
