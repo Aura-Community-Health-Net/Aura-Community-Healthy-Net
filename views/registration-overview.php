@@ -6,6 +6,34 @@
  */
 ?>
 
+<?php
+$nic = isset($_SESSION["nic"]) ? $_SESSION['nic'] : false;
+
+$is_consumer = isset($_SESSION["user_type"]) && $_SESSION["user_type"] === "consumer";
+if ($is_consumer) {
+    $link = "/consumer-dashboard";
+} elseif ($nic) {
+    $provider_type = $_SESSION["user_type"];
+    switch ($provider_type) {
+        case "doctor":
+            $link = "/doctor-dashboard";
+            break;
+
+        case "pharmacy":
+            $link = "/pharmacy-dashboard";
+            break;
+
+        case "product-seller":
+            $link = "/product-seller-dashboard";
+            break;
+
+        case "care-rider":
+            $link = "/care-rider-dashboard";
+            break;
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -57,7 +85,7 @@
         if (!$nic){
             echo "<a class='login-link' href='/provider-login'>Log in as Provider</a>";
         } else {
-            echo "<a class='login-link' href='#'> You are logged in as $nic </a>";
+            echo "<a class='login-link' href='$link'> You are logged in as $nic </a>";
         }
         ?>
     </div>

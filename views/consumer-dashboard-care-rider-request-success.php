@@ -20,8 +20,8 @@
             <i class="payment_success_icon fa-regular fa-circle-check"></i>
         </div>
         <div style="display: flex;flex-direction: column;gap: 0.5rem;">
-            <h3 style="color: #5BC849;font-size: 2rem">Your Distance = <?php echo $success['distance'] . "km"; ?></h3>
-            <h3 style="color: #5BC849;font-size: 2rem">Your Amount = <?php echo "Rs ".$success['distance']*70 ; ?></h3>
+            <h3 style="color: #00005C;font-size: 2rem">Distance is <?php echo $success['distance'] . "km"; ?></h3>
+            <h3 style="color: #00005C;font-size: 2rem">You need to pay <?php echo "Rs ".$success['distance']*70 ; ?></h3>
         </div>
 
     </div>
