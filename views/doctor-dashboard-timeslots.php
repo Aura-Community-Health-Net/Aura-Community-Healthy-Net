@@ -51,6 +51,7 @@
                                    value="<?php echo $_POST['to-time'] ?? ''; ?>" required></td>
                     </tr>
                 </table>
+                <input type="submit" id="add-timeslot-final-btn" style="display: none">
                 <button class="add-btn" id="add-timeslot-btn" type="button"><i class="fa-solid fa-plus"></i></button>
             </form>
 

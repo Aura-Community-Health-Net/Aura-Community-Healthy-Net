@@ -14,6 +14,8 @@ const edittimeslotModal = document.querySelector("#edit-timeslot-modal");
 const edittimeslotOverlay = document.querySelector("#edit-timeslot-overlay");
 const edittimeslotButtons = document.querySelectorAll(".timeslot-edit");
 
+const addTimeslotFinalButton = document.querySelector("#add-timeslot-final-btn");
+
 
 
 
@@ -25,7 +27,8 @@ addtimeslotModalButton?.addEventListener("click", () => {
 });
 
 addtimeslotOKBtn?.addEventListener("click", () => {
-    addtimeslotForm.submit();
+    // addtimeslotForm.submit();
+    addTimeslotFinalButton.click();
 });
 
 addtimeslotOverlay?.addEventListener("click", (e) => {

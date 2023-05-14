@@ -11,7 +11,7 @@
 //print_r($patient_details);die();
 if (!$doctor['is_verified']) {
 echo "<div class='empty-registrations' style='color: red'> <p>You're not verified yet. Please check later.</p></div>";
-}
+}else{
 
 //print_r($appointment_confirm);die();
 //print_r($patient_details);
@@ -107,3 +107,5 @@ echo "<div class='empty-registrations' style='color: red'> <p>You're not verifie
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 
 <script src="/assets/js/pages/doctor-analytics.js"></script>
+
+<?php } ?>
