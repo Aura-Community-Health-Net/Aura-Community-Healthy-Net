@@ -249,14 +249,14 @@ class DashboardController extends Controller
             $count_request = $result->fetch_assoc();
             //print_r($count_timeSlots);
 
-            $stmt = $db->connection->prepare("SELECT care_rider_time_slot.request_id,service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address,care_rider_time_slot.request_id FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.provider_nic = care_rider_time_slot.provider_nic  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? && ride_request.done = 0 ORDER by care_rider_time_slot.request_id DESC  limit 1 ");
+            $stmt = $db->connection->prepare("SELECT care_rider_time_slot.request_id,service_consumer.profile_picture,service_consumer.name,care_rider_time_slot.date,service_consumer.mobile_number,service_consumer.address,care_rider_time_slot.request_id,ride_request.time FROM care_rider_time_slot INNER JOIN ride_request ON ride_request.request_id = care_rider_time_slot.request_id  INNER JOIN service_consumer ON service_consumer.consumer_nic = ride_request.consumer_nic WHERE ride_request.provider_nic = ? AND ride_request.done = 0 ORDER by care_rider_time_slot.date DESC   limit 1 ");
             $stmt->bind_param("s", $nic);
             $stmt->execute();
             $result = $stmt->get_result();
             $request_details = $result->fetch_assoc();
 
 
-            //print_r($patient_details);
+            //print_r($request_details);
 
             return self::render(view: 'care-rider-dashboard', layout: "care-rider-dashboard-layout",params: ["care_rider"=>$care_rider,"request_confirm"=>$request_confirm,"request_done"=>$request_done,"new_request"=>$new_request,"all_request"=>$all_request,"request_details"=>$request_details,"count_request"=>$count_request,"date"=>$date], layoutParams: [
                 "care_rider" => $care_rider,

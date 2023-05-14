@@ -143,6 +143,8 @@ class CareRiderController extends Controller
             header("location: /login");
             return "";
         } else {
+
+            $req_id = $_GET['req_id'];
             $db = new Database();
             $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
             $stmt->bind_param("s", $nic);
@@ -150,13 +152,16 @@ class CareRiderController extends Controller
             $result = $stmt->get_result();
             $service_consumer = $result->fetch_assoc();
 
+            $stmt=$db->connection->prepare("SELECT distance FROM ride_request WHERE consumer_nic =? AND request_id =?");
+            $stmt->bind_param("si",$nic,$req_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $success = $result->fetch_assoc();
+
+            //print_r($success);die();
+
         }
 
-        $stmt=$db->connection->prepare("SELECT distance FROM ride_request WHERE consumer_nic=? ");
-        $stmt->bind_param("s",$nic);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $success = $result->fetch_assoc();
         //print_r($success);
         return self::render(view: '/consumer-dashboard-care-rider-request-success', layout: "consumer-dashboard-layout", params: ["consumer" => $service_consumer,"success"=>$success], layoutParams: [
             "consumer" => $service_consumer,
@@ -228,20 +233,18 @@ class CareRiderController extends Controller
 //Input to rider-request-data
             $stmt = $db->connection->prepare("INSERT INTO ride_request (time,from_location,to_location,distance,done,confirmation,provider_nic,consumer_nic
                      )VALUES (?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssssss", $pickup_time, $location1, $location2, $distance, $done, $confirmation, $provider_nic, $nic,);
+            $stmt->bind_param("ssssiiss", $pickup_time, $location1, $location2, $distance, $done, $confirmation, $provider_nic, $nic,);
             $stmt->execute();
             $result = $stmt->get_result();
 
             $req_id = $stmt->insert_id;
             $stmt = $db->connection->prepare("UPDATE care_rider_time_slot SET request_id = ?
                                WHERE slot_number = $slot_number");
-            $stmt->bind_param("s", $req_id);
+            $stmt->bind_param("i", $req_id);
             $stmt->execute();
             $result = $stmt->get_result();
 
-
-
-            header("location: /consumer-dashboard/services/care-rider/request/successful");
+            header("location: /consumer-dashboard/services/care-rider/request/successful?req_id=$req_id");
 
         }
         return self::render(view: 'consumer-dashboard-care-rider-request-sent', layout: "consumer-dashboard-layout", params: [], layoutParams: [

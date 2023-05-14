@@ -792,8 +792,8 @@ class AnalyticsController extends Controller
             $request_records = $result->fetch_all(MYSQLI_ASSOC);
             header("Content-Type: application/json");
             return json_encode($request_records);
-            print_r($request_records);
-            die();
+//            print_r($request_records);
+//            die();
         }
     }
 

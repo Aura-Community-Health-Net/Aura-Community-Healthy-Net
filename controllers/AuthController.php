@@ -432,7 +432,6 @@ class AuthController extends Controller
                 //nic
                 $sql = "SELECT * FROM service_provider WHERE provider_nic = '$nic'";
                 $result = $db->connection->query(query: $sql);
-
                 if ($result->num_rows > 0) {
 //                                echo "nic already in use";
                     $errors["nic"] = "nic already in use";
