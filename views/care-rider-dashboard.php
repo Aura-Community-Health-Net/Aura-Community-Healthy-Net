@@ -65,7 +65,7 @@ if (!$care_rider['is_verified']) {
             <?php
             if ($request_details) {
 
-                if ($count_request['COUNT(done)'] > 0) { ?>
+//                if ($count_request['COUNT(done)'] > 0) { ?>
                     <div class="care-rider-dashboard__request">
                         <div class="care-rider-dashboard__request__profile">
                             <div>
@@ -82,13 +82,13 @@ if (!$care_rider['is_verified']) {
                                 <h5><?php echo $request_details['date']; ?> </h5>
                             </div>
                             <div>
-                                <h5>Time</h5>
-                                <h5><?php echo $date['time']; ?></h5>
+                                <h5>Pickup Time</h5>
+                                <h5><?php echo $request_details['time']; ?></h5>
                             </div>
                         </div>
                     </div>
                     <?php
-                }
+//                }
             } else {
                 echo " <h2  class='empty-product-orders'>No request yet</h2>";
             }
