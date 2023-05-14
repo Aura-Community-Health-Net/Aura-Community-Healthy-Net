@@ -52,3 +52,17 @@
     margin-top: 15rem;
     color: #00005C;
 }
+.not-verified-doctor-feedback{
+    display: flex;
+    background-color: #EFEEFD;
+    margin-top: 4rem;
+    margin-left: 3rem;
+    width: 90%;
+    height: 10rem;
+}
+.not-verified-doctor-feedback h2{
+    color: red;
+    display: flex;
+    margin-left: 25rem;
+    margin-top: 4rem;
+}
