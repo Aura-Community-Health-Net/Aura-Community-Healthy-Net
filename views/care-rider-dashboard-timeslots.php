@@ -58,6 +58,7 @@
             <td><input type="time" id="to-time" name="toTime" value="<?php echo $_POST['to-time'] ?? ''; ?>" required></td>
         </tr>
     </table>
+    <input type="submit" id="add-care-rider-time-slot-final-button" style="display: none">
     <button class="add-btn" id="add-care-rider-timeslot-btn" type="button">
         <i class="fa fa-plus add-icon"></i>
     </button>

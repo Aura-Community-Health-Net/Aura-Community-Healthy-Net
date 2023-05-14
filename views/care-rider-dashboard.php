@@ -110,7 +110,7 @@ if (!$care_rider['is_verified']) {
 
             <div class="care-rider-request-details">
                 <h3>New Requests</h3>
-                <h1 style="color: #5BC849"><?php echo $count_request['COUNT(done)']; ?></h1>
+                <h1 style="color: #5BC849"><?php echo $new_request ['COUNT(done)']; ?></h1>
             </div>
             <div class="care-rider-request-details">
                 <h3>All Requests</h3>

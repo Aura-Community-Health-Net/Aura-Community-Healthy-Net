@@ -20,6 +20,7 @@ $confirm = 2;
                 <th style="width: 5rem;">Time Slot</th>
                 <th style="width: 6rem;">Date</th>
                 <th style="width: 5rem">Mobile No</th>
+
                 <th style="width: 3rem">Location</th>
             </tr>
             </thead>
@@ -36,6 +37,7 @@ $confirm = 2;
                     $to_location = $value["to_location"];
                     $from_location = $value["from_location"];
                     $request_id = $value['request_id'];
+                    $distance  = $value['distance'];
 
                     $from_location = json_decode($value['from_location']);
                     $from_lat = $from_location->lat;
@@ -52,7 +54,7 @@ $confirm = 2;
                                 <td><p>$consumer_name</p></td>
                                 <td><p>$from_time  $to_time</p></td>
                                 <td><p>$date</p></td>
-                                <td><p>$mobile_number</p></td>    
+                                <td><p>$mobile_number</p></td>     
                                 <td>
                                     <button style='color: black; background-color: #FFFFFF' type='button' data-from_lat='$from_lat' data-from_lng='$from_lng' data-to_lat='$to_lat' data-to_lng='$to_lng' class='action-btn action-btn--location location-btn'> 
                                         <i class='fa-solid fa-location-dot'></i>
