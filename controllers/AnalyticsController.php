@@ -181,13 +181,13 @@ class AnalyticsController extends Controller
     }
 
 
-     public function getProductSellerAnalyticsPage(): bool|array|string
+     public function getProductSellerAnalyticsPage(): bool|array|string  //retrieve product seller analytics page
      {
          $nic = $_SESSION["nic"];
          $providerType = $_SESSION["user_type"];
          if (!$nic || $providerType !== "product-seller") {
              header("location: /provider-login");
-             return "";
+             return "";    //if the nic is not matched and provider type is not a product seller it redirected to the provider login page
          } else {
              $db = new Database();
              $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
@@ -232,7 +232,7 @@ class AnalyticsController extends Controller
         ]);
     }
 
-    public static function getConsumerAnalyticsPage()
+    public static function getConsumerAnalyticsPage(): bool|array|string  //get consumer analytics page
     {
         $nic = $_SESSION["nic"];
         $userType = $_SESSION["user_type"];
@@ -254,7 +254,7 @@ class AnalyticsController extends Controller
             "title" => "Analytics"]);
     }
 
-    public static function getProductSellerAnalyticsRevenueChart(): bool|string
+    public static function getProductSellerAnalyticsRevenueChart(): bool|string     //get the revenue chat for relevant product sellers
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -268,6 +268,7 @@ class AnalyticsController extends Controller
             $stmt = "";
             switch ($chart_time) {
                 case "this_week";
+                    //get the revenues for current week of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
@@ -277,6 +278,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_month";
+                    //get the revenues for current month of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue 
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
@@ -286,6 +288,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "past_six_months";
+                    //get the revenues for past six months of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
@@ -294,6 +297,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_year";
+                    //get the revenues for current year of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
@@ -302,6 +306,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "all_time";
+                    //get all the revenues of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(date_time) as date, SUM(amount) as revenue
                                                     FROM payment_record 
                                                     WHERE provider_nic = ? 
@@ -318,7 +323,7 @@ class AnalyticsController extends Controller
 
     }
 
-    public static function getProductSellerAnalyticsOrderCount(): bool|string
+    public static function getProductSellerAnalyticsOrderCount(): bool|string       //get the order count chart for relevant product sellers
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -332,6 +337,7 @@ class AnalyticsController extends Controller
             $stmt = "";
             switch ($chart_time) {
                 case "this_week";
+                    //get the orders count for current week of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
@@ -341,6 +347,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case ("this_month");
+                    //get the orders count for current month of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND YEAR(created_at) = YEAR(NOW()) 
@@ -350,6 +357,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case ("past_six_months");
+                    //get the orders count for past six months of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND created_at BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()
@@ -358,6 +366,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case ("all_time");
+                    //get the orders count for current year of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT DATE(created_at) as date, COUNT(order_id) as order_count 
                 FROM product_order WHERE provider_nic = ? 
                 AND status != 'unpaid'
@@ -375,7 +384,7 @@ class AnalyticsController extends Controller
         }
     }
 
-    public static function getProductSellerRevenueVsProductPercentage(): bool|string
+    public static function getProductSellerRevenueVsProductPercentage(): bool|string     //get the 10 products which has the highest revenue percentage
     {
         $nic = $_SESSION["nic"];
         $providerType = $_SESSION["user_type"];
@@ -389,6 +398,7 @@ class AnalyticsController extends Controller
             $stmt = "";
             switch ($chart_time) {
                 case "this_week";
+                    //get the revenue vs product for current week of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
@@ -403,6 +413,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "this_month";
+                    //get the revenue vs product for current month of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
@@ -417,6 +428,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "past_six_months";
+                    //get the revenue vs product for past six months of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
@@ -430,6 +442,7 @@ class AnalyticsController extends Controller
                     break;
 
                 case "all_time";
+                    //get all the revenue vs product of relevant product sellers
                     $stmt = $db->connection->prepare("SELECT p.name AS product_name, SUM(op.price_at_order * op.num_of_items) AS revenue
                     FROM order_has_product op
                     JOIN product_order o ON op.order_id = o.order_id
@@ -792,33 +805,8 @@ class AnalyticsController extends Controller
             $request_records = $result->fetch_all(MYSQLI_ASSOC);
             header("Content-Type: application/json");
             return json_encode($request_records);
-//            print_r($request_records);
-//            die();
+
         }
     }
-
-//    public function getProductSellerAnalyticsPage(): bool|array|string
-//    {
-//        $nic = $_SESSION["nic"];
-//        $providerType = $_SESSION["user_type"];
-//        if (!$nic || $providerType !== "product-seller") {
-//            header("location: /provider-login");
-//            return "";
-//        } else {
-//            $db = new Database();
-//            $stmt = $db->connection->prepare("SELECT * FROM service_provider WHERE provider_nic = ?");
-//            $stmt->bind_param("s", $nic);
-//            $stmt->execute();
-//            $result = $stmt->get_result();
-//            $product_seller = $result->fetch_assoc();
-//        }
-//
-//        return self::render(view: 'product-seller-dashboard-analytics', layout: "product-seller-dashboard-layout", layoutParams: [
-//            "product_seller" => $product_seller,
-//            "active_link" => "analytics",
-//            "title" => "Analytics"
-//        ]);
-//    }
-
 
 }

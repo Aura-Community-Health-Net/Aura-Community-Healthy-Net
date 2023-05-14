@@ -787,3 +787,237 @@
 "payment_intent.created"
 ```
 
+## 2023-05-14 15:01:16
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 15:01:16
+
+```json
+{
+    "id": "evt_3N7eY4B9kJ5FDFAy0hiHs0rK",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684069276,
+    "data": {
+        "object": {
+            "id": "pi_3N7eY4B9kJ5FDFAy0qCLN5k7",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 0,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7eY4B9kJ5FDFAy0qCLN5k7_secret_HXxlMMT21wqM3WQeNObUmT3u8",
+            "confirmation_method": "automatic",
+            "created": 1684069276,
+            "currency": "lkr",
+            "customer": "cus_NTua6xVeB6xEEQ",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": null,
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "14"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": null,
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": "shehabavishka@gmail.com",
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "requires_payment_method",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_YdbxiTjfQ7MCpi",
+        "idempotency_key": "0aedbd98-a3e2-4462-8ac0-68867ea07782"
+    },
+    "type": "payment_intent.created"
+}
+```
+
+## 2023-05-14 15:01:16
+
+```json
+"payment_intent.created"
+```
+
+## 2023-05-14 15:01:37
+
+```json
+"Called verify moment"
+```
+
+## 2023-05-14 15:01:37
+
+```json
+{
+    "id": "evt_3N7eY4B9kJ5FDFAy0JLkalrZ",
+    "object": "event",
+    "api_version": "2022-11-15",
+    "created": 1684069297,
+    "data": {
+        "object": {
+            "id": "pi_3N7eY4B9kJ5FDFAy0qCLN5k7",
+            "object": "payment_intent",
+            "amount": 150000,
+            "amount_capturable": 0,
+            "amount_details": {
+                "tip": []
+            },
+            "amount_received": 150000,
+            "application": null,
+            "application_fee_amount": null,
+            "automatic_payment_methods": null,
+            "canceled_at": null,
+            "cancellation_reason": null,
+            "capture_method": "automatic",
+            "client_secret": "pi_3N7eY4B9kJ5FDFAy0qCLN5k7_secret_HXxlMMT21wqM3WQeNObUmT3u8",
+            "confirmation_method": "automatic",
+            "created": 1684069276,
+            "currency": "lkr",
+            "customer": "cus_NTua6xVeB6xEEQ",
+            "description": null,
+            "invoice": null,
+            "last_payment_error": null,
+            "latest_charge": "ch_3N7eY4B9kJ5FDFAy09XoGBb6",
+            "livemode": false,
+            "metadata": {
+                "provider_nic": "889874525V",
+                "appointment_id": "14"
+            },
+            "next_action": null,
+            "on_behalf_of": null,
+            "payment_method": "pm_1N7eYOB9kJ5FDFAygp4sN4u2",
+            "payment_method_options": {
+                "card": {
+                    "installments": null,
+                    "mandate_options": null,
+                    "network": null,
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card"
+            ],
+            "processing": null,
+            "receipt_email": null,
+            "review": null,
+            "setup_future_usage": null,
+            "shipping": null,
+            "source": null,
+            "statement_descriptor": null,
+            "statement_descriptor_suffix": null,
+            "status": "succeeded",
+            "transfer_data": null,
+            "transfer_group": null
+        }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+        "id": "req_00NNnboi125yai",
+        "idempotency_key": "9c2ac530-cdb6-4159-9ad6-7008fedc6b20"
+    },
+    "type": "payment_intent.succeeded"
+}
+```
+
+## 2023-05-14 15:01:37
+
+```json
+"payment_intent.succeeded"
+```
+
+## 2023-05-14 15:01:37
+
+```json
+"cus_NTua6xVeB6xEEQ"
+```
+
+## 2023-05-14 15:01:37
+
+```json
+150000
+```
+
+## 2023-05-14 15:01:37
+
+```json
+{
+    "consumer_nic": "778656785V",
+    "stripe_id": "cus_NTua6xVeB6xEEQ",
+    "name": "Shehan Avishka",
+    "email_address": "shehabavishka@gmail.com",
+    "location_lat": 6.0329,
+    "location_lng": 80.2168,
+    "profile_picture": "\/uploads\/778656785V16aa005feb7f337e73662c0a3a1935abdca9ab0296858e13profile_picprofilepic5.jpg",
+    "password": "$2y$10$4khqayryKy24\/xSyf2KP9O0yUgpKzLYY.Zfh6q62pmzJOeYeB5BK2",
+    "mobile_number": "0704589347",
+    "address": "No 54, Maggona Road, Karapitiya"
+}
+```
+
+## 2023-05-14 15:01:37
+
+```json
+{
+    "provider_nic": "889874525V",
+    "appointment_id": "14"
+}
+```
+
+## 2023-05-14 15:01:37
+
+```json
+{
+    "isOrder": false,
+    "isAppointment": true,
+    "isMedOrderPayment": false
+}
+```
+
+## 2023-05-14 15:01:37
+
+```json
+14
+```
+
+## 2023-05-14 15:01:37
+
+```json
+"inserted payment record"
+```
+
