@@ -40,11 +40,11 @@ $address = $pharmacy['address'];
 
     <div class="item-top-right__container">
         <form action="/consumer-dashboard/services/pharmacy/view?id=<?= $provider_id?>" class="form-item--search" method="get">
-           <div class="search-bar">
-            <input type="text" placeholder="Search Medicine..." name="query" id="query">
-            <button href="" type="submit"><i class="fa fa-search"></i></button>
-
-          </div>
+<!--           <div class="search-bar">-->
+<!--            <input type="text" placeholder="Search Medicine..." name="query" id="query">-->
+<!--            <button href="" type="submit"><i class="fa fa-search"></i></button>-->
+<!---->
+<!--          </div>-->
         </form>
 
         <?php
