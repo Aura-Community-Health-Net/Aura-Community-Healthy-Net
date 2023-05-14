@@ -91,6 +91,7 @@ foreach ($medicines as $medicine) {
             <td><input type="number" name="stock" value="<?php echo $_POST['stock'] ?? ''; ?>"></td>
         </tr>
     </table>
+    <input type="submit" id="add-medicine-final-btn" style="display: none">
     <button type="button" id="add-med-btn" class="add-btn">
         <i class="fa fa-plus"></i>
     </button>
