@@ -4,6 +4,7 @@
  * @var array $admin
  * @var string $active_link
  */
+
 ?>
 
 <!doctype html>
@@ -20,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="/assets/images/logo-lan.png">
 
     <title>
         <?php echo $title ?>
@@ -38,11 +40,22 @@
                 <h2>Aura</h2>
                 <h5>Community Health Net</h5>
             </div>
+
         </div>
         <div class="dashboard-header__profile">
-            <p>
-                <?php echo $admin["name"]; ?>
-            </p>
+
+            <div class="header-link__container">
+                <a class="header-link" href="/">Home</a>
+                <a class="header-link" href="/contact-us">Contact Us</a>
+                <a class="header-link" href="/about-us">About Us</a>
+            </div>
+            <div class="admin-header">
+                <p>
+                    <?php echo $admin["name"]; ?>
+                    <img src="/assets/images/admin-profile-pic.webp" alt="">
+                </p>
+            </div>
+
         </div>
     </header>
 
@@ -53,7 +66,7 @@
     </div>
 
     <div class="dashboard-container">
-        <nav class="dashboard-container__side-nav">
+        <nav class="dashboard-container__side-nav active">
             <ul>
                 <li>
                     <a href="/admin-dashboard">
@@ -66,40 +79,57 @@
 
                 <li>
                     <a href="/admin-dashboard/new-registrations"><button
-                            class="navbtn <?php echo $active_link === 'new-registrations' || $active_link === 'products' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-circle-plus"></i></span>
+                            class="navbtn <?php echo $active_link === 'new-registrations' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
                             <span class="nav-title">Registrations</span>
-                        </button></a>
+                        </button>
+                    </a>
                 </li>
 
                 <li>
-                    <a href="/admin-dashboard/payments">
-                        <button class="navbtn" <?php echo $active_link === 'payments' ? 'active' : '' ?>">
+                    <a href="/admin-dashboard/users"><button
+                                class="navbtn <?php echo $active_link === 'users' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                            <span class="nav-title">Users</span>
+                        </button>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin-dashboard/due-payments"><button
+                                class="navbtn <?php echo $active_link === 'payments' ? 'active' : '' ?>">
                             <span class="nav-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             <span class="nav-title">Payments</span>
                         </button>
                     </a>
+                </li>
 
+                <li>
+                    <a href="/admin-dashboard/analytics">
+                        <button class="navbtn <?php echo $active_link === 'analytics' ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+                        <span class="nav-title">Analytics</span>
+                        </button>
+                    </a>
                 </li>
 
                 <li>
                     <a href="/admin-dashboard/feedback">
-                        <button class="navbtn" <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+                        <button class="navbtn <?php echo $active_link === 'feedback' ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                             <span class="nav-title">Feedback</span>
                         </button>
                     </a>
-
                 </li>
 
-                <li>
-                    <a href="/admin-dashboard/profile">
-                        <button class="navbtn" <?php echo $active_link === 'profile' ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fa-solid fa-user"></i></span>
-                            <span class="nav-title">Profile</span>
+                <li class="logout">
+                    <a href="/administrator-login">
+                        <button class="navbtn <?php echo $active_link === 'profile' ? 'active' : '' ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="nav-title">Logout</span>
                         </button>
                     </a>
-
                 </li>
             </ul>
         </nav>
@@ -109,7 +139,7 @@
         </main>
     </div>
 
-    <div class="toggle">
+    <div class="toggle active">
         <i class="fa-solid fa-bars"></i>
     </div>
 

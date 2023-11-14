@@ -1,0 +1,128 @@
+#consumer-dashboard-care-rider-profile__top__right btn{
+/*    position: absolute;*/
+/*font-size: 1rem;*/
+/*color: #ffffff;*/
+/*background-color: #00005C;*/
+/*padding: 15px 32px;*/
+/*border: none;*/
+/*margin-top: 6rem;*/
+/*border-radius: 5px;*/
+/*cursor: pointer;*/
+/*    left: 240px;*/
+/*top: 292px;}*/
+
+    position: relative;
+    color: #ffffff;
+    background-color: #008DFF;
+    border: none;
+    padding: 15px 32px;
+    bottom: 94px;
+    left: 391px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.care-rider-dashboard-doctor-profile__top__right__timeslot{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 300px;
+    /*width: 700px;*/
+}
+.care-rider-dashboard-doctor-profile__top__right{
+    overflow: auto;
+    height: 400px;
+    width: 700px;
+    overflow-x: hidden;
+}
+.location-time{
+    width: 50%;
+    margin: 3rem;
+}
+.location-date{
+    width: 50%;
+    margin: 3rem;
+}
+.dat-time-container{
+    border-radius: 1rem;
+}
+.care-rider-dashboard-timeslots-display{
+    background-color:#EFEEFD;
+    margin: 1rem;
+    border-radius: 1rem;
+
+}
+.care-rider-timeslots-display{
+    overflow: auto;
+    overflow-x: hidden;
+}
+.pickup-time{
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+
+/* .care-rider__overview-detail{
+    background-color: #EFEEFD;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: normal; */
+
+#care-rider-pickup-location-search{
+    position: relative;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #00005C;
+    padding: 8px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    left: -6.5rem;
+    margin-block: 1rem;
+}
+.care-rider-search-location-button{
+    background-color: #00005C;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: #ffffFF;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.care-rider-pickup-location {
+    padding: 0.5rem;
+    margin-right: 105px;
+    margin-top: 16px;
+    width: 279px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
+.pickup-location-results{
+    position: relative;
+    width: 60%;
+    height: 1.5rem;
+    bottom: 0.75rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-left: -7.5rem;
+}
+.care-rider-location_results{
+    position: relative;
+    width: 60%;
+    height: 1.5rem;
+    /* bottom: 2rem; */
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
+.care-rider-drop-location_results
+{
+
+}
+.care-rider-dashboard-care-rider-profile__top__right{
+    overflow: auto;
+    height: 400px;
+    width: 700px;
+    overflow-x: hidden;
+}

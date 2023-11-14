@@ -1,31 +1,45 @@
 <?php
+/**
+ *@var array $care_rider ;
+ *
+ *
+ *
+ **/
 ?>
-<!DOCTYPE html>
-<html>
+
 <head>
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Elsie&family=Raleway:wght@800&family=Roboto&display=swap" rel="stylesheet">
-    <title>Care Rider</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Care-Rider-Profile</title>
 </head>
-<body>
-<div class="main-container">
-    <div class="header">
-        <img src="/assets/image/logo.png" alt="logo">
-        <div class="name">
-            <p class="header-title">Aura</p>
-            <p class="header-description">Community Health Net</p>
-        </div>
-    </div>
-    <div class="form-container">
-        <div class="form-title">
-            <h1>profile</h1>
-        </div>
+
+<div class="doctor-profile">
+    <div class="doctor-profile__background">
+        <div class="doctor-profile__data">
+            <table>
+                <tr>
+                    <th>
+                        <img src="<?php echo $care_rider['profile_picture']; ?>">
+                    </th>
+                    <th>
+                        <h2><?php echo $care_rider['name']; ?></h2>
+                        <h3>Care Rider</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <td><b>Email Address</b></td>
+                    <td><?php echo $care_rider['email_address']; ?></td>
+                </tr>
+                <tr>
+                    <td><b>NIC</b></td>
+                    <td><?php echo $care_rider['provider_nic']; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Mobile Number</b></td>
+                    <td><?php echo $care_rider['mobile_number']; ?></td>
+                </tr>
 
 
+            </table>
+        </div>
     </div>
 </div>
-</body>
-</html>
-<?php include('care-rider-nav-bar.php'); ?>

@@ -1,0 +1,190 @@
+.item-top-left__container img{
+    height: 200px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+}
+
+.item-top-left__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-top__container{
+    margin: 2rem;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.provider__overview-detail{
+    background-color: #EFEEFD;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+
+}
+
+.stock-notice{
+    position: absolute;
+    color: white;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: red;
+    border-radius: 8px;
+}
+
+.item-top-middle__container{
+    background-color: #EFEEFD;
+    padding: 1rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.item-top-middle__container img{
+    width: 20rem;
+    height: 10rem;
+}
+
+.overview-items__detail{
+    /*background-color: white;*/
+    border: 8px;
+    height: 3px;
+    text-align: center;
+    padding-block: 1rem;
+}
+
+.overview-items__detail h1{
+    color: red;
+    margin-bottom: 0.5rem;
+}
+
+.item-top-right__container {
+    background-color: #EFEEFD;
+    padding: 1rem;
+    border-radius: 8px;
+    height: 376px;
+    overflow-y: auto;
+}
+
+.overview-items{
+    background-color: white;
+    padding: 0.3rem;
+    margin: 1rem 0.5rem;
+    padding-inline: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    width: 300px;
+    align-items: stretch;
+    position: relative
+}
+
+.overview-items .overview-items__name{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: black;
+}
+
+.overview-items__price{
+    font-size: 1.5rem;
+    color: red;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.overview-items img{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.overview-items button{
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+}
+
+.item-bottom-container{
+    margin: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.item-bottom-left-container{
+    background-color: #EFEEFD;
+    padding: 2rem;
+    margin: 1rem;
+    width: 50rem;
+    border-radius: 8px;
+    overflow-y: auto;
+    height: 25rem;
+}
+
+.item-bottom-right-container{
+    background-color: #EFEEFD;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.item-bottom-right-container textarea{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.item-bottom-right-container h3{
+    margin: 1rem;
+    width: 20rem;
+}
+
+.pickup-time-form{
+    display: flex;
+    padding-block: 0.5rem;
+    margin-left: 6rem;
+    gap: 1rem;
+}
+
+.add-to-cart-btn{
+    padding: 0.5em 0.5rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.overview-items__card{
+    display: flex;
+    align-items: center;
+}
+
+.feedback-textarea{
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.no-feedback {
+    text-align: center;
+    font-weight: bolder;
+    padding: 2rem;
+    background-color: #EFEEFD;
+    font-size: 1.5rem;
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    border-radius: 15px;
+}
+
+.overview-medicine{
+    gap: 3rem;
+}

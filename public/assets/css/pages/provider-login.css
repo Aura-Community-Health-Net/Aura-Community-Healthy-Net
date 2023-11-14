@@ -2,7 +2,7 @@
   font-family: "Roboto", sans-serif;
   font-weight: inherit;
   font-size: 1rem;
-  width: 60%;
+  width: 65%;
   margin-top: 20px;
   border-radius: 15px;
   padding: 2rem 3rem 2.5rem;
@@ -12,7 +12,6 @@
   align-items: center;
   background-color: white;
   box-shadow: 0 0.2rem 1.5rem rgb(0 0 0 / 10%);
-  /*position: absolute;*/
 }
 
 .login-form__header {
@@ -44,7 +43,6 @@
 }
 
 .login-form__left {
-  background-color: rebeccapurple;
   width: 50%;
   position: relative;
   display: flex;
@@ -100,9 +98,8 @@
   gap: 1rem;
   justify-content: space-between;
 }
-.forgot-pw {
-  color: #008dff;
-  font-weight: lighter;
+.reg-section {
+  font-weight: bolder;
   cursor: pointer;
 }
 
@@ -125,4 +122,9 @@
 .remember-me input {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+.login-to-register{
+  display: flex;
+  gap: 1rem;
 }

@@ -1,0 +1,48 @@
+.doctor-profile{
+    display: grid;
+    padding: 1.5rem;
+}
+.doctor-profile > div{
+    background-color: #EFEEFD;
+    text-align: left;
+    /*padding-block: -0.5rem;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 83px;
+}
+.doctor-profile__background > div{
+    margin: 4rem;
+    gap: 0.2rem;
+    text-align: left;
+    padding-block: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 80%;
+}
+.doctor-profile__data img{
+    height: 237px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+
+}
+.doctor-profile__data table{
+    border-spacing: 1rem;
+}
+
+/*.doctor-profile__data h3,.doctor-profile__data h4{
+    margin-bottom: 10px;
+
+}*/
+/*.doctor-profile__data p{
+    /*position: relative;
+    left: 200px;
+}*/

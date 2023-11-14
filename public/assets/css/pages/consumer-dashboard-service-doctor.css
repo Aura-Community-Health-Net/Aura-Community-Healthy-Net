@@ -1,0 +1,85 @@
+
+.consumer-dashboard-doctor__top__right p{
+    display: flex;
+    position: relative;
+    top: 10px;
+    left: 22px;
+}
+.consumer-dashboard-doctor__top__right img{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 170px;
+    bottom: 10px;
+}
+.doctor-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.doctor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.doctor-card > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    width: 90%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.doctor-card button {
+    border: none;
+    outline: none;
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+}
+
+.doctor-card > div > div {
+    width: 50%;
+}
+
+.doctor-card > div > div > p {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.25rem;
+}
+.doctor-card > div > h2{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+.doctor-card > div > div > p > span {
+    width: 50%;
+}
+
+.doctor-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.consumer-dashboard-doctor__bottom__center__data{
+    background-color: #EFEEFD;
+    width: 65%;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+}
+
+.consumer-dashboard-doctor__bottom__center__data button{
+    font-size: 1rem;
+}

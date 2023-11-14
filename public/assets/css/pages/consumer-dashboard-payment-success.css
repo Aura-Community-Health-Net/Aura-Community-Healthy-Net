@@ -1,0 +1,49 @@
+.payment_success_container{
+    display: flex;
+    height: 100%;
+}
+
+.payment_success_text{
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.payment_success_left_container{
+    justify-content: center;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.payment_success_left_container h1{
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bolder;
+    width: 80%;
+}
+
+.payment_success_left_container h2{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.payment_success_right_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.payment_success_right_container img{
+    justify-content: center;
+    width: 100%;
+}
+
+.payment_success_icon{
+    font-size: 5rem;
+    color: green;
+}

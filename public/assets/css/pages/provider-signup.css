@@ -1,5 +1,5 @@
 .provider-signup-form {
-    width: 50%;
+    width: 60%;
     margin: 2rem auto;
     background-color: white;
     padding: 2rem;
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     gap: 3rem;
+    margin-top: 2rem;
 }
 
 .provider-signup-form__bottom {
@@ -47,27 +48,34 @@
 
 .provider-signup-header {
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: space-between;
-    gap: 1rem;
     padding-inline: 2rem;
-    padding-block: 0.25rem;
+    align-items: center;
 }
 
 .provider-signup-header__brand {
     display: flex;
-    gap: 1rem;
     align-items: center;
 }
 
 .provider-signup-header__logo img {
-    height: 60px;
-    width: 60px;
-    object-fit: cover;
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.provider-signup-header__title{
+    color: #00005C;
+    font-weight: lighter;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .provider-signup-header__title h3 {
-    color: #666;
+    color: #0002A1;
 }
 
 .provider-signup-header ul {
@@ -83,14 +91,13 @@
 }
 
 .provider-signup-header a {
-    color: #000;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
 
 .title {
-    background-color: #A198FF;
+    background-color: #7579E7;
     margin-left: 0;
     margin-right: 0;
     padding: 0.8rem;
@@ -102,7 +109,7 @@
 }
 
 .title-text {
-    color: #062D77;
+    color: #00005C;
     font-size: 1.5rem;
     font-family: 'Raleway', sans-serif;
     font-weight: bolder;
@@ -123,4 +130,16 @@
     text-align: center;
     margin-top: -1rem;
     margin-bottom: 1rem;
+}
+
+.errors{
+    font-size: 0.8rem;
+    color: red;
+}
+
+.doctor-type__selector{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
 }

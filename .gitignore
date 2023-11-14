@@ -2,3 +2,4 @@ vendor
 .idea
 .env
 public/uploads/*
+logs/payments.md

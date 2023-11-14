@@ -7,12 +7,12 @@
  * @var string $active_link
  *
  */
+
 $stock = $_POST["stock"] ?? "";
-$stock_unit = $_POST["stock_unit"] ?? "";
 ?>
 <table class="items-table">
     <tr>
-        <th>Produce Image</th>
+        <th>Product Image</th>
         <th>ID Number</th>
         <th>Product Name</th>
         <th>Quantity</th>
@@ -28,19 +28,25 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         $price = (int) $product["price"] / 100;
         $id = $product['product_id'];
         $name = $product['name'];
-        echo "<tr>
-       
+        $categoryId = $product['category_id'];
+        $quantity = $product['quantity'];
+        $quantity_unit = $product['quantity_unit'];
+        $stock = $product['stock'];
+
+
+        echo "<tr data-productid='$id' data-productname='$name' data-productquantity='$quantity' data-productquantity_unit='$quantity_unit' data-productprice='$price' data-productstock = '$stock'>
+        
         <td id='image-block'>
         <img src='{$product["image"]}' alt='' class='products-img'>
         </td>
-        <td>{$id}</td>
-        <td>{$name}</td>
+        <td >{$id}</td>
+        <td >{$name}</td>
         <td>{$product['quantity']} {$product['quantity_unit']} </td> 
         <td>{$price}</td>
-        <td>{$product['stock']} {$product['stock_unit']}</td>
+        <td>{$product['stock']}</td>
         <td id='action-block'>
-        <button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> 
-        <button id='delete-product-$id' data-productName='$name' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
+        <button id='update-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--edit product-update'><i class='fa-solid fa-pen'></i></button> 
+        <button id='delete-product-$id' data-productid='$id' data-productName='$name' data-categoryId='$categoryId' class='action-btn action-btn--delete product-delete'><i class='fa-solid fa-trash'></i></button></td>
     </tr>";
     }
 
@@ -60,10 +66,6 @@ $stock_unit = $_POST["stock_unit"] ?? "";
             <?php if ($category != 5) {
                 echo '<th><label class="products-label" for="stock">Stock</label></th>';
             } ?>
-            <?php if ($category != 5) {
-                echo '<th><label class="products-label" for="stock_unit">Stock Unit</label> </th>';
-            } ?>
-
         </tr>
 
         <tr>
@@ -71,7 +73,7 @@ $stock_unit = $_POST["stock_unit"] ?? "";
                     required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
+                        <i class="fa fa-plus add-icon"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>
@@ -85,14 +87,12 @@ $stock_unit = $_POST["stock_unit"] ?? "";
             <td><input type="number" id="price" name="price" value="<?php echo $_POST['price'] ?? ''; ?>" required></td>
             <?php if ($category != 5) {
                 $stock = $_POST["stock"] ?? "";
-                $stock_unit = $_POST["stock_unit"] ?? "";
                 echo "<td><input type='number' id='stock' name='stock' value='$stock' required></td>";
-                echo "<td><input type='text' id='stock_unit' name='stock_unit' value='$stock_unit' required></td>";
             } ?>
         </tr>
     </table>
-
-    <button class="add-btn" id="add-product-btn" type="button"><i class="fa-solid fa-plus"></i></button>
+    <input type="submit" id="add-product-final-btn" style="display: none">
+    <button class="add-btn" id="add-product-btn" type="button"><i class="fa fa-plus"></i></button>
 </form>
 
 <div class="overlay" id="add-product-overlay">
@@ -105,9 +105,17 @@ $stock_unit = $_POST["stock_unit"] ?? "";
         </div>
     </div>
 </div>
+
 <div class="overlay" id="delete-product-overlay">
     <div class="modal" id="delete-product-modal">
 
     </div>
 </div>
+
+<div class="overlay" id="update-product-overlay">
+    <div class="modal" id="update-product-modal">
+
+    </div>
+</div>
+
 <script src="/assets/js/pages/products.js"></script>

@@ -1,7 +1,10 @@
 <?php
 /**
- * @var array $patients
+ * @var $patient_details
+ * @var $doctor
  */
+
+//print_r($patient_details);die();
 ?>
 
 <head>
@@ -9,14 +12,30 @@
     <title>Past-Patients</title>
 </head>
 
-<div class="past-patients">
-    <table class="past-patients__table">
-        <tr>
-            <th class="past-patients__table__head">Name</th>
-            <th class="past-patients__table__head">Mobile No</th>
-            <th class="past-patients__table__head">Last Checked</th>
-            <th class="past-patients__table__head">Observation</th>
-        </tr>
+<?php if(!$doctor['is_verified']) {?>
+    <div class="not-verified-doctor-timeslot"><h2>No Patients yet</h2></div><?php } else {?>
+<div class="doctor-patients">
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th class="doctor-patients__head">Name</th>-->
+<!--                <th class="doctor-patients__head">Mobile No</th>-->
+<!--                <th class="doctor-patients__head">Last Checked</th>-->
+<!--                <th class="doctor-patients__head">Observation</th>-->
+<!--            </tr>-->
+<!--        </table>-->
 
-    </table>
+    <?php if(!$patient_details){
+        echo '<h2>No Past Patients</h2>';
+    }else{ ?>
+                <?php foreach ($patient_details as $value) {?>
+                            <div class="doctor-patients__data">
+                                <img src="<?php echo $value['profile_picture'];?>" alt="">
+                                <p><?php echo $value['name'];?></p>
+                                <p><?php echo $value['date'];?></p>
+                                <p><?php echo $value['from_time']."-".$value['to_time'];?></p>
+                                <p><?php echo $value['mobile_number'];?></p>
+                                <p><?php echo $value['address'];?></p>
+                            </div>
+                <?php } }?>
 </div>
+<?php } ?>

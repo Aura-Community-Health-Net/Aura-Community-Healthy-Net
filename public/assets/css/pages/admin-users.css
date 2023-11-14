@@ -1,0 +1,52 @@
+.admin-users-container{
+    background-color:#EFEEFD;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.admin-users__top-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.admin-users__sub-container{
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-block: 1rem;
+    position: relative;
+    height: 16rem;
+}
+
+.users-image{
+    height: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%
+}
+
+.admin-users__profile{
+    display: flex;
+    gap: 1rem;
+    margin-block: 1rem;
+}
+
+.update-user{
+    position: absolute;
+    right: 3rem;
+    color: #FFB200;
+    padding-bottom: 1rem;
+}
+
+.admin-user-dropdown{
+    position: absolute;
+    right: 8rem;
+    top: 1rem;
+}
+
+.admin-user-header{
+}
+

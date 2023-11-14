@@ -1,0 +1,36 @@
+.doctor-analytics__container{
+    margin: 2rem;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 100vh;
+    position: relative;
+}
+.doctor-revenue-chart{
+    background-color: white;
+    border-radius: 8px;
+    max-height: 450px;
+    max-width: 50%;
+}
+.appointment-count-chart{
+    background-color: white;
+    border-radius: 8px;
+    max-height: 450px;
+    max-width: 50%;
+}
+.doctor-analytics-dropdown{
+    width: 10rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+.doctor-analytics__top-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 2rem;
+    padding-inline: 1rem;
+    margin-top: 1.5rem;
+}

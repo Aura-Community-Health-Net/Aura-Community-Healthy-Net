@@ -4,9 +4,13 @@ const addProductForm = document.querySelector("#add-product-form");
 const addProductOverlay = document.querySelector("#add-product-overlay");
 const addProductOKBtn = document.querySelector("#add-product-ok-btn");
 const addProductCancelBtn = document.querySelector("#add-product-cancel-btn");
+const addProductFinalBtn = document.querySelector("#add-product-final-btn");
 
 const deleteProductModal = document.querySelector("#delete-product-modal");
 const deleteProductOverlay = document.querySelector("#delete-product-overlay");
+
+const updateProductModal = document.querySelector("#update-product-modal");
+const updateProductOverlay = document.querySelector("#update-product-overlay");
 
 const nameInput = document.getElementById("name");
 const weightInput = document.getElementById("weight");
@@ -18,6 +22,9 @@ const productImageInput = document.querySelector("#image");
 const productImageFilename = document.querySelector("#image-filename");
 
 const deleteProductButtons = document.querySelectorAll(".product-delete");
+const updateProductButtons = document.querySelectorAll(".product-update");
+
+console.log(updateProductButtons)
 
 addProductModalButton.addEventListener("click", () => {
   addProductModal.style.display = "block";
@@ -27,7 +34,8 @@ addProductModalButton.addEventListener("click", () => {
 });
 
 addProductOKBtn.addEventListener("click", () => {
-  addProductForm.submit();
+  // addProductForm.submit();
+  addProductFinalBtn.click();
 });
 
 addProductOverlay.addEventListener("click", (e) => {
@@ -94,24 +102,26 @@ productImageInput.addEventListener("change", function () {
   }
 });
 
-deleteProductButtons.forEach((element) => {
-  element.addEventListener("click", () => {
+function attachDeleteButtonListener(button){
+  button.addEventListener("click", function () {
     // alert(`Product id is ${element.id}, Product name is ${element.dataset.productname}`)
-    const elementId = element.id; // delete-product-56
-    const splittedId = elementId.split("-"); // ['delete', 'product', '56']
+    const productId = button.dataset.productid; // delete-product-56
+    const productName = button.dataset.productname;
+    console.log(productId)
+    const categoryID = button.dataset.categoryid;
 
     deleteProductModal.innerHTML = `
-         <h3>Do you really want to delete ${element.dataset.productname}</h3>
+         <h3>Do you really want to delete ${productName}</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg" alt="">
         <div class="modal-actions">
             <button class="cancel-btn" id="delete-cancel-btn">Cancel</button>
-            <form action="/product-seller-dashoard/products/delete?productId=${splittedId[2]}" method="post">
+            <form action="/product-seller-dashboard/products/delete?productId=${productId}&categoryId=${categoryID}" method="post">
                 <button class="ok-btn" id="delete-ok-btn">Ok</button>
             </form>
         </div>
         `;
     const deleteCancelBtn =
-      deleteProductModal.querySelector("#delete-cancel-btn");
+        deleteProductModal.querySelector("#delete-cancel-btn");
     deleteCancelBtn.addEventListener("click", (e) => {
       console.log("click on cancel button");
       if (e.target === deleteCancelBtn) {
@@ -121,4 +131,89 @@ deleteProductButtons.forEach((element) => {
 
     openDeleteProductModal();
   });
+}
+deleteProductButtons.forEach(attachDeleteButtonListener);
+
+const openUpdateProductModal = () => {
+  updateProductModal.style.display = "block";
+  updateProductOverlay.style.display = "block";
+  updateProductModal.classList.add("modal-open");
+  updateProductOverlay.classList.add("overlay-open");
+};
+
+updateProductOverlay.addEventListener("click", (e) => {
+  console.log("click on overlay");
+  if (e.target === updateProductOverlay) {
+    closeUpdateProductModal();
+  }
 });
+
+function closeUpdateProductModal() {
+  updateProductOverlay.classList.remove("overlay-open");
+  updateProductModal.classList.remove("modal-open");
+  updateProductModal.classList.add("modal-close");
+  updateProductOverlay.classList.add("overlay-close");
+  setTimeout(() => {
+    updateProductModal.style.display = "none";
+    updateProductOverlay.style.display = "none";
+    updateProductModal.classList.remove("modal-close");
+    updateProductOverlay.classList.remove("overlay-close");
+  }, 200);
+}
+
+function attachUpdateButtonListener(button){
+  button.addEventListener("click", function () {
+    // alert(`Product id is ${element.id}, Product name is ${element.dataset.productname}`)
+    const productId = button.dataset.productid;
+    const productName = button.dataset.productname;
+    const tr = button.parentElement.parentElement;
+    console.log(tr.dataset)
+    console.log(productId)
+    const categoryID = button.dataset.categoryid;
+    // <label className="form-input__label" htmlFor="">Product Image</label>
+    // <input type="file" id="image" name="image" style="display: none; visibility: hidden" accept="image/*"
+    //        required>
+    //   <div className="form-upload-component">
+    //     <button className="upload-btn" id="image-btn" type="button">
+    //       <i className="fa-solid fa-plus add-icon"></i>
+    //     </button>
+    //     <div id="image-filename"></div>
+    //   </div>
+    updateProductModal.innerHTML = `
+         <h3>Update product information for ${productName}</h3>
+        <div class="modal-actions">
+            <form class="product-update-form" action="/product-seller-dashboard/products/update?productId=${productId}&categoryId=${categoryID}" method="post">
+
+                <label class="form-input__label" for="">Product Name</label>
+                <input  class="form-input__input" type="text" name="name" value="${tr.dataset.productname}">
+                <label class="form-input__label" for="">Quantity</label>
+                <input class="form-input__input" type="text" name="quantity" value="${tr.dataset.productquantity}">
+                <label class="form-input__label" for="">Quantity Unit</label>
+                <input class="form-input__input" type="text" name="quantity_unit" value="${tr.dataset.productquantity_unit}">                
+                <label class="form-input__label" for="">Price</label>
+                <input class="form-input__input" type="text" name="price" value="${tr.dataset.productprice}">
+                ${parseInt(categoryID) !== 5 ?
+        `<label class="form-input__label" for="">Stock</label>
+                <input class="form-input__input" type="text" name="stock" value="${tr.dataset.productstock}">
+                <label class="form-input__label" for="">Stock Unit</label>
+                `: ""}
+                <div class="update-btn-section">
+                    <button class="cancel-btn" id="update-cancel-btn" type="button">Cancel</button>
+                    <button class="ok-btn" id="update-ok-btn">Ok</button>
+                </div>
+            </form>
+        </div>
+        `;
+    const updateCancelBtn =
+        updateProductModal.querySelector("#update-cancel-btn");
+    updateCancelBtn.addEventListener("click", (e) => {
+      console.log("click on cancel button");
+      if (e.target === updateCancelBtn) {
+        closeUpdateProductModal();
+      }
+    });
+
+    openUpdateProductModal();
+  });
+}
+updateProductButtons.forEach(attachUpdateButtonListener);

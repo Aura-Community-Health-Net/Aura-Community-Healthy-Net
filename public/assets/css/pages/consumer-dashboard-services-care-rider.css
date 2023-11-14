@@ -1,0 +1,126 @@
+.consumer-dashboard-care-rider{
+    overflow-x: hidden;
+}
+.consumer-dashboard-care-rider__top{
+    width: 50px;
+    margin-inline: 4rem;
+}
+
+.consumer-dashboard-care-rider__top form{
+    width: auto;
+}
+
+.consumer-dashboard-care-rider__top__right p{
+    display: flex;
+    position: relative;
+    top: 10px;
+    left: 22px;
+}
+.consumer-dashboard-care-rider__top__right img{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 170px;
+    bottom: 10px;
+}
+
+.care-rider__card-details{
+    display: grid;
+    gap: 3rem;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2rem 2rem;
+}
+
+.care-rider__card-details--empty {
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+}
+
+
+.care-rider-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFEEFD ;
+    border-radius: 1rem;
+    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.4);
+}
+
+.care-rider-card > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 2rem;padding-bottom: 1rem;
+}
+
+.doctor-card button {
+    border: none;
+    outline: none;
+    background-color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.care-rider-button {
+    border: none;
+    outline: none;
+    /*background-color: var(--color-primary);*/
+    padding: 0.5rem 1rem;
+    color: black;
+    cursor: pointer;
+    border-radius: 9%;
+}
+
+.care-rider-card > div > div {
+    width: 50%;
+}
+
+.care-rider-card > div > div > p {
+    align-items: center;
+    width: 20rem;
+    margin: 0 auto;
+}
+
+
+.care-rider-card > div > div > p > span {
+    width: 50%;
+}
+
+.care-rider-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+}
+.form-items-dropdown {
+    width: 18rem;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-left: 500px;
+}
+.care-rider-search-bar{
+    border: none;
+    outline: none;
+    /*background-color:red;*/
+    display: flex;
+    color: black;
+
+}
+
+.empty-care-riders{
+    text-align: center;
+    color: #00005C;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+

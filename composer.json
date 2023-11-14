@@ -1,19 +1,21 @@
 {
-    "name": "randima/aura-community-health-net1",
-   
-    "authors": [
-        {
-            "name": "Randima Dias",
-            "email": "randimamethminid525@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "app\\": "./"
-        }
-    },
-    "require": {
-        "vlucas/phpdotenv": "^5.5",
-      "ext-mysqli": "*"
+  "name": "randima/aura-community-health-net1",
+  "authors": [
+    {
+      "name": "Randima Dias",
+      "email": "randimamethminid525@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "ext-mysqli": "*",
+    "stripe/stripe-php": "^10.12",
+    "sendinblue/api-v3-sdk": "^8.4",
+    "guzzlehttp/guzzle": "^7.5"
+  }
 }

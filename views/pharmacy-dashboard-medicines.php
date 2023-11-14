@@ -2,8 +2,22 @@
 /**
  * @var array $pharmacy
  * @var array $medicines
+ * @var string $title
+ * @var string $active_link
  */
 ?>
+<?php
+foreach ($medicines as $medicine) {
+    $med_id = $medicine['med_id'];
+}
+?>
+<form action="/pharmacy-dashboard/medicines" class="form-item--search" method="get">
+    <div class="search-bar">
+        <input type="text" placeholder="Search Medicine..." name="query" id="query">
+        <button href="" type="submit"><i class="fa fa-search"></i></button>
+
+    </div>
+</form>
 <table class="items-table">
     <tr>
         <th>Medicine Image</th>
@@ -13,22 +27,37 @@
         <th>Quantity</th>
         <th>Quantity Unit</th>
         <th>Stock</th>
-        <th>Stock Unit</th>
+
     </tr>
     <?php
     foreach ($medicines as $medicine) {
+
+        $med_id = $medicine['med_id'];
+        $med_name = $medicine['name'];
+        $med_price = $medicine['price']/100;
+        $med_quantity = $medicine['quantity'];
+        $med_quantity_unit = $medicine['quantity_unit'];
+        $med_stock = $medicine['stock'];
+
+
         echo "
-                      <tr>   
+                    <tr data-medicineid='$med_id' data-medicinename='$med_name' data-medicineprice='$med_price' data-medicinequantity ='$med_quantity' data-medicinequantity_unit='$med_quantity_unit' data-medicinestock ='$med_stock'>  
+                     
                     <td id='image-block'><img class='products-img' src='{$medicine['image']}' alt=''></td>
-                    <td>{$medicine['med_id']}</td>
-                    <td>{$medicine['name']}</td>
-                    <td>{$medicine['price']}</td>
+                    <td>{$med_id}</td>
+                    <td>{$med_name}</td>
+                    <td>$med_price</td>
                     <td>{$medicine['quantity']}</td>
                     <td>{$medicine['quantity_unit']}</td>
                     <td>{$medicine['stock']}</td>
-                    <td>{$medicine['stock_unit']}</td>
                     
-                    <td id='action-block'><button class='action-btn action-btn--edit'><i class='fa-solid fa-pen'></i></button> <button class='action-btn action-btn--delete'><i class='fa-solid fa-trash'></i></button></td>
+                    <td id='action-block'>
+                        <button id = 'delete-medicines-$med_id' data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--delete medicine-delete'><i class='fa-solid fa-trash'></i></button>
+                        <button id = 'update-medicines-$med_id'  data-medicineid = '$med_id' data-medicinename = '$med_name' class='action-btn action-btn--update medicine-update'><i class='fa-solid fa-pen' style='color: #FFD700'></i></button>
+
+                    </td>
+                    
+                                        
         </tr>";
     } ?>
 </table>
@@ -43,14 +72,14 @@
             <th><label class="products-label">Quantity</label></th>
             <th><label class="products-label">Quantity Unit</label></th>
             <th><label class="products-label">Stock</label></th>
-            <th><label class="products-label">Stock Unit</label></th>
+
         </tr>
         <tr>
             <td><input type="file" id="add_img" name="image" style="display: none; visibility: hidden" accept="image/*"
                        required>
                 <div class="form-upload-component">
                     <button class="upload-btn" id="image-btn" type="button">
-                        <i class="fa-solid fa-plus add-icon"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="image-filename"></div>
                 </div>
@@ -60,22 +89,42 @@
             <td><input type="number" name="quantity" value="<?php echo $_POST['quantity'] ?? ''; ?>"></td>
             <td><input type="text" name="quantity_unit" value="<?php echo $_POST['quantity_unit'] ?? ''; ?>"></td>
             <td><input type="number" name="stock" value="<?php echo $_POST['stock'] ?? ''; ?>"></td>
-            <td><input type="text" name="stock_unit" value="<?php echo $_POST['stock_unit'] ?? ''; ?>"></td>
         </tr>
     </table>
+    <input type="submit" id="add-medicine-final-btn" style="display: none">
     <button type="button" id="add-med-btn" class="add-btn">
-        <i class="fa-solid fa-plus"></i>
+        <i class="fa fa-plus"></i>
     </button>
 </form>
 <div class="overlay" id="add-medicine-overlay">
     <div class="modal" id="add-medicine-modal">
-        <h3>Do you really want to add this product?</h3>
+        <h3>Do you really want to add this medicine?</h3>
         <img class="modal-img" src="/assets/images/confirmation.jpg">
         <div class="modal-actions">
             <button class="cancel-btn" id="add-medicine-cancel-btn">Cancel</button>
-            <button class="ok-btn" id="add-medicine-ok-btn">ok</button>
+            <button class="ok-btn" id="add-medicine-ok-btn">Ok</button>
         </div>
     </div>
 </div>
+
+
+<div class="overlay" id="delete-medicine-overlay">
+    <div class="modal" id="delete-medicine-modal">
+
+    </div>
+</div>
+
+
+<div class="overlay" id="update-medicine-overlay">
+    <div class="modal" id="update-medicine-modal">
+
+    </div>
+
+</div>
+
+
+
+
+
 
 <script src="/assets/js/pages/medicines.js"></script>

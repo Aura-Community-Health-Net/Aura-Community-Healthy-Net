@@ -1,0 +1,50 @@
+.notification{
+    background-color: #38E54D;
+    color: white;
+    border-radius: 8px;
+    position: absolute;
+    right: 1rem;
+    padding: 1rem 2rem;
+    width: 300px;
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideFromRight 300ms ease-in-out forwards;
+    cursor: pointer;
+}
+
+@keyframes slideFromRight{
+    0%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromLeft{
+    0%{
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    100%{
+        transform: translate(100%);
+        opacity: 0;
+    }
+}
+
+.notification--remove{
+    background-color: #38E54D;
+    color: white;
+    border-radius: 8px;
+    position: absolute;
+    right: 1rem;
+    padding: 1rem 2rem;
+    width: 300px;
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideFromLeft 300ms ease-in-out forwards;
+}

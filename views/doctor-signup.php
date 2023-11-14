@@ -8,58 +8,84 @@
         <div class="provider-signup-form__left">
             <div id="form-input">
                 <label class="form-input__label" for="doc-name">Name <sup>*</sup></label>
-                <input class="form-input__input" id="doc-name" type="text" name="doc-name"
+                <input class="form-input__input" id="doc-name" type="text" name="doc-name" tabindex="1"
                     value="<?php echo $_POST['doc-name'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="nic">NIC <sup>*</sup></label>
-                <input class="form-input__input" id="nic" type="text" name="nic"
+                <input class="form-input__input" id="nic" type="text" name="nic" tabindex="2"
                     value="<?php echo $_POST['nic'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["nic"])) {
+                    echo "<p class = 'errors'> {$errors["nic"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="email">Email Address <sup>*</sup></label>
-                <input class="form-input__input" id="email" type="email" name="email"
+                <input class="form-input__input" id="email" type="email" name="email" tabindex="3"
                     value="<?php echo $_POST['email'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["email"])) {
+                    echo "<p class = 'errors'> {$errors["email"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="mobile-number">Mobile Number <sup>*</sup></label>
-                <input class="form-input__input" id="mobile-number" type="tel" name="mobile-number"
+                <input class="form-input__input" id="mobile-number" type="tel" name="mobile-number" tabindex="4"
                     value="<?php echo $_POST['mobile-number'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["mobile_number"])) {
+                    echo "<p class = 'errors'> {$errors["mobile_number"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="address">Address <sup>*</sup></label>
-                <input class="form-input__input" id="address" type="text" name="address"
+                <input class="form-input__input" id="address" type="text" name="address" tabindex="5"
                     value="<?php echo $_POST['address'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="reg-num">SLMC Registration Number <sup>*</sup></label>
-                <input class="form-input__input" id="reg-num" type="text" name="reg-num"
+                <input class="form-input__input" id="reg-num" type="text" name="reg-num" tabindex="6"
                     value="<?php echo $_POST['reg-num'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["reg_no"])) {
+                    echo "<p class = 'errors'> {$errors["reg_no"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="field-study">Field Of Study <sup>*</sup></label>
-                <input class="form-input__input" id="field-study" type="text" name="field-study"
+                <input class="form-input__input" id="field-study" type="text" name="field-study" tabindex="7"
                     value="<?php echo $_POST['field-study'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="mbbs-certificate">Certificate of MBBS <sup>*</sup></label>
-                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate"
-                    value="<?php echo $_POST['certificate'] ?? ''; ?>" style="display: none; visibility: hidden;"
-                    required>
+                <input class="form-input__input" id="mbbs-certificate" type="file" name="certificate" tabindex="8" accept="application/pdf" style="display: none; visibility: hidden"
+                       required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="mbbs-certificate-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="mbbs-certificate-filename"></div>
                 </div>
+            </div>
+
+            <div id="form-input">
+                <label class="form-input__label" for="qualifications">Qualifications <sup>*</sup></label>
+                <textarea class="form-input__textarea" id="qualifications" name="qualifications" tabindex="9"
+                          placeholder="Please put qualifications with separating commas" rows="5"
+                          value="<?php echo $_POST['qualifications'] ?? ''; ?>" required></textarea>
             </div>
         </div>
 
@@ -67,39 +93,45 @@
 
         <div class="provider-signup-form__right">
             <div id="form-input">
-                <label class="form-input__label" for="qualifications">Qualifications <sup>*</sup></label>
-                <textarea class="form-input__textarea" id="qualifications" name="qualifications"
-                    placeholder="Please put qualifications with separating commas" rows="5"
-                    value="<?php echo $_POST['qualifications'] ?? ''; ?>" required></textarea>
-            </div>
-
-            <div id="form-input">
                 <label class="form-input__label" for="account-num">Bank Account Number <sup>*</sup></label>
-                <input class="form-input__input" id="account-num" type="text" name="account-num"
+                <input class="form-input__input" id="account-num" type="text" name="account-num" tabindex="10"
                     value="<?php echo $_POST['account-num'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["account_no"])) {
+                    echo "<p class = 'errors'> {$errors["account_no"]}</p>";
+                }
+                ?>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="bank-name">Bank Name <sup>*</sup></label>
-                <input class="form-input__input" id="bank-name" type="text" name="bank-name"
+                <input class="form-input__input" id="bank-name" type="text" name="bank-name" tabindex="11"
                     value="<?php echo $_POST['bank-name'] ?? ''; ?>" required>
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="branch-name">Bank Branch Name <sup>*</sup></label>
-                <input class="form-input__input" id="branch-name" type="text" name="branch-name"
+                <input class="form-input__input" id="branch-name" type="text" name="branch-name" tabindex="12"
                     value="<?php echo $_POST['branch-name'] ?? ''; ?>" required>
+            </div>
+
+            <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <div class="form-input__map" id="location">
+                    <div id="map" style="height: 280px"></div>
+                </div>
+                <input type="text" name="location_lat" id="location_lat" style="display: none">
+                <input type="text" name="location_lng" id="location_lng" style="display: none">
             </div>
 
             <div id="form-input">
                 <label class="form-input__label" for="profile-pic">Profile Picture <sup>*</sup></label>
-                <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File"
-                    name="profile-pic" value="<?php echo $_POST['profile-pic'] ?? ''; ?>"
-                    style="display: none; visibility: hidden;" required>
+                <input class="form-input__input" id="profile-pic" type="file" placeholder="Add a JPG File" tabindex="13"
+                       name="profile-pic" style="display: none; visibility: hidden;" accept="image/*" required>
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>
@@ -115,26 +147,31 @@
                 <label class="form-input__label" for="con-password">Confirm Password <sup>*</sup></label>
                 <input class="form-input__input" id="con-password" type="password" name="con-password"
                     value="<?php echo $_POST['con-password'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["con_password"])) {
+                    echo "<p class = 'errors'> {$errors["con_password"]}</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
 
 
-    <div class="provider-signup-form__bottom">
+    <div class="provider-signup-form__bottom ">
 
-        <div class="provider-signup-form__bottom__top">
+        <div class="provider-signup-form__bottom__top doctor-type__selector">
             <div class="western">
                 <label>Western</label>
-                <input type="radio" name="western" id="western">
+                <input type="radio" value="Western" name="doctor_type" id="western">
             </div>
 
             <div class="indigenous">
                 <label>Indigenous</label>
-                <input type="radio" name="indigenous" id="indigenous">
+                <input type="radio" value="Indigenous" name="doctor_type" id="indigenous">
             </div>
             <div class="counselor">
                 <label>Counselor</label>
-                <input type="radio" name="counselor" id="counselor">
+                <input type="radio" value="Counselor" name="doctor_type" id="counselor">
             </div>
         </div>
 
@@ -142,7 +179,7 @@
         <div class="provider-signup-form__bottom__bottom">
             <div class="policy">
                 <input type="checkbox" name="ua" required>
-                <p>I have read and agree the </p> <span><a href="#"> Terms and Conditions and Privacy
+                <p>I have read and agree the </p> <span><a href="/terms-conditions-and-user-agreements"> Terms and Conditions and Privacy
                         Policy</a></span>
             </div>
             <?php
@@ -154,20 +191,31 @@
 
 
         <div id="form-input">
-            <button id="reg-btn" class="btn">Register</button>
+            <button id="reg-btn" type="submit" class="btn" style="background-color: #00005C">Register</button>
         </div>
     </div>
 </form>
 
 
-<div id="modal">
-    <h3>Your account will be verified shortly, you are only visible to people after you are verified.</h3>
-    <img class="modal-img" src="/assets/images/verification.jpg" alt="">
-    <button class="reg-ok-btn" id="ok-btn">Ok</button>
-</div>
-
-
 <script src="/assets/js/pages/signup-doctor.js"></script>
-</body>
+<script>(g => {
+        var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__",
+            m = document, b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+            u = () => h || (h = new Promise(async (f, n) => {
+                await (a = m.createElement("script"));
+                e.set("libraries", [...r] + "");
+                for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                e.set("callback", c + ".maps." + q);
+                a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                d[q] = f;
+                a.onerror = () => h = n(Error(p + " could not load."));
+                a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                m.head.append(a)
+            }));
+        d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+    })
+    ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
 
-</html>
+<script src="/assets/js/pages/signup-location.js"></script>

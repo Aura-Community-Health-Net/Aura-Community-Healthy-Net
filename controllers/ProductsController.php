@@ -8,11 +8,12 @@ use app\core\Database;
 
 class ProductsController extends Controller
 {
-    public static function getProductSellerChooseCategoryPage(): array |bool|string
+    public static function getProductSellerChooseCategoryPage(): array|bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
-            header("location: /product-seller-login");
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
             return "";
         } else {
             $db = new Database();
@@ -30,10 +31,11 @@ class ProductsController extends Controller
         ]);
     }
 
-    public static function getProductSellerMedFruitsVegPage(): array |bool|string
+    public static function getProductSellerMedFruitsVegPage(): array|bool|string
     {
         $nic = $_SESSION["nic"];
-        if (!$nic) {
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
             header("location: /product-seller-login");
             return "";
         } else {
@@ -76,13 +78,12 @@ class ProductsController extends Controller
     public static function addProducts(): string
     {
         $product_name = $_POST["name"];
-        $quantity = (int) $_POST["quantity"];
+        $quantity = (int)$_POST["quantity"];
         $quantity_unit = $_POST["quantity_unit"];
-        $price = (int) $_POST["price"] * 100;
-        $category = (int) $_GET["category"];
+        $price = (int)$_POST["price"] * 100;
+        $category = (int)$_GET["category"];
         if ($category != 5) {
-            $stock = (int) $_POST["stock"];
-            $stock_unit = $_POST["stock_unit"];
+            $stock = (int)$_POST["stock"];
         }
         $file = $_FILES["image"];
         $file_name = $file["name"];
@@ -129,24 +130,276 @@ class ProductsController extends Controller
                      quantity_unit,
                      price, 
                      stock,
-                     stock_unit,
                      provider_nic, 
-                     category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $image = "/uploads/$new_file_name";
-        $stmt->bind_param("ssisiissi", $image, $product_name, $quantity, $quantity_unit, $price, $stock, $stock_unit, $nic, $category);
+        $stmt->bind_param("ssisiisi", $image, $product_name, $quantity, $quantity_unit, $price, $stock, $nic, $category);
         $result = $stmt->execute();
         header("location: /product-seller-dashboard/products?category=$category");
         return "";
     }
 
-    public static function deleteProducts()
+    public static function deleteProduct()
     {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: /provider-login");
+            return "";
+        }
+        $product_id = $_GET["productId"];
+        $category_id = $_GET["categoryId"];
+
         $db = new Database();
-        $stmt = $db->connection->prepare("DELETE FROM product WHERE product_id = ?");
-        $stmt->bind_param("d", $product_id);
+        $stmt = $db->connection->prepare("DELETE FROM product WHERE product_id = ? AND provider_nic = ?");
+        $stmt->bind_param("ds", $product_id, $nic);
         $stmt->execute();
         $result = $stmt->get_result();
-        $product_seller = $result->fetch_assoc();
+        header("location: /product-seller-dashboard/products?category=$category_id");
+        return "";
+    }
+
+    public static function updateProducts(): string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== "product-seller") {
+            header("location: provider-login");
+            return "";
+        }
+        $product_id = $_GET["productId"];
+        $category_id = $_GET["categoryId"];
+
+        $name = $_POST['name'];
+        $quantity = $_POST['quantity'];
+        $quantity_unit = $_POST['quantity_unit'];
+        $price = $_POST['price'] * 100;
+        $stock = $_POST['stock'];
+
+        $db = new Database();
+        $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ?,stock = ? WHERE product_id = ? AND provider_nic = ?");
+        if ($category_id == 5) {
+            $stmt = $db->connection->prepare("UPDATE product SET name = ?,quantity = ?, price = ?, quantity_unit = ? WHERE product_id = ? AND provider_nic = ?");
+        }
+        if ($category_id != 5) {
+            $stmt->bind_param("ssdsdds", $name, $quantity, $price, $quantity_unit, $stock, $product_id, $nic);
+        } else {
+            $stmt->bind_param("ssdsds", $name, $quantity, $price, $quantity_unit, $product_id, $nic);
+
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        header("location: /product-seller-dashboard/products?category=$category_id");
+        return "";
+    }
+
+    public static function getConsumerProductsPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        if (!$nic) {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+//            $category_id = isset($_GET["category_id"]) ? $_GET['category_id']:false;
+
+            $searchTerm = $_GET['q'] ?? null;
+            $search_query = isset($_GET["q"]) ? $_GET["q"] == "" ? "%" : "%{$_GET['q']}%": "%";
+
+            $db = new Database();
+
+            $productCategory = $_GET["product-categories"] ?? "all";
+//            $product_category =  ? "Medicinal Fruits & Vegetables";
+//            var_dump($product_category);
+//            if ($product_category == "Medicinal Fruits & Vegetables"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Medicinal Fruits & Vegetable'";
+//            } elseif ($product_category == "Seeds"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Seeds'";
+//            } elseif ($product_category == "Leaves"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Leaves'";
+//            } elseif ($product_category == "Dried Herbs"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Dried Herbs'";
+//            } elseif ($product_category == "Cooked Foods"){
+//                $sql = "SELECT * FROM product p INNER JOIN product_category pc ON pc.category_id = p.category_id WHERE pc.category_name = 'Cooked Foods'";
+//            }
+//            $result = $db->connection->query(query: $sql);
+//            $product_category = [];
+//
+//            while ($row = $result->fetch_assoc()){
+//                $product_category[] = $row;
+//            }
+
+            $stmt = $db->connection->prepare("SELECT location_lat, location_lng FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer_location = $result->fetch_assoc();
+            $location_lat = $consumer["location_lat"];
+            $location_lng = $consumer["location_lng"];
+
+            if($productCategory === "all") {
+                $stmt = $db->connection->prepare("
+            SELECT 
+                p.product_id, 
+                p.image, 
+                p.name, 
+                p.quantity, 
+                p.quantity_unit, 
+                p.price, 
+                h.business_name, 
+                p.stock, 
+                p.category_id 
+            FROM 
+                product p 
+                    INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic 
+                    INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic 
+                    INNER JOIN product_category pc ON p.category_id = pc.category_id 
+            WHERE p.name LIKE '$search_query' AND 
+                  st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000"
+                );
+                $stmt->bind_param("dd", $location_lng, $location_lat);
+
+            } else {
+                $stmt = $db->connection->prepare("
+            SELECT 
+                p.product_id, 
+                p.image, 
+                p.name, 
+                p.quantity, 
+                p.quantity_unit, 
+                p.price, 
+                h.business_name, 
+                p.stock, 
+                p.category_id 
+            FROM 
+                product p 
+                    INNER JOIN `healthy_food/natural_medicine_provider` h ON p.provider_nic = h.provider_nic 
+                    INNER JOIN service_provider sp ON h.provider_nic = sp.provider_nic 
+                    INNER JOIN product_category pc ON p.category_id = pc.category_id 
+            WHERE pc.category_name = ? AND 
+                  p.name LIKE '$search_query' AND 
+                  st_distance_sphere(point(?, ?), point(sp.location_lng, sp.location_lat)) <= 10000"
+                );
+                $stmt->bind_param("sdd", $productCategory, $location_lng, $location_lat);
+
+            }
+
+
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+//            var_dump($products);
+
+
+            return self::render(view: 'consumer-dashboard-products', layout: 'consumer-dashboard-layout', params: [
+                'products' => $products,
+                'searchTerm' => $searchTerm,
+                'product_category' => $productCategory
+            ], layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-products"
+            ]);
+        }
+    }
+
+    public static function getConsumerProductOverviewPage(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $product_id = $_GET["id"];
+        $providerType = $_SESSION["user_type"];
+
+        if (!$nic || $providerType !== 'consumer') {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT s.provider_nic, s.profile_picture, s.name as provider_name, h.business_name, h.business_reg_no, s.address, p.image, p.name, p.quantity, p.quantity_unit, p.price, p.product_id, p.category_id, p.stock FROM product p INNER JOIN service_provider s ON p.provider_nic = s.provider_nic INNER JOIN `healthy_food/natural_medicine_provider` h ON h.provider_nic = s.provider_nic WHERE product_id = ?");
+            $stmt->bind_param("d", $product_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product = $result->fetch_assoc();
+
+            $stmt = $db->connection->prepare("SELECT * FROM product WHERE provider_nic = ? AND product_id != ?");
+            $stmt->bind_param("sd", $product['provider_nic'], $product_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $product_list = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $db->connection->prepare("SELECT c.profile_picture, c.name, f.date_time, f.text FROM feedback f INNER JOIN service_consumer  c ON c.consumer_nic = f.consumer_nic WHERE f.provider_nic = ? ORDER BY f.date_time DESC");
+            $stmt->bind_param("s", $product["provider_nic"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $feedback_list = $result->fetch_all(MYSQLI_ASSOC);
+
+            return self::render(view: 'consumer-dashboard-product-overview', layout: 'consumer-dashboard-layout', params: [
+                'product_details' => $product,
+                'other_products' => $product_list,
+                'feedback_for_sellers' => $feedback_list
+            ], layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-product"
+            ]);
+        }
+    }
+
+    public static function addProductFeedback(): string
+    {
+        $nic = $_SESSION["nic"];
+        $product_id = $_GET["product_id"];
+        $providerType = $_SESSION["user_type"];
+        $product_feedback = $_POST["product-feedback"];
+        $provider_nic = $_GET["provider_nic"];
+
+        if (!$nic || $providerType !== 'consumer') {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("INSERT INTO feedback (text, date_time, provider_nic, consumer_nic) VALUES (?, now(), ?, ?)");
+            $stmt->bind_param("sss", $product_feedback, $provider_nic, $nic);
+            $stmt->execute();
+            header("location: /products/view?id=$product_id");
+            return "";
+        }
+    }
+
+    public static function getConsumerProductPayment(): bool|array|string
+    {
+        $nic = $_SESSION["nic"];
+        $providerType = $_SESSION["user_type"];
+        if (!$nic || $providerType !== 'consumer') {
+            header("location: /login");
+            return "";
+        } else {
+            $db = new Database();
+            $stmt = $db->connection->prepare("SELECT * FROM service_consumer WHERE consumer_nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $consumer = $result->fetch_assoc();
+
+            return self::render(view: 'consumer-dashboard-product-payment', layout: 'consumer-dashboard-layout', layoutParams: [
+                "consumer" => $consumer,
+                "title" => "Natural Food Products",
+                "active_link" => "dashboard-product"
+            ]);
+        }
     }
 
 }

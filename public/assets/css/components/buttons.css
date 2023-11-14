@@ -11,6 +11,14 @@
     height: 2.5rem;
 }
 
+.btn a {
+    color: #fff;
+}
+
+.btn a:visited {
+    color: #fff;
+}
+
 .btn--block {
     width: 100%;
 }
@@ -22,6 +30,7 @@
     color: white;
     font-size: 1rem;
     display: block;
+    width: 100px;
     cursor: pointer;
     padding-inline: 1rem;
     padding-block: 0.3rem;
@@ -30,7 +39,7 @@
 
 
 .cancel-btn{
-    background-color: #7ABCF1;
+    background-color: #0002A1;
     border: none;
     border-radius: 8px;
     color: white;
@@ -53,4 +62,92 @@
     padding-inline: 1rem;
     padding-block: 0.3rem;
     margin-top: 20px;
+    width: 5rem;
+    height: 2rem;
 }
+
+.deny-btn{
+    background-color: #0002A1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    margin-top: 20px;
+    width: 5rem;
+    height: 2rem;
+}
+
+
+.pharmacy-request{
+    color: white;
+
+}
+
+.form-submit-btn{
+    background-color: #0002A1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    margin-top: 25px;
+    width: 5rem;
+    height: 2rem;
+    position: absolute;
+    right: 2rem;
+}
+
+.form-user-submit{
+    background-color: #0002A1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    width: 5rem;
+    height: 2rem;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+}
+
+/*#services-pharmacy-presUpload-btn{*/
+
+
+/*    background-color: #008DFF;*/
+/*    border: none;*/
+/*    border-radius: 0.6rem;*/
+/*    cursor: pointer;*/
+/*    color: white;*/
+/*    padding-left: 0.4rem;*/
+
+/*}*/
+
+/*#request-pharmacy{*/
+/*    font-size: 1rem;*/
+/*}*/
+
+
+/*#attach-prescription-cancel-btn*/
+/*{*/
+/*    background-color: #00005C;*/
+
+
+/*}*/
+
+/*#attach-prescription-ok-btn{*/
+/*    margin-top: 30px;*/
+/*}*/
+
+
+

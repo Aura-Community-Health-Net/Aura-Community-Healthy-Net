@@ -1,0 +1,151 @@
+.services-pharmacy-dashboard-MedicinesList
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 500px;
+    margin-top: -250px;
+    padding: 0.7rem;
+    background-color:#EFEEFD;
+    border-radius: 0.6rem;
+    width:850px;
+    align-items: center;
+    align-content: center;
+
+}
+#services-pharmacy-pharmacyName
+{
+    font-weight: bold;
+    width: 20rem;
+}
+
+#services-pharmacy-MedicineImage img
+{
+    width:50px;
+    height: 50px;
+}
+
+.services-pharmacy-attributes
+{
+    padding-left: 3rem;
+
+
+}
+
+.pharmacy-view-btn
+{
+    background-color: #00005C;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    padding-inline:1.3rem ;
+    padding-block:0.3rem ;
+}
+
+.pharmacy-request{
+    background-color: #00005C;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    padding-inline:1.3rem ;
+    padding-block:0.3rem;
+}
+
+.pharmacy-pres-upload-btn
+{
+    background-color: #008DFF;
+    width: 3.6cm;
+    height: 0.7cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+
+
+}
+
+.consumer-services-pharmacy-pharmacylist-Container
+{
+      display: flex;
+    flex-direction: column;
+    row-gap: 0.4cm;
+    margin-top: 90px;
+
+}
+
+
+.consumer-services-pharmacy-pharmacyRequest-button
+{
+    position:absolute;
+    right: 1rem;
+    background-color: #00005C;
+    width: 3.8cm;
+    height: 0.8cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    /*margin-left: 500px ;*/
+    /*margin-top:-700px;*/
+    color: white;
+
+}
+
+.consumer-services-pharmacy-pharmacyRequest-button a
+{
+    color: white;
+    font-size: 1rem;
+}
+
+.consumer-services-pharmacy-pharmacyReply-button{
+    position: absolute;
+    right: 11rem;
+    background-color: #00005C;
+    height: 0.8cm;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    color: white;
+    padding-inline: 1rem;
+
+}
+
+.consumer-services-pharmacy-pharmacyReply-button a{
+    color: white;
+    font-size: 1rem;
+}
+
+
+
+
+
+.pharmacy-view-btn a
+{
+    color: white;
+}
+
+.sent-request__container{
+    padding: 2rem;
+    position: relative;
+
+}
+.sent-request__container button{
+    /*display: flex;*/
+    /*flex-direction: row;*/
+}
+
+
+.prescription_buttons_container{
+    display: flex;
+     justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.empty-pharmacies{
+    text-align: center;
+    color:#00005C;
+    font-size: 30px;
+    font-weight: bold;
+}

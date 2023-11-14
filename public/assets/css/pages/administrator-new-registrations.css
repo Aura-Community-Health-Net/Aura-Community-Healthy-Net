@@ -94,5 +94,24 @@
 
 .empty-registrations p{
     text-align: center;
+    color: red;
 }
 
+.verification-button-section{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 5rem;
+}
+
+.admin-registration-form{
+    position: relative;
+}
+
+.admin-reg-dropdown{
+    position: absolute;
+    padding:0.5rem 1rem;
+    border: 5px;
+    margin-inline:0.5rem 1rem;
+    right: 7rem;
+    margin-top: 25px;
+}

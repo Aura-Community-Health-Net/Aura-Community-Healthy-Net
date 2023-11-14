@@ -59,10 +59,35 @@
             <div class="form-input">
                 <label class="form-input__label" for="pharmacyregno">Pharmacist Registration Number <sup>*</sup></label>
                 <input class="form-input__input" id="pharmacyregno" type="text" name="pharmacyregno"
-                    value="<?php echo $_POST['regNumber'] ?? ''; ?>" required>
+                    value="<?php echo $_POST['pharmacyregno'] ?? ''; ?>" required>
                 <?php
                 if (isset($errors) && isset($errors["pharmacyregno"])) {
                     echo "<p class = 'errors'> {$errors["pharmacyregno"]}</p>";
+                }
+                ?>
+            </div>
+
+            <div class="form-input">
+                <label class="form-input__label" for="nmra">NMRA Certificate <sup>*</sup></label>
+
+                <input class="form-input__input" id="nmra-certificate" type="file" name="nmra"
+                       style="display: none; visibility: hidden" accept="application/pdf" required>
+
+                <div class="form-upload-component">
+                    <button class="upload-btn" id="nmra-certificate-btn" type="button">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <div id="nmra-certificate-filename"></div>
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label class="form-input__label" for="bankaccno">Bank Account Number <sup>*</sup></label>
+                <input class="form-input__input" id="bankaccno" type="number" name="bankaccno"
+                       value="<?php echo $_POST['bankaccno'] ?? ''; ?>" required>
+                <?php
+                if (isset($errors) && isset($errors["bankaccno"])) {
+                    echo "<p class = 'errors'> {$errors["bankaccno"]}</p>";
                 }
                 ?>
             </div>
@@ -70,31 +95,7 @@
 
         <div class="provider-signup-form__right">
 
-            <div class="form-input">
-                <label class="form-input__label" for="nmra">NMRA Certificate <sup>*</sup></label>
 
-                <input class="form-input__input" id="nmra-certificate" type="file" name="nmra"
-                    style="display: none; visibility: hidden" accept="application/pdf" required>
-
-
-
-                <div class="form-upload-component">
-                    <button class="upload-btn" id="nmra-certificate-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <div id="nmra-certificate-filename"></div>
-                </div>
-            </div>
-            <div class="form-input">
-                <label class="form-input__label" for="bankaccno">Bank Account Number <sup>*</sup></label>
-                <input class="form-input__input" id="bankaccno" type="number" name="bankaccno"
-                    value="<?php echo $_POST['bankaccno'] ?? ''; ?>" required>
-                <?php
-                if (isset($errors) && isset($errors["bankaccno"])) {
-                    echo "<p class = 'errors'> {$errors["bankaccno"]}</p>";
-                }
-                ?>
-            </div>
 
             <div class="form-input">
                 <label class="form-input__label" for="bankname">Bank Name <sup>*</sup></label>
@@ -109,6 +110,15 @@
             </div>
 
             <div class="form-input">
+                <label class="form-input__label" for="location">Location <sup>*</sup></label>
+                <div class="form-input__map" id="location">
+                    <div id="map" style="height: 280px"></div>
+                </div>
+                <input type="text" name="location_lat" id="location_lat" style="display: none">
+                <input type="text" name="location_lng" id="location_lng" style="display: none">
+            </div>
+
+            <div class="form-input">
                 <label class="form-input__label" for="pic">Profile Picture <sup>*</sup></label>
 
                 <input class="form-input__input" id="profile-pic" type="file" name="pic"
@@ -116,7 +126,7 @@
 
                 <div class="form-upload-component">
                     <button class="upload-btn" id="profile-pic-btn" type="button">
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <div id="profile-pic-filename"></div>
                 </div>
@@ -143,7 +153,7 @@
     <div class="provider-signup-form__bottom">
         <div class="policy">
             <input type="checkbox" name="ua" required>
-            <p>I have read and agree the </p> <span><a href="#"> Terms and Conditions and Privacy Policy</a></span>
+            <p>I have read and agree the </p> <span><a href="/terms-conditions-and-user-agreements"> Terms and Conditions and Privacy Policy</a></span>
         </div>
         <?php
         if (isset($errors) && isset($errors["ua"])) {
@@ -157,15 +167,30 @@
     </div>
 </form>
 
-<div id="modal">
-    <h3>Your account will be verified shortly, you are only visible to people after you are verified.</h3>
-    <img class="modal-img" src="/assets/images/verification.jpg" alt="">
-    <button class="reg-ok-btn" id="ok-btn">Ok</button>
-</div>
-
 
 <script src="/assets/js/pages/signup-pharmacy.js"></script>
 
+<script>(g => {
+        var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__",
+            m = document, b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+            u = () => h || (h = new Promise(async (f, n) => {
+                await (a = m.createElement("script"));
+                e.set("libraries", [...r] + "");
+                for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                e.set("callback", c + ".maps." + q);
+                a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                d[q] = f;
+                a.onerror = () => h = n(Error(p + " could not load."));
+                a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                m.head.append(a)
+            }));
+        d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+    })
+    ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
+
+<script src="/assets/js/pages/signup-location.js"></script>
 
 
 
@@ -178,6 +203,4 @@
 
 
 
-</body>
 
-</html>
